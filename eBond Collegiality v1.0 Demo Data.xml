@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?><unload unload_date="2021-07-27 22:09:20">
+<sys_remote_update_set action="INSERT_OR_UPDATE">
+<application display_value="Global">global</application>
+<application_name>Global</application_name>
+<application_scope>global</application_scope>
+<application_version/>
+<collisions/>
+<commit_date/>
+<deleted/>
+<description/>
+<inserted/>
+<name>eBond Collegiality v1.0 Demo Data</name>
+<origin_sys_id/>
+<parent display_value=""/>
+<release_date/>
+<remote_base_update_set display_value=""/>
+<remote_parent_id/>
+<remote_sys_id>1c9643eedb6530107cb384d868961904</remote_sys_id>
+<state>loaded</state>
+<summary/>
+<sys_class_name>sys_remote_update_set</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-07-27 22:09:20</sys_created_on>
+<sys_id>af098fa2dba530107cb384d86896192e</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
+<update_set display_value=""/>
+<update_source display_value=""/>
+<updated/>
+</sys_remote_update_set>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_user_577ffa69dbc530107cb384d868961946</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_user"><sys_user action="INSERT_OR_UPDATE"><accumulated_roles/><active>true</active><avatar/><building/><calendar_integration>1</calendar_integration><city/><company/><cost_center/><country/><date_format/><default_perspective/><department/><edu_status>faculty</edu_status><email/><employee_number/><enable_multifactor_authn>false</enable_multifactor_authn><failed_attempts/><first_name>Alpha Co</first_name><gender/><home_phone/><internal_integration_user>false</internal_integration_user><introduction/><last_login/><last_login_device/><last_login_time/><last_name>eBond Account</last_name><last_password/><ldap_server/><location/><locked_out>false</locked_out><manager/><middle_name/><mobile_phone/><name>Alpha Co eBond Account</name><notification>2</notification><password_needs_reset>false</password_needs_reset><phone/><photo/><preferred_language/><roles/><schedule/><source/><state/><street/><sys_class_name>sys_user</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-29 22:25:34</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>577ffa69dbc530107cb384d868961946</sys_id><sys_mod_count>3</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-29 22:34:49</sys_updated_on><time_format/><time_zone/><title/><user_name>eBondAlpha</user_name><user_password/><vip>false</vip><web_service_access_only>false</web_service_access_only><zip/></sys_user></record_update>]]></payload>
+<payload_hash>1622612021</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">af098fa2dba530107cb384d86896192e</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-07-27 22:09:20</sys_created_on>
+<sys_id>2309c7e2dba530107cb384d868961984</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17aea0284390000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
+<table/>
+<target_name>Alpha Co eBond Account</target_name>
+<type>User</type>
+<update_domain>global</update_domain>
+<update_guid>fdb843e2f6a530105d814524dd321e84</update_guid>
+<update_guid_history>fdb843e2f6a530105d814524dd321e84:1622612021</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>core_company_94da46f1db0170107cb384d8689619cb</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="core_company"><core_company action="INSERT_OR_UPDATE"><apple_icon/><banner_image/><banner_image_light/><banner_text/><city/><contact/><coordinates_retrieved_on/><country>USA</country><customer>false</customer><discount/><fax_phone/><fiscal_year/><lat_long_error/><latitude/><longitude/><manufacturer>false</manufacturer><name>Alpha Co.</name><notes/><num_employees/><parent/><phone/><primary>false</primary><publicly_traded>false</publicly_traded><rank_tier/><state/><stock_price/><stock_symbol/><street/><sys_class_name>core_company</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 13:13:25</sys_created_on><sys_id>94da46f1db0170107cb384d8689619cb</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-30 13:13:25</sys_updated_on><theme/><u_ebond_account display_value="Alpha Co eBond Account">577ffa69dbc530107cb384d868961946</u_ebond_account><u_ebonded>true</u_ebonded><vendor>false</vendor><vendor_manager/><vendor_type/><website/><zip/></core_company></record_update>]]></payload>
+<payload_hash>2023049428</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">af098fa2dba530107cb384d86896192e</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-07-27 22:09:20</sys_created_on>
+<sys_id>27098fa2dba530107cb384d86896192f</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17ae9fe989f0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
+<table/>
+<target_name>Alpha Co.</target_name>
+<type>Company</type>
+<update_domain>global</update_domain>
+<update_guid>0fb703a214a530106f7dea844f5369de</update_guid>
+<update_guid_history>0fb703a214a530106f7dea844f5369de:2023049428,ead7f4517e213010e94057bd7d050cff:2023049428</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>cmdb_ci_service_55265eb9db0170107cb384d868961954</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="cmdb_ci_service"><cmdb_ci_service action="INSERT_OR_UPDATE"><aliases/><asset/><asset_tag/><assigned/><assigned_to/><assignment_group/><attestation_score/><attested>false</attested><attested_by/><attested_date/><attributes/><busines_criticality>2 - somewhat critical</busines_criticality><business_contact/><business_need/><business_relation_manager/><can_print>false</can_print><category>Business Service</category><change_control/><checked_in/><checked_out/><comments/><company/><compatibility_dependencies/><consumer_type>internal</consumer_type><correlation_id/><cost/><cost_cc>USD</cost_cc><cost_center/><delivery_date/><delivery_manager/><department/><discovery_source/><dns_domain/><due/><due_in/><duplicate_of/><end_date/><environment/><fault_count>0</fault_count><first_discovered/><fqdn/><gl_account/><install_date/><install_status>1</install_status><invoice_number/><ip_address/><justification/><last_discovered/><last_review_date/><lease_id/><life_cycle_stage/><life_cycle_stage_status/><location/><mac_address/><maintenance_schedule/><managed_by/><managed_by_group/><manufacturer/><model_id/><model_number/><monitor>false</monitor><monitoring_requirements/><name>IT Infrastructure</name><number>BSN0001002</number><operational_status>1</operational_status><order_date/><owned_by/><parent/><po_number/><portfolio_status>pipeline</portfolio_status><prerequisites/><price_model>per_unit</price_model><price_unit/><purchase_date/><schedule/><serial_number/><service_classification>Technical Service</service_classification><service_level_requirement/><service_owner_delegate/><service_status>requirements</service_status><short_description/><skip_sync>false</skip_sync><sla/><spm_service_portfolio/><spm_taxonomy_node/><stakeholders/><start_date/><subcategory>Service</subcategory><support_group/><supported_by/><sys_class_name>cmdb_ci_service</sys_class_name><sys_class_path>/!!/!S</sys_class_path><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 14:00:49</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>55265eb9db0170107cb384d868961954</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-30 14:00:49</sys_updated_on><unit_description/><unverified>false</unverified><used_for>Production</used_for><user_group/><vendor/><version/><warranty_expiration/></cmdb_ci_service><sys_translated_text action="delete_multiple" query="documentkey=55265eb9db0170107cb384d868961954"/></record_update>]]></payload>
+<payload_hash>-775648797</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">af098fa2dba530107cb384d86896192e</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-07-27 22:09:20</sys_created_on>
+<sys_id>63098fa2dba530107cb384d86896192f</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17aea00434d0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
+<table/>
+<target_name>IT Infrastructure</target_name>
+<type>Service</type>
+<update_domain>global</update_domain>
+<update_guid>3d280ba292a53010963618d7d0f04bed</update_guid>
+<update_guid_history>3d280ba292a53010963618d7d0f04bed:-775648797,126ab8555f21301049c4d5eb7046a8d7:-775648797</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_user_group_a06d46f1db0170107cb384d8689619f2</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_group"><sys_user_group action="INSERT_OR_UPDATE"><active>true</active><cost_center/><default_assignee/><description/><email/><exclude_manager>false</exclude_manager><include_members>false</include_members><manager/><name>Data Center Operations Support</name><parent/><roles/><source/><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 13:23:52</sys_created_on><sys_id>a06d46f1db0170107cb384d8689619f2</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-30 13:23:52</sys_updated_on><type/><u_company display_value="Alpha Co.">94da46f1db0170107cb384d8689619cb</u_company></sys_user_group></record_update>]]></payload>
+<payload_hash>536174810</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">af098fa2dba530107cb384d86896192e</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-07-27 22:09:20</sys_created_on>
+<sys_id>6b09c7e2dba530107cb384d868961984</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17ae9fed94c0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
+<table/>
+<target_name>Data Center Operations Support</target_name>
+<type>Group</type>
+<update_domain>global</update_domain>
+<update_guid>cfc7c3a28aa530101be8f4d0f35face2</update_guid>
+<update_guid_history>cfc7c3a28aa530101be8f4d0f35face2:536174810,61993055c92130107942a20d7ec514ef:536174810</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>service_offering_9f87163ddb0170107cb384d8689619e4</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="service_offering"><service_offering action="INSERT_OR_UPDATE"><aliases/><asset/><asset_tag/><assigned/><assigned_to/><assignment_group/><attestation_score/><attested>false</attested><attested_by/><attested_date/><attributes/><billing>monthly</billing><busines_criticality>2 - somewhat critical</busines_criticality><business_contact/><business_need/><business_relation_manager/><can_print>false</can_print><category/><change_control/><checked_in/><checked_out/><comments/><company/><compatibility_dependencies/><consumer_type>internal</consumer_type><contract/><correlation_id/><cost/><cost_cc>USD</cost_cc><cost_center/><delivery_date/><delivery_manager/><department/><description/><discovery_source/><dns_domain/><due/><due_in/><duplicate_of/><end_date/><environment/><fault_count>0</fault_count><first_discovered/><fqdn/><gl_account/><install_date/><install_status>1</install_status><invoice_number/><ip_address/><justification/><last_discovered/><last_review_date/><lease_id/><life_cycle_stage/><life_cycle_stage_status/><location/><mac_address/><maintenance_schedule/><managed_by/><managed_by_group/><manufacturer/><model_id/><model_number/><monitor>false</monitor><monitoring_requirements/><name>Data Center Operations</name><number>BSN0001004</number><operational_status>1</operational_status><order/><order_date/><owned_by/><parent display_value="IT Infrastructure">55265eb9db0170107cb384d868961954</parent><po_number/><portfolio_status>pipeline</portfolio_status><prerequisites/><price_model>per_unit</price_model><price_unit/><purchase_date/><schedule/><serial_number/><service_classification/><service_level_requirement/><service_owner_delegate/><service_status>requirements</service_status><short_description/><skip_sync>false</skip_sync><sla/><spm_service_portfolio/><spm_taxonomy_node/><stakeholders/><start_date/><subcategory/><support_group display_value="Data Center Operations Support" name="Data Center Operations Support">a06d46f1db0170107cb384d8689619f2</support_group><supported_by/><sys_class_name>service_offering</sys_class_name><sys_class_path>/!!/!S/!#</sys_class_path><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 14:07:05</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>9f87163ddb0170107cb384d8689619e4</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-30 14:07:05</sys_updated_on><technical_contact/><unit_description/><unverified>false</unverified><used_for>Production</used_for><user_group/><vendor/><version/><warranty_expiration/></service_offering><sys_translated_text action="delete_multiple" query="documentkey=9f87163ddb0170107cb384d8689619e4"/><fx_price action="delete_multiple" query="id=9f87163ddb0170107cb384d8689619e4"/></record_update>]]></payload>
+<payload_hash>-647824822</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">af098fa2dba530107cb384d86896192e</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-07-27 22:09:20</sys_created_on>
+<sys_id>6f09c7e2dba530107cb384d868961983</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17aea0062530000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
+<table/>
+<target_name>Data Center Operations</target_name>
+<type>Offering</type>
+<update_domain>global</update_domain>
+<update_guid>a72847a2f6a53010d4693115f122b8f3</update_guid>
+<update_guid_history>a72847a2f6a53010d4693115f122b8f3:-647824822,117af855e32130103353506c27d5a3f0:-647824822</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_user_group_881e0ab1db0170107cb384d8689619a0</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_group"><sys_user_group action="INSERT_OR_UPDATE"><active>true</active><cost_center/><default_assignee/><description/><email/><exclude_manager>false</exclude_manager><include_members>false</include_members><manager/><name>Backup and Recovery Support</name><parent/><roles/><source/><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 13:27:14</sys_created_on><sys_id>881e0ab1db0170107cb384d8689619a0</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-30 13:27:14</sys_updated_on><type/><u_company display_value="Beta Co.">d0ab4ab1db0170107cb384d8689619e1</u_company></sys_user_group></record_update>]]></payload>
+<payload_hash>891739412</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">af098fa2dba530107cb384d86896192e</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-07-27 22:09:20</sys_created_on>
+<sys_id>a709c7e2dba530107cb384d868961984</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17ae9fef0500000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
+<table/>
+<target_name>Backup and Recovery Support</target_name>
+<type>Group</type>
+<update_domain>global</update_domain>
+<update_guid>6cd743a2c6a530101a792d7bc514e74c</update_guid>
+<update_guid_history>6cd743a2c6a530101a792d7bc514e74c:891739412,a28930550f213010444ec41e2a14aaed:891739412,fd897055f62130104ea1a424ac863e96:891739412</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>service_offering_35e7563ddb0170107cb384d8689619a1</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="service_offering"><service_offering action="INSERT_OR_UPDATE"><aliases/><asset/><asset_tag/><assigned/><assigned_to/><assignment_group/><attestation_score/><attested>false</attested><attested_by/><attested_date/><attributes/><billing>monthly</billing><busines_criticality>2 - somewhat critical</busines_criticality><business_contact/><business_need/><business_relation_manager/><can_print>false</can_print><category/><change_control/><checked_in/><checked_out/><comments/><company/><compatibility_dependencies/><consumer_type>internal</consumer_type><contract/><correlation_id/><cost/><cost_cc>USD</cost_cc><cost_center/><delivery_date/><delivery_manager/><department/><description/><discovery_source/><dns_domain/><due/><due_in/><duplicate_of/><end_date/><environment/><fault_count>0</fault_count><first_discovered/><fqdn/><gl_account/><install_date/><install_status>1</install_status><invoice_number/><ip_address/><justification/><last_discovered/><last_review_date/><lease_id/><life_cycle_stage/><life_cycle_stage_status/><location/><mac_address/><maintenance_schedule/><managed_by/><managed_by_group/><manufacturer/><model_id/><model_number/><monitor>false</monitor><monitoring_requirements/><name>Backup &amp; Recovery</name><number>BSN0001005</number><operational_status>1</operational_status><order/><order_date/><owned_by/><parent display_value="IT Infrastructure">55265eb9db0170107cb384d868961954</parent><po_number/><portfolio_status>pipeline</portfolio_status><prerequisites/><price_model>per_unit</price_model><price_unit/><purchase_date/><schedule/><serial_number/><service_classification/><service_level_requirement/><service_owner_delegate/><service_status>requirements</service_status><short_description/><skip_sync>false</skip_sync><sla/><spm_service_portfolio/><spm_taxonomy_node/><stakeholders/><start_date/><subcategory/><support_group display_value="Backup and Recovery Support" name="Backup and Recovery Support">881e0ab1db0170107cb384d8689619a0</support_group><supported_by/><sys_class_name>service_offering</sys_class_name><sys_class_path>/!!/!S/!#</sys_class_path><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 14:08:07</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>35e7563ddb0170107cb384d8689619a1</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-30 14:08:07</sys_updated_on><technical_contact/><unit_description/><unverified>false</unverified><used_for>Production</used_for><user_group/><vendor/><version/><warranty_expiration/></service_offering><sys_translated_text action="delete_multiple" query="documentkey=35e7563ddb0170107cb384d8689619a1"/><fx_price action="delete_multiple" query="id=35e7563ddb0170107cb384d8689619a1"/></record_update>]]></payload>
+<payload_hash>1107795799</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">af098fa2dba530107cb384d86896192e</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-07-27 22:09:20</sys_created_on>
+<sys_id>ab09c7e2dba530107cb384d868961983</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17aea0077800000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
+<table/>
+<target_name>Backup &amp; Recovery</target_name>
+<type>Offering</type>
+<update_domain>global</update_domain>
+<update_guid>8d384ba250a53010a2dc3fed46aea8e8</update_guid>
+<update_guid_history>8d384ba250a53010a2dc3fed46aea8e8:1107795799,b37af495cd213010b733360728d28305:1107795799</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_user_999ebdb9dbcd30107cb384d86896190c</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_user"><sys_user action="INSERT_OR_UPDATE"><accumulated_roles/><active>true</active><avatar/><building/><calendar_integration>1</calendar_integration><city/><company/><cost_center/><country/><date_format/><default_perspective/><department/><edu_status>faculty</edu_status><email/><employee_number/><enable_multifactor_authn>false</enable_multifactor_authn><failed_attempts/><first_name>Beta Co</first_name><gender/><home_phone/><internal_integration_user>false</internal_integration_user><introduction/><last_login/><last_login_device/><last_login_time/><last_name>eBond Account</last_name><last_password/><ldap_server/><location/><locked_out>false</locked_out><manager/><middle_name/><mobile_phone/><name>Beta Co eBond Account</name><notification>2</notification><password_needs_reset>false</password_needs_reset><phone/><photo/><preferred_language/><roles/><schedule/><source/><state/><street/><sys_class_name>sys_user</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 12:17:07</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>999ebdb9dbcd30107cb384d86896190c</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-30 12:17:07</sys_updated_on><time_format/><time_zone/><title/><user_name>eBondBeta</user_name><user_password/><vip>false</vip><web_service_access_only>false</web_service_access_only><zip/></sys_user></record_update>]]></payload>
+<payload_hash>-747929285</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">af098fa2dba530107cb384d86896192e</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-07-27 22:09:20</sys_created_on>
+<sys_id>e309c7e2dba530107cb384d868961984</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17aea029af10000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
+<table/>
+<target_name>Beta Co eBond Account</target_name>
+<type>User</type>
+<update_domain>global</update_domain>
+<update_guid>5fb8cfa299a530109564cdf7bd23c53c</update_guid>
+<update_guid_history>5fb8cfa299a530109564cdf7bd23c53c:-747929285</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>core_company_d0ab4ab1db0170107cb384d8689619e1</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="core_company"><core_company action="INSERT_OR_UPDATE"><apple_icon/><banner_image/><banner_image_light/><banner_text/><city/><contact/><coordinates_retrieved_on/><country>USA</country><customer>false</customer><discount/><fax_phone/><fiscal_year/><lat_long_error/><latitude/><longitude/><manufacturer>false</manufacturer><name>Beta Co.</name><notes/><num_employees/><parent/><phone/><primary>false</primary><publicly_traded>false</publicly_traded><rank_tier/><state/><stock_price/><stock_symbol/><street/><sys_class_name>core_company</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 13:14:23</sys_created_on><sys_id>d0ab4ab1db0170107cb384d8689619e1</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-30 13:14:23</sys_updated_on><theme/><u_ebond_account display_value="Beta Co eBond Account">999ebdb9dbcd30107cb384d86896190c</u_ebond_account><u_ebonded>true</u_ebonded><vendor>false</vendor><vendor_manager/><vendor_type/><website/><zip/></core_company></record_update>]]></payload>
+<payload_hash>-620623568</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">af098fa2dba530107cb384d86896192e</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-07-27 22:09:20</sys_created_on>
+<sys_id>e7098fa2dba530107cb384d86896192f</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17ae9fe72c30000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
+<table/>
+<target_name>Beta Co.</target_name>
+<type>Company</type>
+<update_domain>global</update_domain>
+<update_guid>b4b78f624ba53010d9f19f3642952dc3</update_guid>
+<update_guid_history>b4b78f624ba53010d9f19f3642952dc3:-620623568,a6e7301502213010a429b1f9d6c28407:-620623568</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+</unload>
