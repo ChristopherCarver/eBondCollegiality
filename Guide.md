@@ -491,8 +491,8 @@ Associating the supplier tickets within the incident requires the creation of a 
     - _Query with:_
 
         ```` 
-        current.addQuery('source_table', parent.getTableName());
-        current.addQuery('source', parent.sys_id);
+        current.addQuery('u_source_table', parent.getTableName());
+        current.addQuery('u_source', parent.sys_id);
         ```` 
 1. Click **Submit**.
 1. Navigate to **Incident** > **All** and click on any of the incident records.
@@ -511,6 +511,7 @@ The *u_ebond_registry* table will contain the following custom fields:
 |Supplier|"All" or the name of the supplier.|
 |Key|The key variable name.|
 |Value|The property variable value.|
+|Note|Misc. information pertaining to the key/value pair.|
 
 1. Navigate to **System Definition** > **Tables**.
 1. Click **New**.
@@ -541,15 +542,83 @@ The *u_ebond_registry* table will contain the following custom fields:
     - _Column name:_ (this should default to u_value)
     - _Max length:_ 4000
 1. Click **Submit**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ String
+    - _Column label:_ Note
+    - _Column name:_ (this should default to u_note)
+    - _Max length:_ 4000
+1. Click **Submit**.
 1. Click **Update**.
 
 ---
 ## eBond Logs
 \
-The *u_ebond_log* table is similar to that of the *syslog* table in that it stores generic log information. If you choose to use the *syslog* table, then make sure to look through the various scripts that reference the *u_ebond_log* table. The *syslog* table has a granulairty of seconds and ServiceNow performs multiple operations per second. Hence the order of the logs messages become out of order. It is recommended that you use the *u_ebond_log* to help with debugging as the *Index* column is a sequential integer to aid in showing the order of operations.
+The *u_ebond_log* table is similar to that of the *syslog* table in that it stores generic log information. If you choose to use the *syslog* table, then make sure to look through the various scripts that reference the *u_ebond_log* table. The *syslog* table has a granularity of seconds and ServiceNow performs multiple operations per second. Hence the order of the logs messages become out of order. It is recommended that you use the *u_ebond_log* to help with debugging as the *Index* column is a sequential integer to aid in showing the order of operations.
 
 !!! note Evaluator messages
 The *u_ebond_log* table does not capture *Evaluator* messages from faulted JavaScript execution. Use the *syslog* table to check for failed JavaScript executions.
+
+### eBond Log Index Script Include
+\
+The *eBondLog* script include is a utility function that will increment the default value in the *index* field in the *[u_ebond_log]* table. The *index* value is based on the greatest index value in the table. If no rows exist, the *index* value is reset to zero.
+
+1. Navigate to **System Definition** > **Script Includes**.
+1. Click **New**.
+1. Under the **Script Include New record** section, fill in the following fields:
+    - _Name:_ eBondLog
+    - _API Name:_ (this should default to global.eBondLog)
+    - _Script:_
+    ```
+    var eBondLog = Class.create();
+    eBondLog.prototype = {
+        initialize: function() {},
+
+        increment: function() {
+            var gr = new GlideRecord('u_ebond_log');
+            gr.orderByDesc('u_index');
+            gr.setLimit(1);
+            gr.query();
+            var index = 0;
+            if (gr.next()) {
+                index = gr.u_index + 1;
+            }
+            return index; // return the calculated value
+        },
+
+        // records the log message
+        log: function (u_class, u_source, u_supplier, u_message, u_level) {
+            // only log levels at or below what has been registered
+            if (this.logLevel < parseInt(u_level)) {
+                return;
+            }
+            
+            var log = new GlideRecord('u_ebond_log');
+            log.u_class = u_class;
+            log.u_source = u_source;
+            log.u_supplier = u_supplier;
+            log.u_message = u_message;
+            log.u_level = u_level;
+            log.insert();
+        },
+
+        type: 'eBondLog'
+    };
+    ```
+1. Click **Submit**.
+
+
+### eBond Log Index Dynamic Filter Options
+\
+The dynamic filter option *eBond Log Index Increment* is used in the default value in the *index* field in the *[u_ebond_log]* table as a reference to the script include *eBondLog*.
+
+1. Navigate to **System Definition** > **Dynamic Filter Options**.
+1. Click **New**.
+1. Under the **Dynamic Filter Options New record** section, fill in the following fields:
+    - _Label:_ eBond Log Index Increment
+    - _Script:_ new eBondLog().increment();
+    - _Available for default:_ true
+1. Click **Submit**.
+
 
 The *u_ebond_log* table will contain the following custom fields:
 |Field|Description|
@@ -559,7 +628,7 @@ The *u_ebond_log* table will contain the following custom fields:
 |Class|Name of the ServiceNow component, i.e., script include, business rule, workflow, etc. etc..|
 |Source|Label of the ServiceNow component.|
 |Message|The log message.|
-|Level|Choice value of *High*, *Medium*, *Low*.|
+|Level|Choice value of *High*, *Medium*, *Low*, or *Info*.|
 
 1. Navigate to **System Definition** > **Tables**.
 1. Click **New**.
@@ -574,8 +643,10 @@ The *u_ebond_log* table will contain the following custom fields:
     - _Column label:_ Index
     - _Column name:_ (this should default to u_index)
     - _Read only:_ True
+1. Under **Related Links**, click **Advanced view**.
 1. Under the **Default Value** tab, fill in the following field:
-    - _Default value:_ javascript:getNextObjNumberPadded();
+    - _Use dynamic default:_ true
+    - _Dynamic Default value:_ eBond Log Index Increment
 1. Click **Submit**.
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
@@ -617,11 +688,24 @@ The *u_ebond_log* table will contain the following custom fields:
     1. Click **Submit**.
     |Sequence|Label|Value|
     |--------|-----|-----|
-    |100|High|high|
-    |200|Medium|medium|
-    |300|Low|low|
+    |100|High|100|
+    |200|Medium|200|
+    |300|Low|300|
+    |400|Info|400|
 1. Click **Update**.
 1. Click **Update**.
+
+Create the *[u_ebond_registry]* record used to determine the depth of logs levels to record.
+
+1. Navigate to **eBond** > **eBond Registries**.
+1. Click **New**.
+1. Under the **eBond Registry New record** section, fill in the following fields:
+    - _Supplier:_ All
+    - _Key:_ inbound.log.level
+    - _Value:_ 500
+1. Click **Submit**.
+
+Create the 
 
 ---
 ## eBond Data Map
@@ -957,6 +1041,7 @@ The *u_ebond_incident_staging* table will contain the following custom fields:
 |Comment|Customer visible comment.|
 |External Reference|The supplier's incident ticket unique identifier.|
 |External Number|The supplier's incident ticket number.|
+|Error|Returning error information.|
 |CMDB CI|The configuration item the incident is reported against.|
 |Close Notes|Incident closure notes.|
 |Close Code|Incident closure code.|
@@ -1061,8 +1146,6 @@ The *u_ebond_incident_staging* table will contain the following custom fields:
     - _Column label:_ Contact Type
     - _Column name:_ (this should default to u_contact_type)
     - _Max length:_ 40
-1. Under the **Default Value** tab, , fill in the following field:
-    - _Default value:_ eBond
 1. Click **Submit**.
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
@@ -1084,6 +1167,13 @@ The *u_ebond_incident_staging* table will contain the following custom fields:
     - _Column label:_ External Number
     - _Column name:_ (this should default to u_external_number)
     - _Max length:_ 40
+1. Click **Submit**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ String
+    - _Column label:_ Error
+    - _Column name:_ (this should default to u_error)
+    - _Max length:_ 4000
 1. Click **Submit**.
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
@@ -1171,23 +1261,57 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
 
         ````
         answer = (function transformEntry(source) {
-        
+
             // coalesce script is called at various times in the transform
             // ignore the time(s) when the row is not even being evaluated
             if (source.sys_created_by == "") {
                 return;
             }
-        
-        	// find the company the account is associated with
+
+            // coalesce script is called before ServiceNow global transform map
+            // variables are defined
+            if (error == undefined) {
+                var error = "";
+            }
+
+            // once the source row is read in during the transform, the 
+            // global error variable is defined by ServiceNow, and to 
+            // prevent the coalesce script to be called twice on error, 
+            // this check is required
+            if (error == true) {
+                return;
+            }
+
+            // find the company the account is associated with
+            var user = new GlideRecord('sys_user');
+            user.addQuery('user_name', source.sys_created_by);
+            user.query();
+            if (!user.next()) {
+                // supplier is not eBond enabled
+                var log = new GlideRecord('u_ebond_log');
+                log.u_class = 'eBond Incident Transform map';
+                log.u_source = '[Field Map] Company';
+                log.u_supplier = 'Unknown';
+                log.u_message = 'Security Violation: An account (' + source.sys_created_by + ') cannot be found. Reference: ' + source.sys_id;
+                log.u_level = 'High';
+                log.insert();
+
+                error = true;
+                error_message = "Security violation.";
+                source.u_error = error_message;
+                return "";
+            }
+
+            // find the company the account is associated with
             var company = new GlideRecord('core_company');
-            company.addQuery('u_ebond_account', source.sys_created_by);
+            company.addQuery('u_ebond_account', user.sys_id);
             company.query();
             if (company.next()) {
-        		// make sure the supplier is still eBond approved
+                // make sure the supplier is still eBond approved
                 if (company.u_ebonded) {
-                    return company;
+                    return company.sys_id;
                 }
-        
+
                 // supplier is not eBond enabled
                 var log = new GlideRecord('u_ebond_log');
                 log.u_class = 'eBond Incident Transform map';
@@ -1196,26 +1320,27 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                 log.u_message = 'Security Violation: The supplier ' + company.name + ' is not eBond enabled. Reference: ' + source.sys_id;
                 log.u_level = 'Low';
                 log.insert();
-        
+
                 error = true;
                 error_message = "Security violation.";
+                source.u_error = error_message;
                 return "";
             }
-        
+
             // creator is not associated with a supplier
             var log = new GlideRecord('u_ebond_log');
             log.u_class = 'eBond Incident Transform map';
             log.u_source = '[Field Map] Company';
             log.u_supplier = 'Unknown';
-            log.u_message = 'Security Violation: An eBond account (' + source.sys_created_by + ') has written to the u_ebond_incident_staging table with no reference to a record entry in the core_company table. Reference: ' + source.sys_id;
+            log.u_message = 'Security Violation: An eBond account (' + source.sys_created_by + ') has written to the u_ebond_incident_staging table with no reference to a record entry in the core_company table. Reference:       ' + source.sys_id;
             log.u_level = 'High';
             log.insert();
-        
+
             error = true;
             error_message = "Security violation.";
-        
+            source.u_error = error_message;
             return ""; // return the value to be put into the target field
-        
+
         })(source);
         ````
 1. Click **Submit**.
@@ -1282,7 +1407,7 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         (function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
         
             var registry = new GlideRecord('u_ebond_registry');
-            registry.addQuery('u_key', 'inbound account');
+            registry.addQuery('u_key', 'inbound.account');
             registry.addQuery('u_value', source.sys_created_by);
             registry.query();
             if (registry.next()) {
@@ -1298,6 +1423,7 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
                 error = true;
                 error_message = "Unregistered supplier account.";
+                source.u_error = error_message;
             }
         
             return;
@@ -1313,55 +1439,55 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         // check required fields
         (function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
             
-        	var missingField = false;
-        	var missingFields = 'Missing the folowing required field(s): ';
-        	var separator = '';
+            var missingField = false;
+            var missingFields = 'Missing the folowing required field(s): ';
+            var separator = '';
         
-        	// supplier ticket number is mandatory in all cases
-        	if (source.u_external_number == '') {
+            // supplier ticket number is mandatory in all cases
+            if (source.u_external_number == '') {
                 missingField = true;
-        		missingFields = missingFields + separator + 'u_external_number';
-        		separator = ', ';
+                missingFields = missingFields + separator + 'u_external_number';
+                separator = ', ';
             }
         
-        	// if new relationship, provide a short description
-        	if (action == 'insert' && source.u_short_description == '') {
+            // if new relationship, provide a short description
+            if (action == 'insert' && source.u_short_description == '') {
                 missingField = true;
-        		missingFields = missingFields + separator + 'u_short_description';
-        		separator = ', ';
+                missingFields = missingFields + separator + 'u_short_description';
+                separator = ', ';
             }
         
-        	// if new relationship, provide a description
-        	if (action == 'insert' && source.u_description == '') {
+            // if new relationship, provide a description
+            if (action == 'insert' && source.u_description == '') {
                 missingField = true;
-        		missingFields = missingFields + separator + 'u_description';
-        		separator = ', ';
+                missingFields = missingFields + separator + 'u_description';
+                separator = ', ';
             }
         
-        	// if state is on hold, provide a hold reason
-        	if (source.u_state == '3' && source.u_hold_reason == '') {
+            // if state is on hold, provide a hold reason
+            if (source.u_state == '3' && source.u_hold_reason == '') {
                 missingField = true;
-        		missingFields = missingFields + separator + 'u_hold_reason';
-        		separator = ', ';
+                missingFields = missingFields + separator + 'u_hold_reason';
+                separator = ', ';
             }
         
-        	// if state is resolved or closed, provide a close code
-        	if ((source.u_state == '6' || source.u_state == '7') && source.u_close_code == '') {
+            // if state is resolved or closed, provide a close code
+            if ((source.u_state == '6' || source.u_state == '7') && source.u_close_code == '') {
                 missingField = true;
-        		missingFields = missingFields + separator + 'u_close_code';
-        		separator = ', ';
+                missingFields = missingFields + separator + 'u_close_code';
+                separator = ', ';
             }
         
-        	// if state is resolved or closed, provide a close notes
-        	if ((source.u_state == '6' || source.u_state == '7') && source.u_close_notes == '') {
+            // if state is resolved or closed, provide a close notes
+            if ((source.u_state == '6' || source.u_state == '7') && source.u_close_notes == '') {
                 missingField = true;
-        		missingFields = missingFields + separator + 'u_close_notes';
-        		separator = ', ';
+                missingFields = missingFields + separator + 'u_close_notes';
+                separator = ', ';
             }
         
-        	if (missingField) {
-        		missingFields = missingFields + '.';
-        		var log = new GlideRecord('u_ebond_log');
+            if (missingField) {
+                missingFields = missingFields + '.';
+                var log = new GlideRecord('u_ebond_log');
                 log.u_class = 'eBond Incident Transform script';
                 log.u_source = '[onBefore] check required fields';
                 log.u_supplier = SUPPLIER;
@@ -1371,7 +1497,8 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
                 error = true;
                 error_message = missingFields;
-        	}
+                source.u_error = error_message;
+            }
         
             return;
         })(source, map, log, target);
@@ -1391,7 +1518,7 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
             company.addQuery('u_ebond_account', source.sys_created_by);
             company.query();
             if (company.next()) {
-        		COMPANY = company.sys_id;
+                COMPANY = company.sys_id;
             }
         
         })(source);
@@ -1410,7 +1537,7 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
               scenario matrix
               invalid is where logically the transform cannot handle the scenario
               if OPERATION or EXECUTION found to default to invalid will log an error
-        	  action is the operation the transform will have on the u_ebond_relationship table
+              action is the operation the transform will have on the u_ebond_relationship table
         
               action  |  OPERATION  |  EXECUTION  |  SCENARIO
               ----------------------------------------------------------------------------------------------------
@@ -1425,9 +1552,9 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
               update  |  create     |  debond     |   invalid - cannot create a debond incident
               update  |  update     |  reflect    | supplier is updating a ticket
               update  |  update     |  inform     | supplier is updating a ticket they do not own -OR-
-        	                                      | supplier is re-eBonding to a prior ticket
+                                                  | supplier is re-eBonding to a prior ticket
               update  |  update     |  debond     | supplier is debonding the tickets
-        	*/
+            */
         
             //  action  |  OPERATION  |  EXECUTION  |  SCENARIO
             //  ----------------------------------------------------------------------------------------------------
@@ -1468,6 +1595,7 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
                     error = true;
                     error_message = "Incident not found.";
+                    source.u_error = error_message;
                     return;
                 }
             }
@@ -1483,8 +1611,9 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                 if (incident.next()) {
                     if (incident.getValue('state') == 7) { // closed
                         error = true;
-                    error_message = "Incident " + incident.number + "cannot be updated. The incident is closed.";
-                    return;
+                        error_message = "Incident " + incident.number + "cannot be updated. The incident is closed.";
+                        source.u_error = error_message;
+                        return;
                     }
                 }
             }
@@ -1519,14 +1648,14 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                 relationship.query();
                 if (relationship.next()) {
                     if (relationship.u_reflect == true) {
-        				OPERATION = update;
-        				EXECUTION = reflect;
-        				return;
-        			} else {
-        				OPERATION = update;
-        				EXECUTION = inform;
-        				return;
-        			}
+                        OPERATION = update;
+                        EXECUTION = reflect;
+                        return;
+                    } else {
+                        OPERATION = update;
+                        EXECUTION = inform;
+                        return;
+                    }
                 } else {
                     var log = new GlideRecord('u_ebond_log');
                     log.u_class = 'eBond Incident Transform script';
@@ -1538,6 +1667,7 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
                     error = true;
                     error_message = "Internal error, eBond reference not found within update action.";
+                    source.u_error = error_message;
                     return;
                 }
             }
@@ -1553,6 +1683,7 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
             error = true;
             error_message = "Internal error, logic path exhaustion.";
+            source.u_error = error_message;
             return;
         
         })(source, map, log, target);
@@ -1567,7 +1698,7 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         // INCIDENT
         (function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
         
-        	if ((source.u_number != '' || source.u_sys_id != '') && (source.u_number != '-1' && source.u_sys_id != '-1')) {
+            if ((source.u_number != '' || source.u_sys_id != '') && (source.u_number != '-1' && source.u_sys_id != '-1')) {
                 var incident = new GlideRecord('incident');
                 if (source.u_number != '') {
                     incident.addQuery('number', source.u_number);
@@ -1577,8 +1708,8 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                 incident.query();
                 if (incident.next()) {
                     INCIDENT = incident.sys_id;
-        			INCIDENT_NUMBER = incident.number;
-        			return;
+                    INCIDENT_NUMBER = incident.number;
+                    return;
                 } else {
                     var log = new GlideRecord('u_ebond_log');
                     log.u_class = 'eBond Incident Transform script';
@@ -1594,23 +1725,24 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
                     error = true;
                     error_message = "Incident not found.";
-        			return;
+                    source.u_error = error_message;
+                    return;
                 }
-        	// the supplier did not pass local ticket information
+            // the supplier did not pass local ticket information
             } else if (action == 'update') {
-        		var relationship = new GlideRecord('u_ebond_relationship');
-        		if (source.u_external_number != '') {
-        			relationship.addQuery('u_correlation_number',source.u_external_number);
-        		} else {
-        			relationship.addQuery('u_correlation_id',source.u_external_reference);
-        		}
-        		relationship.query();
-        		if(relationship.next()) {
-        			INCIDENT = relationship.u_source.sys_id;
-        			INCIDENT_NUMBER = relationship.u_source.number;
-        			return;
-        		} else {
-        			var log = new GlideRecord('u_ebond_log');
+                var relationship = new GlideRecord('u_ebond_relationship');
+                if (source.u_external_number != '') {
+                    relationship.addQuery('u_correlation_number',source.u_external_number);
+                } else {
+                    relationship.addQuery('u_correlation_id',source.u_external_reference);
+                }
+                relationship.query();
+                if(relationship.next()) {
+                    INCIDENT = relationship.u_source.sys_id;
+                    INCIDENT_NUMBER = relationship.u_source.number;
+                    return;
+                } else {
+                    var log = new GlideRecord('u_ebond_log');
                     log.u_class = 'eBond Incident Transform script';
                     log.u_source = '[onBefore] INCIDENT';
                     log.u_supplier = SUPPLIER;
@@ -1624,9 +1756,10 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
                     error = true;
                     error_message = "eBond relationship not found.";
-        			return;
-        		}
-        	}
+                    source.u_error = error_message;
+                    return;
+                }
+            }
         
             return;
         })(source, map, log, target);
@@ -1641,20 +1774,20 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         // URL
         (function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
             
-        	// deBond check
-        	if (EXECUTION == 'debond') {
-        		return;
-        	}
+            // deBond check
+            if (EXECUTION == 'debond') {
+                return;
+            }
         
-        	var registry = new GlideRecord('u_ebond_registry');
+            var registry = new GlideRecord('u_ebond_registry');
             registry.addQuery('u_supplier',SUPPLIER);
-        	registry.addQuery('u_key', 'incident reference url');
+            registry.addQuery('u_key', 'incident.external.url');
             registry.query();
             if (registry.next()) {
-        		var tRef = registry.u_value;
+                var tRef = registry.u_value;
         
-        		var tRef1 = tRef.replace('CORRELATION_ID', source.u_external_reference);
-        		URL = tRef1.replace('CORRELATION_NUMBER', source.u_external_number);
+                var tRef1 = tRef.replace('CORRELATION_ID', source.u_external_reference);
+                URL = tRef1.replace('CORRELATION_NUMBER', source.u_external_number);
             }
             return;
         })(source, map, log, target);
@@ -1669,11 +1802,11 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         // validate data
         (function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
         
-        	var invalidData = false;
-        	var invalidInfo = 'Missing the folowing required field(s): ';
-        	var separator = '';
+            var invalidData = false;
+            var invalidInfo = 'Missing the folowing required field(s): ';
+            var separator = '';
         
-        	if (source.u_sys_id != '') {
+            if (source.u_sys_id != '') {
                 var incident = new GlideRecord("incident");
                 incident.addQuery("sys_id", source.u_sys_id);
                 incident.query();
@@ -1681,12 +1814,12 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                     INCIDENT = incident.sys_id;
                 } else {
                     invalidData = true;
-        			invalidInfo = invalidInfo + separator + 'u_sys_id';
-        			separator = ', ';
+                    invalidInfo = invalidInfo + separator + 'u_sys_id';
+                    separator = ', ';
                 }
             }
         
-        	if (source.u_subcategory != '') {
+            if (source.u_subcategory != '') {
                 var data_map = new GlideRecord("u_ebond_data_map");
                 data_map.addQuery("u_supplier", "All");
                 data_map.addQuery("u_module", "incident");
@@ -1698,8 +1831,8 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                     SUBCATEGORY = data_map.u_textron_value;
                 } else {
                     invalidData = true;
-        			invalidInfo = invalidInfo + separator + 'u_subcategory';
-        			separator = ', ';
+                    invalidInfo = invalidInfo + separator + 'u_subcategory';
+                    separator = ', ';
                 }
             }
         
@@ -1715,12 +1848,12 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                     STATE = data_map.u_textron_value;
                 } else {
                     invalidData = true;
-        			invalidInfo = invalidInfo + separator + 'u_state';
-        			separator = ', ';
+                    invalidInfo = invalidInfo + separator + 'u_state';
+                    separator = ', ';
                 }
             }
         
-        	if (source.u_service_offering != '') {
+            if (source.u_service_offering != '') {
                 var data_map = new GlideRecord("u_ebond_data_map");
                 data_map.addQuery("u_supplier", "All");
                 data_map.addQuery("u_module", "incident");
@@ -1732,12 +1865,12 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                     SERVICE_OFFERING = data_map.u_textron_value;
                 } else {
                     invalidData = true;
-        			invalidInfo = invalidInfo + separator + 'u_service_offering';
-        			separator = ', ';
+                    invalidInfo = invalidInfo + separator + 'u_service_offering';
+                    separator = ', ';
                 }
             }
         
-        	if (source.u_service != '') {
+            if (source.u_service != '') {
                 var data_map = new GlideRecord("u_ebond_data_map");
                 data_map.addQuery("u_supplier", "All");
                 data_map.addQuery("u_module", "incident");
@@ -1749,12 +1882,12 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                     SERVICE = data_map.u_textron_value;
                 } else {
                     invalidData = true;
-        			invalidInfo = invalidInfo + separator + 'u_service';
-        			separator = ', ';
+                    invalidInfo = invalidInfo + separator + 'u_service';
+                    separator = ', ';
                 }
             }
         
-        	if (source.u_impact != '') {
+            if (source.u_impact != '') {
                 var data_map = new GlideRecord("u_ebond_data_map");
                 data_map.addQuery("u_supplier", "All");
                 data_map.addQuery("u_module", "incident");
@@ -1766,8 +1899,8 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                     IMPACT> = data_map.u_textron_value;
                 } else {
                     invalidData = true;
-        			invalidInfo = invalidInfo + separator + 'u_impact';
-        			separator = ', ';
+                    invalidInfo = invalidInfo + separator + 'u_impact';
+                    separator = ', ';
                 }
             }
 
@@ -1783,12 +1916,12 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                     IMPACT> = data_map.u_textron_value;
                 } else {
                     invalidData = true;
-        			invalidInfo = invalidInfo + separator + 'u_urgency';
-        			separator = ', ';
+                    invalidInfo = invalidInfo + separator + 'u_urgency';
+                    separator = ', ';
                 }
             }
         
-        	if (source.u_number != '') {
+            if (source.u_number != '') {
                 var incident = new GlideRecord("incident");
                 incident.addQuery("number", source.u_number);
                 incident.query();
@@ -1796,12 +1929,12 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                     INCIDENT = incident.sys_id;
                 } else {
                     invalidData = true;
-        			invalidInfo = invalidInfo + separator + 'u_number';
-        			separator = ', ';
+                    invalidInfo = invalidInfo + separator + 'u_number';
+                    separator = ', ';
                 }
             }
         
-        	if (source.u_hold_reason != '') {
+            if (source.u_hold_reason != '') {
                 var data_map = new GlideRecord("u_ebond_data_map");
                 data_map.addQuery("u_supplier", "All");
                 data_map.addQuery("u_module", "incident");
@@ -1813,12 +1946,12 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                     HOLD_REASON = data_map.u_textron_value;
                 } else {
                     invalidData = true;
-        			invalidInfo = invalidInfo + separator + 'u_hold_reason';
-        			separator = ', ';
+                    invalidInfo = invalidInfo + separator + 'u_hold_reason';
+                    separator = ', ';
                 }
             }
         
-        	if (source.u_contact_type != '') {
+            if (source.u_contact_type != '') {
                 var data_map = new GlideRecord("u_ebond_data_map");
                 data_map.addQuery("u_supplier", "All");
                 data_map.addQuery("u_module", "incident");
@@ -1830,12 +1963,12 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                     CONTACT_TYPE = data_map.u_textron_value;
                 } else {
                     invalidData = true;
-        			invalidInfo = invalidInfo + separator + 'u_contact_type';
-        			separator = ', ';
+                    invalidInfo = invalidInfo + separator + 'u_contact_type';
+                    separator = ', ';
                 }
             }
         
-        	if (source.u_close_code != '') {
+            if (source.u_close_code != '') {
                 var data_map = new GlideRecord("u_ebond_data_map");
                 data_map.addQuery("u_supplier", "All");
                 data_map.addQuery("u_module", "incident");
@@ -1847,12 +1980,12 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                     CLOSE_CODE = data_map.u_textron_value;
                 } else {
                     invalidData = true;
-        			invalidInfo = invalidInfo + separator + 'u_close_code';
-        			separator = ', ';
+                    invalidInfo = invalidInfo + separator + 'u_close_code';
+                    separator = ', ';
                 }
             }
         
-        	if (source.u_category != '') {
+            if (source.u_category != '') {
                 var data_map = new GlideRecord("u_ebond_data_map");
                 data_map.addQuery("u_supplier", "All");
                 data_map.addQuery("u_module", "incident");
@@ -1864,12 +1997,12 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                     CATEGORY = data_map.u_textron_value;
                 } else {
                     invalidData = true;
-        			invalidInfo = invalidInfo + separator + 'u_category';
-        			separator = ', ';
+                    invalidInfo = invalidInfo + separator + 'u_category';
+                    separator = ', ';
                 }
             }
         
-        	if (source.u_caller != '') {
+            if (source.u_caller != '') {
                 var caller = new GlideRecord("sys_user");
                 caller.addQuery("email", source.u_caller);
                 caller.query();
@@ -1877,12 +2010,12 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                     CALLER = caller.sys_id;
                 } else {
                     invalidData = true;
-        			invalidInfo = invalidInfo + separator + 'u_caller';
-        			separator = ', ';
+                    invalidInfo = invalidInfo + separator + 'u_caller';
+                    separator = ', ';
                 }
             }
         
-        	if (source.u_assignment_group != '') {
+            if (source.u_assignment_group != '') {
                 var assignmentGroup = new GlideRecord("sys_user_group");
                 assignmentGroup.addQuery("name", source.u_assignment_group);
                 assignmentGroup.query();
@@ -1890,14 +2023,14 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                     ASSIGNMENT_GROUP = assignmentGroup.sys_id;
                 } else {
                     invalidData = true;
-        			invalidInfo = invalidInfo + separator + 'u_assignment_group';
-        			separator = ', ';
+                    invalidInfo = invalidInfo + separator + 'u_assignment_group';
+                    separator = ', ';
                 }
             }
         
-        	if (invalidData) {
-        		invalidInfo = invalidInfo + '.';
-        		var log = new GlideRecord('u_ebond_log');
+            if (invalidData) {
+                invalidInfo = invalidInfo + '.';
+                var log = new GlideRecord('u_ebond_log');
                 log.u_class = 'eBond Incident Transform script';
                 log.u_source = '[onBefore] validate data';
                 log.u_supplier = SUPPLIER;
@@ -1907,7 +2040,8 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
                 error = true;
                 error_message = invalidInfo;
-        	}
+                source.u_error = error_message;
+            }
         
             return;
         
@@ -1928,7 +2062,7 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                 return;
             }
         
-        	// deBond the relationship
+            // deBond the relationship
             target.u_state = 'debonded';
         
             // retrieve the incident record to update
@@ -1937,7 +2071,7 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
             incident.query();
             incident.next();
         
-        	// work notes in the incident vary depending on existing relationships
+            // work notes in the incident vary depending on existing relationships
             var workNotes = '';
         
             // check to see if there are any other suppliers tickets ebonded
@@ -1957,7 +2091,7 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                 incident.u_ebonded_with = arr.toString();
             }
         
-        	// set the proper work notes for the incident and update the incident record
+            // set the proper work notes for the incident and update the incident record
             incident.work_notes = workNotes;
             incident.update();
         
@@ -1984,22 +2118,21 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                 var grInc = new GlideRecord("incident");
                 grInc.initialize();
                 INCIDENT = grInc.insert();
-        		INCIDENT_NUMBER = grInc.number;
+                INCIDENT_NUMBER = grInc.number;
             }
         
-        	// regardless update the relationship
-        	// this will capture re-bond'ing incidents too
+            // regardless update the relationship
+            // this will capture re-bond'ing incidents too
             target.u_url = URL;
-            target.u_type = TYPE;
             target.u_state = 'ebonded';
             target.u_status = 'success';
             target.u_source_table = 'incident';
             target.u_source = INCIDENT;
-        	if (EXECTION == 'create') {
-        		target.u_reflect = true;
-        	} else {
-        		target.u_reflect = false;
-        	}
+            if (EXECUTION == 'create') {
+                target.u_reflect = true;
+            } else {
+                target.u_reflect = false;
+            }
         
             return;
         })(source, map, log, target);
@@ -2022,7 +2155,7 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
             // the incident is created there so that the relationship record is populated properly
             // INCIDENT global variable shall be defined at this point in the transform
         
-        	// if EXECUTION is inform, then field changes are stored as work notes
+            // if EXECUTION is inform, then field changes are stored as work notes
             var notes = SUPPLIER + ' has updated the following fields on their ticket:';
             var noteFlag = false;
             var incidentFlag = false;
@@ -2205,24 +2338,24 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
                     incident.update();
                 }
         
-        		// if a new incident ticket is created
-        		// make sure that we only add the company record to 'eBonded with' list 
-        		// when company is not listed
-        		// there is a scenario where the supplier is eBonding an additional ticket
-        		// to a ticket they are already eBonded with on a different ticket
+                // if a new incident ticket is created
+                // make sure that we only add the company record to 'eBonded with' list 
+                // when company is not listed
+                // there is a scenario where the supplier is eBonding an additional ticket
+                // to a ticket they are already eBonded with on a different ticket
                 if (OPERATION == 'create') {
                     var arr = incident.u_ebonded_with.toString().split(',');
                     var pos = arr.indexOf(COMPANY);
-        			if (pos != -1) {
-        				arr.push(COMPANY);
-        				incident.u_ebonded_with = arr.toString();
-        				incident.update();
-        			}
+                    if (pos != -1) {
+                        arr.push(COMPANY);
+                        incident.u_ebonded_with = arr.toString();
+                        incident.update();
+                    }
                 }
         
             } else {
                 // this is very bad 
-        		// we should never get here
+                // we should never get here
                 var log = new GlideRecord('u_ebond_log');
                 log.u_class = 'eBond Incident Transform script';
                 log.u_source = '[onAfter] update incident';
@@ -2245,15 +2378,15 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         // set number and sys_id
         (function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
         
-        	// deBond check
+            // deBond check
             if (EXECUTION == 'debond') {
                 return;
             }
         
-        	source.u_number = INCIDENT_NUMBER;
-        	source.u_sys_id = INCIDENT;
+            source.u_number = INCIDENT_NUMBER;
+            source.u_sys_id = INCIDENT;
         
-        	return;
+            return;
         })(source, map, log, target);
         ````
 1. Click **Submit**.
@@ -2262,7 +2395,7 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
 ---
 ## Data Map - Inbound
 \
-The data map table [u_ebond_data_map] is the translation lookup table used to translate field values depending on the direction that data is flowing. The *inbound* direction is to validate that the supplier has passed valid field values. It is best practice to assume the data the supplier is incorrect and to validate the data the supplier has passed before inserting the data into a ticket. 
+The data map table *[u_ebond_data_map]* is the lookup table used to validate field values for inbound messages passed in by a supplier. It is best practice to assume the data the supplier is incorrect and to validate the data the supplier has passed before inserting the data into a ticket. 
 
 1. Navigate to **eBond** > **eBond Data Maps**.
 1. Click **New**.
@@ -2300,6 +2433,7 @@ The data map table [u_ebond_data_map] is the translation lookup table used to tr
     |incident|contact_type|inbound|All|self-service|self-service||
     |incident|contact_type|inbound|All|virtual_agent|virtual_agent||
     |incident|contact_type|inbound|All|walk-in|walk-in||
+    |incident|contact_type|inbound|All|ebond|ebond||
     |incident|close_code|inbound|All|Solved (Work Around)|Solved (Work Around)||
     |incident|close_code|inbound|All|Solved (Permanently)|Solved (Permanently)||
     |incident|close_code|inbound|All|Solved Remotely (Work Around)|Solved Remotely (Work Around)||
@@ -2307,10 +2441,19 @@ The data map table [u_ebond_data_map] is the translation lookup table used to tr
     |incident|close_code|inbound|All|Not Solved (Not Reproducible)|Not Solved (Not Reproducible)||
     |incident|close_code|inbound|All|Not Solved (Too Costly)|Not Solved (Too Costly)||
     |incident|close_code|inbound|All|Closed/Resolved by Caller|Closed/Resolved by Caller||
-    |incident||inbound|All||||
 
 !!! note Category & Subcategory 
-    It is the author's opinion that the values for *category* and *subcategory* for an incident within ServiceNow is better suited to describe the type of incident reported. Traditionally with ITSM solutions category and subcategory are used to describe the area where an incident occurred. Out of the box, ServiceNow provides the means to relate incident reports directly to the impacted configuration item (CI) within the CMDB. This frees up the *category* and *subcategory* fields to represent the type of incident being investigated. The update sets    
+    It is the author's opinion that the values for *category* and *subcategory* for an incident within ServiceNow is better suited to describe the type of incident reported; rather than the general topic area the incident occurred. Traditionally with ITSM solutions category and subcategory are used to describe the area where an incident occurred. Out of the box, ServiceNow provides the means to relate incident reports directly to the impacted configuration item (CI) within the CMDB; which is a clearer description of the area of interest the incident lays. This frees up the *category* and *subcategory* fields to represent the type of incident being investigated. The update set contains these new values for *category* and *subcategory*, but does not remove the out of the box values set by ServiceNow. Each enterprise will have to ascertain which behavior for the fields to use.
+
+!!! note Contact Type
+    By default the transform script *[onStart] Initialize global variables* defaults the contact type to *ebond*. This is not a mandatory field for the supplier, however if not specified the assumption is the ticket originated via an eBond action. 
+    1. Navigate to **Incident** > **All**, click on any incident record.
+    1. Right-click on **Contact type** and click **Configure Dictionary**.
+    1. Under the **Choices** tab, click **New**.
+    1. In the **Choice New record**section, fill in the following fields:
+        - _Label:_ eBond
+        - _Value:_ ebond
+    1. Click **Submit**. 
 
 ---
 # Multi-source Outbound Handling
