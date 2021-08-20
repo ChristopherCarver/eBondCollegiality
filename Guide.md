@@ -152,7 +152,7 @@ We need two new columns in the core_company table; *eBond account* and *eBonded*
     - _Type:_ Reference
     - _Column label:_ eBond account
 1. Under the **Reference Specification** tab, fill in the following fields:
-    - _Table to reference:_ sys_user
+    - _Table to reference:_ User [sys_user]
     - _Reference qual condition:_
         - Active is true AND
         - Roles is eBond Account
@@ -344,7 +344,7 @@ There are two main ways to eBond an incident to a supplier; first via the *Assig
     - _Column label:_ eBonded with
     - _Column name:_ (this should default to u_eBonded_with)
 1. Under the **Reference Specification** tab, fill in the following fields:
-    - _Reference:_ core_company
+    - _Reference:_ Company [core_company]
     - _Reference qual condition:_
         - eBonded is true AND
         - eBond Account is not empty
@@ -368,8 +368,8 @@ The *u_eBond_relationship* table is a multi-relational table that represents a o
 The *u_eBond_relationship* table will contain the following custom fields:
 |Field|Description|
 |-----|-----------|
-|Table sys ID|The ServiceNow record sys_id on the instance.|
-|Table name|The table the ServiceNow record resides on.|
+|Source|The ServiceNow record sys_id on the instance.|
+|Source table|The table the ServiceNow record resides on.|
 |Status|The status of the eBond.|
 |State|The state of the eBond.|
 |In|Inbound communication status from supplier.|
@@ -492,7 +492,7 @@ The fields relate the ServiceNow ticket to the various suppliers the ticket is e
     - _Column label:_ Company
     - _Column name:_ (this should default to u_company)
 1. In the **Reference Specification** tab, fill in the following field:
-    - _Reference:_ Company
+    - _Reference:_ Company [core_company]
     - _Reference qual condition:_
         - eBonded is true AND
         - eBond Account is not empty
@@ -689,7 +689,8 @@ The *eBondLog* script include is a utility function that will increment the defa
     eBondLog.prototype = {
         initialize: function() {
     		u_direction = 'not set';
-    		u_class = 'not set';
+    		u_location = 'not set';
+    		u_name = 'not set';
     		u_source = 'not set';
     		u_supplier = 'not set';
     		u_message = 'not set';
@@ -704,7 +705,7 @@ The *eBondLog* script include is a utility function that will increment the defa
     			logLevel = parseInt(reg.value);
     		}
     	},
-    
+
     	// returns the next default index value
         increment: function() {
             var gr = new GlideRecord('u_ebond_log');
@@ -727,7 +728,8 @@ The *eBondLog* script include is a utility function that will increment the defa
     
     		var log = new GlideRecord('u_ebond_log');
             log.u_direction = this.u_direction;
-    		log.u_class = this.u_class;
+    		log.u_location = this.u_location;
+    		log.u_name = this.u_name;
             log.u_source = this.u_source;
             log.u_supplier = this.u_supplier;
             log.u_message = this.u_message;
@@ -745,7 +747,8 @@ The *eBondLog* script include is a utility function that will increment the defa
     
     		var log = new GlideRecord('u_ebond_log');
     		log.u_direction = this.u_direction;
-            log.u_class = this.u_class;
+            log.u_location = this.u_location;
+    		log.u_name = this.u_name;
             log.u_source = this.u_source;
             log.u_supplier = this.u_supplier;
             log.u_message = message;
@@ -753,7 +756,7 @@ The *eBondLog* script include is a utility function that will increment the defa
             log.insert();
     		return;
     	},
-    
+
         type: 'eBondLog'
     };
     ```
@@ -779,8 +782,9 @@ The *u_ebond_log* table will contain the following custom fields:
 |Index|Auto-incrementing numeric value.|
 |Direction|Choice value of *Inbound* or *Outbound*.|
 |Supplier|Name of the supplier.|
-|Class|Name of the ServiceNow component, i.e., script include, business rule, workflow, etc. etc..|
-|Source|Label of the ServiceNow component.|
+|Location|Name of the ServiceNow component, i.e., script include, business rule, workflow, etc. etc..|
+|Name|Label name of the record.|
+|Source|Where within the record.|
 |Message|The log message.|
 |Level|Choice value of *High*, *Medium*, *Low*, or *Info*.|
 
@@ -827,8 +831,15 @@ The *u_ebond_log* table will contain the following custom fields:
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
     - _Type:_ String
-    - _Column label:_ Class
-    - _Column name:_ (this should default to u_class)
+    - _Column label:_ Location
+    - _Column name:_ (this should default to u_location)
+    - _Max length:_ 40
+1. Click **Submit**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ String
+    - _Column label:_ Name
+    - _Column name:_ (this should default to u_name)
     - _Max length:_ 40
 1. Click **Submit**.
 1. In the **Columns** table, click **New**.
@@ -958,11 +969,87 @@ The *u_ebond_data_map* table will contain the following custom fields:
     - _Max length:_ 4000
 1. Click **Submit**.
 1. Click **Update**.
+---
+### eBond Data Map Script Include
+\
+Support script used in eBonding operations
+
+1. Navigate to **System Definition** > **Script Includes**, click **New**.
+1. In the **Script Include New record** section, fill in the following fields:
+    - _Name:_ eBondDataMap
+    - _API Name:_ (this should default to global.eBondDataMap)
+    - _Script:_
+    ```
+    var eBondDataMap = Class.create();
+    eBondDataMap.prototype = {
+        // func: initialize
+        // desc: initializes the JavaScript object
+        // parm: n/a
+        // retn: true or false
+        initialize: function() {
+            // static 
+            this.eLog = new eBondLog();
+            this.eLog.u_direction = 'outbound';
+            this.eLog.u_location = 'Script Includes';
+            this.eLog.u_name = 'eBondDataMap';
+            this.eLog.u_source = 'initialize';
+            this.eLog.u_supplier = 'Unknown';
+            this.eLog.write('Info', 'Entering.');
+    
+            this.eLog.write('Info', 'Exiting.');
+        },
+    
+    	// func: getSupplierValue
+    	// desc: retrieves the supplier's value from the u_ebond_mapping table.
+    	// parm: supplier - supplier name
+        //       module - module value to query against
+    	//       classification - classification value to query against
+        //       source_value - source value to query against
+    	//       default_value - if not found return this supplier value
+        // retn: supplier value. 
+        getSupplierValue: function(supplier, direction, module, classification, source_value, default_value) {
+            this.eLog.u_source = 'getSupplierValue';
+            this.eLog.u_supplier = supplier;
+            this.eLog.write('Info', 'Entering.');
+    
+            var supplierValue = new GlideRecord("u_ebond_data_map");
+            supplierValue.addQuery("u_supplier", supplier);
+            supplierValue.addQuery("u_direction", direction);
+            supplierValue.addQuery("u_module", module);
+            supplierValue.addQuery("u_classification", classification);
+            supplierValue.addQuery("u_source_value", source_value);
+            supplierValue.query();
+    
+            if (supplierValue.next()) {
+                this.eLog.write('Info', 'Exiting. Return: ' + supplierValue.u_supplier_value.toString());
+                return supplierValue.u_supplier_value.toString();
+            } else {
+                this.eLog.write('Info', 'Exiting. Return: ' + default_value);
+                return default_value;
+            }
+        },
+    
+        type: 'eBondDataMap'
+    };
+    ```
+1. Click **Submit**.
 
 ---
 ## eBond REST Payloads
 \
 The *u_ebond_rest_payloads* table records all outbound REST API calls and their statuses. This table is also used to retry REST calls in the event of a failure; see **eBond Scheduled Job**. 
+
+### eBond REST Payloads
+\
+The dynamic filter option *eBond REST Payload Index Increment* is used in the default value in the *index* field in the *[u_ebond_rest_payload]* table as a reference to the script include *eBondRestPayload*.
+
+1. Navigate to **System Definition** > **Dynamic Filter Options**.
+1. Click **New**.
+1. Under the **Dynamic Filter Options New record** section, fill in the following fields:
+    - _Label:_ eBond REST Payload Index Increment
+    - _Script:_ new eBondLog().increment();
+    - _Available for default:_ true
+1. Click **Submit**.
 
 The *u_ebond_rest_payloads* table will contain the following custom fields:
 |Field|Description|
@@ -973,12 +1060,14 @@ The *u_ebond_rest_payloads* table will contain the following custom fields:
 |REST Message|ServiceNow REST message label.|
 |Payload|REST data payload for the supplier.|
 |Format|The format of the payload; e.g., JSON, XML, SOAP, etc. etc..|
-|Number|The source ticket number.|
+|Source|The ServiceNow record sys_id on the instance.|
+|Source table|The table the ServiceNow record resides on.|
 |HTTP Status|HTTP return code.|
 |HTTP Response|Entire HTTP response payload.|
 |HTTP Method|ServiceNow REST method label.|
 |Endpoint|The URL endpoint for the REST call.|
 |Active|True or False|
+|Index|Auto-incrementing numeric value.|
 
 1. Navigate to **System Definition** > **Tables**.
 1. Click **New**.
@@ -989,10 +1078,14 @@ The *u_ebond_rest_payloads* table will contain the following custom fields:
 1. In the record header, right-click and select **Save**.
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
-    - _Type:_ String
+    - _Type:_ Reference
     - _Column label:_ Supplier
     - _Column name:_ (this should default to u_supplier)
-    - _Max length:_ 40
+1. In the **Reference Specification** tab, fill in the following fields:
+    - _Reference:_ Company [core_company]
+    - _Reference qual condition:_
+        - eBonded is true AND
+        - eBond account is not empty
 1. Click **Submit**.
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
@@ -1033,11 +1126,19 @@ The *u_ebond_rest_payloads* table will contain the following custom fields:
 1. Click **Submit**.
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
-    - _Type:_ String
-    - _Column label:_ Number
-    - _Column name:_ (this should default to u_number)
-    - _Max length:_ 40
+    - _Type:_ Table Name
+    - _Column label:_ Source table
+    - _Column name:_ (this should default to u_source_table)
 1. Click **Submit**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ Document ID
+    - _Column label:_ Source
+    - _Column name:_ (this should default to u_source)
+1. Under **Related Links**, click **Advanced view**.
+1. Under the **Dependent Field** tab, click **Use dependent field**.
+1. In the **Dependent on field**, select **Source table**.
+1. Click **Update**.
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
     - _Type:_ Integer
@@ -1162,6 +1263,17 @@ The *u_ebond_rest_payloads* table will contain the following custom fields:
         })(current);
         ````
 1. Click **Update**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ Integer
+    - _Column label:_ Index
+    - _Column name:_ (this should default to u_index)
+    - _Read only:_ True
+1. Under **Related Links**, click **Advanced view**.
+1. Under the **Default Value** tab, fill in the following field:
+    - _Use dynamic default:_ true
+    - _Dynamic Default value:_ eBond REST Payload Index Increment
+1. Click **Submit**.
 1. Click **Update**.
 
 ---
@@ -1433,7 +1545,8 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
 
             var eLog = new eBondLog();
             eLog.u_direction = 'inbound';
-            eLog.u_class = 'eBond Incident Transform map';
+            eLog.u_location = 'Transform Maps';
+            eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Field Map] Company';
             if (SUPPLIER == undefined) {
 		        eLog.u_supplier = 'Unknown';
@@ -1528,8 +1641,9 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         ````
         // Initialize global variables
         var eLog = new eBondLog();
-            eLog.u_direction = 'inbound';
-        eLog.u_class = 'eBond Incident Transform map';
+        eLog.u_direction = 'inbound';
+        eLog.u_location = 'Transform Maps';
+        eLog.u_name = 'eBond Incident Transform';
         eLog.u_source = '[Transform Script] Initialize global variables';
         eLog.u_supplier = 'Unknown';
         eLog.write('Info', 'Entering.');
@@ -1597,7 +1711,8 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
             var eLog = new eBondLog();
             eLog.u_direction = 'inbound';
-            eLog.u_class = 'eBond Incident Transform map';
+            eLog.u_location = 'Transform Maps';
+            eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] SUPPLIER';
             eLog.u_supplier = 'Unknown';
             eLog.write('Info', 'Entering.');
@@ -1637,8 +1752,9 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
             var eLog = new eBondLog();
             eLog.u_direction = 'inbound';
-            eLog.u_class = 'eBond Incident Transform map';
-            eLog.u_source = '[onBefore] COMPANY';
+            eLog.u_location = 'Transform Maps';
+            eLog.u_name = 'eBond Incident Transform';
+            eLog.u_source = '[Transform Script] COMPANY';
             eLog.u_supplier = SUPPLIER;
             eLog.write('Info', 'Entering.');
 
@@ -1676,8 +1792,9 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
         	var eLog = new eBondLog();
             eLog.u_direction = 'inbound';
-            eLog.u_class = 'eBond Incident Transform map';
-            eLog.u_source = '[onBefore] RELATIONSHIP';
+            eLog.u_location = 'Transform Maps';
+            eLog.u_name = 'eBond Incident Transform';
+            eLog.u_source = '[Transform Script] RELATIONSHIP';
             eLog.u_supplier = SUPPLIER;
             eLog.write('Info', 'Entering.');
 
@@ -1717,8 +1834,9 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
             var eLog = new eBondLog();
             eLog.u_direction = 'inbound';
-            eLog.u_class = 'eBond Incident Transform map';
-            eLog.u_source = '[onBefore] OPERATION & EXECUTION';
+            eLog.u_location = 'Transform Maps';
+            eLog.u_name = 'eBond Incident Transform';
+            eLog.u_source = '[Transform Script] OPERATION & EXECUTION';
             eLog.u_supplier = SUPPLIER;
             eLog.write('Info', 'Entering.');
 
@@ -1902,8 +2020,9 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
         	var eLog = new eBondLog();
             eLog.u_direction = 'inbound';
-            eLog.u_class = 'eBond Incident Transform map';
-            eLog.u_source = '[onBefore] check required fields';
+            eLog.u_location = 'Transform Maps';
+            eLog.u_name = 'eBond Incident Transform';
+            eLog.u_source = '[Transform Script] check required fields';
             eLog.u_supplier = 'Unknown';
             eLog.write('Info', 'Entering.');
 
@@ -1981,8 +2100,9 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
             var eLog = new eBondLog();
             eLog.u_direction = 'inbound';
-            eLog.u_class = 'eBond Incident Transform map';
-            eLog.u_source = '[onBefore] INCIDENT';
+            eLog.u_location = 'Transform Maps';
+            eLog.u_name = 'eBond Incident Transform';
+            eLog.u_source = '[Transform Script] INCIDENT';
             eLog.u_supplier = SUPPLIER;
             eLog.write('Info', 'Entering.');
 
@@ -2066,8 +2186,9 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
             var eLog = new eBondLog();
             eLog.u_direction = 'inbound';
-            eLog.u_class = 'eBond Incident Transform map';
-            eLog.u_source = '[onBefore] URL';
+            eLog.u_location = 'Transform Maps';
+            eLog.u_name = 'eBond Incident Transform';
+            eLog.u_source = '[Transform Script] URL';
             eLog.u_supplier = SUPPLIER;
             eLog.write('Info', 'Entering.');
 
@@ -2107,8 +2228,9 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
             var eLog = new eBondLog();
             eLog.u_direction = 'inbound';
-            eLog.u_class = 'eBond Incident Transform map';
-            eLog.u_source = '[onBefore] validate data';
+            eLog.u_location = 'Transform Maps';
+            eLog.u_name = 'eBond Incident Transform';
+            eLog.u_source = '[Transform Script] validate data';
             eLog.u_supplier = SUPPLIER;
             eLog.write('Info', 'Entering.');
 
@@ -2447,8 +2569,9 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
             var eLog = new eBondLog();
             eLog.u_direction = 'inbound';
-            eLog.u_class = 'eBond Incident Transform map';
-            eLog.u_source = '[onBefore] deBond Relationship';
+            eLog.u_location = 'Transform Maps';
+            eLog.u_name = 'eBond Incident Transform';
+            eLog.u_source = '[Transform Script] deBond Relationship';
             eLog.u_supplier = SUPPLIER;
             eLog.write('Info', 'Entering.');
 
@@ -2520,8 +2643,9 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
             var eLog = new eBondLog();
             eLog.u_direction = 'inbound';
-            eLog.u_class = 'eBond Incident Transform map';
-            eLog.u_source = '[onBefore] eBond Relationship';
+            eLog.u_location = 'Transform Maps';
+            eLog.u_name = 'eBond Incident Transform';
+            eLog.u_source = '[Transform Script] eBond Relationship';
             eLog.u_supplier = SUPPLIER;
             eLog.write('Info', 'Entering.');
 
@@ -2583,8 +2707,9 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
             var eLog = new eBondLog();
             eLog.u_direction = 'inbound';
-            eLog.u_class = 'eBond Incident Transform map';
-            eLog.u_source = '[onBefore] update incident';
+            eLog.u_location = 'Transform Maps';
+            eLog.u_name = 'eBond Incident Transform';
+            eLog.u_source = '[Transform Script] update incident';
             eLog.u_supplier = SUPPLIER;
             eLog.write('Info', 'Entering');
 
@@ -2854,8 +2979,9 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
         
             var eLog = new eBondLog();
             eLog.u_direction = 'inbound';
-            eLog.u_class = 'eBond Incident Transform map';
-            eLog.u_source = '[onBefore] set number and sys_id';
+            eLog.u_location = 'Transform Maps';
+            eLog.u_name = 'eBond Incident Transform';
+            eLog.u_source = '[Transform Script] set number and sys_id';
             eLog.u_supplier = SUPPLIER;
             eLog.write('Info', 'Entering.');
 
@@ -2962,7 +3088,7 @@ The data map table *[u_ebond_data_map]* is the lookup table used to validate fie
     (function executeRule(current, previous /*null when async*/ ) {
 
         var dataSet = {};
-    
+
         if (current.operation == 'insert') {
             dataSet.comment = current.comments.getJournalEntry(1);
             dataSet.work_note = current.work_notes.getJournalEntry(1);
@@ -3036,11 +3162,11 @@ The data map table *[u_ebond_data_map]* is the lookup table used to validate fie
         } else { // delete
             // intentionally do nothing
         }
-    
+
         var dataBundle = JSON.stringify(dataSet);
-    
+
         gs.eventQueue('ebond.incident.outbound', current, current.operation.toString(), dataBundle);
-    
+
     })(current, previous);
     ```
 1. Click **Update**.
@@ -3054,6 +3180,7 @@ The data map table *[u_ebond_data_map]* is the lookup table used to validate fie
 1. In the **Script Action New record**section, fill in the following fields:
     - _Name:_ eBond Incident Outbound
     - _Event name:_ ebond.incident.outbound
+    - _Active:_ true
     - _Script:_
     ```
     var operation = event.parm1;

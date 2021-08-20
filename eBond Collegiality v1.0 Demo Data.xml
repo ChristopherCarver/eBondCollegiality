@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><unload unload_date="2021-07-27 22:09:20">
+<?xml version="1.0" encoding="UTF-8"?><unload unload_date="2021-08-20 12:39:20">
 <sys_remote_update_set action="INSERT_OR_UPDATE">
 <application display_value="Global">global</application>
 <application_name>Global</application_name>
@@ -15,16 +15,16 @@
 <release_date/>
 <remote_base_update_set display_value=""/>
 <remote_parent_id/>
-<remote_sys_id>1c9643eedb6530107cb384d868961904</remote_sys_id>
+<remote_sys_id>5ad23e19db0630107cb384d868961946</remote_sys_id>
 <state>loaded</state>
 <summary/>
 <sys_class_name>sys_remote_update_set</sys_class_name>
 <sys_created_by>admin</sys_created_by>
-<sys_created_on>2021-07-27 22:09:20</sys_created_on>
-<sys_id>af098fa2dba530107cb384d86896192e</sys_id>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>bfbc2492db0230107cb384d8689619c1</sys_id>
 <sys_mod_count>0</sys_mod_count>
 <sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
 <update_set display_value=""/>
 <update_source display_value=""/>
 <updated/>
@@ -34,18 +34,620 @@
 <application display_value="Global">global</application>
 <category>customer</category>
 <comments/>
+<name>sysevent_script_action_ddc2d611dbc230107cb384d868961921</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sysevent_script_action"&gt;&lt;sysevent_script_action action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;condition_script/&gt;&lt;description/&gt;&lt;event_name&gt;ebond.incident.outbound.BetaCo&lt;/event_name&gt;&lt;name&gt;eBond Incident Outbound BetaCo&lt;/name&gt;&lt;order&gt;100&lt;/order&gt;&lt;script&gt;&lt;![CDATA[// build out the data payload for AlphaCo 
+// store it in u_ebond_rest_payloads to be sent to the AlphaCo
+var operation = event.parm1;
+var dataBundle = JSON.parse(event.parm2);
+var returnStatus = new eBondIncident_BetaCo().preparePayload(operation, dataBundle);]]&gt;&lt;/script&gt;&lt;synchronous&gt;false&lt;/synchronous&gt;&lt;sys_class_name&gt;sysevent_script_action&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2021-08-17 17:31:08&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;ddc2d611dbc230107cb384d868961921&lt;/sys_id&gt;&lt;sys_mod_count&gt;1&lt;/sys_mod_count&gt;&lt;sys_name&gt;eBond Incident Outbound BetaCo&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sysevent_script_action_ddc2d611dbc230107cb384d868961921&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2021-08-17 17:44:05&lt;/sys_updated_on&gt;&lt;/sysevent_script_action&gt;&lt;/record_update&gt;</payload>
+<payload_hash>1312975572</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>33bc2492db0230107cb384d8689619c4</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b55ab0da60000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table>ebond.incident.outbound.BetaCo</table>
+<target_name>eBond Incident Outbound BetaCo</target_name>
+<type>Script Action</type>
+<update_domain>global</update_domain>
+<update_guid>cfb5125166c230106e66811e4f361087</update_guid>
+<update_guid_history>cfb5125166c230106e66811e4f361087:1312975572,cfb5125166c230106e66811e4f361087:1312975572,55c2d61188c230105e19e7b2fa9bc723:-2123344367</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_63e3d3e5db8230107cb384d8689619a7</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>63e3d3e5db8230107cb384d8689619a7</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>close_code</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>Solved Remotely (Work Around)</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>Alpha - Solved Remotely (Work Around)</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>162548164</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>33bc2492db0230107cb384d8689619c7</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab563140000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>63e3d3e5db8230107cb384d8689619a7</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>fb65fbad4ac230109a5260ae5952e753</update_guid>
+<update_guid_history>fb65fbad4ac230109a5260ae5952e753:162548164,0ef4d3299a8230106d19a27e7e4cad22:162548164</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_abe3d3e5db8230107cb384d8689619a7</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>abe3d3e5db8230107cb384d8689619a7</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>close_code</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>Not Solved (Too Costly)</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>Alpha - Not Solved (Too Costly)</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-270167920</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>33bc2c92db0230107cb384d8689619ff</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab5bb2b0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>abe3d3e5db8230107cb384d8689619a7</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>d185fbade6c23010588d437f1fab8e57</update_guid>
+<update_guid_history>d185fbade6c23010588d437f1fab8e57:-270167920,26051729648230103f5cb539b8141fa2:-270167920</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_ffe3d3e5db8230107cb384d8689619ab</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>ffe3d3e5db8230107cb384d8689619ab</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>subcategory</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>Connectivity</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>Alpha - Connectivity</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>1442974402</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>33bc6c92db0230107cb384d868961902</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab85af70000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>ffe3d3e5db8230107cb384d8689619ab</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>df26f7ed68c23010ebb8ca2a5531f674</update_guid>
+<update_guid_history>df26f7ed68c23010ebb8ca2a5531f674:1442974402</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>service_offering_9f87163ddb0170107cb384d8689619e4</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="service_offering"><service_offering action="INSERT_OR_UPDATE"><aliases/><asset/><asset_tag/><assigned/><assigned_to/><assignment_group/><attestation_score/><attested>false</attested><attested_by/><attested_date/><attributes/><billing>monthly</billing><busines_criticality>2 - somewhat critical</busines_criticality><business_contact/><business_need/><business_relation_manager/><can_print>false</can_print><category/><change_control/><checked_in/><checked_out/><comments/><company/><compatibility_dependencies/><consumer_type>internal</consumer_type><contract/><correlation_id/><cost/><cost_cc>USD</cost_cc><cost_center/><delivery_date/><delivery_manager/><department/><description/><discovery_source/><dns_domain/><due/><due_in/><duplicate_of/><end_date/><environment/><fault_count>0</fault_count><first_discovered/><fqdn/><gl_account/><install_date/><install_status>1</install_status><invoice_number/><ip_address/><justification/><last_discovered/><last_review_date/><lease_id/><life_cycle_stage/><life_cycle_stage_status/><location/><mac_address/><maintenance_schedule/><managed_by/><managed_by_group/><manufacturer/><model_id/><model_number/><monitor>false</monitor><monitoring_requirements/><name>Data Center Operations</name><number>BSN0001004</number><operational_status>1</operational_status><order/><order_date/><owned_by/><parent display_value="IT Infrastructure">55265eb9db0170107cb384d868961954</parent><po_number/><portfolio_status>pipeline</portfolio_status><prerequisites/><price_model>per_unit</price_model><price_unit/><purchase_date/><schedule/><serial_number/><service_classification/><service_level_requirement/><service_owner_delegate/><service_status>requirements</service_status><short_description/><skip_sync>false</skip_sync><sla/><spm_service_portfolio/><spm_taxonomy_node/><stakeholders/><start_date/><subcategory/><support_group display_value="Data Center Operations Support" name="Data Center Operations Support">a06d46f1db0170107cb384d8689619f2</support_group><supported_by/><sys_class_name>service_offering</sys_class_name><sys_class_path>/!!/!S/!#</sys_class_path><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 14:07:05</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>9f87163ddb0170107cb384d8689619e4</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-30 14:07:05</sys_updated_on><technical_contact/><unit_description/><unverified>false</unverified><used_for>Production</used_for><user_group/><vendor/><version/><warranty_expiration/></service_offering><sys_translated_text action="delete_multiple" query="documentkey=9f87163ddb0170107cb384d8689619e4"/><fx_price action="delete_multiple" query="id=9f87163ddb0170107cb384d8689619e4"/></record_update>]]></payload>
+<payload_hash>-647824822</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>37bc2492db0230107cb384d8689619c3</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b55ab0d360000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>Data Center Operations</target_name>
+<type>Offering</type>
+<update_domain>global</update_domain>
+<update_guid>a72847a2f6a53010d4693115f122b8f3</update_guid>
+<update_guid_history>a72847a2f6a53010d4693115f122b8f3:-647824822,117af855e32130103353506c27d5a3f0:-647824822</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_37e3d3e5db8230107cb384d8689619aa</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>37e3d3e5db8230107cb384d8689619aa</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>impact</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note>3 - Low</u_note><u_source_value>3</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>300</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>769777681</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>37bc2492db0230107cb384d8689619c6</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab919d90000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>37e3d3e5db8230107cb384d8689619aa</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>135677ede7c23010aba4f16f648465bf</update_guid>
+<update_guid_history>135677ede7c23010aba4f16f648465bf:769777681</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_7be3d3e5db8230107cb384d8689619ab</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>7be3d3e5db8230107cb384d8689619ab</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>state</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note>Closed</u_note><u_source_value>7</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>700</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-734244088</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>37bc2c92db0230107cb384d8689619fe</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5aba5dfc0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>7be3d3e5db8230107cb384d8689619ab</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>6ba67fed48c23010a22c9a9b7e961b4b</update_guid>
+<update_guid_history>6ba67fed48c23010a22c9a9b7e961b4b:-734244088</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_f3e3d3e5db8230107cb384d8689619ab</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>f3e3d3e5db8230107cb384d8689619ab</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>state</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note>In Progress</u_note><u_source_value>2</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>200</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>705871988</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>37bc6c92db0230107cb384d868961901</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5aba83c20000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>f3e3d3e5db8230107cb384d8689619ab</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>b9b67fedd1c23010d81146e1ebccfffe</update_guid>
+<update_guid_history>b9b67fedd1c23010d81146e1ebccfffe:705871988</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_27e3d3e5db8230107cb384d8689619a7</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>27e3d3e5db8230107cb384d8689619a7</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>close_code</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>Closed/Resolved by Caller</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>Alpha - Closed/Resolved by Caller</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-653300964</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>3bbc2492db0230107cb384d8689619c5</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab537c10000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>27e3d3e5db8230107cb384d8689619a7</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>0165b7ad4ac230105e9b2291f8b5655a</update_guid>
+<update_guid_history>0165b7ad4ac230105e9b2291f8b5655a:-653300964,efe4932978823010cd875ecaf7435c24:-653300964</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_6fe3d3e5db8230107cb384d8689619a7</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>6fe3d3e5db8230107cb384d8689619a7</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>close_code</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>Solved Remotely (Permanently)</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>Alpha - Solved Remotely (Permanently)</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>450891078</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>3bbc2c92db0230107cb384d8689619fd</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab5886c0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>6fe3d3e5db8230107cb384d8689619a7</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>c675f7ad71c230106eb0b66dbcff09c1</update_guid>
+<update_guid_history>c675f7ad71c230106eb0b66dbcff09c1:450891078,4c05d3291282301035dcbe53604ec10d:450891078</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_e7e3d3e5db8230107cb384d8689619a7</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>e7e3d3e5db8230107cb384d8689619a7</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>close_code</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>Solved (Permanently)</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>Alpha - Solved (Permanently)</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-956092462</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>3bbc6c92db0230107cb384d868961900</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab60d4c0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>e7e3d3e5db8230107cb384d8689619a7</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>d6957badb1c230105fb0b0843e986089</update_guid>
+<update_guid_history>d6957badb1c230105fb0b0843e986089:-956092462</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_registry_d04e12f2dbed30107cb384d8689619ff</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_registry"><u_ebond_registry action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-07-28 13:41:40</sys_created_on><sys_id>d04e12f2dbed30107cb384d8689619ff</sys_id><sys_mod_count>3</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-17 14:02:31</sys_updated_on><u_key>inbound.account</u_key><u_note/><u_supplier>BetaCo</u_supplier><u_value>eBondBeta</u_value></u_ebond_registry></record_update>]]></payload>
+<payload_hash>192783288</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>3bbc6c92db0230107cb384d868961903</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b55ab0d7c0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>d04e12f2dbed30107cb384d8689619ff</target_name>
+<type>eBond Registry</type>
+<update_domain>global</update_domain>
+<update_guid>b103addde3023010e957ef0b261c859d</update_guid>
+<update_guid_history>b103addde3023010e957ef0b261c859d:192783288,b103addde3023010e957ef0b261c859d:192783288,c980aef283ed3010ff2db880ac729b29:-287502193,917e52f2a2ed3010a941547331ea0811:-1415804195</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_user_999ebdb9dbcd30107cb384d86896190c</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_user"><sys_user action="INSERT_OR_UPDATE"><accumulated_roles/><active>true</active><avatar/><building/><calendar_integration>1</calendar_integration><city/><company/><cost_center/><country/><date_format/><default_perspective/><department/><edu_status>faculty</edu_status><email/><employee_number/><enable_multifactor_authn>false</enable_multifactor_authn><failed_attempts/><first_name>Beta Co</first_name><gender/><home_phone/><internal_integration_user>false</internal_integration_user><introduction/><last_login/><last_login_device/><last_login_time/><last_name>eBond Account</last_name><last_password/><ldap_server/><location/><locked_out>false</locked_out><manager/><middle_name/><mobile_phone/><name>Beta Co eBond Account</name><notification>2</notification><password_needs_reset>false</password_needs_reset><phone/><photo/><preferred_language/><roles/><schedule/><source/><state/><street/><sys_class_name>sys_user</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 12:17:07</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>999ebdb9dbcd30107cb384d86896190c</sys_id><sys_mod_count>1</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-05 13:59:07</sys_updated_on><time_format/><time_zone/><title/><user_name>eBondBeta</user_name><user_password>$s$bezayJtaG1+GjZqtlfIlTFrezwEx3YtTVe5Mrg/1qOw=$2fiX4b4Uvo8jHa1s/AuAsjNh/zuhXA+AjI+v56SnL2c=</user_password><vip>false</vip><web_service_access_only>false</web_service_access_only><zip/></sys_user></record_update>]]></payload>
+<payload_hash>-1831061032</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>3fbc2492db0230107cb384d8689619c4</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b55ab0d480000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>Beta Co eBond Account</target_name>
+<type>User</type>
+<update_domain>global</update_domain>
+<update_guid>7b2fabdd0b313010a10346ce9dfa1b3d</update_guid>
+<update_guid_history>7b2fabdd0b313010a10346ce9dfa1b3d:-1831061032</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_bbe3d3e5db8230107cb384d8689619aa</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>bbe3d3e5db8230107cb384d8689619aa</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>state</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note>On Hold</u_note><u_source_value>3</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>300</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-1204983282</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>3fbc2c92db0230107cb384d8689619ff</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5abace530000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>bbe3d3e5db8230107cb384d8689619aa</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>eac67fed7dc23010c15fa76e05bb6075</update_guid>
+<update_guid_history>eac67fed7dc23010c15fa76e05bb6075:-1204983282</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_registry_732f75a4dbb130107cb384d86896190a</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_registry"><u_ebond_registry action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-02 21:54:26</sys_created_on><sys_id>732f75a4dbb130107cb384d86896190a</sys_id><sys_mod_count>2</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-17 14:01:01</sys_updated_on><u_key>inbound.service.offering</u_key><u_note>Data Center Operations</u_note><u_supplier>AlphaCo</u_supplier><u_value>9f87163ddb0170107cb384d8689619e4</u_value></u_ebond_registry></record_update>]]></payload>
+<payload_hash>-2086703677</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>3fbc6c92db0230107cb384d868961902</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b55ab0d5a0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>732f75a4dbb130107cb384d86896190a</target_name>
+<type>eBond Registry</type>
+<update_domain>global</update_domain>
+<update_guid>66c26ddd770230108a93e018907d2a8f</update_guid>
+<update_guid_history>66c26ddd770230108a93e018907d2a8f:-2086703677,66c26ddd770230108a93e018907d2a8f:-2086703677,2970c2a418b13010f3bbc64834b782d9:1691204237,a94ffd64b4b13010755f6cf62176b318:-647182788</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>service_offering_35e7563ddb0170107cb384d8689619a1</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="service_offering"><service_offering action="INSERT_OR_UPDATE"><aliases/><asset/><asset_tag/><assigned/><assigned_to/><assignment_group/><attestation_score/><attested>false</attested><attested_by/><attested_date/><attributes/><billing>monthly</billing><busines_criticality>2 - somewhat critical</busines_criticality><business_contact/><business_need/><business_relation_manager/><can_print>false</can_print><category/><change_control/><checked_in/><checked_out/><comments/><company/><compatibility_dependencies/><consumer_type>internal</consumer_type><contract/><correlation_id/><cost/><cost_cc>USD</cost_cc><cost_center/><delivery_date/><delivery_manager/><department/><description/><discovery_source/><dns_domain/><due/><due_in/><duplicate_of/><end_date/><environment/><fault_count>0</fault_count><first_discovered/><fqdn/><gl_account/><install_date/><install_status>1</install_status><invoice_number/><ip_address/><justification/><last_discovered/><last_review_date/><lease_id/><life_cycle_stage/><life_cycle_stage_status/><location/><mac_address/><maintenance_schedule/><managed_by/><managed_by_group/><manufacturer/><model_id/><model_number/><monitor>false</monitor><monitoring_requirements/><name>Backup &amp; Recovery</name><number>BSN0001005</number><operational_status>1</operational_status><order/><order_date/><owned_by/><parent display_value="IT Infrastructure">55265eb9db0170107cb384d868961954</parent><po_number/><portfolio_status>pipeline</portfolio_status><prerequisites/><price_model>per_unit</price_model><price_unit/><purchase_date/><schedule/><serial_number/><service_classification/><service_level_requirement/><service_owner_delegate/><service_status>requirements</service_status><short_description/><skip_sync>false</skip_sync><sla/><spm_service_portfolio/><spm_taxonomy_node/><stakeholders/><start_date/><subcategory/><support_group display_value="Backup and Recovery Support" name="Backup and Recovery Support">881e0ab1db0170107cb384d8689619a0</support_group><supported_by/><sys_class_name>service_offering</sys_class_name><sys_class_path>/!!/!S/!#</sys_class_path><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 14:08:07</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>35e7563ddb0170107cb384d8689619a1</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-30 14:08:07</sys_updated_on><technical_contact/><unit_description/><unverified>false</unverified><used_for>Production</used_for><user_group/><vendor/><version/><warranty_expiration/></service_offering><sys_translated_text action="delete_multiple" query="documentkey=35e7563ddb0170107cb384d8689619a1"/><fx_price action="delete_multiple" query="id=35e7563ddb0170107cb384d8689619a1"/></record_update>]]></payload>
+<payload_hash>1107795799</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>73bc2492db0230107cb384d8689619c3</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b55ab0d3c0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>Backup &amp; Recovery</target_name>
+<type>Offering</type>
+<update_domain>global</update_domain>
+<update_guid>8d384ba250a53010a2dc3fed46aea8e8</update_guid>
+<update_guid_history>8d384ba250a53010a2dc3fed46aea8e8:1107795799,b37af495cd213010b733360728d28305:1107795799</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_33e3d3e5db8230107cb384d8689619ab</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>33e3d3e5db8230107cb384d8689619ab</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>state</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note>Canceled</u_note><u_source_value>8</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>800</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-871835849</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>73bc2492db0230107cb384d8689619c6</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5aba36c30000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>33e3d3e5db8230107cb384d8689619ab</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>cda63fed7dc23010d886c08d0b2677b2</update_guid>
+<update_guid_history>cda63fed7dc23010d886c08d0b2677b2:-871835849</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_77e3d3e5db8230107cb384d8689619ac</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>77e3d3e5db8230107cb384d8689619ac</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>subcategory</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>Support</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>Alpha - Support</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>1209804364</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>73bc2c92db0230107cb384d8689619fe</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab7b3590000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>77e3d3e5db8230107cb384d8689619ac</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>340633edb7c2301015323b0e656406ae</update_guid>
+<update_guid_history>340633edb7c2301015323b0e656406ae:1209804364</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_efe3d3e5db8230107cb384d8689619a8</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>efe3d3e5db8230107cb384d8689619a8</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>contact_type</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>walk-in</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>help-center</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>1549270552</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>73bc6c92db0230107cb384d868961901</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab71c870000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>efe3d3e5db8230107cb384d8689619a8</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>5bd5b3eddbc230107219e090fb9b6f44</update_guid>
+<update_guid_history>5bd5b3eddbc230107219e090fb9b6f44:1549270552</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_23e3d3e5db8230107cb384d8689619a8</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>23e3d3e5db8230107cb384d8689619a8</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>close_code</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>Not Solved (Not Reproducible)</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>Alpha - Not Solved (Not Reproducible)</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-251071058</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>77bc2492db0230107cb384d8689619c5</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab50c8a0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>23e3d3e5db8230107cb384d8689619a8</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>da55b7ad9fc23010fcfa4df2128ff353</update_guid>
+<update_guid_history>da55b7ad9fc23010fcfa4df2128ff353:-251071058,b2b45fe58a82301061747676629d0167:-251071058</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_6be3d3e5db8230107cb384d8689619a8</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>6be3d3e5db8230107cb384d8689619a8</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>contact_type</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>monitoring</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>alert</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>1039443872</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>77bc2c92db0230107cb384d8689619fd</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab660bb0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>6be3d3e5db8230107cb384d8689619a8</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>a3a533ed2dc230105bd66dadfc0ec006</update_guid>
+<update_guid_history>a3a533ed2dc230105bd66dadfc0ec006:1039443872</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_e3e3d3e5db8230107cb384d8689619a8</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>e3e3d3e5db8230107cb384d8689619a8</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>contact_type</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>phone</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>telephone</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-697104512</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>77bc6c92db0230107cb384d868961900</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab6f13f0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>e3e3d3e5db8230107cb384d8689619a8</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>64d5b3ed3fc23010a54950c3cff2fc42</update_guid>
+<update_guid_history>64d5b3ed3fc23010a54950c3cff2fc42:-697104512</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_registry_9e9f6b91db7130107cb384d8689619d6</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_registry"><u_ebond_registry action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-05 14:01:01</sys_created_on><sys_id>9e9f6b91db7130107cb384d8689619d6</sys_id><sys_mod_count>2</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-17 14:02:42</sys_updated_on><u_key>inbound.service.offering</u_key><u_note>Backup &amp; Recovery</u_note><u_supplier>BetaCo</u_supplier><u_value>35e7563ddb0170107cb384d8689619a1</u_value></u_ebond_registry></record_update>]]></payload>
+<payload_hash>501746221</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>77bc6c92db0230107cb384d868961903</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b55ab0d820000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>9e9f6b91db7130107cb384d8689619d6</target_name>
+<type>eBond Registry</type>
+<update_domain>global</update_domain>
+<update_guid>601361111a42301062a9802a3b69dc43</update_guid>
+<update_guid_history>601361111a42301062a9802a3b69dc43:501746221,601361111a42301062a9802a3b69dc43:501746221</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
 <name>sys_user_577ffa69dbc530107cb384d868961946</name>
 <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_user"><sys_user action="INSERT_OR_UPDATE"><accumulated_roles/><active>true</active><avatar/><building/><calendar_integration>1</calendar_integration><city/><company/><cost_center/><country/><date_format/><default_perspective/><department/><edu_status>faculty</edu_status><email/><employee_number/><enable_multifactor_authn>false</enable_multifactor_authn><failed_attempts/><first_name>Alpha Co</first_name><gender/><home_phone/><internal_integration_user>false</internal_integration_user><introduction/><last_login/><last_login_device/><last_login_time/><last_name>eBond Account</last_name><last_password/><ldap_server/><location/><locked_out>false</locked_out><manager/><middle_name/><mobile_phone/><name>Alpha Co eBond Account</name><notification>2</notification><password_needs_reset>false</password_needs_reset><phone/><photo/><preferred_language/><roles/><schedule/><source/><state/><street/><sys_class_name>sys_user</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-29 22:25:34</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>577ffa69dbc530107cb384d868961946</sys_id><sys_mod_count>3</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-29 22:34:49</sys_updated_on><time_format/><time_zone/><title/><user_name>eBondAlpha</user_name><user_password/><vip>false</vip><web_service_access_only>false</web_service_access_only><zip/></sys_user></record_update>]]></payload>
 <payload_hash>1622612021</payload_hash>
-<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">af098fa2dba530107cb384d86896192e</remote_update_set>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
 <sys_created_by>admin</sys_created_by>
-<sys_created_on>2021-07-27 22:09:20</sys_created_on>
-<sys_id>2309c7e2dba530107cb384d868961984</sys_id>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>7bbc2492db0230107cb384d8689619c4</sys_id>
 <sys_mod_count>0</sys_mod_count>
-<sys_recorded_at>17aea0284390000001</sys_recorded_at>
+<sys_recorded_at>17b55ab0d420000001</sys_recorded_at>
 <sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
 <table/>
 <target_name>Alpha Co eBond Account</target_name>
 <type>User</type>
@@ -60,24 +662,159 @@
 <application display_value="Global">global</application>
 <category>customer</category>
 <comments/>
-<name>core_company_94da46f1db0170107cb384d8689619cb</name>
-<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="core_company"><core_company action="INSERT_OR_UPDATE"><apple_icon/><banner_image/><banner_image_light/><banner_text/><city/><contact/><coordinates_retrieved_on/><country>USA</country><customer>false</customer><discount/><fax_phone/><fiscal_year/><lat_long_error/><latitude/><longitude/><manufacturer>false</manufacturer><name>Alpha Co.</name><notes/><num_employees/><parent/><phone/><primary>false</primary><publicly_traded>false</publicly_traded><rank_tier/><state/><stock_price/><stock_symbol/><street/><sys_class_name>core_company</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 13:13:25</sys_created_on><sys_id>94da46f1db0170107cb384d8689619cb</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-30 13:13:25</sys_updated_on><theme/><u_ebond_account display_value="Alpha Co eBond Account">577ffa69dbc530107cb384d868961946</u_ebond_account><u_ebonded>true</u_ebonded><vendor>false</vendor><vendor_manager/><vendor_type/><website/><zip/></core_company></record_update>]]></payload>
-<payload_hash>2023049428</payload_hash>
-<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">af098fa2dba530107cb384d86896192e</remote_update_set>
+<name>u_ebond_data_map_b7e3d3e5db8230107cb384d8689619ab</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>b7e3d3e5db8230107cb384d8689619ab</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>state</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note>Resolved</u_note><u_source_value>6</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>600</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-170821038</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
 <sys_created_by>admin</sys_created_by>
-<sys_created_on>2021-07-27 22:09:20</sys_created_on>
-<sys_id>27098fa2dba530107cb384d86896192f</sys_id>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>7bbc2c92db0230107cb384d8689619ff</sys_id>
 <sys_mod_count>0</sys_mod_count>
-<sys_recorded_at>17ae9fe989f0000001</sys_recorded_at>
+<sys_recorded_at>17b5abae2b20000001</sys_recorded_at>
 <sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
 <table/>
-<target_name>Alpha Co.</target_name>
-<type>Company</type>
+<target_name>b7e3d3e5db8230107cb384d8689619ab</target_name>
+<type>eBond Data Map</type>
 <update_domain>global</update_domain>
-<update_guid>0fb703a214a530106f7dea844f5369de</update_guid>
-<update_guid_history>0fb703a214a530106f7dea844f5369de:2023049428,ead7f4517e213010e94057bd7d050cff:2023049428</update_guid_history>
+<update_guid>7bc673216b0630103e941f8ba782ff91</update_guid>
+<update_guid_history>7bc673216b0630103e941f8ba782ff91:-170821038</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_registry_46dfaf91db7130107cb384d86896199f</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_registry"><u_ebond_registry action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-05 14:02:05</sys_created_on><sys_id>46dfaf91db7130107cb384d86896199f</sys_id><sys_mod_count>2</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-17 14:01:55</sys_updated_on><u_key>inbound.assignment.group</u_key><u_note>Backup and Recovery Support</u_note><u_supplier>BetaCo</u_supplier><u_value>881e0ab1db0170107cb384d8689619a0</u_value></u_ebond_registry></record_update>]]></payload>
+<payload_hash>1452570358</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>7bbc6c92db0230107cb384d868961902</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b55ab0d6b0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>46dfaf91db7130107cb384d86896199f</target_name>
+<type>eBond Registry</type>
+<update_domain>global</update_domain>
+<update_guid>38e2e9dd1d02301088d05d338e33c977</update_guid>
+<update_guid_history>38e2e9dd1d02301088d05d338e33c977:1452570358,38e2e9dd1d02301088d05d338e33c977:1452570358,f7df6f918f7130104d0d7c6f6e826c53:-117878064</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sysevent_script_action_a2129611dbc230107cb384d86896198f</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sysevent_script_action"&gt;&lt;sysevent_script_action action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;condition_script/&gt;&lt;description/&gt;&lt;event_name&gt;ebond.incident.outbound.AlphaCo&lt;/event_name&gt;&lt;name&gt;eBond Incident Outbound AlphaCo&lt;/name&gt;&lt;order&gt;100&lt;/order&gt;&lt;script&gt;&lt;![CDATA[// build out the data payload for AlphaCo 
+// store it in u_ebond_rest_payloads to be sent to the AlphaCo
+var operation = event.parm1;
+var dataBundle = JSON.parse(event.parm2);
+var returnStatus = new eBondIncident_AlphaCo().preparePayload(operation, dataBundle);
+]]&gt;&lt;/script&gt;&lt;synchronous&gt;false&lt;/synchronous&gt;&lt;sys_class_name&gt;sysevent_script_action&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2021-08-17 17:30:41&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;a2129611dbc230107cb384d86896198f&lt;/sys_id&gt;&lt;sys_mod_count&gt;1&lt;/sys_mod_count&gt;&lt;sys_name&gt;eBond Incident Outbound AlphaCo&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sysevent_script_action_a2129611dbc230107cb384d86896198f&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2021-08-17 17:43:31&lt;/sys_updated_on&gt;&lt;/sysevent_script_action&gt;&lt;/record_update&gt;</payload>
+<payload_hash>1921731992</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>7fbc2492db0230107cb384d8689619c3</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b55ab0da00000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table>ebond.incident.outbound.AlphaCo</table>
+<target_name>eBond Incident Outbound AlphaCo</target_name>
+<type>Script Action</type>
+<update_domain>global</update_domain>
+<update_guid>a695de1155c230100910c95e7482da4f</update_guid>
+<update_guid_history>a695de1155c230100910c95e7482da4f:1921731992,a695de1155c230100910c95e7482da4f:1921731992,eea2de119dc23010636e2c09b9443396:-561588179</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_3fe3d3e5db8230107cb384d8689619ab</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>3fe3d3e5db8230107cb384d8689619ab</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>subcategory</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>Access Control</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>Alpha - Access Control</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-301621694</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>7fbc2492db0230107cb384d8689619c6</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab782cd0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>3fe3d3e5db8230107cb384d8689619ab</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>31f533edb9c23010dcaae363e9321cc6</update_guid>
+<update_guid_history>31f533edb9c23010dcaae363e9321cc6:-301621694</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_a7e3d3e5db8230107cb384d8689619a8</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>a7e3d3e5db8230107cb384d8689619a8</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>contact_type</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>ebond</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>digital</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>955299406</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>7fbc2c92db0230107cb384d8689619fe</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab6c50f0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>a7e3d3e5db8230107cb384d8689619a8</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>75c5bfad80c230100f28ce4e7b5ee4f0</update_guid>
+<update_guid_history>75c5bfad80c230100f28ce4e7b5ee4f0:955299406</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_fbe3d3e5db8230107cb384d8689619ac</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>fbe3d3e5db8230107cb384d8689619ac</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>subcategory</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>Performance</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>Alpha - Performance</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-1512367538</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>7fbc6c92db0230107cb384d868961901</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab826d40000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>fbe3d3e5db8230107cb384d8689619ac</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>802677ed65c230101c7ffd774c439fe8</update_guid>
+<update_guid_history>802677ed65c230101c7ffd774c439fe8:-1512367538</update_guid_history>
 <update_set display_value=""/>
 <view/>
 </sys_update_xml>
@@ -89,15 +826,15 @@
 <name>cmdb_ci_service_55265eb9db0170107cb384d868961954</name>
 <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="cmdb_ci_service"><cmdb_ci_service action="INSERT_OR_UPDATE"><aliases/><asset/><asset_tag/><assigned/><assigned_to/><assignment_group/><attestation_score/><attested>false</attested><attested_by/><attested_date/><attributes/><busines_criticality>2 - somewhat critical</busines_criticality><business_contact/><business_need/><business_relation_manager/><can_print>false</can_print><category>Business Service</category><change_control/><checked_in/><checked_out/><comments/><company/><compatibility_dependencies/><consumer_type>internal</consumer_type><correlation_id/><cost/><cost_cc>USD</cost_cc><cost_center/><delivery_date/><delivery_manager/><department/><discovery_source/><dns_domain/><due/><due_in/><duplicate_of/><end_date/><environment/><fault_count>0</fault_count><first_discovered/><fqdn/><gl_account/><install_date/><install_status>1</install_status><invoice_number/><ip_address/><justification/><last_discovered/><last_review_date/><lease_id/><life_cycle_stage/><life_cycle_stage_status/><location/><mac_address/><maintenance_schedule/><managed_by/><managed_by_group/><manufacturer/><model_id/><model_number/><monitor>false</monitor><monitoring_requirements/><name>IT Infrastructure</name><number>BSN0001002</number><operational_status>1</operational_status><order_date/><owned_by/><parent/><po_number/><portfolio_status>pipeline</portfolio_status><prerequisites/><price_model>per_unit</price_model><price_unit/><purchase_date/><schedule/><serial_number/><service_classification>Technical Service</service_classification><service_level_requirement/><service_owner_delegate/><service_status>requirements</service_status><short_description/><skip_sync>false</skip_sync><sla/><spm_service_portfolio/><spm_taxonomy_node/><stakeholders/><start_date/><subcategory>Service</subcategory><support_group/><supported_by/><sys_class_name>cmdb_ci_service</sys_class_name><sys_class_path>/!!/!S</sys_class_path><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 14:00:49</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>55265eb9db0170107cb384d868961954</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-30 14:00:49</sys_updated_on><unit_description/><unverified>false</unverified><used_for>Production</used_for><user_group/><vendor/><version/><warranty_expiration/></cmdb_ci_service><sys_translated_text action="delete_multiple" query="documentkey=55265eb9db0170107cb384d868961954"/></record_update>]]></payload>
 <payload_hash>-775648797</payload_hash>
-<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">af098fa2dba530107cb384d86896192e</remote_update_set>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
 <sys_created_by>admin</sys_created_by>
-<sys_created_on>2021-07-27 22:09:20</sys_created_on>
-<sys_id>63098fa2dba530107cb384d86896192f</sys_id>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>b3bc2492db0230107cb384d8689619c2</sys_id>
 <sys_mod_count>0</sys_mod_count>
-<sys_recorded_at>17aea00434d0000001</sys_recorded_at>
+<sys_recorded_at>17b55ab0d2f0000001</sys_recorded_at>
 <sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
 <table/>
 <target_name>IT Infrastructure</target_name>
 <type>Service</type>
@@ -115,15 +852,15 @@
 <name>sys_user_group_a06d46f1db0170107cb384d8689619f2</name>
 <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_group"><sys_user_group action="INSERT_OR_UPDATE"><active>true</active><cost_center/><default_assignee/><description/><email/><exclude_manager>false</exclude_manager><include_members>false</include_members><manager/><name>Data Center Operations Support</name><parent/><roles/><source/><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 13:23:52</sys_created_on><sys_id>a06d46f1db0170107cb384d8689619f2</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-30 13:23:52</sys_updated_on><type/><u_company display_value="Alpha Co.">94da46f1db0170107cb384d8689619cb</u_company></sys_user_group></record_update>]]></payload>
 <payload_hash>536174810</payload_hash>
-<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">af098fa2dba530107cb384d86896192e</remote_update_set>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
 <sys_created_by>admin</sys_created_by>
-<sys_created_on>2021-07-27 22:09:20</sys_created_on>
-<sys_id>6b09c7e2dba530107cb384d868961984</sys_id>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>b3bc2492db0230107cb384d8689619c5</sys_id>
 <sys_mod_count>0</sys_mod_count>
-<sys_recorded_at>17ae9fed94c0000001</sys_recorded_at>
+<sys_recorded_at>17b55ab0d1b0000001</sys_recorded_at>
 <sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
 <table/>
 <target_name>Data Center Operations Support</target_name>
 <type>Group</type>
@@ -138,24 +875,1155 @@
 <application display_value="Global">global</application>
 <category>customer</category>
 <comments/>
-<name>service_offering_9f87163ddb0170107cb384d8689619e4</name>
-<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="service_offering"><service_offering action="INSERT_OR_UPDATE"><aliases/><asset/><asset_tag/><assigned/><assigned_to/><assignment_group/><attestation_score/><attested>false</attested><attested_by/><attested_date/><attributes/><billing>monthly</billing><busines_criticality>2 - somewhat critical</busines_criticality><business_contact/><business_need/><business_relation_manager/><can_print>false</can_print><category/><change_control/><checked_in/><checked_out/><comments/><company/><compatibility_dependencies/><consumer_type>internal</consumer_type><contract/><correlation_id/><cost/><cost_cc>USD</cost_cc><cost_center/><delivery_date/><delivery_manager/><department/><description/><discovery_source/><dns_domain/><due/><due_in/><duplicate_of/><end_date/><environment/><fault_count>0</fault_count><first_discovered/><fqdn/><gl_account/><install_date/><install_status>1</install_status><invoice_number/><ip_address/><justification/><last_discovered/><last_review_date/><lease_id/><life_cycle_stage/><life_cycle_stage_status/><location/><mac_address/><maintenance_schedule/><managed_by/><managed_by_group/><manufacturer/><model_id/><model_number/><monitor>false</monitor><monitoring_requirements/><name>Data Center Operations</name><number>BSN0001004</number><operational_status>1</operational_status><order/><order_date/><owned_by/><parent display_value="IT Infrastructure">55265eb9db0170107cb384d868961954</parent><po_number/><portfolio_status>pipeline</portfolio_status><prerequisites/><price_model>per_unit</price_model><price_unit/><purchase_date/><schedule/><serial_number/><service_classification/><service_level_requirement/><service_owner_delegate/><service_status>requirements</service_status><short_description/><skip_sync>false</skip_sync><sla/><spm_service_portfolio/><spm_taxonomy_node/><stakeholders/><start_date/><subcategory/><support_group display_value="Data Center Operations Support" name="Data Center Operations Support">a06d46f1db0170107cb384d8689619f2</support_group><supported_by/><sys_class_name>service_offering</sys_class_name><sys_class_path>/!!/!S/!#</sys_class_path><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 14:07:05</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>9f87163ddb0170107cb384d8689619e4</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-30 14:07:05</sys_updated_on><technical_contact/><unit_description/><unverified>false</unverified><used_for>Production</used_for><user_group/><vendor/><version/><warranty_expiration/></service_offering><sys_translated_text action="delete_multiple" query="documentkey=9f87163ddb0170107cb384d8689619e4"/><fx_price action="delete_multiple" query="id=9f87163ddb0170107cb384d8689619e4"/></record_update>]]></payload>
-<payload_hash>-647824822</payload_hash>
-<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">af098fa2dba530107cb384d86896192e</remote_update_set>
+<name>u_ebond_data_map_67e3d3e5db8230107cb384d8689619a9</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>67e3d3e5db8230107cb384d8689619a9</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>hold_reason</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note>Awaiting Caller</u_note><u_source_value>1</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>100</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-1534896964</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
 <sys_created_by>admin</sys_created_by>
-<sys_created_on>2021-07-27 22:09:20</sys_created_on>
-<sys_id>6f09c7e2dba530107cb384d868961983</sys_id>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>b3bc2c92db0230107cb384d8689619fd</sys_id>
 <sys_mod_count>0</sys_mod_count>
-<sys_recorded_at>17aea0062530000001</sys_recorded_at>
+<sys_recorded_at>17b5ab97e380000001</sys_recorded_at>
 <sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
 <table/>
-<target_name>Data Center Operations</target_name>
-<type>Offering</type>
+<target_name>67e3d3e5db8230107cb384d8689619a9</target_name>
+<type>eBond Data Map</type>
 <update_domain>global</update_domain>
-<update_guid>a72847a2f6a53010d4693115f122b8f3</update_guid>
-<update_guid_history>a72847a2f6a53010d4693115f122b8f3:-647824822,117af855e32130103353506c27d5a3f0:-647824822</update_guid_history>
+<update_guid>e1763fed22c230109c0cae2940e6a037</update_guid>
+<update_guid_history>e1763fed22c230109c0cae2940e6a037:-1534896964</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_bfe3d3e5db8230107cb384d8689619ac</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>bfe3d3e5db8230107cb384d8689619ac</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>urgency</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note>3 - Low</u_note><u_source_value>3</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>300</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>325171514</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>b3bc6c92db0230107cb384d868961900</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab930530000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>bfe3d3e5db8230107cb384d8689619ac</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>ac667bed16c230108a532592c27e932b</update_guid>
+<update_guid_history>ac667bed16c230108a532592c27e932b:325171514</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_registry_795f2391db7130107cb384d8689619e9</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_registry"><u_ebond_registry action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-05 13:59:54</sys_created_on><sys_id>795f2391db7130107cb384d8689619e9</sys_id><sys_mod_count>1</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-17 14:02:08</sys_updated_on><u_key>inbound.service</u_key><u_note>IT Infrastructure</u_note><u_supplier>BetaCo</u_supplier><u_value>55265eb9db0170107cb384d868961954</u_value></u_ebond_registry></record_update>]]></payload>
+<payload_hash>-637799581</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>b3bc6c92db0230107cb384d868961903</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b55ab0d700000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>795f2391db7130107cb384d8689619e9</target_name>
+<type>eBond Registry</type>
+<update_domain>global</update_domain>
+<update_guid>08f2addd3e023010f721c17666330870</update_guid>
+<update_guid_history>08f2addd3e023010f721c17666330870:-637799581,08f2addd3e023010f721c17666330870:-637799581</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_script_include_25e5da91dbc230107cb384d86896195e</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;global.eBondIncident_AlphaCo&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;description/&gt;&lt;name&gt;eBondIncident_AlphaCo&lt;/name&gt;&lt;script&gt;&lt;![CDATA[var eBondIncident_AlphaCo = Class.create();
+eBondIncident_AlphaCo.prototype = {
+    // func: initialize
+    // desc: initializes the JavaScript object
+    // parm: n/a
+    // retn: true or false
+    initialize: function() {
+        // static 
+        this.eLog = new eBondLog();
+        this.eLog.u_direction = 'outbound';
+        this.eLog.u_location = 'Script Includes';
+        this.eLog.u_name = 'eBondIncident_AlphaCo';
+        this.eLog.u_source = 'initialize';
+        this.eLog.u_supplier = 'AlphaCo';
+        this.eLog.write('Info', 'Entering.');
+
+        this.supplier = 'AlphaCo';
+        this.url = 'https://www.aplha.com/API/incident';
+        this.restMsg = 'AlphaCo';
+        this.httpMethod = 'Incident';
+
+        // dynamic
+        var company = new GlideRecord('core_company');
+        company.addQuery('stock_symbol', this.supplier);
+        company.query();
+        if (company.next()) {
+            this.company = company.sys_id;
+        } else {
+            this.eLog.write('High', 'Cannot find the supplier\'s company record.');
+        }
+
+        this.eLog.write('Info', 'Exiting.');
+    },
+
+    // func: determineOperation
+    // desc: updates to incident record does not mean updates to the supplier
+    //       the existing incident could have been updated with new assignment group or eBonded with value
+    // parm: n/a
+    // retn: create or update
+    determineOperation: function() {
+        this.eLog.u_source = 'determineOperation';
+        this.eLog.write('Info', 'Entering.');
+
+        var decision = 'create';
+
+        // find existing relationship records
+        var myRelationships = new GlideRecord('u_ebond_relationship');
+        myRelationships.addQuery('u_source', current.sys_id);
+        myRelationships.addQuery('u_ebonded', 'true');
+        myRelationships.addQuery('u_company', this.company);
+        myRelationships.query();
+        if (myRelationships.next()) {
+            decision = 'update';
+        }
+
+        this.eLog.write('Info', 'Exiting. Return: ' + decision);
+        return decision;
+    },
+
+    // func: insertOperation
+    // desc: ServiceNow has inserted a new record
+    // parm: dataBundle
+    // retn: n/a
+    insertOperation: function(dataBundle) {
+        this.eLog.u_source = 'insertOperation';
+        this.eLog.write('Info', 'Entering.');
+
+        var parser = new JSONParser();
+        var incidentData = parser.parse(dataBundle);
+
+        var dataMap = new eBondDataMap();
+
+        var data = {};
+        data.ExternalNumber = current.number.toString();
+        data.ExternalRef = current.sys_id.toString();
+
+        for (var key in incidentData) {
+            var map = dataMap.getSupplierValue(this.supplier, 'outbound', 'incident', key, incidentData[key], incidentData[key]);
+            switch (key) {
+                case "comment":
+                    data.Comment = map.value;
+                    break;
+                case "work_note":
+                    data.WorkNote = map.value;
+                    break;
+                case "description":
+                    data.Desc = map.value;
+                    break;
+                case "short_description":
+                    data.ShortDesc = map.value;
+                    break;
+                case "state":
+                    data.State = map.value;
+                    break;
+                case "impact":
+                    data.Impact = map.value;
+                    break;
+                case "urgency":
+                    data.Urgency = map.value;
+                    break;
+                case "caller":
+                    var caller = new GlideRecord('sys_user');
+                    caller.addQuery('sys_id', map.value);
+                    caller.query();
+                    if (caller.next()) {
+                        data.Caller = caller.getDisplayValue('email');
+                    }
+                    break;
+                case "assignment_group":
+                    var group = new GlideRecord('sys_user_group');
+                    group.addQuery('sys_id', map.value);
+                    group.query();
+                    if (group.next()) {
+                        data.AssignmentGroup = group.getDisplayValue('name');
+                    }
+                    break;
+                case "ci":
+                    var ci = new GlideRecord('cmdb_ci');
+                    ci.addQuery('sys_id', 'map.value');
+                    ci.query();
+                    if (ci.next()) {
+                        data.CI = ci.getDisplayValue('name');
+                    }
+                    break;
+                case "contact_type":
+                    data.Contact = map.value;
+                    break;
+                case "close_notes":
+                    data.CloseNotes = map.value;
+                    break;
+                case "close_code":
+                    data.CloseCode = map.value;
+                    break;
+                case "business_service":
+                    var service = new GlideRecord('cmdb_ci_service');
+                    service.addQuery('sys_id', map.value);
+                    service.query();
+                    if (service.next()) {
+                        data.Service = service.getDisplayValue('name');
+                    }
+                    break;
+                case "service_offering":
+                    var service_offering = new GlideRecord('cmdb_ci_service');
+                    service_offering.addQuery('sys_id', map.value);
+                    service_offering.query();
+                    if (service_offering.next()) {
+                        data.ServiceOffering = service_offering.getDisplayValue('name');
+                    }
+                    break;
+                case "category":
+                    data.Category = map.value;
+                    break;
+                case "subcategory":
+                    data.Subcategory = map.value;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        data.CommentHistory = current.comments.getJournalEntry(-1);
+        data.WorkNoteHistory = current.work_notes.getJournalEntry(-1);
+
+        var payload = JSON.stringify(data);
+        this.eLog.write('Info', 'Payload: \n' + payload);
+
+        // TO BE CODED!!!!
+        //var eBondRest = new eBondRest.loadPayload(this.supplier, this.url, payload, this.restMsg, this.httpMethod, current.sys_id, 'update');
+
+        this.eLog.write('Info', 'Exiting.');
+    },
+
+    // func: createOperation
+    // desc: ServiceNow has updated a record, but a new record for the supplier
+    // parm: dataBundle
+    // retn: n/a
+    createOperation: function() {
+        this.eLog.u_source = 'createOperation';
+        this.eLog.write('Info', 'Entering.');
+
+        var dataMap = new eBondDataMap();
+
+        var data = {};
+        data.ExternalNumber = current.number.toString();
+        data.ExternalRef = current.sys_id.toString();
+
+        data.Comment = current.comments.getJournalEntry(1);
+        data.WorkNote = current.work_notes.getJournalEntry(1);
+        data.Desc = current.getValue('description');
+        data.ShortDesc = current.getValue('short_description');
+        data.State = dataMap.getSupplierValue(this.supplier, 'outbound', 'incident', 'state', current.getValue('state'), '100').value;
+        data.Impact = dataMap.getSupplierValue(this.supplier, 'outbound', 'incident', 'impact', current.getValue('impact'), '300').value;
+        data.Urgency = dataMap.getSupplierValue(this.supplier, 'outbound', 'incident', 'urgency', current.getValue('urgency'), '300').value;
+        data.Caller = current.caller.getDisplayValue('email');
+        data.AssignmentGroup = current.getDisplayValue('assignment_group');
+        data.CI = current.getDisplayValue('cmdb_ci');
+        data.Contact = dataMap.getSupplierValue(this.supplier, 'outbound', 'incident', 'contact_type', current.getValue('contact_type'), 'digital').value;
+        data.CloseNotes = current.getValue('close_notes');
+        data.CloseCode = dataMap.getSupplierValue(this.supplier, 'outbound', 'incident', 'close_code', current.getValue('close_code'), '').value;
+        data.Service = current.getDisplayValue('business_service');
+        data.ServiceOffering = current.getDisplayValue('service_offering');
+        data.Category = current.getDisplayValue('category');
+        data.Subcategory = current.getDisplayValue('subcategory');
+        data.Comment = current.comments.getJournalEntry(-1); // full comment history
+        data.WorkNote = current.work_notes.getJournalEntry(-1); // full work note history
+        var payload = JSON.stringify(data);
+        this.eLog.write('Info', 'Payload: \n' + payload);
+
+        // TO BE CODED!!!!
+        //var eBondRest = new eBondRest.loadPayload(this.supplier, this.url, payload, this.restMsg, this.httpMethod, current.sys_id, 'update');
+
+        this.eLog.write('Info', 'Exiting.');
+    },
+
+    // func: updateOperation
+    // desc: ServiceNow has updated the record, update the AlphaCo records as appropriate
+    // parm: dataBundle
+    // retn: n/a
+    updateOperation: function(dataBundle) {
+        this.eLog.u_source = 'updateOperation';
+        this.eLog.write('Info', 'Entering.');
+
+        var parser = new JSONParser();
+        var incidentData = parser.parse(dataBundle);
+
+        var dataMap = new eBondDataMap();
+
+        // traverse all related eBonds
+        var myRelationships = new GlideRecord('u_ebond_relationship');
+        myRelationships.addQuery('u_source', current.sys_id);
+        myRelationships.addQuery('u_ebonded', 'true');
+        myRelationships.addQuery('u_company', this.company);
+        myRelationships.query();
+        while (myRelationships.next()) {
+
+            var data = {};
+            data.number = myRelationships.u_correlation_number.toString();
+
+            // if reflect, then perform data mapping
+            if (myRelationships.u_reflect == true) {
+                for (var key in incidentData) {
+                    var map = dataMap.getSupplierValue(this.supplier, 'outbound', 'incident', key, incidentData[key], incidentData[key]);
+                    switch (key) {
+                        case "comment":
+                            data.Comment = map.value;
+                            break;
+                        case "work_note":
+                            data.WorkNote = map.value;
+                            break;
+                        case "description":
+                            data.Desc = map.value;
+                            break;
+                        case "short_description":
+                            data.ShortDesc = map.value;
+                            break;
+                        case "state":
+                            data.State = map.value;
+                            break;
+                        case "impact":
+                            data.Impact = map.value;
+                            break;
+                        case "urgency":
+                            data.Urgency = map.value;
+                            break;
+                        case "caller":
+                            var caller = new GlideRecord('sys_user');
+                            caller.addQuery('sys_id', map.value);
+                            caller.query();
+                            if (caller.next()) {
+                                data.Caller = caller.getDisplayValue('email');
+                            }
+                            break;
+                        case "assignment_group":
+                            var group = new GlideRecord('sys_user_group');
+                            group.addQuery('sys_id', map.value);
+                            group.query();
+                            if (group.next()) {
+                                data.AssignmentGroup = group.getDisplayValue('name');
+                            }
+                            break;
+                        case "ci":
+                            var ci = new GlideRecord('cmdb_ci');
+                            ci.addQuery('sys_id', map.value);
+                            ci.query();
+                            if (ci.next()) {
+                                data.CI = ci.getDisplayValue('name');
+                            }
+                            break;
+                        case "contact_type":
+                            data.Contact = map.value;
+                            break;
+                        case "close_notes":
+                            data.CloseNotes = map.value;
+                            break;
+                        case "close_code":
+                            data.CloseCode = map.value;
+                            break;
+                        case "business_service":
+                            var service = new GlideRecord('cmdb_ci_service');
+                            service.addQuery('sys_id', map.value);
+                            service.query();
+                            if (service.next()) {
+                                data.Service = service.getDisplayValue('name');
+                            }
+                            break;
+                        case "service_offering":
+                            var service_offering = new GlideRecord('cmdb_ci_service');
+                            service_offering.addQuery('sys_id', map.value);
+                            service_offering.query();
+                            if (service_offering.next()) {
+                                data.ServiceOffering = service_offering.getDisplayValue('name');
+                            }
+                            break;
+                        case "category":
+                            data.Category = map.value;
+                            break;
+                        case "subcategory":
+                            data.Subcategory = map.value;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            } else { // else, represent the changes as a comment
+                var comment = '';
+                var newline = '';
+                for (var key in incidentData) {
+                    switch (key) {
+                        case 'caller':
+                            var caller = new GlideRecord('sys_user');
+                            caller.addQuery('sys_id', incidentData[key]);
+                            caller.query();
+                            if (caller.next()) {
+                                comment += newline + key + ': ' + caller.getDisplayValue('email');
+                            }
+                            break;
+                        case 'assignment_group':
+                            var group = new GlideRecord('sys_user_group');
+                            group.addQuery('sys_id', incidentData[key]);
+                            group.query();
+                            if (group.next()) {
+                                comment += newline + key + ': ' + group.getDisplayValue('name');
+                            }
+                            break;
+                        case 'ci':
+                            var ci = new GlideRecord('cmdb_ci');
+                            ci.addQuery('sys_id', incidentData[key]);
+                            ci.query();
+                            if (ci.next()) {
+                                comment += newline + key + ': ' + ci.getDisplayValue('name');
+                            }
+                            break;
+                        case 'business_service':
+                            var service = new GlideRecord('cmdb_ci_service');
+                            service.addQuery('sys_id', incidentData[key]);
+                            service.query();
+                            if (service.next()) {
+                                comment += newline + key + ': ' + service.getDisplayValue('name');
+                            }
+                            break;
+                        case 'service_offering':
+                            var service_offering = new GlideRecord('cmdb_ci_service');
+                            service_offering.addQuery('sys_id', incidentData[key]);
+                            service_offering.query();
+                            if (service_offering.next()) {
+                                comment += newline + key + ': ' + service_offering.getDisplayValue('name');
+                            }
+                            break;
+                        default:
+                            var map = dataMap.getSupplierValue(this.supplier, 'outbound', 'incident', key, incidentData[key], incidentData[key]);
+                            comment += newline + key + ': ' + map.value;
+                            if (map.note != undefined &amp;&amp; map.note != '') {
+                                comment += ' (' + map.note + ')';
+                            }
+                    }
+                    newline = '\n';
+                }
+                data.comment = comment;
+            }
+
+            var payload = JSON.stringify(data);
+            this.eLog.write('Info', 'Payload: \n' + payload);
+
+            // TO BE CODED!!!!
+            //var eBondRest = new eBondRest.loadPayload(this.supplier, this.url, payload, this.restMsg, this.httpMethod, current.sys_id, 'update');
+        }
+
+        this.eLog.write('Info', 'Exiting.');
+    },
+
+    // func: deleteOperation
+    // desc: ServiceNow has deleted the record, debond associated AlphaCo records
+    //       update AlphaCo to debond from the record
+    //       deleted the ServiceNow relationship record
+    // parm: n/a
+    // retn: n/a
+    deleteOperation: function() {
+        this.eLog.u_source = 'deleteOperation';
+        this.eLog.write('Info', 'Entering.');
+
+        // traverse all related eBonds
+        var myRelationships = new GlideRecord('u_ebond_relationship');
+        myRelationships.addQuery('u_source', current.sys_id);
+        myRelationships.addQuery('u_ebonded', 'true');
+        myRelationships.addQuery('u_company', this.company);
+        myRelationships.query();
+        while (myRelationships.next()) {
+            // prepare debond payload
+            var data = {};
+            data.number = myRelationships.u_correlation_number.toString();
+            data.state = '0';
+            var payload = JSON.stringify(data);
+            // load payload into eBond exchange
+            // TO BE CODED!!!!
+            //var eBondRest = new eBondRest.loadPayload(this.supplier, this.url, payload, this.restMsg, this.httpMethod, current.sys_id, 'update');
+        }
+
+        this.eLog.write('Info', 'Exiting.');
+    },
+
+    // func: preparePayload
+    // desc: prepares the incident payloads for Alpha Co 
+    // parm: operation - insert, update, or delete
+    //       dataBundle - JSON representating the incident
+    // retn: n/a
+    preparePayload: function(operation, dataBundle) {
+        this.eLog.u_source = 'preparePayload';
+        this.eLog.write('Info', 'Entering.');
+        this.eLog.write('Info', 'operation = ' + operation);
+        this.eLog.write('Info', 'dataBundle = ' + dataBundle);
+
+        if (this.company == undefined) {
+            this.eLog.write('Low', 'Company is not set, cannot continue.');
+            this.eLog.write('Info', 'Exiting.');
+            return;
+        }
+
+        if (operation == 'insert') { // new incident record
+            this.insertOperation(dataBundle);
+        } else if (operation == 'update') { // updated incident record
+            var decision = this.determineOperation();
+            if (decision == 'create') { // decision is to create new record
+                this.createOperation(dataBundle);
+            } else {
+                this.updateOperation(dataBundle); // decision is to update record(s)
+            }
+        } else if (operation == 'delete') { // deleted incident record
+            this.deleteOperation();
+        }
+
+        this.eLog.write('Info', 'Exiting.');
+        return;
+    },
+
+    type: 'eBondIncident_AlphaCo'
+};]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2021-08-17 17:44:48&lt;/sys_created_on&gt;&lt;sys_id&gt;25e5da91dbc230107cb384d86896195e&lt;/sys_id&gt;&lt;sys_mod_count&gt;51&lt;/sys_mod_count&gt;&lt;sys_name&gt;eBondIncident_AlphaCo&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_25e5da91dbc230107cb384d86896195e&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2021-08-19 18:47:16&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
+<payload_hash>651343579</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>b7bc2492db0230107cb384d8689619c4</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5fbd23640000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>eBondIncident_AlphaCo</target_name>
+<type>Script Include</type>
+<update_domain>global</update_domain>
+<update_guid>bf57b8cabf82301068a3ecea34544b4e</update_guid>
+<update_guid_history>bf57b8cabf82301068a3ecea34544b4e:651343579,0bd5f08ac982301044c6d7e94266710e:-1258516773,e935bcc6608230108feb753b7f07599d:-635736448,225f24468782301075576267e5a51b97:-566463920,ec896442808230108fd8dc0bee7ce00a:-691691835,f6966c4e74423010d7bff21349017575:-1634279654,8f8624ce284230102f1287bb8907a7f4:-691691835,9173ac0e58423010c17d23ea90bec683:194556349,f9ca9886e3423010b3c00ad335f194f1:-1238324449,e278184639423010fff42eb1a0b83351:-2038485268,2827580677423010e65c812a0260a303:-555710287,cb565cc2bd423010d702c18720768a3f:-1020997045,eeb498826f423010a24bd8f2bcd338da:1870670574,c9741482a14230101573b43c7c5f94a3:1278361326,1b1150023042301052fba98e052dd35c:1734375466,eabec08e68023010794c7cf70b2e064c:-1532283506,ad7e844e5e023010588a106a30ff8525:-1252861652,695dcc0e48023010953474a5fcb6a83b:-593180766,07ac480ee60230107cab601c1d40ab83:1969018546,874c840eae023010ed096f3c6388d3ec:318877999,9358804a860230107fe60fb3e8c2a32e:319974175,20f7404ad802301049e4352e33bd23ee:916537621,08c6800a69023010ab0ff6aede98d8e8:-1458844130,42c6dcf55146301008f1ca330230d2a2:-1186014210,f1a414b554463010bb7af9e2e965916c:1650378491,488398718d46301053d717fa28309f83:2135790811,490f8871e44630108b126f2e388bc31f:235668839,5f9e0071254630109db6484f79e66442:1628556726,ed2d8cfd6706301073f5e87b27394ff8:1492632612,edac8cfdc806301043f693716c911cd3:-424745488,8b1c08fdf4063010fd392b047b42fc2c:-2053187757,327a80bd6f06301093be24b1df909efc:-408266442,4c288cb9e406301030797c3c55cf9b4e:117807314,fa844c79de063010a552f5d95b2568da:-893288305,f5624439d8063010b11639ebf1fb6119:-1630964130,13105325e1823010ab095280ef44f8d5:1232812416,c99c0f6144823010c059f4fc469f3004:950103430,c2ab8b21978230109d79adb8861d022b:1502413295,3afa47ed4942301014fccd4599a0e51f:212410538,5d9887add2423010d10d0a01f8c98e03:749115007,8d338f69724230106633b6456ffd877c:-245766177,85628f69a84230105a14c231045cd452:-1017496685,ddf1cba5a64230108aeff57d689dfa95:698896445,237d7aa5104230100aca9482a31620b7:635628073,415c6ea97a0230104ba2bd9daeff6910:-1281531636,e8966ea5da02301055d660e21f74e316:-955789196,51a497dde3463010f6049bcd5f0c22f8:-1175462656,efd293dd4c46301038ce8b00f38a1c66:625636987,24a293dde04630104f67d5e111d53e33:1633455083,eb6562dd50c230103e1c8fdea3d8fc1c:-248518057,18d616d129c23010cc93b0564fe3bff2:1358406979,e5e5da91d6c230100630f0e6fb67f362:1206647018</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_b3e3d3e5db8230107cb384d8689619ac</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>b3e3d3e5db8230107cb384d8689619ac</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>subcategory</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>Troubleshoot</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>Alpha - Troubleshoot</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-1734242398</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>b7bc2c92db0230107cb384d8689619ff</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab7e3fe0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>b3e3d3e5db8230107cb384d8689619ac</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>fb06f3ed4bc230108e8f2755579f6a64</update_guid>
+<update_guid_history>fb06f3ed4bc230108e8f2755579f6a64:-1734242398</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_registry_4050aef2dbed30107cb384d8689619d8</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_registry"><u_ebond_registry action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-07-28 13:49:48</sys_created_on><sys_id>4050aef2dbed30107cb384d8689619d8</sys_id><sys_mod_count>1</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-17 14:01:10</sys_updated_on><u_key>incident.external.url</u_key><u_note/><u_supplier>AlphaCo</u_supplier><u_value>https://www.alphaco.com/itsm?ticket=CORRELATION_ID</u_value></u_ebond_registry></record_update>]]></payload>
+<payload_hash>-319174729</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>b7bc6c92db0230107cb384d868961902</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b55ab0d600000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>4050aef2dbed30107cb384d8689619d8</target_name>
+<type>eBond Registry</type>
+<update_domain>global</update_domain>
+<update_guid>4cd2adddfd023010e167153d608acb0c</update_guid>
+<update_guid_history>4cd2adddfd023010e167153d608acb0c:-319174729,4cd2adddfd023010e167153d608acb0c:-319174729,07602ef2a1ed3010849604acb23ec3d8:1769955566</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sysevent_register_81e11211dbc230107cb384d868961963</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sysevent_register"><sysevent_register action="INSERT_OR_UPDATE"><caller_access/><description/><event_name>ebond.incident.outbound.AlphaCo</event_name><fired_by/><queue/><suffix/><sys_class_name>sysevent_register</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-17 17:27:18</sys_created_on><sys_id>81e11211dbc230107cb384d868961963</sys_id><sys_mod_count>0</sys_mod_count><sys_name>ebond.incident.outbound.AlphaCo</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sysevent_register_81e11211dbc230107cb384d868961963</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-17 17:27:18</sys_updated_on><table/></sysevent_register></record_update>]]></payload>
+<payload_hash>361637418</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>bbbc2492db0230107cb384d8689619c3</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b55ab0d9b0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>ebond.incident.outbound.AlphaCo</target_name>
+<type>Event Registration</type>
+<update_domain>global</update_domain>
+<update_guid>45e112116bc2301095f3c18361df5464</update_guid>
+<update_guid_history>45e112116bc2301095f3c18361df5464:361637418,45e112116bc2301095f3c18361df5464:361637418</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_3be3d3e5db8230107cb384d8689619ac</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>3be3d3e5db8230107cb384d8689619ac</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>subcategory</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>Setup/Configuration</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>Alpha - Setup/Configuration</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>697174134</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>bbbc2492db0230107cb384d8689619c6</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab74b650000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>3be3d3e5db8230107cb384d8689619ac</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>1ee533ed83c23010b63fcea0af6882c3</update_guid>
+<update_guid_history>1ee533ed83c23010b63fcea0af6882c3:697174134</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_a3e3d3e5db8230107cb384d8689619a9</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>a3e3d3e5db8230107cb384d8689619a9</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>contact_type</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>self-service</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>portal</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-1773570768</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>bbbc2c92db0230107cb384d8689619fe</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab688370000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>a3e3d3e5db8230107cb384d8689619a9</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>02b5bfad9cc23010d1decd73b28c9a59</update_guid>
+<update_guid_history>02b5bfad9cc23010d1decd73b28c9a59:-1773570768</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_fbe3d3e5db8230107cb384d8689619a9</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>fbe3d3e5db8230107cb384d8689619a9</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>hold_reason</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note>Awaiting Change</u_note><u_source_value>5</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>500</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>713841961</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>bbbc6c92db0230107cb384d868961901</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab9b7a60000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>fbe3d3e5db8230107cb384d8689619a9</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>0186bbedfac23010ebec7bb522a2983e</update_guid>
+<update_guid_history>0186bbedfac23010ebec7bb522a2983e:713841961</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>core_company_d0ab4ab1db0170107cb384d8689619e1</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="core_company"><core_company action="INSERT_OR_UPDATE"><apple_icon/><banner_image/><banner_image_light/><banner_text/><city/><contact/><coordinates_retrieved_on/><country>USA</country><customer>false</customer><discount/><fax_phone/><fiscal_year/><lat_long_error/><latitude/><longitude/><manufacturer>false</manufacturer><name>Beta Co.</name><notes/><num_employees/><parent/><phone/><primary>false</primary><publicly_traded>false</publicly_traded><rank_tier/><state/><stock_price/><stock_symbol>BetaCo</stock_symbol><street/><sys_class_name>core_company</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 13:14:23</sys_created_on><sys_id>d0ab4ab1db0170107cb384d8689619e1</sys_id><sys_mod_count>1</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-17 14:03:15</sys_updated_on><theme/><u_ebond_account display_value="Beta Co eBond Account">999ebdb9dbcd30107cb384d86896190c</u_ebond_account><u_ebonded>true</u_ebonded><vendor>false</vendor><vendor_manager/><vendor_type/><website/><zip/></core_company></record_update>]]></payload>
+<payload_hash>154622801</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>bfbc2492db0230107cb384d8689619c2</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b55ab0d880000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>Beta Co.</target_name>
+<type>Company</type>
+<update_domain>global</update_domain>
+<update_guid>b033a111b042301038c762075b56e716</update_guid>
+<update_guid_history>b033a111b042301038c762075b56e716:154622801,b033a111b042301038c762075b56e716:154622801,a6e7301502213010a429b1f9d6c28407:-620623568</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_2fe3d3e5db8230107cb384d8689619a8</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>2fe3d3e5db8230107cb384d8689619a8</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>contact_type</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>email</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>email</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-664186938</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>bfbc2492db0230107cb384d8689619c5</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab63a8a0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>2fe3d3e5db8230107cb384d8689619a8</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>dda5bfadf8c230103ec36e52d3d35e54</update_guid>
+<update_guid_history>dda5bfadf8c230103ec36e52d3d35e54:-664186938</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_73e3d3e5db8230107cb384d8689619ad</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>73e3d3e5db8230107cb384d8689619ad</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>urgency</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note>1 - High</u_note><u_source_value>1</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>100</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-45618340</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>bfbc2c92db0230107cb384d8689619fd</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab8c2110000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>73e3d3e5db8230107cb384d8689619ad</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>b14677ed84c23010317ee901de4ba3b8</update_guid>
+<update_guid_history>b14677ed84c23010317ee901de4ba3b8:-45618340</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_ebe3d3e5db8230107cb384d8689619a6</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>ebe3d3e5db8230107cb384d8689619a6</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>category</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>Managed Service</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>Alpha - Managed Service</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-84456964</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>bfbc6c92db0230107cb384d868961900</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab4d5e50000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>ebe3d3e5db8230107cb384d8689619a6</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>87457bad34c23010f86e8040f35e5fff</update_guid>
+<update_guid_history>87457bad34c23010f86e8040f35e5fff:-84456964,c5b4dbe58282301029c0c69d0e4a5a9f:-84456964</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_registry_e9ad3d24dbb130107cb384d868961943</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_registry"><u_ebond_registry action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-02 21:47:44</sys_created_on><sys_id>e9ad3d24dbb130107cb384d868961943</sys_id><sys_mod_count>3</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-17 14:00:39</sys_updated_on><u_key>inbound.assignment.group</u_key><u_note>Data Center Operations Support</u_note><u_supplier>AlphaCo</u_supplier><u_value>a06d46f1db0170107cb384d8689619f2</u_value></u_ebond_registry></record_update>]]></payload>
+<payload_hash>1542232080</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>bfbc6c92db0230107cb384d868961903</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b55ab0d4d0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>e9ad3d24dbb130107cb384d868961943</target_name>
+<type>eBond Registry</type>
+<update_domain>global</update_domain>
+<update_guid>dbb26d9db202301051bb33b52bdeec5e</update_guid>
+<update_guid_history>dbb26d9db202301051bb33b52bdeec5e:1542232080,dbb26d9db202301051bb33b52bdeec5e:1542232080,e48006a4deb13010e1e59aaa990a99d3:-1023709094,764e3964bdb13010b888d851845a02b1:1235966475</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_filter_option_dynamic_295a5506db0630107cb384d8689619da</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_filter_option_dynamic"><sys_filter_option_dynamic action="INSERT_OR_UPDATE"><active>true</active><available_for_default>true</available_for_default><available_for_filter>false</available_for_filter><available_for_ref_qual>false</available_for_ref_qual><field_type display_value="Integer">aab367c1bf3320001875647fcf073909</field_type><label>eBond REST Payload Index Increment</label><order/><roles/><script>new eBondRestPayload().increment();</script><script_reference_id/><script_reference_table/><sys_class_name>sys_filter_option_dynamic</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-19 21:22:16</sys_created_on><sys_id>295a5506db0630107cb384d8689619da</sys_id><sys_mod_count>2</sys_mod_count><sys_name>eBond REST Payload Index Increment</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sys_filter_option_dynamic_295a5506db0630107cb384d8689619da</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-19 21:24:42</sys_updated_on><table/><table_containing_filter/></sys_filter_option_dynamic></record_update>]]></payload>
+<payload_hash>-900391836</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>f3bc2492db0230107cb384d8689619c4</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b604d484e0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>eBond REST Payload Index Increment</target_name>
+<type>Dynamic Filter Options</type>
+<update_domain>global</update_domain>
+<update_guid>8a6b5d06c30630108a77c708cf6bb3a1</update_guid>
+<update_guid_history>8a6b5d06c30630108a77c708cf6bb3a1:-900391836,40fa5d064d063010e7e765c8411bdb73:-1223847727,92dad10603063010a2a508964e650177:-9551246</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_afe3d3e5db8230107cb384d8689619a6</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>afe3d3e5db8230107cb384d8689619a6</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>close_code</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>Solved (Work Around)</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>Alpha - Solved (Work Around)</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-8032270</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>f3bc2c92db0230107cb384d8689619ff</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab5e2b50000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>afe3d3e5db8230107cb384d8689619a6</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>f785f7adcac23010a4d6ec59325643d9</update_guid>
+<update_guid_history>f785f7adcac23010a4d6ec59325643d9:-8032270,811517295d823010d2b186a56de63459:-8032270</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_registry_33def564dbb130107cb384d8689619cc</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_registry"><u_ebond_registry action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-02 21:53:04</sys_created_on><sys_id>33def564dbb130107cb384d8689619cc</sys_id><sys_mod_count>2</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-17 14:00:03</sys_updated_on><u_key>inbound.service</u_key><u_note>IT Infrastructure</u_note><u_supplier>AlphaCo</u_supplier><u_value>55265eb9db0170107cb384d868961954</u_value></u_ebond_registry></record_update>]]></payload>
+<payload_hash>-1776747413</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>f3bc6c92db0230107cb384d868961902</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b55ab0d650000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>33def564dbb130107cb384d8689619cc</target_name>
+<type>eBond Registry</type>
+<update_domain>global</update_domain>
+<update_guid>29d2e9dd28023010029ccdcb08e64771</update_guid>
+<update_guid_history>29d2e9dd28023010029ccdcb08e64771:-1776747413,8e826d9d56023010a9276060a4453ba7:-1776747413,0b4f75a419b1301071e45b02d1756410:-1312183051</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sysevent_register_21b1da9ddb8230107cb384d868961904</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sysevent_register"><sysevent_register action="INSERT_OR_UPDATE"><caller_access/><description/><event_name>ebond.incident.outbound.BetaCo</event_name><fired_by/><queue/><suffix/><sys_class_name>sysevent_register</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-17 17:27:01</sys_created_on><sys_id>21b1da9ddb8230107cb384d868961904</sys_id><sys_mod_count>0</sys_mod_count><sys_name>ebond.incident.outbound.BetaCo</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sysevent_register_21b1da9ddb8230107cb384d868961904</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-17 17:27:01</sys_updated_on><table/></sysevent_register></record_update>]]></payload>
+<payload_hash>2007120880</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>f7bc2492db0230107cb384d8689619c3</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b55ab0d940000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>ebond.incident.outbound.BetaCo</target_name>
+<type>Event Registration</type>
+<update_domain>global</update_domain>
+<update_guid>85d1521138c230101e366f365df6d6ee</update_guid>
+<update_guid_history>85d1521138c230101e366f365df6d6ee:2007120880,85d1521138c230101e366f365df6d6ee:2007120880</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_37e3d3e5db8230107cb384d8689619ad</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>37e3d3e5db8230107cb384d8689619ad</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>urgency</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note>2 - Medium</u_note><u_source_value>2</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>200</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-1957721328</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>f7bc2492db0230107cb384d8689619c6</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab8d6ff0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>37e3d3e5db8230107cb384d8689619ad</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>4f46f3ed37c23010bad39815da6fdc6b</update_guid>
+<update_guid_history>4f46f3ed37c23010bad39815da6fdc6b:-1957721328</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_7fe3d3e5db8230107cb384d8689619aa</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>7fe3d3e5db8230107cb384d8689619aa</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>state</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note>New</u_note><u_source_value>1</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>100</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>635566250</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>f7bc2c92db0230107cb384d8689619fe</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5abab3d00000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>7fe3d3e5db8230107cb384d8689619aa</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>38c6ffed88c23010b32720808ec04af6</update_guid>
+<update_guid_history>38c6ffed88c23010b32720808ec04af6:635566250</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_f7e3d3e5db8230107cb384d8689619aa</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>f7e3d3e5db8230107cb384d8689619aa</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>impact</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note>2 - Medium</u_note><u_source_value>2</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>200</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>1920426201</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>f7bc6c92db0230107cb384d868961901</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab8ef460000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>f7e3d3e5db8230107cb384d8689619aa</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>2856f7ed5cc230100bcc9f5adc006a9d</update_guid>
+<update_guid_history>2856f7ed5cc230100bcc9f5adc006a9d:1920426201</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>core_company_94da46f1db0170107cb384d8689619cb</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="core_company"><core_company action="INSERT_OR_UPDATE"><apple_icon/><banner_image/><banner_image_light/><banner_text/><city/><contact/><coordinates_retrieved_on/><country>USA</country><customer>false</customer><discount/><fax_phone/><fiscal_year/><lat_long_error/><latitude/><longitude/><manufacturer>false</manufacturer><name>Alpha Co.</name><notes/><num_employees/><parent/><phone/><primary>false</primary><publicly_traded>false</publicly_traded><rank_tier/><state/><stock_price/><stock_symbol>AlphaCo</stock_symbol><street/><sys_class_name>core_company</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 13:13:25</sys_created_on><sys_id>94da46f1db0170107cb384d8689619cb</sys_id><sys_mod_count>1</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-17 14:03:34</sys_updated_on><theme/><u_ebond_account display_value="Alpha Co eBond Account">577ffa69dbc530107cb384d868961946</u_ebond_account><u_ebonded>true</u_ebonded><vendor>false</vendor><vendor_manager/><vendor_type/><website/><zip/></core_company></record_update>]]></payload>
+<payload_hash>1123647395</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>fbbc2492db0230107cb384d8689619c2</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b55ab0d8e0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>Alpha Co.</target_name>
+<type>Company</type>
+<update_domain>global</update_domain>
+<update_guid>4143a1119a423010a7287c0ca043e6a7</update_guid>
+<update_guid_history>4143a1119a423010a7287c0ca043e6a7:1123647395,4143a1119a423010a7287c0ca043e6a7:1123647395,ead7f4517e213010e94057bd7d050cff:2023049428</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_2be3d3e5db8230107cb384d8689619a9</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>2be3d3e5db8230107cb384d8689619a9</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>hold_reason</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note>Awaiting Problem</u_note><u_source_value>3</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>300</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>1425818412</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>fbbc2492db0230107cb384d8689619c5</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab9e2ac0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>2be3d3e5db8230107cb384d8689619a9</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>b7867fed59c23010875b7d892c598f87</update_guid>
+<update_guid_history>b7867fed59c23010875b7d892c598f87:1425818412</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_73e3d3e5db8230107cb384d8689619aa</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>73e3d3e5db8230107cb384d8689619aa</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>impact</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note>1 - High</u_note><u_source_value>1</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>100</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>852270949</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>fbbc2c92db0230107cb384d8689619fd</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab8aa390000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>73e3d3e5db8230107cb384d8689619aa</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>1446f7ed6fc23010451251961496989b</update_guid>
+<update_guid_history>1446f7ed6fc23010451251961496989b:852270949</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_data_map_ebe3d3e5db8230107cb384d8689619a5</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>ebe3d3e5db8230107cb384d8689619a5</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>category</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note/><u_source_value>Break-fix</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>Alpha - Break-fix</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>371501538</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>fbbc6c92db0230107cb384d868961900</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b5ab49c690000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>ebe3d3e5db8230107cb384d8689619a5</target_name>
+<type>eBond Data Map</type>
+<update_domain>global</update_domain>
+<update_guid>13357bad9dc23010d2969f04be797552</update_guid>
+<update_guid_history>13357bad9dc23010d2969f04be797552:371501538,cfa45fe5cf82301065b3382bf6b7dff7:371501538</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_registry_d46f2f91db7130107cb384d868961912</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_registry"><u_ebond_registry action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-05 14:00:04</sys_created_on><sys_id>d46f2f91db7130107cb384d868961912</sys_id><sys_mod_count>3</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-17 14:02:21</sys_updated_on><u_key>incident.external.url</u_key><u_note/><u_supplier>BetaCo</u_supplier><u_value>https://www.betacoco.com/portal?ticket=CORRELATION_ID</u_value></u_ebond_registry></record_update>]]></payload>
+<payload_hash>68064412</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>fbbc6c92db0230107cb384d868961903</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17b55ab0d770000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
+<table/>
+<target_name>d46f2f91db7130107cb384d868961912</target_name>
+<type>eBond Registry</type>
+<update_domain>global</update_domain>
+<update_guid>4ff2addd410230104e2fdcc7baaf19e3</update_guid>
+<update_guid_history>4ff2addd410230104e2fdcc7baaf19e3:68064412,4ff2addd410230104e2fdcc7baaf19e3:68064412</update_guid_history>
 <update_set display_value=""/>
 <view/>
 </sys_update_xml>
@@ -167,15 +2035,15 @@
 <name>sys_user_group_881e0ab1db0170107cb384d8689619a0</name>
 <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_group"><sys_user_group action="INSERT_OR_UPDATE"><active>true</active><cost_center/><default_assignee/><description/><email/><exclude_manager>false</exclude_manager><include_members>false</include_members><manager/><name>Backup and Recovery Support</name><parent/><roles/><source/><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 13:27:14</sys_created_on><sys_id>881e0ab1db0170107cb384d8689619a0</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-30 13:27:14</sys_updated_on><type/><u_company display_value="Beta Co.">d0ab4ab1db0170107cb384d8689619e1</u_company></sys_user_group></record_update>]]></payload>
 <payload_hash>891739412</payload_hash>
-<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">af098fa2dba530107cb384d86896192e</remote_update_set>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
 <sys_created_by>admin</sys_created_by>
-<sys_created_on>2021-07-27 22:09:20</sys_created_on>
-<sys_id>a709c7e2dba530107cb384d868961984</sys_id>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>ffbc2492db0230107cb384d8689619c4</sys_id>
 <sys_mod_count>0</sys_mod_count>
-<sys_recorded_at>17ae9fef0500000001</sys_recorded_at>
+<sys_recorded_at>17b55ab0d280000001</sys_recorded_at>
 <sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
 <table/>
 <target_name>Backup and Recovery Support</target_name>
 <type>Group</type>
@@ -190,24 +2058,24 @@
 <application display_value="Global">global</application>
 <category>customer</category>
 <comments/>
-<name>service_offering_35e7563ddb0170107cb384d8689619a1</name>
-<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="service_offering"><service_offering action="INSERT_OR_UPDATE"><aliases/><asset/><asset_tag/><assigned/><assigned_to/><assignment_group/><attestation_score/><attested>false</attested><attested_by/><attested_date/><attributes/><billing>monthly</billing><busines_criticality>2 - somewhat critical</busines_criticality><business_contact/><business_need/><business_relation_manager/><can_print>false</can_print><category/><change_control/><checked_in/><checked_out/><comments/><company/><compatibility_dependencies/><consumer_type>internal</consumer_type><contract/><correlation_id/><cost/><cost_cc>USD</cost_cc><cost_center/><delivery_date/><delivery_manager/><department/><description/><discovery_source/><dns_domain/><due/><due_in/><duplicate_of/><end_date/><environment/><fault_count>0</fault_count><first_discovered/><fqdn/><gl_account/><install_date/><install_status>1</install_status><invoice_number/><ip_address/><justification/><last_discovered/><last_review_date/><lease_id/><life_cycle_stage/><life_cycle_stage_status/><location/><mac_address/><maintenance_schedule/><managed_by/><managed_by_group/><manufacturer/><model_id/><model_number/><monitor>false</monitor><monitoring_requirements/><name>Backup &amp; Recovery</name><number>BSN0001005</number><operational_status>1</operational_status><order/><order_date/><owned_by/><parent display_value="IT Infrastructure">55265eb9db0170107cb384d868961954</parent><po_number/><portfolio_status>pipeline</portfolio_status><prerequisites/><price_model>per_unit</price_model><price_unit/><purchase_date/><schedule/><serial_number/><service_classification/><service_level_requirement/><service_owner_delegate/><service_status>requirements</service_status><short_description/><skip_sync>false</skip_sync><sla/><spm_service_portfolio/><spm_taxonomy_node/><stakeholders/><start_date/><subcategory/><support_group display_value="Backup and Recovery Support" name="Backup and Recovery Support">881e0ab1db0170107cb384d8689619a0</support_group><supported_by/><sys_class_name>service_offering</sys_class_name><sys_class_path>/!!/!S/!#</sys_class_path><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 14:08:07</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>35e7563ddb0170107cb384d8689619a1</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-30 14:08:07</sys_updated_on><technical_contact/><unit_description/><unverified>false</unverified><used_for>Production</used_for><user_group/><vendor/><version/><warranty_expiration/></service_offering><sys_translated_text action="delete_multiple" query="documentkey=35e7563ddb0170107cb384d8689619a1"/><fx_price action="delete_multiple" query="id=35e7563ddb0170107cb384d8689619a1"/></record_update>]]></payload>
-<payload_hash>1107795799</payload_hash>
-<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">af098fa2dba530107cb384d86896192e</remote_update_set>
+<name>u_ebond_data_map_bfe3d3e5db8230107cb384d8689619a9</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_data_map"><u_ebond_data_map action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-18 16:54:19</sys_created_on><sys_id>bfe3d3e5db8230107cb384d8689619a9</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-18 16:54:19</sys_updated_on><u_classification>hold_reason</u_classification><u_direction>outbound</u_direction><u_module>incident</u_module><u_note>Awaiting Vendor</u_note><u_source_value>4</u_source_value><u_supplier>AlphaCo</u_supplier><u_supplier_value>400</u_supplier_value></u_ebond_data_map></record_update>]]></payload>
+<payload_hash>-1916957889</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
 <sys_created_by>admin</sys_created_by>
-<sys_created_on>2021-07-27 22:09:20</sys_created_on>
-<sys_id>ab09c7e2dba530107cb384d868961983</sys_id>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>ffbc2c92db0230107cb384d8689619ff</sys_id>
 <sys_mod_count>0</sys_mod_count>
-<sys_recorded_at>17aea0077800000001</sys_recorded_at>
+<sys_recorded_at>17b5aba0c1b0000001</sys_recorded_at>
 <sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
 <table/>
-<target_name>Backup &amp; Recovery</target_name>
-<type>Offering</type>
+<target_name>bfe3d3e5db8230107cb384d8689619a9</target_name>
+<type>eBond Data Map</type>
 <update_domain>global</update_domain>
-<update_guid>8d384ba250a53010a2dc3fed46aea8e8</update_guid>
-<update_guid_history>8d384ba250a53010a2dc3fed46aea8e8:1107795799,b37af495cd213010b733360728d28305:1107795799</update_guid_history>
+<update_guid>da963fed6cc23010b0f5281c3fa920b0</update_guid>
+<update_guid_history>da963fed6cc23010b0f5281c3fa920b0:-1916957889</update_guid_history>
 <update_set display_value=""/>
 <view/>
 </sys_update_xml>
@@ -216,50 +2084,24 @@
 <application display_value="Global">global</application>
 <category>customer</category>
 <comments/>
-<name>sys_user_999ebdb9dbcd30107cb384d86896190c</name>
-<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_user"><sys_user action="INSERT_OR_UPDATE"><accumulated_roles/><active>true</active><avatar/><building/><calendar_integration>1</calendar_integration><city/><company/><cost_center/><country/><date_format/><default_perspective/><department/><edu_status>faculty</edu_status><email/><employee_number/><enable_multifactor_authn>false</enable_multifactor_authn><failed_attempts/><first_name>Beta Co</first_name><gender/><home_phone/><internal_integration_user>false</internal_integration_user><introduction/><last_login/><last_login_device/><last_login_time/><last_name>eBond Account</last_name><last_password/><ldap_server/><location/><locked_out>false</locked_out><manager/><middle_name/><mobile_phone/><name>Beta Co eBond Account</name><notification>2</notification><password_needs_reset>false</password_needs_reset><phone/><photo/><preferred_language/><roles/><schedule/><source/><state/><street/><sys_class_name>sys_user</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 12:17:07</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>999ebdb9dbcd30107cb384d86896190c</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-30 12:17:07</sys_updated_on><time_format/><time_zone/><title/><user_name>eBondBeta</user_name><user_password/><vip>false</vip><web_service_access_only>false</web_service_access_only><zip/></sys_user></record_update>]]></payload>
-<payload_hash>-747929285</payload_hash>
-<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">af098fa2dba530107cb384d86896192e</remote_update_set>
+<name>u_ebond_registry_75cfaf91db7130107cb384d868961983</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_registry"><u_ebond_registry action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-05 14:01:48</sys_created_on><sys_id>75cfaf91db7130107cb384d868961983</sys_id><sys_mod_count>1</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-17 14:00:47</sys_updated_on><u_key>inbound.account</u_key><u_note/><u_supplier>AlphaCo</u_supplier><u_value>eBondAlpha</u_value></u_ebond_registry></record_update>]]></payload>
+<payload_hash>678535352</payload_hash>
+<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">bfbc2492db0230107cb384d8689619c1</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
 <sys_created_by>admin</sys_created_by>
-<sys_created_on>2021-07-27 22:09:20</sys_created_on>
-<sys_id>e309c7e2dba530107cb384d868961984</sys_id>
+<sys_created_on>2021-08-20 12:39:20</sys_created_on>
+<sys_id>ffbc6c92db0230107cb384d868961902</sys_id>
 <sys_mod_count>0</sys_mod_count>
-<sys_recorded_at>17aea029af10000001</sys_recorded_at>
+<sys_recorded_at>17b55ab0d540000001</sys_recorded_at>
 <sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
+<sys_updated_on>2021-08-20 12:39:20</sys_updated_on>
 <table/>
-<target_name>Beta Co eBond Account</target_name>
-<type>User</type>
+<target_name>75cfaf91db7130107cb384d868961983</target_name>
+<type>eBond Registry</type>
 <update_domain>global</update_domain>
-<update_guid>5fb8cfa299a530109564cdf7bd23c53c</update_guid>
-<update_guid_history>5fb8cfa299a530109564cdf7bd23c53c:-747929285</update_guid_history>
-<update_set display_value=""/>
-<view/>
-</sys_update_xml>
-<sys_update_xml action="INSERT_OR_UPDATE">
-<action>INSERT_OR_UPDATE</action>
-<application display_value="Global">global</application>
-<category>customer</category>
-<comments/>
-<name>core_company_d0ab4ab1db0170107cb384d8689619e1</name>
-<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="core_company"><core_company action="INSERT_OR_UPDATE"><apple_icon/><banner_image/><banner_image_light/><banner_text/><city/><contact/><coordinates_retrieved_on/><country>USA</country><customer>false</customer><discount/><fax_phone/><fiscal_year/><lat_long_error/><latitude/><longitude/><manufacturer>false</manufacturer><name>Beta Co.</name><notes/><num_employees/><parent/><phone/><primary>false</primary><publicly_traded>false</publicly_traded><rank_tier/><state/><stock_price/><stock_symbol/><street/><sys_class_name>core_company</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-06-30 13:14:23</sys_created_on><sys_id>d0ab4ab1db0170107cb384d8689619e1</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-06-30 13:14:23</sys_updated_on><theme/><u_ebond_account display_value="Beta Co eBond Account">999ebdb9dbcd30107cb384d86896190c</u_ebond_account><u_ebonded>true</u_ebonded><vendor>false</vendor><vendor_manager/><vendor_type/><website/><zip/></core_company></record_update>]]></payload>
-<payload_hash>-620623568</payload_hash>
-<remote_update_set display_value="eBond Collegiality v1.0 Demo Data">af098fa2dba530107cb384d86896192e</remote_update_set>
-<replace_on_upgrade>false</replace_on_upgrade>
-<sys_created_by>admin</sys_created_by>
-<sys_created_on>2021-07-27 22:09:20</sys_created_on>
-<sys_id>e7098fa2dba530107cb384d86896192f</sys_id>
-<sys_mod_count>0</sys_mod_count>
-<sys_recorded_at>17ae9fe72c30000001</sys_recorded_at>
-<sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2021-07-27 22:09:20</sys_updated_on>
-<table/>
-<target_name>Beta Co.</target_name>
-<type>Company</type>
-<update_domain>global</update_domain>
-<update_guid>b4b78f624ba53010d9f19f3642952dc3</update_guid>
-<update_guid_history>b4b78f624ba53010d9f19f3642952dc3:-620623568,a6e7301502213010a429b1f9d6c28407:-620623568</update_guid_history>
+<update_guid>b4c2a9dd290230101a3c3a21463e9acd</update_guid>
+<update_guid_history>b4c2a9dd290230101a3c3a21463e9acd:678535352,b4c2a9dd290230101a3c3a21463e9acd:678535352</update_guid_history>
 <update_set display_value=""/>
 <view/>
 </sys_update_xml>

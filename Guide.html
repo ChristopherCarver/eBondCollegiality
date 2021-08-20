@@ -25,11 +25,11 @@
 </head>
 <body class="markdown-body vscode-body vscode-light">
 <div class="content">
-    <a for="toc-anchor" id="multi-source-ebonding-*--draft--*"></a><h1 id="multi-source-ebonding---draft-3" data-line="0" class="code-line">Multi-source eBonding <em>--DRAFT--</em></h1>
+    <a for="toc-anchor" id="multi-source-ebonding-*--draft--*"></a><h1 id="multi-source-ebonding---draft" data-line="0" class="code-line">Multi-source eBonding <em>--DRAFT--</em></h1>
 <hr>
-<p data-line="3" class="code-line"><div class="table-of-contents"><ul><li><a href="#multi-source-ebonding-*--draft--*">Multi-source eBonding *--DRAFT--*</a></li><li><a href="#about">About</a><ul><li><a href="#progressive-thoughts">Progressive thoughts</a></li><li><a href="#follow-along">Follow along</a></li></ul></li><li><a href="#foundation-setup">Foundation setup</a><ul><li><a href="#demo-data">Demo data</a></li><li><a href="#update-set">Update set</a></li><li><a href="#add-ebond-account-role">Add eBond account role</a></li><li><a href="#changes-to-core_company-table">Changes to core_company table</a></li><li><a href="#associate-groups-with-companies">Associate groups with companies</a></li><li><a href="#service%2C-service-offering%2C-and-assignment-group-alignment-in-incidents">Service, service offering, and assignment group alignment in incidents</a></li><li><a href="#associate-incidents-with-ebond-companies">Associate incidents with eBond companies</a></li></ul></li><li><a href="#custom-tables">Custom tables</a><ul><li><a href="#ebond-relationships">eBond relationships</a><ul><li><a href="#relationship-support-script">Relationship Support Script</a></li><li><a href="#stylize-relationship-in%2Fout">Stylize Relationship In/Out</a></li><li><a href="#relating-ebonded-tickets">Relating eBonded tickets</a></li></ul></li><li><a href="#ebond-properties">eBond Properties</a></li><li><a href="#ebond-logs">eBond Logs</a><ul><li><a href="#ebond-log-index-script-include">eBond Log Index Script Include</a></li><li><a href="#ebond-log-index-dynamic-filter-options">eBond Log Index Dynamic Filter Options</a></li></ul></li><li><a href="#ebond-data-map">eBond Data Map</a></li><li><a href="#ebond-rest-payloads">eBond REST Payloads</a></li></ul></li><li><a href="#multi-source-inbound-handling">Multi-source Inbound Handling</a><ul><li><a href="#quick-rundown">Quick Rundown</a></li><li><a href="#incident-staging-table">Incident staging table</a></li><li><a href="#inbound-transform">Inbound Transform</a></li><li><a href="#data-map---inbound">Data Map - Inbound</a></li></ul></li><li><a href="#multi-source-outbound-handling">Multi-source Outbound Handling</a><ul><li><a href="#outbound-business-rule">Outbound Business Rule</a></li></ul></li></ul></div></p>
+<p data-line="3" class="code-line"><div class="table-of-contents"><ul><li><a href="#multi-source-ebonding-*--draft--*">Multi-source eBonding *--DRAFT--*</a></li><li><a href="#about">About</a><ul><li><a href="#progressive-thoughts">Progressive thoughts</a></li><li><a href="#follow-along">Follow along</a></li></ul></li><li><a href="#foundation-setup">Foundation setup</a><ul><li><a href="#demo-data">Demo data</a></li><li><a href="#update-set">Update set</a></li><li><a href="#add-ebond-account-role">Add eBond account role</a></li><li><a href="#changes-to-core_company-table">Changes to core_company table</a></li><li><a href="#associate-groups-with-companies">Associate groups with companies</a></li><li><a href="#service%2C-service-offering%2C-and-assignment-group-alignment-in-incidents">Service, service offering, and assignment group alignment in incidents</a></li><li><a href="#associate-incidents-with-ebond-companies">Associate incidents with eBond companies</a></li></ul></li><li><a href="#custom-tables">Custom tables</a><ul><li><a href="#ebond-relationships">eBond relationships</a><ul><li><a href="#relationship-support-script">Relationship Support Script</a></li><li><a href="#stylize-relationship-in%2Fout">Stylize Relationship In/Out</a></li><li><a href="#relating-ebonded-tickets">Relating eBonded tickets</a></li></ul></li><li><a href="#ebond-properties">eBond Properties</a></li><li><a href="#ebond-logs">eBond Logs</a><ul><li><a href="#ebond-log-index-script-include">eBond Log Index Script Include</a></li><li><a href="#ebond-log-index-dynamic-filter-options">eBond Log Index Dynamic Filter Options</a></li></ul></li><li><a href="#ebond-data-map">eBond Data Map</a><ul><li><a href="#ebond-data-map-script-include">eBond Data Map Script Include</a></li></ul></li><li><a href="#ebond-rest-payloads">eBond REST Payloads</a><ul><li><a href="#ebond-rest-payloads">eBond REST Payloads</a></li></ul></li></ul></li><li><a href="#multi-source-inbound-handling">Multi-source Inbound Handling</a><ul><li><a href="#quick-rundown">Quick Rundown</a></li><li><a href="#incident-staging-table">Incident staging table</a></li><li><a href="#inbound-transform">Inbound Transform</a></li><li><a href="#data-map---inbound">Data Map - Inbound</a></li></ul></li><li><a href="#multi-source-outbound-handling">Multi-source Outbound Handling</a><ul><li><a href="#outbound-business-rule">Outbound Business Rule</a></li></ul></li></ul></div></p>
 <hr>
-<a for="toc-anchor" id="about"></a><h1 id="about-3" data-line="6" class="code-line">About</h1>
+<a for="toc-anchor" id="about"></a><h1 id="about" data-line="6" class="code-line">About</h1>
 <p data-line="8" class="code-line"><u><strong>eBonding</strong></u> is a term used to describe the electronic passing of information for business-to-business (B2B) operations. Typically eBonding is used to keep two system of records in sync. A record on one system has the same information for a record on a different system. Each system passes information between each other as information on the record changes; hence both records contain the same information. Businesses setup and configure eBonding as a means to maintain a system of record they control automatically saving time and resources; i.e., billing, audit, automation, etc. etc..</p>
 <p data-line="10" class="code-line">Example: Alpha Co., is eBonded to Omega Inc.. Information between the two different companies' tickets are shared with each other digitally.</p>
 <pre><code data-line="12" class="code-line language-mermaid"><div class="mermaid">flowchart LR
@@ -54,7 +54,7 @@
 </div></code></pre>
 <p data-line="38" class="code-line">This article is to help ServiceNow admins to setup multi-source eBonding framework for incident tickets. Incidents are normally a prime candidate to be shared across multiple suppliers. When an outage to a service is reported, there could be multiple suppliers working together to resolve the incident. Also if a supplier is utilized as an external call center, then routing incoming incident tickets to the appropriate secondary supplier needs to be performed. Given these two scenarios enterprises typically model, make incidents the first type of ticket to build a multi-source eBond framework. The same framework can be applied to other ticket types in ServiceNow with some minor adjustments.</p>
 <hr>
-<a for="toc-anchor" id="progressive-thoughts"></a><h2 id="progressive-thoughts-3" data-line="41" class="code-line">Progressive thoughts</h2>
+<a for="toc-anchor" id="progressive-thoughts"></a><h2 id="progressive-thoughts" data-line="41" class="code-line">Progressive thoughts</h2>
 <p data-line="42" class="code-line"><br>
 Here are the progressive thoughts as multi-source eBonding is being developed to go back and refer too.</p>
 <ul>
@@ -65,7 +65,7 @@ Here are the progressive thoughts as multi-source eBonding is being developed to
 <li data-line="48" class="code-line">Turning off/on eBonding is as simple as toggling the company record in the core_company table.</li>
 </ul>
 <hr>
-<a for="toc-anchor" id="follow-along"></a><h2 id="follow-along-3" data-line="51" class="code-line">Follow along</h2>
+<a for="toc-anchor" id="follow-along"></a><h2 id="follow-along" data-line="51" class="code-line">Follow along</h2>
 <p data-line="52" class="code-line"><br>
 Each section will include an update set for those that wish to install the multi-source eBonding on their instance and the instructions to create the update set. ServiceNow offers many ways to solve a problem or configure an operational model. These instructions are <u>a</u> way and does not represent <u>the</u> way on creating a multi-source eBonding framework. The best way to use these instructions is to read through them and see how the framework can be adopted and modified to fit your organization.</p>
 <div class="admonition note">
@@ -84,7 +84,7 @@ Each section will include an update set for those that wish to install the multi
 <p data-line="63" class="code-line">The article focuses on creating a robust framework tied closely to the out of the box (OOTB) tables already existing in ServiceNow. There are alternative implementation solutions within ServiceNow to accomplish the same result. Your mileage may vary depending on scope defined by and practices set by your organization. This framework is meant to be as open and flexible to meet varying modifications to suit present and future requirements.</p>
 </div>
 <hr>
-<a for="toc-anchor" id="foundation-setup"></a><h1 id="foundation-setup-3" data-line="66" class="code-line">Foundation setup</h1>
+<a for="toc-anchor" id="foundation-setup"></a><h1 id="foundation-setup" data-line="66" class="code-line">Foundation setup</h1>
 <p data-line="68" class="code-line">The foundation setup is based on the premise that when an incident is created the <em>Service</em> and <em>Service Offering</em> within an incident are mandatory fields. This is a best practice to follow with a multi-supplier strategy for the enterprise. The reason is this removes the question &quot;who supports this&quot; and focuses on the true issue of &quot;what is service is not working?&quot; Who solves the incident is not of any concern to most customers and requiring customers or fulfillers to know what assignment group to assign a ticket in large enterprise environments is unreasonable and prone to misrouted tickets.</p>
 <pre><code data-line="70" class="code-line language-mermaid"><div class="mermaid">flowchart LR
     A(Service)
@@ -105,15 +105,15 @@ Each section will include an update set for those that wish to install the multi
 </div>
 <p data-line="89" class="code-line">The supplier will have a company record that is linked to a user record that represents the eBond account the supplier will use to make inbound RESTful calls. This will become a means to quickly identify what account a company uses for eBonding and creates a &quot;lockout&quot; point for security.</p>
 <hr>
-<a for="toc-anchor" id="demo-data"></a><h2 id="demo-data-3" data-line="92" class="code-line">Demo data</h2>
+<a for="toc-anchor" id="demo-data"></a><h2 id="demo-data" data-line="92" class="code-line">Demo data</h2>
 <p data-line="93" class="code-line"><br>
 This how-to provides demo data that you can use to test the multi-source eBonding framework. The scenario is your organization has hired Alpha Co., Beta Co., and Gamma Co. to supply IT services across your enterprise. Alpha Co. is your call-center where your customers call to request services and report incidents. Beta Co. supplies data center operations and Gamma Co. supplies backup and recovery operations for the data center. An incident has been reported to Alpha Co. at a data center where both Beta Co. and Gamma Co. need to work together to resolve the incident.</p>
 <hr>
-<a for="toc-anchor" id="update-set"></a><h2 id="update-set-3" data-line="97" class="code-line">Update set</h2>
+<a for="toc-anchor" id="update-set"></a><h2 id="update-set" data-line="97" class="code-line">Update set</h2>
 <p data-line="98" class="code-line"><br>
 <em>eBond Collegiality v1.0</em></p>
 <hr>
-<a for="toc-anchor" id="add-ebond-account-role"></a><h2 id="add-ebond-account-role-3" data-line="102" class="code-line">Add eBond account role</h2>
+<a for="toc-anchor" id="add-ebond-account-role"></a><h2 id="add-ebond-account-role" data-line="102" class="code-line">Add eBond account role</h2>
 <p data-line="103" class="code-line"><br>
 The <em>eBond Account</em> role denotes which accounts are used by suppliers to eBond with your instance of ServiceNow. Each supplier should have their own local ServiceNow account that the supplier will use to connect to your instance of ServiceNow passing inbound REST payloads. This role will be used in various ways in the multi-source eBond framework.</p>
 <ol>
@@ -169,7 +169,7 @@ The <em>eBond Account</em> role denotes which accounts are used by suppliers to 
 </ol>
 </div>
 <hr>
-<a for="toc-anchor" id="changes-to-core_company-table"></a><h2 id="changes-to-corecompany-table-3" data-line="144" class="code-line">Changes to core_company table</h2>
+<a for="toc-anchor" id="changes-to-core_company-table"></a><h2 id="changes-to-corecompany-table" data-line="144" class="code-line">Changes to core_company table</h2>
 <p data-line="145" class="code-line"><br>
 We need two new columns in the core_company table; <em>eBond account</em> and <em>eBonded</em>. The <em>eBond account</em> is a reference to sys_user table that links which account the company uses to eBond with your instance. The <em>eBonded</em> is a true or false field that we can use to turn off eBonding at the company level.</p>
 <ol>
@@ -183,7 +183,7 @@ We need two new columns in the core_company table; <em>eBond account</em> and <e
 </li>
 <li data-line="153" class="code-line">Under the <strong>Reference Specification</strong> tab, fill in the following fields:
 <ul>
-<li data-line="154" class="code-line"><u>Table to reference:</u> sys_user</li>
+<li data-line="154" class="code-line"><u>Table to reference:</u> User [sys_user]</li>
 <li data-line="155" class="code-line"><u>Reference qual condition:</u>
 <ul>
 <li data-line="156" class="code-line">Active is true AND</li>
@@ -270,7 +270,7 @@ We need two new columns in the core_company table; <em>eBond account</em> and <e
 </ol>
 </div>
 <hr>
-<a for="toc-anchor" id="associate-groups-with-companies"></a><h2 id="associate-groups-with-companies-3" data-line="209" class="code-line">Associate groups with companies</h2>
+<a for="toc-anchor" id="associate-groups-with-companies"></a><h2 id="associate-groups-with-companies" data-line="209" class="code-line">Associate groups with companies</h2>
 <p data-line="210" class="code-line"><br>
 FILL ME IN</p>
 <ol>
@@ -321,7 +321,7 @@ FILL ME IN</p>
 </ol>
 </div>
 <hr>
-<a for="toc-anchor" id="service%2C-service-offering%2C-and-assignment-group-alignment-in-incidents"></a><h2 id="service-service-offering-and-assignment-group-alignment-in-incidents-3" data-line="245" class="code-line">Service, service offering, and assignment group alignment in incidents</h2>
+<a for="toc-anchor" id="service%2C-service-offering%2C-and-assignment-group-alignment-in-incidents"></a><h2 id="service-service-offering-and-assignment-group-alignment-in-incidents" data-line="245" class="code-line">Service, service offering, and assignment group alignment in incidents</h2>
 <p data-line="246" class="code-line"><br>
 Ticket mis-routing is problem in all services organization and surveys show that customer satisfaction reduces the more a ticket is re-routed. To reduce ticket mis-routes, the service, service offering, and assignment group need to be in alignment. It is unreasonable to expect that fulfillers know which support group supports what services. In large enterprises with hundreds of various services, internal teams, and external suppliers ticket mis-routing is common without alignment between all three fields.</p>
 <div class="admonition note">
@@ -462,7 +462,7 @@ Ticket mis-routing is problem in all services organization and surveys show that
 </ol>
 </div>
 <hr>
-<a for="toc-anchor" id="associate-incidents-with-ebond-companies"></a><h2 id="associate-incidents-with-ebond-companies-3" data-line="324" class="code-line">Associate incidents with eBond companies</h2>
+<a for="toc-anchor" id="associate-incidents-with-ebond-companies"></a><h2 id="associate-incidents-with-ebond-companies" data-line="324" class="code-line">Associate incidents with eBond companies</h2>
 <p data-line="325" class="code-line"><br>
 Fulfillers will need the ability to eBond incidents with suppliers. And we have partially started the setup that a trigger point will be the <em>Assignment group</em> in an incident. Now we will start to add custom fields to the <em>incident</em> table to enhance further functionality that will support and aid in multi-source eBonding.</p>
 <div class="admonition note">
@@ -490,7 +490,7 @@ Fulfillers will need the ability to eBond incidents with suppliers. And we have 
 </li>
 <li data-line="345" class="code-line">Under the <strong>Reference Specification</strong> tab, fill in the following fields:
 <ul>
-<li data-line="346" class="code-line"><u>Reference:</u> core_company</li>
+<li data-line="346" class="code-line"><u>Reference:</u> Company [core_company]</li>
 <li data-line="347" class="code-line"><u>Reference qual condition:</u>
 <ul>
 <li data-line="348" class="code-line">eBonded is true AND</li>
@@ -507,10 +507,10 @@ Fulfillers will need the ability to eBond incidents with suppliers. And we have 
 <li data-line="355" class="code-line">Click <strong>Save</strong>.</li>
 </ol>
 <hr>
-<a for="toc-anchor" id="custom-tables"></a><h1 id="custom-tables-3" data-line="358" class="code-line">Custom tables</h1>
+<a for="toc-anchor" id="custom-tables"></a><h1 id="custom-tables" data-line="358" class="code-line">Custom tables</h1>
 <p data-line="360" class="code-line">eBonding will require the creation of custom tables or the extension of existing tables. ServiceNow sets a limit on the number of custom tables an instance can have before additional costs are accrued/incurred. This how-to will create custom tables as there are no similar tables in ServiceNow that are proper candidates to extend. You however can take any of the base tables in ServiceNow and extend them adding the custom fields and it will work the same.</p>
 <hr>
-<a for="toc-anchor" id="ebond-relationships"></a><h2 id="ebond-relationships-3" data-line="363" class="code-line">eBond relationships</h2>
+<a for="toc-anchor" id="ebond-relationships"></a><h2 id="ebond-relationships" data-line="363" class="code-line">eBond relationships</h2>
 <p data-line="364" class="code-line"><br>
 The <em>u_eBond_relationship</em> table is a multi-relational table that represents a one to many record mapping for an incident ticket to be mapped to multiple supplier tickets.</p>
 <p data-line="367" class="code-line">The <em>u_eBond_relationship</em> table will contain the following custom fields:</p>
@@ -523,11 +523,11 @@ The <em>u_eBond_relationship</em> table is a multi-relational table that represe
 </thead>
 <tbody>
 <tr>
-<td>Table sys ID</td>
+<td>Source</td>
 <td>The ServiceNow record sys_id on the instance.</td>
 </tr>
 <tr>
-<td>Table name</td>
+<td>Source table</td>
 <td>The table the ServiceNow record resides on.</td>
 </tr>
 <tr>
@@ -807,7 +807,7 @@ The <em>u_eBond_relationship</em> table is a multi-relational table that represe
 </li>
 <li data-line="493" class="code-line">In the <strong>Reference Specification</strong> tab, fill in the following field:
 <ul>
-<li data-line="494" class="code-line"><u>Reference:</u> Company</li>
+<li data-line="494" class="code-line"><u>Reference:</u> Company [core_company]</li>
 <li data-line="495" class="code-line"><u>Reference qual condition:</u>
 <ul>
 <li data-line="496" class="code-line">eBonded is true AND</li>
@@ -844,7 +844,7 @@ The <em>u_eBond_relationship</em> table is a multi-relational table that represe
 <li data-line="514" class="code-line">Click <strong>Update</strong>.</li>
 </ol>
 <hr>
-<a for="toc-anchor" id="relationship-support-script"></a><h3 id="relationship-support-script-3" data-line="517" class="code-line">Relationship Support Script</h3>
+<a for="toc-anchor" id="relationship-support-script"></a><h3 id="relationship-support-script" data-line="517" class="code-line">Relationship Support Script</h3>
 <p data-line="518" class="code-line"><br>
 Helper script to set the <strong>In</strong> and <strong>Out</strong> fields for the <strong>u_ebond_relationship</strong> table.</p>
 <ol>
@@ -892,7 +892,7 @@ eBondRelationship.prototype = {
 <li data-line="560" class="code-line">Click <strong>Submit</strong>.</li>
 </ol>
 <hr>
-<a for="toc-anchor" id="stylize-relationship-in%2Fout"></a><h3 id="stylize-relationship-inout-3" data-line="563" class="code-line">Stylize Relationship In/Out</h3>
+<a for="toc-anchor" id="stylize-relationship-in%2Fout"></a><h3 id="stylize-relationship-inout" data-line="563" class="code-line">Stylize Relationship In/Out</h3>
 <p data-line="564" class="code-line"><br>
 Adding color to the <strong>In</strong> and <strong>Out</strong> fields for the <strong>u_ebond_relationship</strong> table. This is a quick visual aid in identifying the inbound and outbound state of the incident.</p>
 <ol>
@@ -938,7 +938,7 @@ Adding color to the <strong>In</strong> and <strong>Out</strong> fields for the 
 <li data-line="594" class="code-line">Click <strong>Submit</strong>.</li>
 </ol>
 <hr>
-<a for="toc-anchor" id="relating-ebonded-tickets"></a><h3 id="relating-ebonded-tickets-3" data-line="597" class="code-line">Relating eBonded tickets</h3>
+<a for="toc-anchor" id="relating-ebonded-tickets"></a><h3 id="relating-ebonded-tickets" data-line="597" class="code-line">Relating eBonded tickets</h3>
 <p data-line="598" class="code-line"><br>
 Associating the supplier tickets within the incident requires the creation of a relationship between the <strong>incident</strong> and <strong>u_ebond_relationship</strong> tables.</p>
 <ol>
@@ -969,7 +969,7 @@ current.addQuery('u_source', parent.sys_id);
 <li data-line="616" class="code-line">Click <strong>Save</strong>.</li>
 </ol>
 <hr>
-<a for="toc-anchor" id="ebond-properties"></a><h2 id="ebond-properties-3" data-line="619" class="code-line">eBond Properties</h2>
+<a for="toc-anchor" id="ebond-properties"></a><h2 id="ebond-properties" data-line="619" class="code-line">eBond Properties</h2>
 <p data-line="620" class="code-line"><br>
 The <em>u_ebond_registry</em> table is similar to that of the <em>sys_properties</em> table in that it stores generic properties and values for eBonding. If you choose to use the <em>sys_properties</em> table, then make sure to look through the various scripts that reference the <em>u_ebond_registry</em> table in this how-to and change as appropriate.</p>
 <p data-line="623" class="code-line">The <em>u_ebond_registry</em> table will contain the following custom fields:</p>
@@ -1056,14 +1056,14 @@ The <em>u_ebond_registry</em> table is similar to that of the <em>sys_properties
 <li data-line="666" class="code-line">Click <strong>Update</strong>.</li>
 </ol>
 <hr>
-<a for="toc-anchor" id="ebond-logs"></a><h2 id="ebond-logs-3" data-line="669" class="code-line">eBond Logs</h2>
+<a for="toc-anchor" id="ebond-logs"></a><h2 id="ebond-logs" data-line="669" class="code-line">eBond Logs</h2>
 <p data-line="670" class="code-line"><br>
 The <em>u_ebond_log</em> table is similar to that of the <em>syslog</em> table in that it stores generic log information. If you choose to use the <em>syslog</em> table, then make sure to look through the various scripts that reference the <em>u_ebond_log</em> table. The <em>syslog</em> table has a granularity of seconds and ServiceNow performs multiple operations per second. Hence the order of the logs messages become out of order. It is recommended that you use the <em>u_ebond_log</em> to help with debugging as the <em>Index</em> column is a sequential integer to aid in showing the order of operations.</p>
 <div class="admonition note">
 <p class="admonition-title">Evaluator messages</p>
 </div>
 <p data-line="674" class="code-line">The <em>u_ebond_log</em> table does not capture <em>Evaluator</em> messages from faulted JavaScript execution. Use the <em>syslog</em> table to check for failed JavaScript executions.</p>
-<a for="toc-anchor" id="ebond-log-index-script-include"></a><h3 id="ebond-log-index-script-include-3" data-line="676" class="code-line">eBond Log Index Script Include</h3>
+<a for="toc-anchor" id="ebond-log-index-script-include"></a><h3 id="ebond-log-index-script-include" data-line="676" class="code-line">eBond Log Index Script Include</h3>
 <p data-line="677" class="code-line"><br>
 The <em>eBondLog</em> script include is a utility function that will increment the default value in the <em>index</em> field in the <em>[u_ebond_log]</em> table. The <em>index</em> value is based on the greatest index value in the table. If no rows exist, the <em>index</em> value is reset to zero.</p>
 <ol>
@@ -1079,7 +1079,8 @@ The <em>eBondLog</em> script include is a utility function that will increment t
 eBondLog.prototype = {
     initialize: function() {
 		u_direction = 'not set';
-		u_class = 'not set';
+		u_location = 'not set';
+		u_name = 'not set';
 		u_source = 'not set';
 		u_supplier = 'not set';
 		u_message = 'not set';
@@ -1117,7 +1118,8 @@ eBondLog.prototype = {
 
 		var log = new GlideRecord('u_ebond_log');
         log.u_direction = this.u_direction;
-		log.u_class = this.u_class;
+		log.u_location = this.u_location;
+		log.u_name = this.u_name;
         log.u_source = this.u_source;
         log.u_supplier = this.u_supplier;
         log.u_message = this.u_message;
@@ -1135,7 +1137,8 @@ eBondLog.prototype = {
 
 		var log = new GlideRecord('u_ebond_log');
 		log.u_direction = this.u_direction;
-        log.u_class = this.u_class;
+        log.u_location = this.u_location;
+		log.u_name = this.u_name;
         log.u_source = this.u_source;
         log.u_supplier = this.u_supplier;
         log.u_message = message;
@@ -1148,24 +1151,24 @@ eBondLog.prototype = {
 };
 </div></code></code></pre>
 </li>
-<li data-line="759" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="762" class="code-line">Click <strong>Submit</strong>.</li>
 </ol>
-<a for="toc-anchor" id="ebond-log-index-dynamic-filter-options"></a><h3 id="ebond-log-index-dynamic-filter-options-3" data-line="762" class="code-line">eBond Log Index Dynamic Filter Options</h3>
-<p data-line="763" class="code-line"><br>
+<a for="toc-anchor" id="ebond-log-index-dynamic-filter-options"></a><h3 id="ebond-log-index-dynamic-filter-options" data-line="765" class="code-line">eBond Log Index Dynamic Filter Options</h3>
+<p data-line="766" class="code-line"><br>
 The dynamic filter option <em>eBond Log Index Increment</em> is used in the default value in the <em>index</em> field in the <em>[u_ebond_log]</em> table as a reference to the script include <em>eBondLog</em>.</p>
 <ol>
-<li data-line="766" class="code-line">Navigate to <strong>System Definition</strong> &gt; <strong>Dynamic Filter Options</strong>.</li>
-<li data-line="767" class="code-line">Click <strong>New</strong>.</li>
-<li data-line="768" class="code-line">Under the <strong>Dynamic Filter Options New record</strong> section, fill in the following fields:
+<li data-line="769" class="code-line">Navigate to <strong>System Definition</strong> &gt; <strong>Dynamic Filter Options</strong>.</li>
+<li data-line="770" class="code-line">Click <strong>New</strong>.</li>
+<li data-line="771" class="code-line">Under the <strong>Dynamic Filter Options New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="769" class="code-line"><u>Label:</u> eBond Log Index Increment</li>
-<li data-line="770" class="code-line"><u>Script:</u> new eBondLog().increment();</li>
-<li data-line="771" class="code-line"><u>Available for default:</u> true</li>
+<li data-line="772" class="code-line"><u>Label:</u> eBond Log Index Increment</li>
+<li data-line="773" class="code-line"><u>Script:</u> new eBondLog().increment();</li>
+<li data-line="774" class="code-line"><u>Available for default:</u> true</li>
 </ul>
 </li>
-<li data-line="772" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="775" class="code-line">Click <strong>Submit</strong>.</li>
 </ol>
-<p data-line="775" class="code-line">The <em>u_ebond_log</em> table will contain the following custom fields:</p>
+<p data-line="778" class="code-line">The <em>u_ebond_log</em> table will contain the following custom fields:</p>
 <table>
 <thead>
 <tr>
@@ -1187,12 +1190,16 @@ The dynamic filter option <em>eBond Log Index Increment</em> is used in the defa
 <td>Name of the supplier.</td>
 </tr>
 <tr>
-<td>Class</td>
+<td>Location</td>
 <td>Name of the ServiceNow component, i.e., script include, business rule, workflow, etc. etc..</td>
 </tr>
 <tr>
+<td>Name</td>
+<td>Label name of the record.</td>
+</tr>
+<tr>
 <td>Source</td>
-<td>Label of the ServiceNow component.</td>
+<td>Where within the record.</td>
 </tr>
 <tr>
 <td>Message</td>
@@ -1205,30 +1212,30 @@ The dynamic filter option <em>eBond Log Index Increment</em> is used in the defa
 </tbody>
 </table>
 <ol>
-<li data-line="786" class="code-line">Navigate to <strong>System Definition</strong> &gt; <strong>Tables</strong>.</li>
-<li data-line="787" class="code-line">Click <strong>New</strong>.</li>
-<li data-line="788" class="code-line">Under the <strong>Table New record</strong> section, fill in the following fields:
+<li data-line="790" class="code-line">Navigate to <strong>System Definition</strong> &gt; <strong>Tables</strong>.</li>
+<li data-line="791" class="code-line">Click <strong>New</strong>.</li>
+<li data-line="792" class="code-line">Under the <strong>Table New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="789" class="code-line"><u>Label:</u> eBond Log</li>
-<li data-line="790" class="code-line"><u>Name:</u> u_ebond_log</li>
-<li data-line="791" class="code-line"><u>Add module to menu:</u> eBond</li>
+<li data-line="793" class="code-line"><u>Label:</u> eBond Log</li>
+<li data-line="794" class="code-line"><u>Name:</u> u_ebond_log</li>
+<li data-line="795" class="code-line"><u>Add module to menu:</u> eBond</li>
 </ul>
 </li>
-<li data-line="792" class="code-line">In the record header, right-click and select <strong>Save</strong>.</li>
-<li data-line="793" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="794" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="796" class="code-line">In the record header, right-click and select <strong>Save</strong>.</li>
+<li data-line="797" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="798" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="795" class="code-line"><u>Type:</u> Choice</li>
-<li data-line="796" class="code-line"><u>Column label:</u> Direction</li>
-<li data-line="797" class="code-line"><u>Column name:</u> (this should default to u_direction)</li>
+<li data-line="799" class="code-line"><u>Type:</u> Choice</li>
+<li data-line="800" class="code-line"><u>Column label:</u> Direction</li>
+<li data-line="801" class="code-line"><u>Column name:</u> (this should default to u_direction)</li>
 </ul>
 </li>
-<li data-line="798" class="code-line">In the record header, right-click and select <strong>Save</strong>.</li>
-<li data-line="799" class="code-line">Under the <strong>Choices</strong> tab, add the following records performing these steps:
+<li data-line="802" class="code-line">In the record header, right-click and select <strong>Save</strong>.</li>
+<li data-line="803" class="code-line">Under the <strong>Choices</strong> tab, add the following records performing these steps:
 <ol>
-<li data-line="800" class="code-line">Click <strong>New</strong>.</li>
-<li data-line="801" class="code-line">In the <strong>Choice New record</strong> section, fill in the field values listed below.</li>
-<li data-line="802" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="804" class="code-line">Click <strong>New</strong>.</li>
+<li data-line="805" class="code-line">In the <strong>Choice New record</strong> section, fill in the field values listed below.</li>
+<li data-line="806" class="code-line">Click <strong>Submit</strong>.</li>
 </ol>
 <table>
 <thead>
@@ -1252,78 +1259,88 @@ The dynamic filter option <em>eBond Log Index Increment</em> is used in the defa
 </tbody>
 </table>
 </li>
-<li data-line="807" class="code-line">Click <strong>Update</strong>.</li>
-<li data-line="808" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="809" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="811" class="code-line">Click <strong>Update</strong>.</li>
+<li data-line="812" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="813" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="810" class="code-line"><u>Type:</u> Integer</li>
-<li data-line="811" class="code-line"><u>Column label:</u> Index</li>
-<li data-line="812" class="code-line"><u>Column name:</u> (this should default to u_index)</li>
-<li data-line="813" class="code-line"><u>Read only:</u> True</li>
+<li data-line="814" class="code-line"><u>Type:</u> Integer</li>
+<li data-line="815" class="code-line"><u>Column label:</u> Index</li>
+<li data-line="816" class="code-line"><u>Column name:</u> (this should default to u_index)</li>
+<li data-line="817" class="code-line"><u>Read only:</u> True</li>
 </ul>
 </li>
-<li data-line="814" class="code-line">Under <strong>Related Links</strong>, click <strong>Advanced view</strong>.</li>
-<li data-line="815" class="code-line">Under the <strong>Default Value</strong> tab, fill in the following field:
+<li data-line="818" class="code-line">Under <strong>Related Links</strong>, click <strong>Advanced view</strong>.</li>
+<li data-line="819" class="code-line">Under the <strong>Default Value</strong> tab, fill in the following field:
 <ul>
-<li data-line="816" class="code-line"><u>Use dynamic default:</u> true</li>
-<li data-line="817" class="code-line"><u>Dynamic Default value:</u> eBond Log Index Increment</li>
+<li data-line="820" class="code-line"><u>Use dynamic default:</u> true</li>
+<li data-line="821" class="code-line"><u>Dynamic Default value:</u> eBond Log Index Increment</li>
 </ul>
 </li>
-<li data-line="818" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="819" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="820" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="822" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="823" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="824" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="821" class="code-line"><u>Type:</u> String</li>
-<li data-line="822" class="code-line"><u>Column label:</u> Supplier</li>
-<li data-line="823" class="code-line"><u>Column name:</u> (this should default to u_supplier)</li>
-<li data-line="824" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="825" class="code-line"><u>Type:</u> String</li>
+<li data-line="826" class="code-line"><u>Column label:</u> Supplier</li>
+<li data-line="827" class="code-line"><u>Column name:</u> (this should default to u_supplier)</li>
+<li data-line="828" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="825" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="826" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="827" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="829" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="830" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="831" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="828" class="code-line"><u>Type:</u> String</li>
-<li data-line="829" class="code-line"><u>Column label:</u> Class</li>
-<li data-line="830" class="code-line"><u>Column name:</u> (this should default to u_class)</li>
-<li data-line="831" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="832" class="code-line"><u>Type:</u> String</li>
+<li data-line="833" class="code-line"><u>Column label:</u> Location</li>
+<li data-line="834" class="code-line"><u>Column name:</u> (this should default to u_location)</li>
+<li data-line="835" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="832" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="833" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="834" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="836" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="837" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="838" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="835" class="code-line"><u>Type:</u> String</li>
-<li data-line="836" class="code-line"><u>Column label:</u> Source</li>
-<li data-line="837" class="code-line"><u>Column name:</u> (this should default to u_source)</li>
-<li data-line="838" class="code-line"><u>Max length:</u> 80</li>
+<li data-line="839" class="code-line"><u>Type:</u> String</li>
+<li data-line="840" class="code-line"><u>Column label:</u> Name</li>
+<li data-line="841" class="code-line"><u>Column name:</u> (this should default to u_name)</li>
+<li data-line="842" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="839" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="840" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="841" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="843" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="844" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="845" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="842" class="code-line"><u>Type:</u> String</li>
-<li data-line="843" class="code-line"><u>Column label:</u> Message</li>
-<li data-line="844" class="code-line"><u>Column name:</u> (this should default to u_message)</li>
-<li data-line="845" class="code-line"><u>Max length:</u> 4000</li>
+<li data-line="846" class="code-line"><u>Type:</u> String</li>
+<li data-line="847" class="code-line"><u>Column label:</u> Source</li>
+<li data-line="848" class="code-line"><u>Column name:</u> (this should default to u_source)</li>
+<li data-line="849" class="code-line"><u>Max length:</u> 80</li>
 </ul>
 </li>
-<li data-line="846" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="847" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="848" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="850" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="851" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="852" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="849" class="code-line"><u>Type:</u> Choice</li>
-<li data-line="850" class="code-line"><u>Column label:</u> Level</li>
-<li data-line="851" class="code-line"><u>Column name:</u> (this should default to u_level)</li>
+<li data-line="853" class="code-line"><u>Type:</u> String</li>
+<li data-line="854" class="code-line"><u>Column label:</u> Message</li>
+<li data-line="855" class="code-line"><u>Column name:</u> (this should default to u_message)</li>
+<li data-line="856" class="code-line"><u>Max length:</u> 4000</li>
 </ul>
 </li>
-<li data-line="852" class="code-line">In the record header, right-click and select <strong>Save</strong>.</li>
-<li data-line="853" class="code-line">Under the <strong>Choices</strong> tab, add the following records performing these steps:
+<li data-line="857" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="858" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="859" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<ul>
+<li data-line="860" class="code-line"><u>Type:</u> Choice</li>
+<li data-line="861" class="code-line"><u>Column label:</u> Level</li>
+<li data-line="862" class="code-line"><u>Column name:</u> (this should default to u_level)</li>
+</ul>
+</li>
+<li data-line="863" class="code-line">In the record header, right-click and select <strong>Save</strong>.</li>
+<li data-line="864" class="code-line">Under the <strong>Choices</strong> tab, add the following records performing these steps:
 <ol>
-<li data-line="854" class="code-line">Click <strong>New</strong>.</li>
-<li data-line="855" class="code-line">In the <strong>Choice New record</strong> section, fill in the field values listed below.</li>
-<li data-line="856" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="865" class="code-line">Click <strong>New</strong>.</li>
+<li data-line="866" class="code-line">In the <strong>Choice New record</strong> section, fill in the field values listed below.</li>
+<li data-line="867" class="code-line">Click <strong>Submit</strong>.</li>
 </ol>
 <table>
 <thead>
@@ -1357,28 +1374,28 @@ The dynamic filter option <em>eBond Log Index Increment</em> is used in the defa
 </tbody>
 </table>
 </li>
-<li data-line="863" class="code-line">Click <strong>Update</strong>.</li>
-<li data-line="864" class="code-line">Click <strong>Update</strong>.</li>
+<li data-line="874" class="code-line">Click <strong>Update</strong>.</li>
+<li data-line="875" class="code-line">Click <strong>Update</strong>.</li>
 </ol>
-<p data-line="866" class="code-line">Create the <em>[u_ebond_registry]</em> record used to determine the depth of logs levels to record.</p>
+<p data-line="877" class="code-line">Create the <em>[u_ebond_registry]</em> record used to determine the depth of logs levels to record.</p>
 <ol>
-<li data-line="868" class="code-line">Navigate to <strong>eBond</strong> &gt; <strong>eBond Registries</strong>.</li>
-<li data-line="869" class="code-line">Click <strong>New</strong>.</li>
-<li data-line="870" class="code-line">Under the <strong>eBond Registry New record</strong> section, fill in the following fields:
+<li data-line="879" class="code-line">Navigate to <strong>eBond</strong> &gt; <strong>eBond Registries</strong>.</li>
+<li data-line="880" class="code-line">Click <strong>New</strong>.</li>
+<li data-line="881" class="code-line">Under the <strong>eBond Registry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="871" class="code-line"><u>Supplier:</u> All</li>
-<li data-line="872" class="code-line"><u>Key:</u> inbound.log.level</li>
-<li data-line="873" class="code-line"><u>Value:</u> 500</li>
+<li data-line="882" class="code-line"><u>Supplier:</u> All</li>
+<li data-line="883" class="code-line"><u>Key:</u> inbound.log.level</li>
+<li data-line="884" class="code-line"><u>Value:</u> 500</li>
 </ul>
 </li>
-<li data-line="874" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="885" class="code-line">Click <strong>Submit</strong>.</li>
 </ol>
-<p data-line="876" class="code-line">Create the</p>
+<p data-line="887" class="code-line">Create the</p>
 <hr>
-<a for="toc-anchor" id="ebond-data-map"></a><h2 id="ebond-data-map-3" data-line="879" class="code-line">eBond Data Map</h2>
-<p data-line="880" class="code-line"><br>
+<a for="toc-anchor" id="ebond-data-map"></a><h2 id="ebond-data-map" data-line="890" class="code-line">eBond Data Map</h2>
+<p data-line="891" class="code-line"><br>
 The <em>u_ebond_data_map</em> table is a translation data table for inbound and outbound communication with suppliers.</p>
-<p data-line="883" class="code-line">The <em>u_ebond_data_map</em> table will contain the following custom fields:</p>
+<p data-line="894" class="code-line">The <em>u_ebond_data_map</em> table will contain the following custom fields:</p>
 <table>
 <thead>
 <tr>
@@ -1418,51 +1435,51 @@ The <em>u_ebond_data_map</em> table is a translation data table for inbound and 
 </tbody>
 </table>
 <ol>
-<li data-line="894" class="code-line">Navigate to <strong>System Definition</strong> &gt; <strong>Tables</strong>.</li>
-<li data-line="895" class="code-line">Click <strong>New</strong>.</li>
-<li data-line="896" class="code-line">Under the <strong>Table New record</strong> section, fill in the following fields:
+<li data-line="905" class="code-line">Navigate to <strong>System Definition</strong> &gt; <strong>Tables</strong>.</li>
+<li data-line="906" class="code-line">Click <strong>New</strong>.</li>
+<li data-line="907" class="code-line">Under the <strong>Table New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="897" class="code-line"><u>Label:</u> eBond Data Map</li>
-<li data-line="898" class="code-line"><u>Name:</u> u_ebond_data_map</li>
-<li data-line="899" class="code-line"><u>Add module to menu:</u> eBond</li>
+<li data-line="908" class="code-line"><u>Label:</u> eBond Data Map</li>
+<li data-line="909" class="code-line"><u>Name:</u> u_ebond_data_map</li>
+<li data-line="910" class="code-line"><u>Add module to menu:</u> eBond</li>
 </ul>
 </li>
-<li data-line="900" class="code-line">In the record header, right-click and select <strong>Save</strong>.</li>
-<li data-line="901" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="902" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="911" class="code-line">In the record header, right-click and select <strong>Save</strong>.</li>
+<li data-line="912" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="913" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="903" class="code-line"><u>Type:</u> String</li>
-<li data-line="904" class="code-line"><u>Column label:</u> Module</li>
-<li data-line="905" class="code-line"><u>Column name:</u> (this should default to u_module)</li>
-<li data-line="906" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="914" class="code-line"><u>Type:</u> String</li>
+<li data-line="915" class="code-line"><u>Column label:</u> Module</li>
+<li data-line="916" class="code-line"><u>Column name:</u> (this should default to u_module)</li>
+<li data-line="917" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="907" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="908" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="909" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="918" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="919" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="920" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="910" class="code-line"><u>Type:</u> String</li>
-<li data-line="911" class="code-line"><u>Column label:</u> Classification</li>
-<li data-line="912" class="code-line"><u>Column name:</u> (this should default to u_classification)</li>
-<li data-line="913" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="921" class="code-line"><u>Type:</u> String</li>
+<li data-line="922" class="code-line"><u>Column label:</u> Classification</li>
+<li data-line="923" class="code-line"><u>Column name:</u> (this should default to u_classification)</li>
+<li data-line="924" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="914" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="915" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="916" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
-<ul>
-<li data-line="917" class="code-line"><u>Type:</u> Choice</li>
-<li data-line="918" class="code-line"><u>Column label:</u> Direction</li>
-<li data-line="919" class="code-line"><u>Column name:</u> (this should default to u_direction)</li>
-<li data-line="920" class="code-line"><u>Max length:</u> 40</li>
-</ul>
-</li>
-<li data-line="921" class="code-line">In the record header, right-click and select <strong>Save</strong>.</li>
-<li data-line="922" class="code-line">Under the <strong>Choices</strong> tab, add the following records performing these steps:
-<ol>
-<li data-line="923" class="code-line">Click <strong>New</strong>.</li>
-<li data-line="924" class="code-line">In the <strong>Choice New record</strong> section, fill in the field values listed below.</li>
 <li data-line="925" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="926" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="927" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<ul>
+<li data-line="928" class="code-line"><u>Type:</u> Choice</li>
+<li data-line="929" class="code-line"><u>Column label:</u> Direction</li>
+<li data-line="930" class="code-line"><u>Column name:</u> (this should default to u_direction)</li>
+<li data-line="931" class="code-line"><u>Max length:</u> 40</li>
+</ul>
+</li>
+<li data-line="932" class="code-line">In the record header, right-click and select <strong>Save</strong>.</li>
+<li data-line="933" class="code-line">Under the <strong>Choices</strong> tab, add the following records performing these steps:
+<ol>
+<li data-line="934" class="code-line">Click <strong>New</strong>.</li>
+<li data-line="935" class="code-line">In the <strong>Choice New record</strong> section, fill in the field values listed below.</li>
+<li data-line="936" class="code-line">Click <strong>Submit</strong>.</li>
 </ol>
 <table>
 <thead>
@@ -1491,53 +1508,135 @@ The <em>u_ebond_data_map</em> table is a translation data table for inbound and 
 </tbody>
 </table>
 </li>
-<li data-line="931" class="code-line">Click <strong>Update</strong>.</li>
-<li data-line="932" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="933" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="942" class="code-line">Click <strong>Update</strong>.</li>
+<li data-line="943" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="944" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="934" class="code-line"><u>Type:</u> String</li>
-<li data-line="935" class="code-line"><u>Column label:</u> Supplier</li>
-<li data-line="936" class="code-line"><u>Column name:</u> (this should default to u_supplier)</li>
-<li data-line="937" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="945" class="code-line"><u>Type:</u> String</li>
+<li data-line="946" class="code-line"><u>Column label:</u> Supplier</li>
+<li data-line="947" class="code-line"><u>Column name:</u> (this should default to u_supplier)</li>
+<li data-line="948" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="938" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="939" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="940" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="949" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="950" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="951" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="941" class="code-line"><u>Type:</u> String</li>
-<li data-line="942" class="code-line"><u>Column label:</u> Source value</li>
-<li data-line="943" class="code-line"><u>Column name:</u> (this should default to u_source_value)</li>
-<li data-line="944" class="code-line"><u>Max length:</u> 4000</li>
+<li data-line="952" class="code-line"><u>Type:</u> String</li>
+<li data-line="953" class="code-line"><u>Column label:</u> Source value</li>
+<li data-line="954" class="code-line"><u>Column name:</u> (this should default to u_source_value)</li>
+<li data-line="955" class="code-line"><u>Max length:</u> 4000</li>
 </ul>
 </li>
-<li data-line="945" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="946" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="947" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="956" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="957" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="958" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="948" class="code-line"><u>Type:</u> String</li>
-<li data-line="949" class="code-line"><u>Column label:</u> Supplier value</li>
-<li data-line="950" class="code-line"><u>Column name:</u> (this should default to u_supplier)</li>
-<li data-line="951" class="code-line"><u>Max length:</u> 4000</li>
+<li data-line="959" class="code-line"><u>Type:</u> String</li>
+<li data-line="960" class="code-line"><u>Column label:</u> Supplier value</li>
+<li data-line="961" class="code-line"><u>Column name:</u> (this should default to u_supplier)</li>
+<li data-line="962" class="code-line"><u>Max length:</u> 4000</li>
 </ul>
 </li>
-<li data-line="952" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="953" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="963" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="964" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="954" class="code-line"><u>Type:</u> String</li>
-<li data-line="955" class="code-line"><u>Column label:</u> Note</li>
-<li data-line="956" class="code-line"><u>Column name:</u> (this should default to u_note)</li>
-<li data-line="957" class="code-line"><u>Max length:</u> 4000</li>
+<li data-line="965" class="code-line"><u>Type:</u> String</li>
+<li data-line="966" class="code-line"><u>Column label:</u> Note</li>
+<li data-line="967" class="code-line"><u>Column name:</u> (this should default to u_note)</li>
+<li data-line="968" class="code-line"><u>Max length:</u> 4000</li>
 </ul>
 </li>
-<li data-line="958" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="959" class="code-line">Click <strong>Update</strong>.</li>
+<li data-line="969" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="970" class="code-line">Click <strong>Update</strong>.</li>
 </ol>
 <hr>
-<a for="toc-anchor" id="ebond-rest-payloads"></a><h2 id="ebond-rest-payloads-3" data-line="962" class="code-line">eBond REST Payloads</h2>
-<p data-line="963" class="code-line"><br>
+<a for="toc-anchor" id="ebond-data-map-script-include"></a><h3 id="ebond-data-map-script-include" data-line="972" class="code-line">eBond Data Map Script Include</h3>
+<p data-line="973" class="code-line"><br>
+Support script used in eBonding operations</p>
+<ol>
+<li data-line="976" class="code-line">Navigate to <strong>System Definition</strong> &gt; <strong>Script Includes</strong>, click <strong>New</strong>.</li>
+<li data-line="977" class="code-line">In the <strong>Script Include New record</strong> section, fill in the following fields:
+<ul>
+<li data-line="978" class="code-line"><u>Name:</u> eBondDataMap</li>
+<li data-line="979" class="code-line"><u>API Name:</u> (this should default to global.eBondDataMap)</li>
+<li data-line="980" class="code-line"><u>Script:</u></li>
+</ul>
+<pre><code data-line="981" class="code-line"><code><div>var eBondDataMap = Class.create();
+eBondDataMap.prototype = {
+    // func: initialize
+    // desc: initializes the JavaScript object
+    // parm: n/a
+    // retn: true or false
+    initialize: function() {
+        // static 
+        this.eLog = new eBondLog();
+        this.eLog.u_direction = 'outbound';
+        this.eLog.u_location = 'Script Includes';
+        this.eLog.u_name = 'eBondDataMap';
+        this.eLog.u_source = 'initialize';
+        this.eLog.u_supplier = 'Unknown';
+        this.eLog.write('Info', 'Entering.');
+
+        this.eLog.write('Info', 'Exiting.');
+    },
+
+	// func: getSupplierValue
+	// desc: retrieves the supplier's value from the u_ebond_mapping table.
+	// parm: supplier - supplier name
+    //       module - module value to query against
+	//       classification - classification value to query against
+    //       source_value - source value to query against
+	//       default_value - if not found return this supplier value
+    // retn: supplier value. 
+    getSupplierValue: function(supplier, direction, module, classification, source_value, default_value) {
+        this.eLog.u_source = 'getSupplierValue';
+        this.eLog.u_supplier = supplier;
+        this.eLog.write('Info', 'Entering.');
+
+        var supplierValue = new GlideRecord(&quot;u_ebond_data_map&quot;);
+        supplierValue.addQuery(&quot;u_supplier&quot;, supplier);
+        supplierValue.addQuery(&quot;u_direction&quot;, direction);
+        supplierValue.addQuery(&quot;u_module&quot;, module);
+        supplierValue.addQuery(&quot;u_classification&quot;, classification);
+        supplierValue.addQuery(&quot;u_source_value&quot;, source_value);
+        supplierValue.query();
+
+        if (supplierValue.next()) {
+            this.eLog.write('Info', 'Exiting. Return: ' + supplierValue.u_supplier_value.toString());
+            return supplierValue.u_supplier_value.toString();
+        } else {
+            this.eLog.write('Info', 'Exiting. Return: ' + default_value);
+            return default_value;
+        }
+    },
+
+    type: 'eBondDataMap'
+};
+</div></code></code></pre>
+</li>
+<li data-line="1034" class="code-line">Click <strong>Submit</strong>.</li>
+</ol>
+<hr>
+<a for="toc-anchor" id="ebond-rest-payloads"></a><h2 id="ebond-rest-payloads" data-line="1037" class="code-line">eBond REST Payloads</h2>
+<p data-line="1038" class="code-line"><br>
 The <em>u_ebond_rest_payloads</em> table records all outbound REST API calls and their statuses. This table is also used to retry REST calls in the event of a failure; see <strong>eBond Scheduled Job</strong>.</p>
-<p data-line="966" class="code-line">The <em>u_ebond_rest_payloads</em> table will contain the following custom fields:</p>
+<a for="toc-anchor" id="ebond-rest-payloads"></a><h3 id="ebond-rest-payloads-1" data-line="1041" class="code-line">eBond REST Payloads</h3>
+<p data-line="1042" class="code-line"><br>
+The dynamic filter option <em>eBond REST Payload Index Increment</em> is used in the default value in the <em>index</em> field in the <em>[u_ebond_rest_payload]</em> table as a reference to the script include <em>eBondRestPayload</em>.</p>
+<ol>
+<li data-line="1045" class="code-line">Navigate to <strong>System Definition</strong> &gt; <strong>Dynamic Filter Options</strong>.</li>
+<li data-line="1046" class="code-line">Click <strong>New</strong>.</li>
+<li data-line="1047" class="code-line">Under the <strong>Dynamic Filter Options New record</strong> section, fill in the following fields:
+<ul>
+<li data-line="1048" class="code-line"><u>Label:</u> eBond REST Payload Index Increment</li>
+<li data-line="1049" class="code-line"><u>Script:</u> new eBondLog().increment();</li>
+<li data-line="1050" class="code-line"><u>Available for default:</u> true</li>
+</ul>
+</li>
+<li data-line="1051" class="code-line">Click <strong>Submit</strong>.</li>
+</ol>
+<p data-line="1053" class="code-line">The <em>u_ebond_rest_payloads</em> table will contain the following custom fields:</p>
 <table>
 <thead>
 <tr>
@@ -1571,8 +1670,12 @@ The <em>u_ebond_rest_payloads</em> table records all outbound REST API calls and
 <td>The format of the payload; e.g., JSON, XML, SOAP, etc. etc..</td>
 </tr>
 <tr>
-<td>Number</td>
-<td>The source ticket number.</td>
+<td>Source</td>
+<td>The ServiceNow record sys_id on the instance.</td>
+</tr>
+<tr>
+<td>Source table</td>
+<td>The table the ServiceNow record resides on.</td>
 </tr>
 <tr>
 <td>HTTP Status</td>
@@ -1594,153 +1697,178 @@ The <em>u_ebond_rest_payloads</em> table records all outbound REST API calls and
 <td>Active</td>
 <td>True or False</td>
 </tr>
+<tr>
+<td>Index</td>
+<td>Auto-incrementing numeric value.</td>
+</tr>
 </tbody>
 </table>
 <ol>
-<li data-line="982" class="code-line">Navigate to <strong>System Definition</strong> &gt; <strong>Tables</strong>.</li>
-<li data-line="983" class="code-line">Click <strong>New</strong>.</li>
-<li data-line="984" class="code-line">Under the <strong>Table New record</strong> section, fill in the following fields:
+<li data-line="1071" class="code-line">Navigate to <strong>System Definition</strong> &gt; <strong>Tables</strong>.</li>
+<li data-line="1072" class="code-line">Click <strong>New</strong>.</li>
+<li data-line="1073" class="code-line">Under the <strong>Table New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="985" class="code-line"><u>Label:</u> eBond REST Payload</li>
-<li data-line="986" class="code-line"><u>Name:</u> u_ebond_rest_payload</li>
-<li data-line="987" class="code-line"><u>Add module to menu:</u> eBond</li>
+<li data-line="1074" class="code-line"><u>Label:</u> eBond REST Payload</li>
+<li data-line="1075" class="code-line"><u>Name:</u> u_ebond_rest_payload</li>
+<li data-line="1076" class="code-line"><u>Add module to menu:</u> eBond</li>
 </ul>
 </li>
-<li data-line="988" class="code-line">In the record header, right-click and select <strong>Save</strong>.</li>
-<li data-line="989" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="990" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1077" class="code-line">In the record header, right-click and select <strong>Save</strong>.</li>
+<li data-line="1078" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1079" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="991" class="code-line"><u>Type:</u> String</li>
-<li data-line="992" class="code-line"><u>Column label:</u> Supplier</li>
-<li data-line="993" class="code-line"><u>Column name:</u> (this should default to u_supplier)</li>
-<li data-line="994" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="1080" class="code-line"><u>Type:</u> Reference</li>
+<li data-line="1081" class="code-line"><u>Column label:</u> Supplier</li>
+<li data-line="1082" class="code-line"><u>Column name:</u> (this should default to u_supplier)</li>
 </ul>
 </li>
-<li data-line="995" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="996" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="997" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1083" class="code-line">In the <strong>Reference Specification</strong> tab, fill in the following fields:
 <ul>
-<li data-line="998" class="code-line"><u>Type:</u> Integer</li>
-<li data-line="999" class="code-line"><u>Column label:</u> Retry count</li>
-<li data-line="1000" class="code-line"><u>Column name:</u> (this should default to u_retry_count)</li>
+<li data-line="1084" class="code-line"><u>Reference:</u> Company [core_company]</li>
+<li data-line="1085" class="code-line"><u>Reference qual condition:</u>
+<ul>
+<li data-line="1086" class="code-line">eBonded is true AND</li>
+<li data-line="1087" class="code-line">eBond account is not empty</li>
 </ul>
 </li>
-<li data-line="1001" class="code-line">Under the <strong>Default Value</strong> tab, , fill in the following field:
-<ul>
-<li data-line="1002" class="code-line"><u>Default value:</u> 0</li>
 </ul>
 </li>
-<li data-line="1003" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1004" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1005" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1088" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1089" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1090" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1006" class="code-line"><u>Type:</u> True/False</li>
-<li data-line="1007" class="code-line"><u>Column label:</u> Retry</li>
-<li data-line="1008" class="code-line"><u>Column name:</u> (this should default to u_retry)</li>
+<li data-line="1091" class="code-line"><u>Type:</u> Integer</li>
+<li data-line="1092" class="code-line"><u>Column label:</u> Retry count</li>
+<li data-line="1093" class="code-line"><u>Column name:</u> (this should default to u_retry_count)</li>
 </ul>
 </li>
-<li data-line="1009" class="code-line">Under the <strong>Default Value</strong> tab, , fill in the following field:
+<li data-line="1094" class="code-line">Under the <strong>Default Value</strong> tab, , fill in the following field:
 <ul>
-<li data-line="1010" class="code-line"><u>Default value:</u> true</li>
+<li data-line="1095" class="code-line"><u>Default value:</u> 0</li>
 </ul>
 </li>
-<li data-line="1011" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1012" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1013" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1096" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1097" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1098" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1014" class="code-line"><u>Type:</u> String</li>
-<li data-line="1015" class="code-line"><u>Column label:</u> REST Message</li>
-<li data-line="1016" class="code-line"><u>Column name:</u> (this should default to u_rest_message)</li>
-<li data-line="1017" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="1099" class="code-line"><u>Type:</u> True/False</li>
+<li data-line="1100" class="code-line"><u>Column label:</u> Retry</li>
+<li data-line="1101" class="code-line"><u>Column name:</u> (this should default to u_retry)</li>
 </ul>
 </li>
-<li data-line="1018" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1019" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1020" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1102" class="code-line">Under the <strong>Default Value</strong> tab, , fill in the following field:
 <ul>
-<li data-line="1021" class="code-line"><u>Type:</u> String</li>
-<li data-line="1022" class="code-line"><u>Column label:</u> Payload</li>
-<li data-line="1023" class="code-line"><u>Column name:</u> (this should default to u_payload)</li>
-<li data-line="1024" class="code-line"><u>Max length:</u> 4000</li>
+<li data-line="1103" class="code-line"><u>Default value:</u> true</li>
 </ul>
 </li>
-<li data-line="1025" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1026" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1027" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1104" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1105" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1106" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1028" class="code-line"><u>Type:</u> String</li>
-<li data-line="1029" class="code-line"><u>Column label:</u> Format</li>
-<li data-line="1030" class="code-line"><u>Column name:</u> (this should default to u_format)</li>
-<li data-line="1031" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="1107" class="code-line"><u>Type:</u> String</li>
+<li data-line="1108" class="code-line"><u>Column label:</u> REST Message</li>
+<li data-line="1109" class="code-line"><u>Column name:</u> (this should default to u_rest_message)</li>
+<li data-line="1110" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="1032" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1033" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1034" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1111" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1112" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1113" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1035" class="code-line"><u>Type:</u> String</li>
-<li data-line="1036" class="code-line"><u>Column label:</u> Number</li>
-<li data-line="1037" class="code-line"><u>Column name:</u> (this should default to u_number)</li>
-<li data-line="1038" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="1114" class="code-line"><u>Type:</u> String</li>
+<li data-line="1115" class="code-line"><u>Column label:</u> Payload</li>
+<li data-line="1116" class="code-line"><u>Column name:</u> (this should default to u_payload)</li>
+<li data-line="1117" class="code-line"><u>Max length:</u> 4000</li>
 </ul>
 </li>
-<li data-line="1039" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1040" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1041" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1118" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1119" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1120" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1042" class="code-line"><u>Type:</u> Integer</li>
-<li data-line="1043" class="code-line"><u>Column label:</u> HTTP Status</li>
-<li data-line="1044" class="code-line"><u>Column name:</u> (this should default to u_http_status)</li>
+<li data-line="1121" class="code-line"><u>Type:</u> String</li>
+<li data-line="1122" class="code-line"><u>Column label:</u> Format</li>
+<li data-line="1123" class="code-line"><u>Column name:</u> (this should default to u_format)</li>
+<li data-line="1124" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="1045" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1046" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1047" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1125" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1126" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1127" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1048" class="code-line"><u>Type:</u> String</li>
-<li data-line="1049" class="code-line"><u>Column label:</u> HTTP Response</li>
-<li data-line="1050" class="code-line"><u>Column name:</u> (this should default to u_http_response)</li>
-<li data-line="1051" class="code-line"><u>Max length:</u> 4000</li>
+<li data-line="1128" class="code-line"><u>Type:</u> Table Name</li>
+<li data-line="1129" class="code-line"><u>Column label:</u> Source table</li>
+<li data-line="1130" class="code-line"><u>Column name:</u> (this should default to u_source_table)</li>
 </ul>
 </li>
-<li data-line="1052" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1053" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1054" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1131" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1132" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1133" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1055" class="code-line"><u>Type:</u> String</li>
-<li data-line="1056" class="code-line"><u>Column label:</u> HTTP Method</li>
-<li data-line="1057" class="code-line"><u>Column name:</u> (this should default to u_http_method)</li>
-<li data-line="1058" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="1134" class="code-line"><u>Type:</u> Document ID</li>
+<li data-line="1135" class="code-line"><u>Column label:</u> Source</li>
+<li data-line="1136" class="code-line"><u>Column name:</u> (this should default to u_source)</li>
 </ul>
 </li>
-<li data-line="1059" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1060" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1061" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1137" class="code-line">Under <strong>Related Links</strong>, click <strong>Advanced view</strong>.</li>
+<li data-line="1138" class="code-line">Under the <strong>Dependent Field</strong> tab, click <strong>Use dependent field</strong>.</li>
+<li data-line="1139" class="code-line">In the <strong>Dependent on field</strong>, select <strong>Source table</strong>.</li>
+<li data-line="1140" class="code-line">Click <strong>Update</strong>.</li>
+<li data-line="1141" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1142" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1062" class="code-line"><u>Type:</u> String</li>
-<li data-line="1063" class="code-line"><u>Column label:</u> Endpoint</li>
-<li data-line="1064" class="code-line"><u>Column name:</u> (this should default to u_endpoint)</li>
-<li data-line="1065" class="code-line"><u>Max length:</u> 400</li>
+<li data-line="1143" class="code-line"><u>Type:</u> Integer</li>
+<li data-line="1144" class="code-line"><u>Column label:</u> HTTP Status</li>
+<li data-line="1145" class="code-line"><u>Column name:</u> (this should default to u_http_status)</li>
 </ul>
 </li>
-<li data-line="1066" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1067" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1068" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1146" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1147" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1148" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1069" class="code-line"><u>Type:</u> True/False</li>
-<li data-line="1070" class="code-line"><u>Column label:</u> Active</li>
-<li data-line="1071" class="code-line"><u>Column name:</u> (this should default to u_active)</li>
+<li data-line="1149" class="code-line"><u>Type:</u> String</li>
+<li data-line="1150" class="code-line"><u>Column label:</u> HTTP Response</li>
+<li data-line="1151" class="code-line"><u>Column name:</u> (this should default to u_http_response)</li>
+<li data-line="1152" class="code-line"><u>Max length:</u> 4000</li>
 </ul>
 </li>
-<li data-line="1072" class="code-line">Under <strong>Related Links</strong>, click <strong>Advanced view</strong>.</li>
-<li data-line="1073" class="code-line">Under the <strong>Calculated Value</strong> tab, fill in the following fields:
+<li data-line="1153" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1154" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1155" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1074" class="code-line">
-<p data-line="1074" class="code-line"><u>Calculated:</u> true</p>
+<li data-line="1156" class="code-line"><u>Type:</u> String</li>
+<li data-line="1157" class="code-line"><u>Column label:</u> HTTP Method</li>
+<li data-line="1158" class="code-line"><u>Column name:</u> (this should default to u_http_method)</li>
+<li data-line="1159" class="code-line"><u>Max length:</u> 40</li>
+</ul>
 </li>
-<li data-line="1075" class="code-line">
-<p data-line="1075" class="code-line"><u>Calculation:</u></p>
-<pre><code data-line="1077" class="code-line"><code><div>(function calculatedFieldValue(current) {
+<li data-line="1160" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1161" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1162" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<ul>
+<li data-line="1163" class="code-line"><u>Type:</u> String</li>
+<li data-line="1164" class="code-line"><u>Column label:</u> Endpoint</li>
+<li data-line="1165" class="code-line"><u>Column name:</u> (this should default to u_endpoint)</li>
+<li data-line="1166" class="code-line"><u>Max length:</u> 400</li>
+</ul>
+</li>
+<li data-line="1167" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1168" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1169" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<ul>
+<li data-line="1170" class="code-line"><u>Type:</u> True/False</li>
+<li data-line="1171" class="code-line"><u>Column label:</u> Active</li>
+<li data-line="1172" class="code-line"><u>Column name:</u> (this should default to u_active)</li>
+</ul>
+</li>
+<li data-line="1173" class="code-line">Under <strong>Related Links</strong>, click <strong>Advanced view</strong>.</li>
+<li data-line="1174" class="code-line">Under the <strong>Calculated Value</strong> tab, fill in the following fields:
+<ul>
+<li data-line="1175" class="code-line">
+<p data-line="1175" class="code-line"><u>Calculated:</u> true</p>
+</li>
+<li data-line="1176" class="code-line">
+<p data-line="1176" class="code-line"><u>Calculation:</u></p>
+<pre><code data-line="1178" class="code-line"><code><div>(function calculatedFieldValue(current) {
     var calc = current.u_retry;
 
     switch (current.u_http_status.toString()) {
@@ -1828,32 +1956,49 @@ The <em>u_ebond_rest_payloads</em> table records all outbound REST API calls and
 </li>
 </ul>
 </li>
-<li data-line="1163" class="code-line">Click <strong>Update</strong>.</li>
-<li data-line="1164" class="code-line">Click <strong>Update</strong>.</li>
+<li data-line="1264" class="code-line">Click <strong>Update</strong>.</li>
+<li data-line="1265" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1266" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<ul>
+<li data-line="1267" class="code-line"><u>Type:</u> Integer</li>
+<li data-line="1268" class="code-line"><u>Column label:</u> Index</li>
+<li data-line="1269" class="code-line"><u>Column name:</u> (this should default to u_index)</li>
+<li data-line="1270" class="code-line"><u>Read only:</u> True</li>
+</ul>
+</li>
+<li data-line="1271" class="code-line">Under <strong>Related Links</strong>, click <strong>Advanced view</strong>.</li>
+<li data-line="1272" class="code-line">Under the <strong>Default Value</strong> tab, fill in the following field:
+<ul>
+<li data-line="1273" class="code-line"><u>Use dynamic default:</u> true</li>
+<li data-line="1274" class="code-line"><u>Dynamic Default value:</u> eBond REST Payload Index Increment</li>
+</ul>
+</li>
+<li data-line="1275" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1276" class="code-line">Click <strong>Update</strong>.</li>
 </ol>
 <hr>
-<a for="toc-anchor" id="multi-source-inbound-handling"></a><h1 id="multi-source-inbound-handling-3" data-line="1167" class="code-line">Multi-source Inbound Handling</h1>
-<p data-line="1169" class="code-line">Inbound incident handling could be setup in an agnostic fashion based on a mutual push-push model setup between the enterprise and suppliers. The mutual push-push model is where the each party sets how they shall receive messages and no party performs a pull/get operation. There are major advantages for this model over one party dictating both how it will send and receive messages.</p>
+<a for="toc-anchor" id="multi-source-inbound-handling"></a><h1 id="multi-source-inbound-handling" data-line="1279" class="code-line">Multi-source Inbound Handling</h1>
+<p data-line="1281" class="code-line">Inbound incident handling could be setup in an agnostic fashion based on a mutual push-push model setup between the enterprise and suppliers. The mutual push-push model is where the each party sets how they shall receive messages and no party performs a pull/get operation. There are major advantages for this model over one party dictating both how it will send and receive messages.</p>
 <div class="admonition note">
 <p class="admonition-title">OEM &amp; OSP</p>
-<p data-line="1172" class="code-line">Original equipment manufacturers (OEM) and original service providers (OSP) rarely fit into the mutual push-push model as their clientele is vast and the reliance of the enterprise on the OEMs and OSPs do not warrant a collaborative effort between the enterprise ServiceNow developers and the OEM/OSP. In the case of true partnership between enterprise and suppliers should allow for a mutual push-push model.</p>
+<p data-line="1284" class="code-line">Original equipment manufacturers (OEM) and original service providers (OSP) rarely fit into the mutual push-push model as their clientele is vast and the reliance of the enterprise on the OEMs and OSPs do not warrant a collaborative effort between the enterprise ServiceNow developers and the OEM/OSP. In the case of true partnership between enterprise and suppliers should allow for a mutual push-push model.</p>
 </div>
-<p data-line="1174" class="code-line">The biggest advantage to all parties is long term run and maintain of eBonding operations. If one party changes their fields or data, the other party is not forced into changing their eBonding framework to accommodate; a decision from one party should not impact or cause work for the other. Another advantage is resource utilization. Pull requests are expensive and if an enterprise is being pulled by dozens of suppliers, this places an undue burden on the enterprise. It is far more agreeable that if a change is to occur in one party's record, then that party will pass (push) the delta change to the agreed parties.</p>
+<p data-line="1286" class="code-line">The biggest advantage to all parties is long term run and maintain of eBonding operations. If one party changes their fields or data, the other party is not forced into changing their eBonding framework to accommodate; a decision from one party should not impact or cause work for the other. Another advantage is resource utilization. Pull requests are expensive and if an enterprise is being pulled by dozens of suppliers, this places an undue burden on the enterprise. It is far more agreeable that if a change is to occur in one party's record, then that party will pass (push) the delta change to the agreed parties.</p>
 <hr>
-<a for="toc-anchor" id="quick-rundown"></a><h2 id="quick-rundown-3" data-line="1177" class="code-line">Quick Rundown</h2>
-<p data-line="1178" class="code-line"><br>
+<a for="toc-anchor" id="quick-rundown"></a><h2 id="quick-rundown" data-line="1289" class="code-line">Quick Rundown</h2>
+<p data-line="1290" class="code-line"><br>
 Suppliers will write to a staging table called <em>[u_ebond_incident_staging]</em>. The table will be an extension of the <em>[sys_import_set_row]</em> and will have the ability to take advantage of the OOTB ServiceNow transform functionality. The <em>transform maps</em> will validate the incoming data and then create or update the appropriate records within the system.</p>
 <hr>
-<a for="toc-anchor" id="incident-staging-table"></a><h2 id="incident-staging-table-3" data-line="1182" class="code-line">Incident staging table</h2>
-<p data-line="1183" class="code-line"><br>
+<a for="toc-anchor" id="incident-staging-table"></a><h2 id="incident-staging-table" data-line="1294" class="code-line">Incident staging table</h2>
+<p data-line="1295" class="code-line"><br>
 Normally the REST inbound message handling aspect for eBonding is developed using <em>Scripted REST API</em>. For multi-source eBonding a different model will be developed using a staging table. Suppliers will directly write to a staging table instead of a Scripted REST API.</p>
-<p data-line="1186" class="code-line">ServiceNow <em>Transform Maps</em> provide an elegant and efficient means to do much of what a <em>Scripted REST API</em> can do with the use of <em>Transform Scripts</em>. The <strong>onStart</strong> is used for preparation of global variables, <em>onBefore</em> is used for data validation, and <em>onAfter</em> for data operations. All of this efficiently designed by Servicenow in the import set framework to handle inbound REST messages.</p>
+<p data-line="1298" class="code-line">ServiceNow <em>Transform Maps</em> provide an elegant and efficient means to do much of what a <em>Scripted REST API</em> can do with the use of <em>Transform Scripts</em>. The <strong>onStart</strong> is used for preparation of global variables, <em>onBefore</em> is used for data validation, and <em>onAfter</em> for data operations. All of this efficiently designed by Servicenow in the import set framework to handle inbound REST messages.</p>
 <div class="admonition note">
 <p class="admonition-title">Staging other tables</p>
-<p data-line="1189" class="code-line">For each type of destination ServiceNow table for multi-source eBonding will require a unique staging table. For example, if the requirement is to have a multi-source eBond with change requests, a similar staging table that that below will need to be created.</p>
+<p data-line="1301" class="code-line">For each type of destination ServiceNow table for multi-source eBonding will require a unique staging table. For example, if the requirement is to have a multi-source eBond with change requests, a similar staging table that that below will need to be created.</p>
 </div>
-<p data-line="1191" class="code-line">The <em>u_ebond_incident_staging</em> table holds the field values passed by the supplier for incidents.</p>
-<p data-line="1193" class="code-line">The <em>u_ebond_incident_staging</em> table will contain the following custom fields:</p>
+<p data-line="1303" class="code-line">The <em>u_ebond_incident_staging</em> table holds the field values passed by the supplier for incidents.</p>
+<p data-line="1305" class="code-line">The <em>u_ebond_incident_staging</em> table will contain the following custom fields:</p>
 <table>
 <thead>
 <tr>
@@ -1957,330 +2102,331 @@ Normally the REST inbound message handling aspect for eBonding is developed usin
 </tbody>
 </table>
 <ol>
-<li data-line="1220" class="code-line">Navigate to <strong>System Definition</strong> &gt; <strong>Tables</strong>.</li>
-<li data-line="1221" class="code-line">Click <strong>New</strong>.</li>
-<li data-line="1222" class="code-line">Under the <strong>Table New record</strong> section, fill in the following fields:
+<li data-line="1332" class="code-line">Navigate to <strong>System Definition</strong> &gt; <strong>Tables</strong>.</li>
+<li data-line="1333" class="code-line">Click <strong>New</strong>.</li>
+<li data-line="1334" class="code-line">Under the <strong>Table New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1223" class="code-line"><u>Label:</u> eBond Incident Staging</li>
-<li data-line="1224" class="code-line"><u>Name:</u> u_ebond_incident_staging</li>
-<li data-line="1225" class="code-line"><u>Extends table:</u> Import Set Row [sys_import_set_row]</li>
-<li data-line="1226" class="code-line"><u>Add module to menu:</u> eBond</li>
+<li data-line="1335" class="code-line"><u>Label:</u> eBond Incident Staging</li>
+<li data-line="1336" class="code-line"><u>Name:</u> u_ebond_incident_staging</li>
+<li data-line="1337" class="code-line"><u>Extends table:</u> Import Set Row [sys_import_set_row]</li>
+<li data-line="1338" class="code-line"><u>Add module to menu:</u> eBond</li>
 </ul>
 </li>
-<li data-line="1227" class="code-line">In the record header, right-click and select <strong>Save</strong>.</li>
-<li data-line="1228" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1229" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1339" class="code-line">In the record header, right-click and select <strong>Save</strong>.</li>
+<li data-line="1340" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1341" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1230" class="code-line"><u>Type:</u> String</li>
-<li data-line="1231" class="code-line"><u>Column label:</u> Work Note</li>
-<li data-line="1232" class="code-line"><u>Column name:</u> (this should default to u_work_note)</li>
-<li data-line="1233" class="code-line"><u>Max length:</u> 4000</li>
+<li data-line="1342" class="code-line"><u>Type:</u> String</li>
+<li data-line="1343" class="code-line"><u>Column label:</u> Work Note</li>
+<li data-line="1344" class="code-line"><u>Column name:</u> (this should default to u_work_note)</li>
+<li data-line="1345" class="code-line"><u>Max length:</u> 4000</li>
 </ul>
 </li>
-<li data-line="1234" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1235" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1236" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1346" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1347" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1348" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1237" class="code-line"><u>Type:</u> String</li>
-<li data-line="1238" class="code-line"><u>Column label:</u> Subcategory</li>
-<li data-line="1239" class="code-line"><u>Column name:</u> (this should default to u_subcategory)</li>
-<li data-line="1240" class="code-line"><u>Max length:</u> 80</li>
+<li data-line="1349" class="code-line"><u>Type:</u> String</li>
+<li data-line="1350" class="code-line"><u>Column label:</u> Subcategory</li>
+<li data-line="1351" class="code-line"><u>Column name:</u> (this should default to u_subcategory)</li>
+<li data-line="1352" class="code-line"><u>Max length:</u> 80</li>
 </ul>
 </li>
-<li data-line="1241" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1242" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1243" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1353" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1354" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1355" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1244" class="code-line"><u>Type:</u> String</li>
-<li data-line="1245" class="code-line"><u>Column label:</u> State</li>
-<li data-line="1246" class="code-line"><u>Column name:</u> (this should default to u_state)</li>
-<li data-line="1247" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="1356" class="code-line"><u>Type:</u> String</li>
+<li data-line="1357" class="code-line"><u>Column label:</u> State</li>
+<li data-line="1358" class="code-line"><u>Column name:</u> (this should default to u_state)</li>
+<li data-line="1359" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="1248" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1249" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1250" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1360" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1361" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1362" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1251" class="code-line"><u>Type:</u> String</li>
-<li data-line="1252" class="code-line"><u>Column label:</u> Short Description</li>
-<li data-line="1253" class="code-line"><u>Column name:</u> (this should default to u_short_description)</li>
-<li data-line="1254" class="code-line"><u>Max length:</u> 1000</li>
+<li data-line="1363" class="code-line"><u>Type:</u> String</li>
+<li data-line="1364" class="code-line"><u>Column label:</u> Short Description</li>
+<li data-line="1365" class="code-line"><u>Column name:</u> (this should default to u_short_description)</li>
+<li data-line="1366" class="code-line"><u>Max length:</u> 1000</li>
 </ul>
 </li>
-<li data-line="1255" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1256" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1257" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1367" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1368" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1369" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1258" class="code-line"><u>Type:</u> String</li>
-<li data-line="1259" class="code-line"><u>Column label:</u> Service Offering</li>
-<li data-line="1260" class="code-line"><u>Column name:</u> (this should default to u_service_offering)</li>
-<li data-line="1261" class="code-line"><u>Max length:</u> 255</li>
+<li data-line="1370" class="code-line"><u>Type:</u> String</li>
+<li data-line="1371" class="code-line"><u>Column label:</u> Service Offering</li>
+<li data-line="1372" class="code-line"><u>Column name:</u> (this should default to u_service_offering)</li>
+<li data-line="1373" class="code-line"><u>Max length:</u> 255</li>
 </ul>
 </li>
-<li data-line="1262" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1263" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1264" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1374" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1375" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1376" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1265" class="code-line"><u>Type:</u> String</li>
-<li data-line="1266" class="code-line"><u>Column label:</u> Service</li>
-<li data-line="1267" class="code-line"><u>Column name:</u> (this should default to u_service)</li>
-<li data-line="1268" class="code-line"><u>Max length:</u> 255</li>
+<li data-line="1377" class="code-line"><u>Type:</u> String</li>
+<li data-line="1378" class="code-line"><u>Column label:</u> Service</li>
+<li data-line="1379" class="code-line"><u>Column name:</u> (this should default to u_service)</li>
+<li data-line="1380" class="code-line"><u>Max length:</u> 255</li>
 </ul>
 </li>
-<li data-line="1269" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1270" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1271" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1381" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1382" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1383" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1272" class="code-line"><u>Type:</u> String</li>
-<li data-line="1273" class="code-line"><u>Column label:</u> Impact</li>
-<li data-line="1274" class="code-line"><u>Column name:</u> (this should default to u_impact)</li>
-<li data-line="1275" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="1384" class="code-line"><u>Type:</u> String</li>
+<li data-line="1385" class="code-line"><u>Column label:</u> Impact</li>
+<li data-line="1386" class="code-line"><u>Column name:</u> (this should default to u_impact)</li>
+<li data-line="1387" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="1276" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1277" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1388" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1389" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1278" class="code-line"><u>Type:</u> String</li>
-<li data-line="1279" class="code-line"><u>Column label:</u> Urgency</li>
-<li data-line="1280" class="code-line"><u>Column name:</u> (this should default to u_urgency)</li>
-<li data-line="1281" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="1390" class="code-line"><u>Type:</u> String</li>
+<li data-line="1391" class="code-line"><u>Column label:</u> Urgency</li>
+<li data-line="1392" class="code-line"><u>Column name:</u> (this should default to u_urgency)</li>
+<li data-line="1393" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="1282" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1283" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1284" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1394" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1395" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1396" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1285" class="code-line"><u>Type:</u> String</li>
-<li data-line="1286" class="code-line"><u>Column label:</u> Sys ID</li>
-<li data-line="1287" class="code-line"><u>Column name:</u> (this should default to u_sys_id)</li>
-<li data-line="1288" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="1397" class="code-line"><u>Type:</u> String</li>
+<li data-line="1398" class="code-line"><u>Column label:</u> Sys ID</li>
+<li data-line="1399" class="code-line"><u>Column name:</u> (this should default to u_sys_id)</li>
+<li data-line="1400" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="1289" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1290" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1291" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1401" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1402" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1403" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1292" class="code-line"><u>Type:</u> String</li>
-<li data-line="1293" class="code-line"><u>Column label:</u> Number</li>
-<li data-line="1294" class="code-line"><u>Column name:</u> (this should default to u_number)</li>
-<li data-line="1295" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="1404" class="code-line"><u>Type:</u> String</li>
+<li data-line="1405" class="code-line"><u>Column label:</u> Number</li>
+<li data-line="1406" class="code-line"><u>Column name:</u> (this should default to u_number)</li>
+<li data-line="1407" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="1296" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1297" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1298" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1408" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1409" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1410" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1299" class="code-line"><u>Type:</u> String</li>
-<li data-line="1300" class="code-line"><u>Column label:</u> Hold Reason</li>
-<li data-line="1301" class="code-line"><u>Column name:</u> (this should default to u_hold_reason)</li>
-<li data-line="1302" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="1411" class="code-line"><u>Type:</u> String</li>
+<li data-line="1412" class="code-line"><u>Column label:</u> Hold Reason</li>
+<li data-line="1413" class="code-line"><u>Column name:</u> (this should default to u_hold_reason)</li>
+<li data-line="1414" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="1303" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1304" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1305" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1415" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1416" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1417" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1306" class="code-line"><u>Type:</u> String</li>
-<li data-line="1307" class="code-line"><u>Column label:</u> Description</li>
-<li data-line="1308" class="code-line"><u>Column name:</u> (this should default to u_description)</li>
-<li data-line="1309" class="code-line"><u>Max length:</u> 4000</li>
+<li data-line="1418" class="code-line"><u>Type:</u> String</li>
+<li data-line="1419" class="code-line"><u>Column label:</u> Description</li>
+<li data-line="1420" class="code-line"><u>Column name:</u> (this should default to u_description)</li>
+<li data-line="1421" class="code-line"><u>Max length:</u> 4000</li>
 </ul>
 </li>
-<li data-line="1310" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1311" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1312" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1422" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1423" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1424" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1313" class="code-line"><u>Type:</u> String</li>
-<li data-line="1314" class="code-line"><u>Column label:</u> Contact Type</li>
-<li data-line="1315" class="code-line"><u>Column name:</u> (this should default to u_contact_type)</li>
-<li data-line="1316" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="1425" class="code-line"><u>Type:</u> String</li>
+<li data-line="1426" class="code-line"><u>Column label:</u> Contact Type</li>
+<li data-line="1427" class="code-line"><u>Column name:</u> (this should default to u_contact_type)</li>
+<li data-line="1428" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="1317" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1318" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1319" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1429" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1430" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1431" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1320" class="code-line"><u>Type:</u> String</li>
-<li data-line="1321" class="code-line"><u>Column label:</u> Comment</li>
-<li data-line="1322" class="code-line"><u>Column name:</u> (this should default to u_comment)</li>
-<li data-line="1323" class="code-line"><u>Max length:</u> 4000</li>
+<li data-line="1432" class="code-line"><u>Type:</u> String</li>
+<li data-line="1433" class="code-line"><u>Column label:</u> Comment</li>
+<li data-line="1434" class="code-line"><u>Column name:</u> (this should default to u_comment)</li>
+<li data-line="1435" class="code-line"><u>Max length:</u> 4000</li>
 </ul>
 </li>
-<li data-line="1324" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1325" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1326" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1436" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1437" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1438" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1327" class="code-line"><u>Type:</u> String</li>
-<li data-line="1328" class="code-line"><u>Column label:</u> External Reference</li>
-<li data-line="1329" class="code-line"><u>Column name:</u> (this should default to u_external_reference)</li>
-<li data-line="1330" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="1439" class="code-line"><u>Type:</u> String</li>
+<li data-line="1440" class="code-line"><u>Column label:</u> External Reference</li>
+<li data-line="1441" class="code-line"><u>Column name:</u> (this should default to u_external_reference)</li>
+<li data-line="1442" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="1331" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1332" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1333" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1443" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1444" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1445" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1334" class="code-line"><u>Type:</u> String</li>
-<li data-line="1335" class="code-line"><u>Column label:</u> External Number</li>
-<li data-line="1336" class="code-line"><u>Column name:</u> (this should default to u_external_number)</li>
-<li data-line="1337" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="1446" class="code-line"><u>Type:</u> String</li>
+<li data-line="1447" class="code-line"><u>Column label:</u> External Number</li>
+<li data-line="1448" class="code-line"><u>Column name:</u> (this should default to u_external_number)</li>
+<li data-line="1449" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="1338" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1339" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1340" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1450" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1451" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1452" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1341" class="code-line"><u>Type:</u> String</li>
-<li data-line="1342" class="code-line"><u>Column label:</u> Error</li>
-<li data-line="1343" class="code-line"><u>Column name:</u> (this should default to u_error)</li>
-<li data-line="1344" class="code-line"><u>Max length:</u> 4000</li>
+<li data-line="1453" class="code-line"><u>Type:</u> String</li>
+<li data-line="1454" class="code-line"><u>Column label:</u> Error</li>
+<li data-line="1455" class="code-line"><u>Column name:</u> (this should default to u_error)</li>
+<li data-line="1456" class="code-line"><u>Max length:</u> 4000</li>
 </ul>
 </li>
-<li data-line="1345" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1346" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1347" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1457" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1458" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1459" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1348" class="code-line"><u>Type:</u> String</li>
-<li data-line="1349" class="code-line"><u>Column label:</u> CMDB CI</li>
-<li data-line="1350" class="code-line"><u>Column name:</u> (this should default to u_cmdb_ci)</li>
-<li data-line="1351" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="1460" class="code-line"><u>Type:</u> String</li>
+<li data-line="1461" class="code-line"><u>Column label:</u> CMDB CI</li>
+<li data-line="1462" class="code-line"><u>Column name:</u> (this should default to u_cmdb_ci)</li>
+<li data-line="1463" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="1352" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1353" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1354" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1464" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1465" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1466" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1355" class="code-line"><u>Type:</u> String</li>
-<li data-line="1356" class="code-line"><u>Column label:</u> Close Notes</li>
-<li data-line="1357" class="code-line"><u>Column name:</u> (this should default to u_close_notes)</li>
-<li data-line="1358" class="code-line"><u>Max length:</u> 1000</li>
+<li data-line="1467" class="code-line"><u>Type:</u> String</li>
+<li data-line="1468" class="code-line"><u>Column label:</u> Close Notes</li>
+<li data-line="1469" class="code-line"><u>Column name:</u> (this should default to u_close_notes)</li>
+<li data-line="1470" class="code-line"><u>Max length:</u> 1000</li>
 </ul>
 </li>
-<li data-line="1359" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1360" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1361" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1471" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1472" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1473" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1362" class="code-line"><u>Type:</u> String</li>
-<li data-line="1363" class="code-line"><u>Column label:</u> Close Code</li>
-<li data-line="1364" class="code-line"><u>Column name:</u> (this should default to u_close_code)</li>
-<li data-line="1365" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="1474" class="code-line"><u>Type:</u> String</li>
+<li data-line="1475" class="code-line"><u>Column label:</u> Close Code</li>
+<li data-line="1476" class="code-line"><u>Column name:</u> (this should default to u_close_code)</li>
+<li data-line="1477" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="1366" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1367" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1368" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1478" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1479" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1480" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1369" class="code-line"><u>Type:</u> String</li>
-<li data-line="1370" class="code-line"><u>Column label:</u> Category</li>
-<li data-line="1371" class="code-line"><u>Column name:</u> (this should default to u_category)</li>
-<li data-line="1372" class="code-line"><u>Max length:</u> 80</li>
+<li data-line="1481" class="code-line"><u>Type:</u> String</li>
+<li data-line="1482" class="code-line"><u>Column label:</u> Category</li>
+<li data-line="1483" class="code-line"><u>Column name:</u> (this should default to u_category)</li>
+<li data-line="1484" class="code-line"><u>Max length:</u> 80</li>
 </ul>
 </li>
-<li data-line="1373" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1374" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1375" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1485" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1486" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1487" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1376" class="code-line"><u>Type:</u> String</li>
-<li data-line="1377" class="code-line"><u>Column label:</u> Caller</li>
-<li data-line="1378" class="code-line"><u>Column name:</u> (this should default to u_caller)</li>
-<li data-line="1379" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="1488" class="code-line"><u>Type:</u> String</li>
+<li data-line="1489" class="code-line"><u>Column label:</u> Caller</li>
+<li data-line="1490" class="code-line"><u>Column name:</u> (this should default to u_caller)</li>
+<li data-line="1491" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="1380" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1381" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
-<li data-line="1382" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
+<li data-line="1492" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1493" class="code-line">In the <strong>Columns</strong> table, click <strong>New</strong>.</li>
+<li data-line="1494" class="code-line">In the <strong>Dictionary Entry New record</strong> section, fill in the following fields:
 <ul>
-<li data-line="1383" class="code-line"><u>Type:</u> String</li>
-<li data-line="1384" class="code-line"><u>Column label:</u> Assignment Group</li>
-<li data-line="1385" class="code-line"><u>Column name:</u> (this should default to u_assignment_group)</li>
-<li data-line="1386" class="code-line"><u>Max length:</u> 40</li>
+<li data-line="1495" class="code-line"><u>Type:</u> String</li>
+<li data-line="1496" class="code-line"><u>Column label:</u> Assignment Group</li>
+<li data-line="1497" class="code-line"><u>Column name:</u> (this should default to u_assignment_group)</li>
+<li data-line="1498" class="code-line"><u>Max length:</u> 40</li>
 </ul>
 </li>
-<li data-line="1387" class="code-line">Click <strong>Submit</strong>.</li>
-<li data-line="1388" class="code-line">Click <strong>Update</strong>.</li>
+<li data-line="1499" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="1500" class="code-line">Click <strong>Update</strong>.</li>
 </ol>
 <hr>
-<a for="toc-anchor" id="inbound-transform"></a><h2 id="inbound-transform-3" data-line="1391" class="code-line">Inbound Transform</h2>
-<p data-line="1392" class="code-line"><br>
+<a for="toc-anchor" id="inbound-transform"></a><h2 id="inbound-transform" data-line="1503" class="code-line">Inbound Transform</h2>
+<p data-line="1504" class="code-line"><br>
 The inbound <em>transform map</em> uses <em>transform scripts</em> to perform various operations on the data directly passed by the supplier. The <em>transform scripts</em> can be set to <em>when</em> they are executed against the data in the transform.</p>
 <ul>
-<li data-line="1395" class="code-line"><strong>onStart:</strong> Sets up the global variables used by the other transform scripts. Global variables will be capitalized for ease of development.</li>
-<li data-line="1396" class="code-line"><strong>onBefore:</strong> Validates security and the data passed by the supplier. The order of scripts are important as pre-checks must complete before continuing the transform.</li>
-<li data-line="1397" class="code-line"><strong>on:After</strong> Creates or updates the needed fields within the records.</li>
-<li data-line="1398" class="code-line"><strong>on:Complete</strong> Verifies all operations and updates return information to the supplier.</li>
+<li data-line="1507" class="code-line"><strong>onStart:</strong> Sets up the global variables used by the other transform scripts. Global variables will be capitalized for ease of development.</li>
+<li data-line="1508" class="code-line"><strong>onBefore:</strong> Validates security and the data passed by the supplier. The order of scripts are important as pre-checks must complete before continuing the transform.</li>
+<li data-line="1509" class="code-line"><strong>on:After</strong> Creates or updates the needed fields within the records.</li>
+<li data-line="1510" class="code-line"><strong>on:Complete</strong> Verifies all operations and updates return information to the supplier.</li>
 </ul>
 <ol>
-<li data-line="1400" class="code-line">
-<p data-line="1400" class="code-line">Navigate to <strong>System Import Sets</strong> &gt; <strong>Transform Maps</strong>.</p>
+<li data-line="1512" class="code-line">
+<p data-line="1512" class="code-line">Navigate to <strong>System Import Sets</strong> &gt; <strong>Transform Maps</strong>.</p>
 </li>
-<li data-line="1401" class="code-line">
-<p data-line="1401" class="code-line">Click <strong>New</strong>.</p>
+<li data-line="1513" class="code-line">
+<p data-line="1513" class="code-line">Click <strong>New</strong>.</p>
 </li>
-<li data-line="1402" class="code-line">
-<p data-line="1402" class="code-line">In the <strong>Table Transform Map New record</strong> section, fill in the following fields:</p>
+<li data-line="1514" class="code-line">
+<p data-line="1514" class="code-line">In the <strong>Table Transform Map New record</strong> section, fill in the following fields:</p>
 <ul>
-<li data-line="1403" class="code-line"><u>Name:</u> eBond Incident Transform</li>
-<li data-line="1404" class="code-line"><u>Source table:</u> eBond Incident Staging [u_ebond_incident_staging]</li>
-<li data-line="1405" class="code-line"><u>Target table:</u> eBond Relationship [u_ebond_relationship]</li>
+<li data-line="1515" class="code-line"><u>Name:</u> eBond Incident Transform</li>
+<li data-line="1516" class="code-line"><u>Source table:</u> eBond Incident Staging [u_ebond_incident_staging]</li>
+<li data-line="1517" class="code-line"><u>Target table:</u> eBond Relationship [u_ebond_relationship]</li>
 </ul>
 </li>
-<li data-line="1406" class="code-line">
-<p data-line="1406" class="code-line">In the record header, right-click and select <strong>Save</strong>.</p>
+<li data-line="1518" class="code-line">
+<p data-line="1518" class="code-line">In the record header, right-click and select <strong>Save</strong>.</p>
 </li>
-<li data-line="1407" class="code-line">
-<p data-line="1407" class="code-line">In the <strong>Field Maps</strong> tab, click <strong>New</strong>.</p>
+<li data-line="1519" class="code-line">
+<p data-line="1519" class="code-line">In the <strong>Field Maps</strong> tab, click <strong>New</strong>.</p>
 </li>
-<li data-line="1408" class="code-line">
-<p data-line="1408" class="code-line">In the <strong>Field Map New record</strong> section, fill in the following fields:</p>
+<li data-line="1520" class="code-line">
+<p data-line="1520" class="code-line">In the <strong>Field Map New record</strong> section, fill in the following fields:</p>
 <ul>
-<li data-line="1409" class="code-line"><u>Source field:</u> External Number [u_external_number]</li>
-<li data-line="1410" class="code-line"><u>Target field:</u> Correlation Number [u_correlation_number]</li>
-<li data-line="1411" class="code-line"><u>Coalesce:</u> True</li>
+<li data-line="1521" class="code-line"><u>Source field:</u> External Number [u_external_number]</li>
+<li data-line="1522" class="code-line"><u>Target field:</u> Correlation Number [u_correlation_number]</li>
+<li data-line="1523" class="code-line"><u>Coalesce:</u> True</li>
 </ul>
 </li>
-<li data-line="1412" class="code-line">
-<p data-line="1412" class="code-line">Click <strong>Submit</strong>.</p>
+<li data-line="1524" class="code-line">
+<p data-line="1524" class="code-line">Click <strong>Submit</strong>.</p>
 <div class="admonition note">
 <p class="admonition-title">Coalesce field not indexed</p>
-<p data-line="1415" class="code-line">If a pop-up box appears titled <em>Coalesce field not indexed</em>, then click <strong>OK</strong>, fill in the followup contact information and click <strong>OK</strong>.</p>
+<p data-line="1527" class="code-line">If a pop-up box appears titled <em>Coalesce field not indexed</em>, then click <strong>OK</strong>, fill in the followup contact information and click <strong>OK</strong>.</p>
 </div>
 </li>
-<li data-line="1417" class="code-line">
-<p data-line="1417" class="code-line">In the <strong>Field Maps</strong> tab, click <strong>New</strong>.</p>
+<li data-line="1529" class="code-line">
+<p data-line="1529" class="code-line">In the <strong>Field Maps</strong> tab, click <strong>New</strong>.</p>
 </li>
-<li data-line="1418" class="code-line">
-<p data-line="1418" class="code-line">In the <strong>Field Map New record</strong> section, fill in the following fields:</p>
+<li data-line="1530" class="code-line">
+<p data-line="1530" class="code-line">In the <strong>Field Map New record</strong> section, fill in the following fields:</p>
 <ul>
-<li data-line="1419" class="code-line"><u>Source field:</u> External reference [u_external_reference]</li>
-<li data-line="1420" class="code-line"><u>Target field:</u> Correlation ID [u_correlation_id]</li>
-<li data-line="1421" class="code-line"><u>Coalesce:</u> false</li>
+<li data-line="1531" class="code-line"><u>Source field:</u> External reference [u_external_reference]</li>
+<li data-line="1532" class="code-line"><u>Target field:</u> Correlation ID [u_correlation_id]</li>
+<li data-line="1533" class="code-line"><u>Coalesce:</u> false</li>
 </ul>
 </li>
-<li data-line="1422" class="code-line">
-<p data-line="1422" class="code-line">Click <strong>Submit</strong>.</p>
+<li data-line="1534" class="code-line">
+<p data-line="1534" class="code-line">Click <strong>Submit</strong>.</p>
 </li>
-<li data-line="1423" class="code-line">
-<p data-line="1423" class="code-line">In the <strong>Field Maps</strong> tab, click <strong>New</strong>.</p>
+<li data-line="1535" class="code-line">
+<p data-line="1535" class="code-line">In the <strong>Field Maps</strong> tab, click <strong>New</strong>.</p>
 </li>
-<li data-line="1424" class="code-line">
-<p data-line="1424" class="code-line">In the <strong>Field Map New record</strong> section, click <strong>Use source script</strong> and fill in the following fields:</p>
+<li data-line="1536" class="code-line">
+<p data-line="1536" class="code-line">In the <strong>Field Map New record</strong> section, click <strong>Use source script</strong> and fill in the following fields:</p>
 <ul>
-<li data-line="1425" class="code-line">
-<p data-line="1425" class="code-line"><u>Choice action:</u> ignore</p>
+<li data-line="1537" class="code-line">
+<p data-line="1537" class="code-line"><u>Choice action:</u> ignore</p>
 </li>
-<li data-line="1426" class="code-line">
-<p data-line="1426" class="code-line"><u>Target field:</u> Company [u_company]</p>
+<li data-line="1538" class="code-line">
+<p data-line="1538" class="code-line"><u>Target field:</u> Company [u_company]</p>
 </li>
-<li data-line="1427" class="code-line">
-<p data-line="1427" class="code-line"><u>Coalesce field:</u> true</p>
+<li data-line="1539" class="code-line">
+<p data-line="1539" class="code-line"><u>Coalesce field:</u> true</p>
 </li>
-<li data-line="1428" class="code-line">
-<p data-line="1428" class="code-line"><u>Script:</u></p>
-<pre><code data-line="1430" class="code-line"><code><div>answer = (function transformEntry(source) {
+<li data-line="1540" class="code-line">
+<p data-line="1540" class="code-line"><u>Script:</u></p>
+<pre><code data-line="1542" class="code-line"><code><div>answer = (function transformEntry(source) {
 
     var eLog = new eBondLog();
     eLog.u_direction = 'inbound';
-    eLog.u_class = 'eBond Incident Transform map';
+    eLog.u_location = 'Transform Maps';
+    eLog.u_name = 'eBond Incident Transform';
     eLog.u_source = '[Field Map] Company';
     if (SUPPLIER == undefined) {
         eLog.u_supplier = 'Unknown';
@@ -2364,31 +2510,32 @@ The inbound <em>transform map</em> uses <em>transform scripts</em> to perform va
 </li>
 </ul>
 </li>
-<li data-line="1516" class="code-line">
-<p data-line="1516" class="code-line">Click <strong>Submit</strong>.</p>
+<li data-line="1629" class="code-line">
+<p data-line="1629" class="code-line">Click <strong>Submit</strong>.</p>
 <div class="admonition note">
 <p class="admonition-title">Coalesce fields</p>
-<p data-line="1519" class="code-line">Only the <em>target field</em> fields <em>u_correlation_number</em> and <em>u_company</em> fields are coalesce fields. The <em>u_company</em> is derived internally from the <em>sys_created_by</em> field that holds the account that wrote the record. This removes the means to supplant company information. The <em>u_correlation_number</em> by itself is not sufficient to make it unique enough with multiple eBonded suppliers. The combination of the <em>u_correlation_number</em> and <em>u_company</em> is required; as the assumption is the supplier will not duplicate their ticket numbers. However, two or more suppliers could have the same ticket numbers unrelated to each other. The reason that the <em>u_external_reference</em> is not used is it's typically not a required field. Some ticket solutions do not use reference qualifiers and the ticket number is sufficient when passing information back to the supplier.</p>
+<p data-line="1632" class="code-line">Only the <em>target field</em> fields <em>u_correlation_number</em> and <em>u_company</em> fields are coalesce fields. The <em>u_company</em> is derived internally from the <em>sys_created_by</em> field that holds the account that wrote the record. This removes the means to supplant company information. The <em>u_correlation_number</em> by itself is not sufficient to make it unique enough with multiple eBonded suppliers. The combination of the <em>u_correlation_number</em> and <em>u_company</em> is required; as the assumption is the supplier will not duplicate their ticket numbers. However, two or more suppliers could have the same ticket numbers unrelated to each other. The reason that the <em>u_external_reference</em> is not used is it's typically not a required field. Some ticket solutions do not use reference qualifiers and the ticket number is sufficient when passing information back to the supplier.</p>
 </div>
 </li>
-<li data-line="1521" class="code-line">
-<p data-line="1521" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
+<li data-line="1634" class="code-line">
+<p data-line="1634" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
 </li>
-<li data-line="1522" class="code-line">
-<p data-line="1522" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
+<li data-line="1635" class="code-line">
+<p data-line="1635" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
 <ul>
-<li data-line="1523" class="code-line">
-<p data-line="1523" class="code-line"><u>When:</u> onStart</p>
+<li data-line="1636" class="code-line">
+<p data-line="1636" class="code-line"><u>When:</u> onStart</p>
 </li>
-<li data-line="1524" class="code-line">
-<p data-line="1524" class="code-line"><u>Order:</u> 1</p>
+<li data-line="1637" class="code-line">
+<p data-line="1637" class="code-line"><u>Order:</u> 1</p>
 </li>
-<li data-line="1525" class="code-line">
-<p data-line="1525" class="code-line"><u>Script:</u></p>
-<pre><code data-line="1527" class="code-line"><code><div>// Initialize global variables
+<li data-line="1638" class="code-line">
+<p data-line="1638" class="code-line"><u>Script:</u></p>
+<pre><code data-line="1640" class="code-line"><code><div>// Initialize global variables
 var eLog = new eBondLog();
-    eLog.u_direction = 'inbound';
-eLog.u_class = 'eBond Incident Transform map';
+eLog.u_direction = 'inbound';
+eLog.u_location = 'Transform Maps';
+eLog.u_name = 'eBond Incident Transform';
 eLog.u_source = '[Transform Script] Initialize global variables';
 eLog.u_supplier = 'Unknown';
 eLog.write('Info', 'Entering.');
@@ -2446,29 +2593,30 @@ eLog.write('Info', 'Exiting.');
 </li>
 </ul>
 </li>
-<li data-line="1586" class="code-line">
-<p data-line="1586" class="code-line">Click <strong>Submit</strong>.</p>
+<li data-line="1700" class="code-line">
+<p data-line="1700" class="code-line">Click <strong>Submit</strong>.</p>
 </li>
-<li data-line="1587" class="code-line">
-<p data-line="1587" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
+<li data-line="1701" class="code-line">
+<p data-line="1701" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
 </li>
-<li data-line="1588" class="code-line">
-<p data-line="1588" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
+<li data-line="1702" class="code-line">
+<p data-line="1702" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
 <ul>
-<li data-line="1589" class="code-line">
-<p data-line="1589" class="code-line"><u>When:</u> onBefore</p>
+<li data-line="1703" class="code-line">
+<p data-line="1703" class="code-line"><u>When:</u> onBefore</p>
 </li>
-<li data-line="1590" class="code-line">
-<p data-line="1590" class="code-line"><u>Order:</u> 5</p>
+<li data-line="1704" class="code-line">
+<p data-line="1704" class="code-line"><u>Order:</u> 5</p>
 </li>
-<li data-line="1591" class="code-line">
-<p data-line="1591" class="code-line"><u>Script:</u></p>
-<pre><code data-line="1593" class="code-line"><code><div>// SUPPLIER
+<li data-line="1705" class="code-line">
+<p data-line="1705" class="code-line"><u>Script:</u></p>
+<pre><code data-line="1707" class="code-line"><code><div>// SUPPLIER
 (function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
 
     var eLog = new eBondLog();
     eLog.u_direction = 'inbound';
-    eLog.u_class = 'eBond Incident Transform map';
+    eLog.u_location = 'Transform Maps';
+    eLog.u_name = 'eBond Incident Transform';
     eLog.u_source = '[Transform Script] SUPPLIER';
     eLog.u_supplier = 'Unknown';
     eLog.write('Info', 'Entering.');
@@ -2498,30 +2646,31 @@ eLog.write('Info', 'Exiting.');
 </li>
 </ul>
 </li>
-<li data-line="1626" class="code-line">
-<p data-line="1626" class="code-line">Click <strong>Submit</strong>.</p>
+<li data-line="1741" class="code-line">
+<p data-line="1741" class="code-line">Click <strong>Submit</strong>.</p>
 </li>
-<li data-line="1627" class="code-line">
-<p data-line="1627" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
+<li data-line="1742" class="code-line">
+<p data-line="1742" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
 </li>
-<li data-line="1628" class="code-line">
-<p data-line="1628" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
+<li data-line="1743" class="code-line">
+<p data-line="1743" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
 <ul>
-<li data-line="1629" class="code-line">
-<p data-line="1629" class="code-line"><u>When:</u> onBefore</p>
+<li data-line="1744" class="code-line">
+<p data-line="1744" class="code-line"><u>When:</u> onBefore</p>
 </li>
-<li data-line="1630" class="code-line">
-<p data-line="1630" class="code-line"><u>Order:</u> 10</p>
+<li data-line="1745" class="code-line">
+<p data-line="1745" class="code-line"><u>Order:</u> 10</p>
 </li>
-<li data-line="1631" class="code-line">
-<p data-line="1631" class="code-line"><u>Script:</u></p>
-<pre><code data-line="1633" class="code-line"><code><div>// COMPANY
+<li data-line="1746" class="code-line">
+<p data-line="1746" class="code-line"><u>Script:</u></p>
+<pre><code data-line="1748" class="code-line"><code><div>// COMPANY
 (function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
 
     var eLog = new eBondLog();
     eLog.u_direction = 'inbound';
-    eLog.u_class = 'eBond Incident Transform map';
-    eLog.u_source = '[onBefore] COMPANY';
+    eLog.u_location = 'Transform Maps';
+    eLog.u_name = 'eBond Incident Transform';
+    eLog.u_source = '[Transform Script] COMPANY';
     eLog.u_supplier = SUPPLIER;
     eLog.write('Info', 'Entering.');
 
@@ -2549,30 +2698,31 @@ eLog.write('Info', 'Exiting.');
 </li>
 </ul>
 </li>
-<li data-line="1665" class="code-line">
-<p data-line="1665" class="code-line">Click <strong>Submit</strong>.</p>
+<li data-line="1781" class="code-line">
+<p data-line="1781" class="code-line">Click <strong>Submit</strong>.</p>
 </li>
-<li data-line="1666" class="code-line">
-<p data-line="1666" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
+<li data-line="1782" class="code-line">
+<p data-line="1782" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
 </li>
-<li data-line="1667" class="code-line">
-<p data-line="1667" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
+<li data-line="1783" class="code-line">
+<p data-line="1783" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
 <ul>
-<li data-line="1668" class="code-line">
-<p data-line="1668" class="code-line"><u>When:</u> onBefore</p>
+<li data-line="1784" class="code-line">
+<p data-line="1784" class="code-line"><u>When:</u> onBefore</p>
 </li>
-<li data-line="1669" class="code-line">
-<p data-line="1669" class="code-line"><u>Order:</u> 20</p>
+<li data-line="1785" class="code-line">
+<p data-line="1785" class="code-line"><u>Order:</u> 20</p>
 </li>
-<li data-line="1670" class="code-line">
-<p data-line="1670" class="code-line"><u>Script:</u></p>
-<pre><code data-line="1672" class="code-line"><code><div>// RELATIONSHIP
+<li data-line="1786" class="code-line">
+<p data-line="1786" class="code-line"><u>Script:</u></p>
+<pre><code data-line="1788" class="code-line"><code><div>// RELATIONSHIP
 (function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
 
 	var eLog = new eBondLog();
     eLog.u_direction = 'inbound';
-    eLog.u_class = 'eBond Incident Transform map';
-    eLog.u_source = '[onBefore] RELATIONSHIP';
+    eLog.u_location = 'Transform Maps';
+    eLog.u_name = 'eBond Incident Transform';
+    eLog.u_source = '[Transform Script] RELATIONSHIP';
     eLog.u_supplier = SUPPLIER;
     eLog.write('Info', 'Entering.');
 
@@ -2602,30 +2752,31 @@ eLog.write('Info', 'Exiting.');
 </li>
 </ul>
 </li>
-<li data-line="1706" class="code-line">
-<p data-line="1706" class="code-line">Click <strong>Submit</strong>.</p>
+<li data-line="1823" class="code-line">
+<p data-line="1823" class="code-line">Click <strong>Submit</strong>.</p>
 </li>
-<li data-line="1707" class="code-line">
-<p data-line="1707" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
+<li data-line="1824" class="code-line">
+<p data-line="1824" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
 </li>
-<li data-line="1708" class="code-line">
-<p data-line="1708" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
+<li data-line="1825" class="code-line">
+<p data-line="1825" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
 <ul>
-<li data-line="1709" class="code-line">
-<p data-line="1709" class="code-line"><u>When:</u> onBefore</p>
+<li data-line="1826" class="code-line">
+<p data-line="1826" class="code-line"><u>When:</u> onBefore</p>
 </li>
-<li data-line="1710" class="code-line">
-<p data-line="1710" class="code-line"><u>Order:</u> 30</p>
+<li data-line="1827" class="code-line">
+<p data-line="1827" class="code-line"><u>Order:</u> 30</p>
 </li>
-<li data-line="1711" class="code-line">
-<p data-line="1711" class="code-line"><u>Script:</u></p>
-<pre><code data-line="1713" class="code-line"><code><div>// OPERATION &amp; EXECUTION
+<li data-line="1828" class="code-line">
+<p data-line="1828" class="code-line"><u>Script:</u></p>
+<pre><code data-line="1830" class="code-line"><code><div>// OPERATION &amp; EXECUTION
 (function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
 
     var eLog = new eBondLog();
     eLog.u_direction = 'inbound';
-    eLog.u_class = 'eBond Incident Transform map';
-    eLog.u_source = '[onBefore] OPERATION &amp; EXECUTION';
+    eLog.u_location = 'Transform Maps';
+    eLog.u_name = 'eBond Incident Transform';
+    eLog.u_source = '[Transform Script] OPERATION &amp; EXECUTION';
     eLog.u_supplier = SUPPLIER;
     eLog.write('Info', 'Entering.');
 
@@ -2799,30 +2950,31 @@ eLog.write('Info', 'Exiting.');
 </li>
 </ul>
 </li>
-<li data-line="1891" class="code-line">
-<p data-line="1891" class="code-line">Click <strong>Submit</strong>.</p>
+<li data-line="2009" class="code-line">
+<p data-line="2009" class="code-line">Click <strong>Submit</strong>.</p>
 </li>
-<li data-line="1892" class="code-line">
-<p data-line="1892" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
+<li data-line="2010" class="code-line">
+<p data-line="2010" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
 </li>
-<li data-line="1893" class="code-line">
-<p data-line="1893" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
+<li data-line="2011" class="code-line">
+<p data-line="2011" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
 <ul>
-<li data-line="1894" class="code-line">
-<p data-line="1894" class="code-line"><u>When:</u> onBefore</p>
+<li data-line="2012" class="code-line">
+<p data-line="2012" class="code-line"><u>When:</u> onBefore</p>
 </li>
-<li data-line="1895" class="code-line">
-<p data-line="1895" class="code-line"><u>Order:</u> 40</p>
+<li data-line="2013" class="code-line">
+<p data-line="2013" class="code-line"><u>Order:</u> 40</p>
 </li>
-<li data-line="1896" class="code-line">
-<p data-line="1896" class="code-line"><u>Script:</u></p>
-<pre><code data-line="1898" class="code-line"><code><div>// check required fields
+<li data-line="2014" class="code-line">
+<p data-line="2014" class="code-line"><u>Script:</u></p>
+<pre><code data-line="2016" class="code-line"><code><div>// check required fields
 (function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
 
 	var eLog = new eBondLog();
     eLog.u_direction = 'inbound';
-    eLog.u_class = 'eBond Incident Transform map';
-    eLog.u_source = '[onBefore] check required fields';
+    eLog.u_location = 'Transform Maps';
+    eLog.u_name = 'eBond Incident Transform';
+    eLog.u_source = '[Transform Script] check required fields';
     eLog.u_supplier = 'Unknown';
     eLog.write('Info', 'Entering.');
 
@@ -2890,30 +3042,31 @@ eLog.write('Info', 'Exiting.');
 </li>
 </ul>
 </li>
-<li data-line="1970" class="code-line">
-<p data-line="1970" class="code-line">Click <strong>Submit</strong>.</p>
+<li data-line="2089" class="code-line">
+<p data-line="2089" class="code-line">Click <strong>Submit</strong>.</p>
 </li>
-<li data-line="1971" class="code-line">
-<p data-line="1971" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
+<li data-line="2090" class="code-line">
+<p data-line="2090" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
 </li>
-<li data-line="1972" class="code-line">
-<p data-line="1972" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
+<li data-line="2091" class="code-line">
+<p data-line="2091" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
 <ul>
-<li data-line="1973" class="code-line">
-<p data-line="1973" class="code-line"><u>When:</u> onBefore</p>
+<li data-line="2092" class="code-line">
+<p data-line="2092" class="code-line"><u>When:</u> onBefore</p>
 </li>
-<li data-line="1974" class="code-line">
-<p data-line="1974" class="code-line"><u>Order:</u> 50</p>
+<li data-line="2093" class="code-line">
+<p data-line="2093" class="code-line"><u>Order:</u> 50</p>
 </li>
-<li data-line="1975" class="code-line">
-<p data-line="1975" class="code-line"><u>Script:</u></p>
-<pre><code data-line="1977" class="code-line"><code><div>// INCIDENT
+<li data-line="2094" class="code-line">
+<p data-line="2094" class="code-line"><u>Script:</u></p>
+<pre><code data-line="2096" class="code-line"><code><div>// INCIDENT
 (function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
 
     var eLog = new eBondLog();
     eLog.u_direction = 'inbound';
-    eLog.u_class = 'eBond Incident Transform map';
-    eLog.u_source = '[onBefore] INCIDENT';
+    eLog.u_location = 'Transform Maps';
+    eLog.u_name = 'eBond Incident Transform';
+    eLog.u_source = '[Transform Script] INCIDENT';
     eLog.u_supplier = SUPPLIER;
     eLog.write('Info', 'Entering.');
 
@@ -2987,30 +3140,31 @@ eLog.write('Info', 'Exiting.');
 </li>
 </ul>
 </li>
-<li data-line="2055" class="code-line">
-<p data-line="2055" class="code-line">Click <strong>Submit</strong>.</p>
+<li data-line="2175" class="code-line">
+<p data-line="2175" class="code-line">Click <strong>Submit</strong>.</p>
 </li>
-<li data-line="2056" class="code-line">
-<p data-line="2056" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
+<li data-line="2176" class="code-line">
+<p data-line="2176" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
 </li>
-<li data-line="2057" class="code-line">
-<p data-line="2057" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
+<li data-line="2177" class="code-line">
+<p data-line="2177" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
 <ul>
-<li data-line="2058" class="code-line">
-<p data-line="2058" class="code-line"><u>When:</u> onBefore</p>
+<li data-line="2178" class="code-line">
+<p data-line="2178" class="code-line"><u>When:</u> onBefore</p>
 </li>
-<li data-line="2059" class="code-line">
-<p data-line="2059" class="code-line"><u>Order:</u> 60</p>
+<li data-line="2179" class="code-line">
+<p data-line="2179" class="code-line"><u>Order:</u> 60</p>
 </li>
-<li data-line="2060" class="code-line">
-<p data-line="2060" class="code-line"><u>Script:</u></p>
-<pre><code data-line="2062" class="code-line"><code><div>// URL
+<li data-line="2180" class="code-line">
+<p data-line="2180" class="code-line"><u>Script:</u></p>
+<pre><code data-line="2182" class="code-line"><code><div>// URL
 (function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
 
     var eLog = new eBondLog();
     eLog.u_direction = 'inbound';
-    eLog.u_class = 'eBond Incident Transform map';
-    eLog.u_source = '[onBefore] URL';
+    eLog.u_location = 'Transform Maps';
+    eLog.u_name = 'eBond Incident Transform';
+    eLog.u_source = '[Transform Script] URL';
     eLog.u_supplier = SUPPLIER;
     eLog.write('Info', 'Entering.');
 
@@ -3040,30 +3194,31 @@ eLog.write('Info', 'Exiting.');
 </li>
 </ul>
 </li>
-<li data-line="2096" class="code-line">
-<p data-line="2096" class="code-line">Click <strong>Submit</strong>.</p>
+<li data-line="2217" class="code-line">
+<p data-line="2217" class="code-line">Click <strong>Submit</strong>.</p>
 </li>
-<li data-line="2097" class="code-line">
-<p data-line="2097" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
+<li data-line="2218" class="code-line">
+<p data-line="2218" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
 </li>
-<li data-line="2098" class="code-line">
-<p data-line="2098" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
+<li data-line="2219" class="code-line">
+<p data-line="2219" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
 <ul>
-<li data-line="2099" class="code-line">
-<p data-line="2099" class="code-line"><u>When:</u> onBefore</p>
+<li data-line="2220" class="code-line">
+<p data-line="2220" class="code-line"><u>When:</u> onBefore</p>
 </li>
-<li data-line="2100" class="code-line">
-<p data-line="2100" class="code-line"><u>Order:</u> 200</p>
+<li data-line="2221" class="code-line">
+<p data-line="2221" class="code-line"><u>Order:</u> 200</p>
 </li>
-<li data-line="2101" class="code-line">
-<p data-line="2101" class="code-line"><u>Script:</u></p>
-<pre><code data-line="2103" class="code-line"><code><div>// validate data
+<li data-line="2222" class="code-line">
+<p data-line="2222" class="code-line"><u>Script:</u></p>
+<pre><code data-line="2224" class="code-line"><code><div>// validate data
 (function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
 
     var eLog = new eBondLog();
     eLog.u_direction = 'inbound';
-    eLog.u_class = 'eBond Incident Transform map';
-    eLog.u_source = '[onBefore] validate data';
+    eLog.u_location = 'Transform Maps';
+    eLog.u_name = 'eBond Incident Transform';
+    eLog.u_source = '[Transform Script] validate data';
     eLog.u_supplier = SUPPLIER;
     eLog.write('Info', 'Entering.');
 
@@ -3392,30 +3547,31 @@ eLog.write('Info', 'Exiting.');
 </li>
 </ul>
 </li>
-<li data-line="2436" class="code-line">
-<p data-line="2436" class="code-line">Click <strong>Submit</strong>.</p>
+<li data-line="2558" class="code-line">
+<p data-line="2558" class="code-line">Click <strong>Submit</strong>.</p>
 </li>
-<li data-line="2437" class="code-line">
-<p data-line="2437" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
+<li data-line="2559" class="code-line">
+<p data-line="2559" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
 </li>
-<li data-line="2438" class="code-line">
-<p data-line="2438" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
+<li data-line="2560" class="code-line">
+<p data-line="2560" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
 <ul>
-<li data-line="2439" class="code-line">
-<p data-line="2439" class="code-line"><u>When:</u> onBefore</p>
+<li data-line="2561" class="code-line">
+<p data-line="2561" class="code-line"><u>When:</u> onBefore</p>
 </li>
-<li data-line="2440" class="code-line">
-<p data-line="2440" class="code-line"><u>Order:</u> 210</p>
+<li data-line="2562" class="code-line">
+<p data-line="2562" class="code-line"><u>Order:</u> 210</p>
 </li>
-<li data-line="2441" class="code-line">
-<p data-line="2441" class="code-line"><u>Script:</u></p>
-<pre><code data-line="2443" class="code-line"><code><div>// deBond Relationship
+<li data-line="2563" class="code-line">
+<p data-line="2563" class="code-line"><u>Script:</u></p>
+<pre><code data-line="2565" class="code-line"><code><div>// deBond Relationship
 (function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
 
     var eLog = new eBondLog();
     eLog.u_direction = 'inbound';
-    eLog.u_class = 'eBond Incident Transform map';
-    eLog.u_source = '[onBefore] deBond Relationship';
+    eLog.u_location = 'Transform Maps';
+    eLog.u_name = 'eBond Incident Transform';
+    eLog.u_source = '[Transform Script] deBond Relationship';
     eLog.u_supplier = SUPPLIER;
     eLog.write('Info', 'Entering.');
 
@@ -3477,30 +3633,31 @@ eLog.write('Info', 'Exiting.');
 </li>
 </ul>
 </li>
-<li data-line="2509" class="code-line">
-<p data-line="2509" class="code-line">Click <strong>Submit</strong>.</p>
+<li data-line="2632" class="code-line">
+<p data-line="2632" class="code-line">Click <strong>Submit</strong>.</p>
 </li>
-<li data-line="2510" class="code-line">
-<p data-line="2510" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
+<li data-line="2633" class="code-line">
+<p data-line="2633" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
 </li>
-<li data-line="2511" class="code-line">
-<p data-line="2511" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
+<li data-line="2634" class="code-line">
+<p data-line="2634" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
 <ul>
-<li data-line="2512" class="code-line">
-<p data-line="2512" class="code-line"><u>When:</u> onBefore</p>
+<li data-line="2635" class="code-line">
+<p data-line="2635" class="code-line"><u>When:</u> onBefore</p>
 </li>
-<li data-line="2513" class="code-line">
-<p data-line="2513" class="code-line"><u>Order:</u> 220</p>
+<li data-line="2636" class="code-line">
+<p data-line="2636" class="code-line"><u>Order:</u> 220</p>
 </li>
-<li data-line="2514" class="code-line">
-<p data-line="2514" class="code-line"><u>Script:</u></p>
-<pre><code data-line="2516" class="code-line"><code><div>// eBond Relationship
+<li data-line="2637" class="code-line">
+<p data-line="2637" class="code-line"><u>Script:</u></p>
+<pre><code data-line="2639" class="code-line"><code><div>// eBond Relationship
 (function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
 
     var eLog = new eBondLog();
     eLog.u_direction = 'inbound';
-    eLog.u_class = 'eBond Incident Transform map';
-    eLog.u_source = '[onBefore] eBond Relationship';
+    eLog.u_location = 'Transform Maps';
+    eLog.u_name = 'eBond Incident Transform';
+    eLog.u_source = '[Transform Script] eBond Relationship';
     eLog.u_supplier = SUPPLIER;
     eLog.write('Info', 'Entering.');
 
@@ -3552,30 +3709,31 @@ eLog.write('Info', 'Exiting.');
 </li>
 </ul>
 </li>
-<li data-line="2572" class="code-line">
-<p data-line="2572" class="code-line">Click <strong>Submit</strong>.</p>
+<li data-line="2696" class="code-line">
+<p data-line="2696" class="code-line">Click <strong>Submit</strong>.</p>
 </li>
-<li data-line="2573" class="code-line">
-<p data-line="2573" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
+<li data-line="2697" class="code-line">
+<p data-line="2697" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
 </li>
-<li data-line="2574" class="code-line">
-<p data-line="2574" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
+<li data-line="2698" class="code-line">
+<p data-line="2698" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
 <ul>
-<li data-line="2575" class="code-line">
-<p data-line="2575" class="code-line"><u>When:</u> onBefore</p>
+<li data-line="2699" class="code-line">
+<p data-line="2699" class="code-line"><u>When:</u> onBefore</p>
 </li>
-<li data-line="2576" class="code-line">
-<p data-line="2576" class="code-line"><u>Order:</u> 230</p>
+<li data-line="2700" class="code-line">
+<p data-line="2700" class="code-line"><u>Order:</u> 230</p>
 </li>
-<li data-line="2577" class="code-line">
-<p data-line="2577" class="code-line"><u>Script:</u></p>
-<pre><code data-line="2579" class="code-line"><code><div>// update incident
+<li data-line="2701" class="code-line">
+<p data-line="2701" class="code-line"><u>Script:</u></p>
+<pre><code data-line="2703" class="code-line"><code><div>// update incident
 (function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
 
     var eLog = new eBondLog();
     eLog.u_direction = 'inbound';
-    eLog.u_class = 'eBond Incident Transform map';
-    eLog.u_source = '[onBefore] update incident';
+    eLog.u_location = 'Transform Maps';
+    eLog.u_name = 'eBond Incident Transform';
+    eLog.u_source = '[Transform Script] update incident';
     eLog.u_supplier = SUPPLIER;
     eLog.write('Info', 'Entering');
 
@@ -3835,30 +3993,31 @@ eLog.write('Info', 'Exiting.');
 </li>
 </ul>
 </li>
-<li data-line="2843" class="code-line">
-<p data-line="2843" class="code-line">Click <strong>Submit</strong>.</p>
+<li data-line="2968" class="code-line">
+<p data-line="2968" class="code-line">Click <strong>Submit</strong>.</p>
 </li>
-<li data-line="2844" class="code-line">
-<p data-line="2844" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
+<li data-line="2969" class="code-line">
+<p data-line="2969" class="code-line">In the <strong>Transform Scripts</strong> tab, click <strong>New</strong>.</p>
 </li>
-<li data-line="2845" class="code-line">
-<p data-line="2845" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
+<li data-line="2970" class="code-line">
+<p data-line="2970" class="code-line">In the <strong>Transform Script New record</strong> section, fill in the following fields:</p>
 <ul>
-<li data-line="2846" class="code-line">
-<p data-line="2846" class="code-line"><u>When:</u> onBefore</p>
+<li data-line="2971" class="code-line">
+<p data-line="2971" class="code-line"><u>When:</u> onBefore</p>
 </li>
-<li data-line="2847" class="code-line">
-<p data-line="2847" class="code-line"><u>Order:</u> 300</p>
+<li data-line="2972" class="code-line">
+<p data-line="2972" class="code-line"><u>Order:</u> 300</p>
 </li>
-<li data-line="2848" class="code-line">
-<p data-line="2848" class="code-line"><u>Script:</u></p>
-<pre><code data-line="2850" class="code-line"><code><div>// set number and sys_id
+<li data-line="2973" class="code-line">
+<p data-line="2973" class="code-line"><u>Script:</u></p>
+<pre><code data-line="2975" class="code-line"><code><div>// set number and sys_id
 (function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
 
     var eLog = new eBondLog();
     eLog.u_direction = 'inbound';
-    eLog.u_class = 'eBond Incident Transform map';
-    eLog.u_source = '[onBefore] set number and sys_id';
+    eLog.u_location = 'Transform Maps';
+    eLog.u_name = 'eBond Incident Transform';
+    eLog.u_source = '[Transform Script] set number and sys_id';
     eLog.u_supplier = SUPPLIER;
     eLog.write('Info', 'Entering.');
 
@@ -3878,23 +4037,23 @@ eLog.write('Info', 'Exiting.');
 </li>
 </ul>
 </li>
-<li data-line="2874" class="code-line">
-<p data-line="2874" class="code-line">Click <strong>Submit</strong>.</p>
+<li data-line="3000" class="code-line">
+<p data-line="3000" class="code-line">Click <strong>Submit</strong>.</p>
 </li>
-<li data-line="2875" class="code-line">
-<p data-line="2875" class="code-line">Click <strong>Update</strong>.</p>
+<li data-line="3001" class="code-line">
+<p data-line="3001" class="code-line">Click <strong>Update</strong>.</p>
 </li>
 </ol>
 <hr>
-<a for="toc-anchor" id="data-map---inbound"></a><h2 id="data-map---inbound-3" data-line="2878" class="code-line">Data Map - Inbound</h2>
-<p data-line="2879" class="code-line"><br>
+<a for="toc-anchor" id="data-map---inbound"></a><h2 id="data-map---inbound" data-line="3004" class="code-line">Data Map - Inbound</h2>
+<p data-line="3005" class="code-line"><br>
 The data map table <em>[u_ebond_data_map]</em> is the lookup table used to validate field values for inbound messages passed in by a supplier. It is best practice to assume the data the supplier is incorrect and to validate the data the supplier has passed before inserting the data into a ticket.</p>
 <ol>
-<li data-line="2882" class="code-line">Navigate to <strong>eBond</strong> &gt; <strong>eBond Data Maps</strong>.</li>
-<li data-line="2883" class="code-line">Click <strong>New</strong>.
+<li data-line="3008" class="code-line">Navigate to <strong>eBond</strong> &gt; <strong>eBond Data Maps</strong>.</li>
+<li data-line="3009" class="code-line">Click <strong>New</strong>.
 <ol>
-<li data-line="2884" class="code-line">In the <strong>eBond Data Map New record</strong> section, fill in the field values listed below.</li>
-<li data-line="2885" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="3010" class="code-line">In the <strong>eBond Data Map New record</strong> section, fill in the field values listed below.</li>
+<li data-line="3011" class="code-line">Click <strong>Submit</strong>.</li>
 </ol>
 <table>
 <thead>
@@ -4235,94 +4394,177 @@ The data map table <em>[u_ebond_data_map]</em> is the lookup table used to valid
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Category &amp; Subcategory</p>
-<p data-line="2928" class="code-line">It is the author's opinion that the values for <em>category</em> and <em>subcategory</em> for an incident within ServiceNow is better suited to describe the type of incident reported; rather than the general topic area the incident occurred. Traditionally with ITSM solutions category and subcategory are used to describe the area where an incident occurred. Out of the box, ServiceNow provides the means to relate incident reports directly to the impacted configuration item (CI) within the CMDB; which is a clearer description of the area of interest the incident lays. This frees up the <em>category</em> and <em>subcategory</em> fields to represent the type of incident being investigated and the being done to resolve the incident. The update set contains these new values for <em>category</em> and <em>subcategory</em>, but does not remove the out of the box values set by ServiceNow. Each enterprise will have to ascertain which behavior for the fields to use.</p>
+<p data-line="3054" class="code-line">It is the author's opinion that the values for <em>category</em> and <em>subcategory</em> for an incident within ServiceNow is better suited to describe the type of incident reported; rather than the general topic area the incident occurred. Traditionally with ITSM solutions category and subcategory are used to describe the area where an incident occurred. Out of the box, ServiceNow provides the means to relate incident reports directly to the impacted configuration item (CI) within the CMDB; which is a clearer description of the area of interest the incident lays. This frees up the <em>category</em> and <em>subcategory</em> fields to represent the type of incident being investigated and the being done to resolve the incident. The update set contains these new values for <em>category</em> and <em>subcategory</em>, but does not remove the out of the box values set by ServiceNow. Each enterprise will have to ascertain which behavior for the fields to use.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Contact Type</p>
-<p data-line="2931" class="code-line">By default the transform script <em>[onStart] Initialize global variables</em> defaults the contact type to <em>ebond</em>. This is not a mandatory field for the supplier, however if not specified the assumption is the ticket originated via an eBond action.</p>
+<p data-line="3057" class="code-line">By default the transform script <em>[onStart] Initialize global variables</em> defaults the contact type to <em>ebond</em>. This is not a mandatory field for the supplier, however if not specified the assumption is the ticket originated via an eBond action.</p>
 <ol>
-<li data-line="2932" class="code-line">Navigate to <strong>Incident</strong> &gt; <strong>All</strong>, click on any incident record.</li>
-<li data-line="2933" class="code-line">Right-click on <strong>Contact type</strong>, click <strong>Configure Dictionary</strong>.</li>
-<li data-line="2934" class="code-line">Under the <strong>Choices</strong> tab, click <strong>New</strong>.</li>
-<li data-line="2935" class="code-line">In the <strong>Choice New record</strong>section, fill in the following fields:
+<li data-line="3058" class="code-line">Navigate to <strong>Incident</strong> &gt; <strong>All</strong>, click on any incident record.</li>
+<li data-line="3059" class="code-line">Right-click on <strong>Contact type</strong>, click <strong>Configure Dictionary</strong>.</li>
+<li data-line="3060" class="code-line">Under the <strong>Choices</strong> tab, click <strong>New</strong>.</li>
+<li data-line="3061" class="code-line">In the <strong>Choice New record</strong>section, fill in the following fields:
 <ul>
-<li data-line="2936" class="code-line"><u>Label:</u> eBond</li>
-<li data-line="2937" class="code-line"><u>Value:</u> ebond</li>
+<li data-line="3062" class="code-line"><u>Label:</u> eBond</li>
+<li data-line="3063" class="code-line"><u>Value:</u> ebond</li>
 </ul>
 </li>
-<li data-line="2938" class="code-line">Click <strong>Submit</strong>.</li>
+<li data-line="3064" class="code-line">Click <strong>Submit</strong>.</li>
 </ol>
 </div>
 <hr>
-<a for="toc-anchor" id="multi-source-outbound-handling"></a><h1 id="multi-source-outbound-handling-3" data-line="2941" class="code-line">Multi-source Outbound Handling</h1>
-<a for="toc-anchor" id="outbound-business-rule"></a><h2 id="outbound-business-rule-3" data-line="2944" class="code-line">Outbound Business Rule</h2>
+<a for="toc-anchor" id="multi-source-outbound-handling"></a><h1 id="multi-source-outbound-handling" data-line="3067" class="code-line">Multi-source Outbound Handling</h1>
+<a for="toc-anchor" id="outbound-business-rule"></a><h2 id="outbound-business-rule" data-line="3070" class="code-line">Outbound Business Rule</h2>
 <ol>
-<li data-line="2946" class="code-line">
-<p data-line="2946" class="code-line">Navigate to <strong>System Definition</strong> &gt; <strong>Business Rules</strong>, click <strong>New</strong>.</p>
+<li data-line="3072" class="code-line">
+<p data-line="3072" class="code-line">Navigate to <strong>System Definition</strong> &gt; <strong>Business Rules</strong>, click <strong>New</strong>.</p>
 </li>
-<li data-line="2947" class="code-line">
-<p data-line="2947" class="code-line">In the <strong>Business Rule New record</strong> section, fill in the following fields:</p>
+<li data-line="3073" class="code-line">
+<p data-line="3073" class="code-line">In the <strong>Business Rule New record</strong> section, fill in the following fields:</p>
 <ul>
-<li data-line="2948" class="code-line"><u>Name:</u> eBond Incident Outbound</li>
-<li data-line="2949" class="code-line"><u>Table:</u> Incident [incident]</li>
-<li data-line="2950" class="code-line"><u>Advanced:</u> true</li>
+<li data-line="3074" class="code-line"><u>Name:</u> eBond Incident Outbound</li>
+<li data-line="3075" class="code-line"><u>Table:</u> Incident [incident]</li>
+<li data-line="3076" class="code-line"><u>Advanced:</u> true</li>
 </ul>
 </li>
-<li data-line="2951" class="code-line">
-<p data-line="2951" class="code-line">In the record header, right-click and select <strong>Save</strong>.</p>
+<li data-line="3077" class="code-line">
+<p data-line="3077" class="code-line">In the record header, right-click and select <strong>Save</strong>.</p>
 </li>
-<li data-line="2952" class="code-line">
-<p data-line="2952" class="code-line">In the <strong>When to run</strong> tab, fill in the following fields:</p>
+<li data-line="3078" class="code-line">
+<p data-line="3078" class="code-line">In the <strong>When to run</strong> tab, fill in the following fields:</p>
 <ul>
-<li data-line="2953" class="code-line"><u>Insert:</u> true</li>
-<li data-line="2954" class="code-line"><u>Update:</u> true</li>
-<li data-line="2955" class="code-line"><u>Delete:</u> true</li>
+<li data-line="3079" class="code-line"><u>Insert:</u> true</li>
+<li data-line="3080" class="code-line"><u>Update:</u> true</li>
+<li data-line="3081" class="code-line"><u>Delete:</u> true</li>
 </ul>
 </li>
-<li data-line="2956" class="code-line">
-<p data-line="2956" class="code-line">In the record header, right-click and select <strong>Save</strong>.</p>
+<li data-line="3082" class="code-line">
+<p data-line="3082" class="code-line">In the record header, right-click and select <strong>Save</strong>.</p>
 </li>
-<li data-line="2957" class="code-line">
-<p data-line="2957" class="code-line">In the <strong>When to run</strong> tab, fill in the following fields:</p>
+<li data-line="3083" class="code-line">
+<p data-line="3083" class="code-line">In the <strong>When to run</strong> tab, fill in the following fields:</p>
 <ul>
-<li data-line="2958" class="code-line"><u>Condition:</u> new eBondIncident().canSendPayload();</li>
-<li data-line="2959" class="code-line"><u>Script:</u></li>
+<li data-line="3084" class="code-line"><u>Condition:</u> new eBondIncident().checkCondition();</li>
+<li data-line="3085" class="code-line"><u>Script:</u></li>
 </ul>
-<pre><code data-line="2960" class="code-line"><code><div>To be filled in
+<pre><code data-line="3086" class="code-line"><code><div>(function executeRule(current, previous /*null when async*/ ) {
+
+    var dataSet = {};
+
+    if (current.operation == 'insert') {
+        dataSet.comment = current.comments.getJournalEntry(1);
+        dataSet.work_note = current.work_notes.getJournalEntry(1);
+        dataSet.description = current.description.toString();
+        dataSet.short_description = current.short_description.toString();
+        dataSet.state = current.state.toString();
+        dataSet.impact = current.impact.toString();
+		dataSet.urgency = current.urgency.toString();
+        dataSet.caller = current.caller_id.email.toString();
+        dataSet.assignment_group = current.assignment_group.toString();
+        dataSet.ci = current.cmdb_ci.toString();
+        dataSet.contact_type = current.contact_type.toString();
+        dataSet.close_notes = current.close_notes.getDisplayValue();
+        dataSet.close_code = current.close_code.toString();
+        dataSet.service_offering = current.business_service.toString();
+        dataSet.service_offering = current.service_offering.toString();
+		dataSet.category = current.category.toString();
+		dataSet.subcategory = current.subcategory.toString();
+    } else if (current == 'update') {
+        if (current.comments.changes()) {
+            dataSet.comment = current.comments.getJournalEntry(1);
+        }
+        if (current.work_notes.changes()) {
+            dataSet.work_note = current.work_notes.getJournalEntry(1);
+        }
+        if (current.description.changes()) {
+            dataSet.description = current.description.toString();
+        }
+        if (current.short_description.changes()) {
+            dataSet.short_description = current.short_description.toString();
+        }
+        if (current.state.changes()) {
+            dataSet.state = current.state.toString();
+        }
+        if (current.impact.changes()) {
+            dataSet.impact = current.impact.toString();
+        }
+		if (current.urgency.changes()) {
+            dataSet.urgency = current.urgency.toString();
+        }
+        if (current.caller_id.changes()) {
+            dataSet.caller = current.caller_id.email.toString();
+        }
+        if (current.assignment_group.changes()) {
+            dataSet.assignment_group = current.assignment_group.toString();
+        }
+        if (current.cmdb_ci.changes()) {
+            dataSet.ci = current.cmdb_ci.toString();
+        }
+        if (current.contact_type.changes()) {
+            dataSet.contact_type = current.contact_type.toString();
+        }
+        if (current.close_notes.changes()) {
+            dataSet.close_notes = current.close_notes.getDisplayValue();
+        }
+        if (current.close_code.changes()) {
+            dataSet.close_code = current.close_code.toString();
+        }
+        if (current.business_service.changes()) {
+            dataSet.service_offering = current.business_service.toString();
+        }
+        if (current.service_offering.changes()) {
+            dataSet.service_offering = current.service_offering.toString();
+        }
+		if (current.category.changes()) {
+            dataSet.category = current.category.toString();
+        }
+		if (current.subcategory.changes()) {
+            dataSet.subcategory = current.subcategory.toString();
+        }
+    } else { // delete
+        // intentionally do nothing
+    }
+
+    var dataBundle = JSON.stringify(dataSet);
+
+    gs.eventQueue('ebond.incident.outbound', current, current.operation.toString(), dataBundle);
+
+})(current, previous);
 </div></code></code></pre>
 </li>
-<li data-line="2963" class="code-line">
-<p data-line="2963" class="code-line">Click <strong>Update</strong>.</p>
+<li data-line="3171" class="code-line">
+<p data-line="3171" class="code-line">Click <strong>Update</strong>.</p>
 </li>
-<li data-line="2965" class="code-line">
-<p data-line="2965" class="code-line">Navigate to <strong>System Policy</strong> &gt; <strong>Events</strong> &gt; <strong>Registry</strong>, click <strong>New</strong>.</p>
+<li data-line="3173" class="code-line">
+<p data-line="3173" class="code-line">Navigate to <strong>System Policy</strong> &gt; <strong>Events</strong> &gt; <strong>Registry</strong>, click <strong>New</strong>.</p>
 </li>
-<li data-line="2966" class="code-line">
-<p data-line="2966" class="code-line">In the <strong>Event Registration New record</strong>section, fill in the following fields:</p>
+<li data-line="3174" class="code-line">
+<p data-line="3174" class="code-line">In the <strong>Event Registration New record</strong>section, fill in the following fields:</p>
 <ul>
-<li data-line="2967" class="code-line"><u>Name:</u> ebond.incident.outbound</li>
+<li data-line="3175" class="code-line"><u>Name:</u> ebond.incident.outbound</li>
 </ul>
 </li>
-<li data-line="2968" class="code-line">
-<p data-line="2968" class="code-line">Click <strong>Submit</strong>.</p>
+<li data-line="3176" class="code-line">
+<p data-line="3176" class="code-line">Click <strong>Submit</strong>.</p>
 </li>
-<li data-line="2970" class="code-line">
-<p data-line="2970" class="code-line">Navigate to <strong>System Policy</strong> &gt; <strong>Events</strong> &gt; <strong>Script Actions</strong>, click <strong>New</strong>.</p>
+<li data-line="3178" class="code-line">
+<p data-line="3178" class="code-line">Navigate to <strong>System Policy</strong> &gt; <strong>Events</strong> &gt; <strong>Script Actions</strong>, click <strong>New</strong>.</p>
 </li>
-<li data-line="2971" class="code-line">
-<p data-line="2971" class="code-line">In the <strong>Script Action New record</strong>section, fill in the following fields:</p>
+<li data-line="3179" class="code-line">
+<p data-line="3179" class="code-line">In the <strong>Script Action New record</strong>section, fill in the following fields:</p>
 <ul>
-<li data-line="2972" class="code-line"><u>Name:</u> eBond Incident Outbound</li>
-<li data-line="2973" class="code-line"><u>Event name:</u> ebond.incident.outbound</li>
-<li data-line="2974" class="code-line"><u>Script:</u></li>
+<li data-line="3180" class="code-line"><u>Name:</u> eBond Incident Outbound</li>
+<li data-line="3181" class="code-line"><u>Event name:</u> ebond.incident.outbound</li>
+<li data-line="3182" class="code-line"><u>Active:</u> true</li>
+<li data-line="3183" class="code-line"><u>Script:</u></li>
 </ul>
-<pre><code data-line="2975" class="code-line"><code><div>var operation = event.parm1;
+<pre><code data-line="3184" class="code-line"><code><div>var operation = event.parm1;
 var dataBundle = JSON.parse(event.parm2);
 var returnStatus = new eBondIncident().sendIncident(operation, dataBundle);
 </div></code></code></pre>
 </li>
-<li data-line="2980" class="code-line">
-<p data-line="2980" class="code-line">Click <strong>Submit</strong>.</p>
+<li data-line="3189" class="code-line">
+<p data-line="3189" class="code-line">Click <strong>Submit</strong>.</p>
 </li>
 </ol>
 </div>
