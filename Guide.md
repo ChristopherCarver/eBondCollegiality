@@ -455,6 +455,7 @@ The fields relate the ServiceNow ticket to the various suppliers the ticket is e
     |--------|-----|-----|
     |100|Up|up|
     |200|Down|down|
+    |300|Wait|wait|
 1. Click *Update**.
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
@@ -471,6 +472,7 @@ The fields relate the ServiceNow ticket to the various suppliers the ticket is e
     |--------|-----|-----|
     |100|Up|up|
     |200|Down|down|
+    |300|Wait|wait|
 1. Click *Update**.
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
@@ -569,29 +571,42 @@ Adding color to the **In** and **Out** fields for the **u_ebond_relationship** t
 1. In the **Style New record** section, fill in the following fields:
     - _Table:_ eBond Relationship [u_ebond_relationship]
     - _Field name:_ In
-    - _Value:_ Up
+    - _Value:_ up
     - _Style:_ background-color:green;color:green
 1. Click **Submit**.
 1. Click **New**.
 1. In the **Style New record** section, fill in the following fields:
     - _Table:_ u_ebond_relationship
     - _Field name:_ In
-    - _Value:_ Down
+    - _Value:_ down
     - _Style:_ background-color:tomato;color:tomato
 1. Click **Submit**.
 1. Click **New**.
 1. In the **Style New record** section, fill in the following fields:
     - _Table:_ u_ebond_relationship
+    - _Field name:_ In
+    - _Value:_ wait
+    - _Style:_ background-color:DarkGoldenrod;color:DarkGoldenrod
+1. Click **Submit**.
+1. Click **New**.
+1. In the **Style New record** section, fill in the following fields:
+    - _Table:_ u_ebond_relationship
     - _Field name:_ Out
-    - _Value:_ Up
+    - _Value:_ up
     - _Style:_ background-color:green;color:green
 1. Click **Submit**.
 1. Click **New**.
 1. In the **Style New record** section, fill in the following fields:
     - _Table:_ u_ebond_relationship
     - _Field name:_ Out
-    - _Value:_ Down
+    - _Value:_ down
     - _Style:_ background-color:tomato;color:tomato
+1. Click **Submit**.
+1. In the **Style New record** section, fill in the following fields:
+    - _Table:_ u_ebond_relationship
+    - _Field name:_ In
+    - _Value:_ wait
+    - _Style:_ background-color:DarkGoldenrod;color:DarkGoldenrod
 1. Click **Submit**.
 
 ---
@@ -695,6 +710,8 @@ The *eBondLog* script include is a utility function that will increment the defa
     		u_supplier = 'not set';
     		u_message = 'not set';
     		u_level = 'info';
+    		u_correlate_id = '';
+    		u_correlate_class_name = '';
     
     		logLevel = -1;
     		var reg = new GlideRecord('u_ebond_registry');
@@ -734,6 +751,8 @@ The *eBondLog* script include is a utility function that will increment the defa
             log.u_supplier = this.u_supplier;
             log.u_message = this.u_message;
             log.u_level = this.u_level;
+    		log.u_correlate_id = this.u_correlate_id;
+    		log.u_correlate_class_name = this.u_correlate_class_name;
             log.insert();
     		return;
     	},
@@ -753,6 +772,8 @@ The *eBondLog* script include is a utility function that will increment the defa
             log.u_supplier = this.u_supplier;
             log.u_message = message;
             log.u_level = level;
+    		log.u_correlate_id = this.u_correlate_id;
+    		log.u_correlate_class_name = this.u_correlate_class_name;
             log.insert();
     		return;
     	},
@@ -787,6 +808,7 @@ The *u_ebond_log* table will contain the following custom fields:
 |Source|Where within the record.|
 |Message|The log message.|
 |Level|Choice value of *High*, *Medium*, *Low*, or *Info*.|
+|Correlate ID|Corresponding tag for workload tracing.| 
 
 1. Navigate to **System Definition** > **Tables**.
 1. Click **New**.
@@ -873,6 +895,20 @@ The *u_ebond_log* table will contain the following custom fields:
     |300|Low|300|
     |400|Info|400|
 1. Click **Update**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ String
+    - _Column label:_ Correlate ID
+    - _Column name:_ (this should default to u_correlate_id)
+    - _Max length:_ 40
+1. Click **Submit**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ String
+    - _Column label:_ Correlate class name
+    - _Column name:_ (this should default to u_correlate_class_name)
+    - _Max length:_ 100
+1. Click **Submit**.
 1. Click **Update**.
 
 Create the *[u_ebond_registry]* record used to determine the depth of logs levels to record.
@@ -994,11 +1030,13 @@ Support script used in eBonding operations
             this.eLog.u_name = 'eBondDataMap';
             this.eLog.u_source = 'initialize';
             this.eLog.u_supplier = 'Unknown';
+    		this.eLog.u_correlate_id = current.sys_id;
+    		this.eLog.u_correlate_class_name = current.sys_class_name;
             this.eLog.write('Info', 'Entering.');
-    
+
             this.eLog.write('Info', 'Exiting.');
         },
-    
+
     	// func: getSupplierValue
     	// desc: retrieves the supplier's value from the u_ebond_mapping table.
     	// parm: supplier - supplier name
@@ -1011,7 +1049,10 @@ Support script used in eBonding operations
             this.eLog.u_source = 'getSupplierValue';
             this.eLog.u_supplier = supplier;
             this.eLog.write('Info', 'Entering.');
+    		this.eLog.write('Info', 'Parms:\n supplier = ' + supplier + '\ndirection = ' + direction + '\nmodule = ' + module + '\nclassification = ' + classification + '\nsource_value = ' + source_value + '     \ndefault_value = ' + default_value);
     
+    		dataMap = {};
+
             var supplierValue = new GlideRecord("u_ebond_data_map");
             supplierValue.addQuery("u_supplier", supplier);
             supplierValue.addQuery("u_direction", direction);
@@ -1019,14 +1060,19 @@ Support script used in eBonding operations
             supplierValue.addQuery("u_classification", classification);
             supplierValue.addQuery("u_source_value", source_value);
             supplierValue.query();
-    
+
             if (supplierValue.next()) {
-                this.eLog.write('Info', 'Exiting. Return: ' + supplierValue.u_supplier_value.toString());
-                return supplierValue.u_supplier_value.toString();
+                dataMap.value = supplierValue.u_supplier_value.toString();
+    			if (supplierValue.u_note != undefined && supplierValue.u_note != '') {
+    				dataMap.note = supplierValue.u_note.toString();
+    			}
             } else {
-                this.eLog.write('Info', 'Exiting. Return: ' + default_value);
-                return default_value;
+                dataMap.value = default_value;
             }
+    
+    		var dataMapStr = JSON.stringify(dataMap);
+    		this.eLog.write('Info', 'Exiting. Return: ' + dataMapStr);
+            return dataMap;
         },
     
         type: 'eBondDataMap'
@@ -1047,7 +1093,7 @@ The dynamic filter option *eBond REST Payload Index Increment* is used in the de
 1. Click **New**.
 1. Under the **Dynamic Filter Options New record** section, fill in the following fields:
     - _Label:_ eBond REST Payload Index Increment
-    - _Script:_ new eBondLog().increment();
+    - _Script:_ new eBondRestPayload().increment();
     - _Available for default:_ true
 1. Click **Submit**.
 
@@ -1055,6 +1101,7 @@ The *u_ebond_rest_payloads* table will contain the following custom fields:
 |Field|Description|
 |-----|-----------|
 |Supplier|The name of the supplier.|
+|Retry cap|The maximum number of retries executing the RESTful call to the supplier.|
 |Retry count|The number of retries performed executing the RESTful call to the supplier.|
 |Retry|True or False.|
 |REST Message|ServiceNow REST message label.|
@@ -1086,6 +1133,14 @@ The *u_ebond_rest_payloads* table will contain the following custom fields:
     - _Reference qual condition:_
         - eBonded is true AND
         - eBond account is not empty
+1. Click **Submit**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ Integer
+    - _Column label:_ Retry cap
+    - _Column name:_ (this should default to u_retry_cap)
+1. Under the **Default Value** tab, , fill in the following field:
+    - _Default value:_ 24
 1. Click **Submit**.
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
@@ -1142,8 +1197,194 @@ The *u_ebond_rest_payloads* table will contain the following custom fields:
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
     - _Type:_ Integer
+    - _Column label:_ HTTP Status Code
+    - _Column name:_ (this should default to u_http_status_code)
+1. Click **Submit**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ String
     - _Column label:_ HTTP Status
     - _Column name:_ (this should default to u_http_status)
+    - _Max length:_ 100
+1. Under **Related Links**, click **Advanced view**.
+1. Under the **Calculated Value** tab, fill in the following fields:
+    - _Calculated:_ true
+    - _Calculation:_
+        ````
+        (function calculatedFieldValue(current) {
+
+        	var response = '';
+
+        	if (current.u_http_status_code == undefined || current.u_http_status_code <= 0) {
+        		return response;
+        	} 
+
+        	var httpStatusCode = current.u_http_status_code.toString();
+        	var key = httpStatusCode.substring(0,1);
+        	switch (key) {
+        		case '1':
+        			if (httpStatusCode == '100') {
+        				response = 'Continue';
+        			} else if (httpStatusCode == '101') {
+        				response = 'Switching Protocols';
+        			} else if (httpStatusCode == '102') {
+        				response = 'Processing';
+        			} else if (httpStatusCode == '103') {
+        				response = 'Early Hints';
+        			} else {
+        				response = 'Unassigned';
+        			}
+        			break;
+        		case '2':
+        			if (httpStatusCode == '200') {
+        				response = 'OK';
+        			} else if (httpStatusCode == '201') {
+        				response = ' Created';
+        			} else if (httpStatusCode == '202') {
+        				response = 'Accepted';
+        			} else if (httpStatusCode == '203') {
+        				response = 'Non-Authoritative Information';
+        			} else if (httpStatusCode == '204') {
+        				response = 'No Content';
+        			} else if (httpStatusCode == '205') {
+        				response = 'Reset Content';
+        			} else if (httpStatusCode == '206') {
+        				response = 'Partial Content';
+        			} else if (httpStatusCode == '207') {
+        				response = 'Multi-Status';
+        			} else if (httpStatusCode == '208') {
+        				response = 'Already Reported';
+        			} else if (httpStatusCode == '226') {
+        				response = 'IM Used';
+        			} else {
+        				response = 'Unassigned';
+        			}
+        			break;
+        		case '3':
+        			if (httpStatusCode == '300') {
+        				response = 'Multiple Choices';
+        			} else if (httpStatusCode == '301') {
+        				response = 'Moved Permanently';
+        			} else if (httpStatusCode == '302') {
+        				response = 'Found';
+        			} else if (httpStatusCode == '303') {
+        				response = 'See Other';
+        			} else if (httpStatusCode == '304') {
+        				response = 'Not Modified';
+        			} else if (httpStatusCode == '305') {
+        				response = 'Use Proxy';
+        			} else if (httpStatusCode == '306') {
+        				response = '(Unused)';
+        			} else if (httpStatusCode == '307') {
+        				response = 'Temporary Redirect';
+        			} else if (httpStatusCode == '308') {
+        				response = 'Permanent Redirect';
+        			} else {
+        				response = 'Unassigned';
+        			}
+        			break;
+        		case '4':
+        			if (httpStatusCode == '400') {
+        				response = 'Bad Request';
+        			} else if (httpStatusCode == '401') {
+        				response = 'Unauthorized';
+        			} else if (httpStatusCode == '402') {
+        				response = 'Payment Required';
+        			} else if (httpStatusCode == '403') {
+        				response = 'Forbidden';
+        			} else if (httpStatusCode == '404') {
+        				response = 'Not Found';
+        			} else if (httpStatusCode == '405') {
+        				response = 'Method Not Allowed';
+        			} else if (httpStatusCode == '406') {
+        				response = 'Not Acceptable';
+        			} else if (httpStatusCode == '407') {
+        				response = 'Proxy Authentication Required';
+        			} else if (httpStatusCode == '408') {
+        				response = 'Request Timeout';
+        			} else if (httpStatusCode == '409') {
+        				response = 'Conflict';
+        			} else if (httpStatusCode == '410') {
+        				response = 'Gone';
+        			} else if (httpStatusCode == '411') {
+        				response = 'Length Required';
+        			} else if (httpStatusCode == '412') {
+        				response = 'Precondition Failed';
+        			} else if (httpStatusCode == '413') {
+        				response = 'Payload Too Large';
+        			} else if (httpStatusCode == '414') {
+        				response = 'URI Too Long';
+        			} else if (httpStatusCode == '415') {
+        				response = 'Unsupported Media Type';
+        			} else if (httpStatusCode == '416') {
+        				response = 'Range Not Satisfiable';
+        			} else if (httpStatusCode == '417') {
+        				response = 'Expectation Failed';
+        			} else if (httpStatusCode == '421') {
+        				response = 'Misdirected Request';
+        			} else if (httpStatusCode == '422') {
+        				response = 'Unprocessable Entity';
+        			} else if (httpStatusCode == '423') {
+        				response = 'Locked';
+        			} else if (httpStatusCode == '424') {
+        				response = 'Failed Dependency';
+        			} else if (httpStatusCode == '425') {
+        				response = 'Too Early';
+        			} else if (httpStatusCode == '426') {
+        				response = 'Upgrade Required';
+        			} else if (httpStatusCode == '427') {
+        				response = 'Unassigned';
+        			} else if (httpStatusCode == '428') {
+        				response = 'Precondition Required';
+        			} else if (httpStatusCode == '429') {
+        				response = 'Too Many Requests';
+        			} else if (httpStatusCode == '430') {
+        				response = 'Unassigned';
+        			} else if (httpStatusCode == '431') {
+        				response = 'Request Header Fields Too Large';
+        			} else if (httpStatusCode == '451') {
+        				response = 'Unavailable For Legal Reasons';
+        			} else {
+        				response = 'Unassigned';
+        			}
+        			break;
+        		case '5':
+        			if (httpStatusCode == '500') {
+        				response = 'Internal Server Error';
+        			} else if (httpStatusCode == '501') {
+        				response = 'Not Implemented';
+        			} else if (httpStatusCode == '502') {
+        				response = 'Bad Gateway';
+        			} else if (httpStatusCode == '503') {
+        				response = 'Service Unavailable';
+        			} else if (httpStatusCode == '504') {
+        				response = 'Gateway Timeout';
+        			} else if (httpStatusCode == '505') {
+        				response = 'HTTP Version Not Supported';
+        			} else if (httpStatusCode == '506') {
+        				response = 'Variant Also Negotiates';
+        			} else if (httpStatusCode == '507') {
+        				response = 'Insufficient Storage';
+        			} else if (httpStatusCode == '508') {
+        				response = 'Loop Detected';
+        			} else if (httpStatusCode == '509') {
+        				response = 'Unassigned';
+        			} else if (httpStatusCode == '510') {
+        				response = 'Not Extended';
+        			} else if (httpStatusCode == '511') {
+        				response = 'Network Authentication Required';
+        			} else {
+        				response = 'Unassigned';
+        			}
+        			break;
+        		default:
+        			response = 'Unknown';
+        			break;
+        	}
+        	return response;  // return the calculated value
+
+        })(current);
+        ````
 1. Click **Submit**.
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
@@ -1180,84 +1421,17 @@ The *u_ebond_rest_payloads* table will contain the following custom fields:
         (function calculatedFieldValue(current) {
             var calc = current.u_retry;
 
-            switch (current.u_http_status.toString()) {
-                //1×× Informational
-                case '100': // Continue
-                case '101': // Switching Protocols
-                case '102': // Processing
-                case '200': // OK
-                case '201': // Created
-                case '202': // Accepted
-                case '203': // Non-authoritative Information
-                case '204': // No Content
-                case '205': // Reset Content
-                case '206': // Partial Content
-                case '207': // Multi-Status
-                case '208': // Already Reported
-                case '226': // IM Used
-                case '300': // Multiple Choices
-                case '301': // Moved Permanently
-                case '302': // Found
-                case '303': // See Other
-                case '304': // Not Modified
-                case '305': // Use Proxy
-                case '307': // Temporary Redirect
-                case '308': // Permanent Redirect
-                case '400': // Bad Request
-                    calc = false;
-                    break;
-                case '401': // Unauthorized
-                case '402': // Payment Required
-                case '403': // Forbidden
-                case '404': // Not Found
-                case '405': // Method Not Allowed
-                case '406': // Not Acceptable
-                case '407': // Proxy Authentication Required
-                case '408': // Request Timeout
-                case '409': // Conflict
-                case '410': // Gone
-                case '411': // Length Required
-                case '412': // Precondition Failed
-                case '413': // Payload Too Large
-                case '414': // Request-URI Too Long
-                case '415': // Unsupported Media Type
-                case '416': // Requested Range Not Satisfiable
-                case '417': // Expectation Failed
-                case '418': // I'm a teapot
-                case '421': // Misdirected Request
-                case '422': // Unprocessable Entity
-                case '423': // Locked
-                case '424': // Failed Dependency
-                case '426': // Upgrade Required
-                case '428': // Precondition Required
-                case '429': // Too Many Requests
-                case '431': // Request Header Fields Too Large
-                case '444': // Connection Closed Without Response
-                case '451': // Unavailable For Legal Reasons
-                case '499': // Client Closed Request
-                case '500': // Internal Server Error
-                case '501': // Not Implemented
-                case '502': // Bad Gateway
-                case '503': // Service Unavailable
-                case '504': // Gateway Timeout
-                    break;
-                case '505': // HTTP Version Not Supported
-                case '506': // Variant Also Negotiates
-                case '507': // Insufficient Storage
-                case '508': // Loop Detected
-                case '510': // Not Extended
-                case '511': // Network Authentication Required
-                case '599': // Network Connect Timeout Error
-                    calc = false;
-                    break;
-                default:
-                    break;
-            }
-
-            // after 48 hours of retrying, turn off active flag
-            if (current.u_retry_count >= 48) {
+            if (current.u_retry_count > current.u_retry_cap) {
                 calc = false;
-            }
+            } else if (current.u_http_status_code == 401 ||
+                current.u_http_status_code == 404 ||
+                current.u_http_status_code == 408 ||
+                (current.u_http_status_code >= 500 &&
+                    current.u_http_status_code <= 599)) {
+        		calc = true;
+            } else {
+        		calc = false;
+        	}
 
             return calc; // return the calculated value
         })(current);
@@ -1756,6 +1930,8 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] COMPANY';
             eLog.u_supplier = SUPPLIER;
+            eLog.u_correlate_id = source.sys_id;
+	        eLog.u_correlate_class_name = source.sys_class_name;
             eLog.write('Info', 'Entering.');
 
         	// find the user account that created the record
@@ -1796,6 +1972,8 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] RELATIONSHIP';
             eLog.u_supplier = SUPPLIER;
+            eLog.u_correlate_id = source.sys_id;
+	        eLog.u_correlate_class_name = source.sys_class_name;
             eLog.write('Info', 'Entering.');
 
         	if (action == 'insert') {
@@ -1838,6 +2016,8 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] OPERATION & EXECUTION';
             eLog.u_supplier = SUPPLIER;
+            eLog.u_correlate_id = source.sys_id;
+	        eLog.u_correlate_class_name = source.sys_class_name;
             eLog.write('Info', 'Entering.');
 
             /*
@@ -2104,6 +2284,8 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] INCIDENT';
             eLog.u_supplier = SUPPLIER;
+            eLog.u_correlate_id = source.sys_id;
+	        eLog.u_correlate_class_name = source.sys_class_name;
             eLog.write('Info', 'Entering.');
 
             if ((source.u_number != '' || source.u_sys_id != '') && (source.u_number != '-1' && source.u_sys_id != '-1')) {
@@ -2190,6 +2372,8 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] URL';
             eLog.u_supplier = SUPPLIER;
+            eLog.u_correlate_id = source.sys_id;
+	        eLog.u_correlate_class_name = source.sys_class_name;
             eLog.write('Info', 'Entering.');
 
             // deBond check
@@ -2232,6 +2416,8 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] validate data';
             eLog.u_supplier = SUPPLIER;
+            eLog.u_correlate_id = source.sys_id;
+	        eLog.u_correlate_class_name = source.sys_class_name;
             eLog.write('Info', 'Entering.');
 
             var invalidData = false;
@@ -2573,6 +2759,8 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] deBond Relationship';
             eLog.u_supplier = SUPPLIER;
+            eLog.u_correlate_id = source.sys_id;
+	        eLog.u_correlate_class_name = source.sys_class_name;
             eLog.write('Info', 'Entering.');
 
             // eBond check
@@ -2647,6 +2835,8 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] eBond Relationship';
             eLog.u_supplier = SUPPLIER;
+            eLog.u_correlate_id = source.sys_id;
+	        eLog.u_correlate_class_name = source.sys_class_name;
             eLog.write('Info', 'Entering.');
 
             // deBond check
@@ -2659,19 +2849,9 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
             if (OPERATION == 'create' && INCIDENT == '') {
                 var grInc = new GlideRecord("incident");
                 grInc.initialize();
+                grInc.setWorkflow(false); // supress business rules
                 grInc.insert();
-        		grInc.subcategory = SUBCATEGORY;
-        		grInc.state = STATE;
-        		grInc.service_offering = SERVICE_OFFERING;
-        		grInc.business_service = SERVICE;
-        		grInc.impact = IMPACT;
-        		grInc.urgency = URGENCY;
-        		grInc.contact_type = CONTACT_TYPE;
-        		grInc.category = CATEGORY;
-        		grInc.caller = CALLER;
-        		grInc.assignment_group = ASSIGNMENT_GROUP;
-        		grInc.update();
-                INCIDENT_NUMBER = grInc.number;
+        	    INCIDENT_NUMBER = grInc.number;
                 INCIDENT = grInc.sys_id.toString();
         		eLog.write('Info', 'INCIDENT_NUMBER = ' + INCIDENT_NUMBER + ' INCIDENT = ' + INCIDENT);
             }
@@ -2711,6 +2891,8 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] update incident';
             eLog.u_supplier = SUPPLIER;
+            eLog.u_correlate_id = source.sys_id;
+	        eLog.u_correlate_class_name = source.sys_class_name;
             eLog.write('Info', 'Entering');
 
             if (EXECUTION == 'debond') {
@@ -2732,6 +2914,22 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
             incident.addQuery('number', INCIDENT_NUMBER);
             incident.query();
             if (incident.next()) {
+
+                // create a new incident record
+		        // some of these variables might not have been set from the supplier
+		        // but are needed for the creation of the ticket
+		        if (OPERATION == 'create') {
+		        	incident.subcategory = SUBCATEGORY;
+		        	incident.state = STATE;
+		        	incident.service_offering = SERVICE_OFFERING;
+		        	incident.business_service = SERVICE;
+		        	incident.impact = IMPACT;
+		        	incident.urgency = URGENCY;
+		        	incident.contact_type = CONTACT_TYPE;
+		        	incident.category = CATEGORY;
+		        	incident.caller = CALLER;
+		        	incident.assignment_group = ASSIGNMENT_GROUP;
+		        }
             
                 if (source.u_work_note != '') {
                     incident['work_notes'].setJournalEntry(source.u_work_note);
@@ -2983,6 +3181,8 @@ The inbound *transform map* uses *transform scripts* to perform various operatio
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] set number and sys_id';
             eLog.u_supplier = SUPPLIER;
+            eLog.u_correlate_id = source.sys_id;
+	        eLog.u_correlate_class_name = source.sys_class_name;
             eLog.write('Info', 'Entering.');
 
             // deBond check
@@ -3085,89 +3285,170 @@ The data map table *[u_ebond_data_map]* is the lookup table used to validate fie
     - _Condition:_ new eBondIncident().checkCondition();
     - _Script:_ 
     ```
-    (function executeRule(current, previous /*null when async*/ ) {
-
-        var dataSet = {};
-
-        if (current.operation == 'insert') {
-            dataSet.comment = current.comments.getJournalEntry(1);
-            dataSet.work_note = current.work_notes.getJournalEntry(1);
-            dataSet.description = current.description.toString();
-            dataSet.short_description = current.short_description.toString();
-            dataSet.state = current.state.toString();
-            dataSet.impact = current.impact.toString();
-    		dataSet.urgency = current.urgency.toString();
-            dataSet.caller = current.caller_id.email.toString();
-            dataSet.assignment_group = current.assignment_group.toString();
-            dataSet.ci = current.cmdb_ci.toString();
-            dataSet.contact_type = current.contact_type.toString();
-            dataSet.close_notes = current.close_notes.getDisplayValue();
-            dataSet.close_code = current.close_code.toString();
-            dataSet.service_offering = current.business_service.toString();
-            dataSet.service_offering = current.service_offering.toString();
-    		dataSet.category = current.category.toString();
-    		dataSet.subcategory = current.subcategory.toString();
-        } else if (current == 'update') {
-            if (current.comments.changes()) {
-                dataSet.comment = current.comments.getJournalEntry(1);
+    var eBondIncident = Class.create();
+    eBondIncident.prototype = {
+        // func: initialize
+        // desc: initializes the JavaScript object
+        // parm: n/a
+        // retn: true or false
+        initialize: function() {
+            this.eLog = new eBondLog();
+            this.eLog.u_direction = 'outbound';
+            this.eLog.u_location = 'Script Includes';
+    		this.eLog.u_name = 'eBondIncident';
+            this.eLog.u_source = 'initialize';
+            this.eLog.u_supplier = 'Unknown';
+    		this.eLog.u_correlate_id = current.sys_id;
+    		this.eLog.u_correlate_class_name = current.sys_class_name;
+            this.eLog.write('Info', 'Entering.');
+    
+            this.eLog.write('Info', 'Exiting.');
+        },
+    
+        // func: checkCondition
+        // desc: determines if the record is eBonded or should be eBonded
+        // parm: n/a
+        // retn: true or false
+        checkCondition: function() {
+            this.eLog.u_source = 'checkCondition';
+            this.eLog.write('Info', 'Entering.');
+    
+            // check if there are existing eBonded relationships
+            var relationships = new GlideRecord('u_ebond_relationship');
+            relationships.addQuery('u_source', current.sys_id);
+            relationships.addQuery('u_status', 'ebonded');
+            relationships.query();
+            while (relationships.next()) {
+    			// check that the company is eBond enabled
+                var company = new GlideRecord('core_company');
+                company.addQuery('sys_id', relationships.u_company);
+                company.addQuery('u_ebonded', 'true');
+                company.query();
+                if (company.next()) {
+                    this.eLog.write('Info', 'Existing relationship(s) found.');
+                    this.eLog.write('Info', 'Exiting. Return: true');
+                    return true;
+                }
             }
-            if (current.work_notes.changes()) {
-                dataSet.work_note = current.work_notes.getJournalEntry(1);
+    
+            // look into the incident
+            var incident = new GlideRecord('incident');
+            incident.addQuery('sys_id', current.sys_id);
+            incident.query();
+            if (incident.next()) {
+                // check u_ebonded_with
+                if (incident.u_ebonded_with != '') {
+                    this.eLog.write('Info', 'eBonded with is set.');
+                    this.eLog.write('Info', 'Exiting. Return: true');
+                    return true;
+                }
+                if (incident.assignment_group) {
+                    // check assignment group declared in the incident
+                    var assignmentGroup = new GlideRecord('sys_user_group');
+                    assignmentGroup.addQuery('sys_id', incident.assignment_group);
+                    assignmentGroup.query();
+                    if (assignmentGroup.next()) {
+                        // check company associated with the assignment group is eBonded
+                        var company = new GlideRecord('core_company');
+                        company.addQuery('sys_id', assignmentGroup.u_company);
+                        company.addQuery('u_ebonded', 'true');
+                        company.query();
+                        if (company.next()) {
+                            this.eLog.write('Info', 'Incident is assigned to an eBonded assignment group.');
+                            this.eLog.write('Info', 'Exiting. Return: true');
+                            return true;
+    
+                        }
+                    }
+                }
             }
-            if (current.description.changes()) {
-                dataSet.description = current.description.toString();
+    
+            this.eLog.write('Info', 'Exiting. Return: false');
+            return false;
+        },
+    
+        // func: getSuppliers
+        // desc: determines if the record is eBonded or should be eBonded
+        // parm: n/a
+        // retn: true or false
+        getSuppliers: function() {
+            this.eLog.u_source = 'getSuppliers';
+            this.eLog.write('Info', 'Entering.');
+    
+            var suppliers = new Array();
+    
+            // check if there are existing eBonded relationships
+            var relationships = new GlideRecord('u_ebond_relationship');
+            relationships.addQuery('u_source', current.sys_id);
+            relationships.addQuery('u_status', 'ebonded');
+            relationships.query();
+            while (relationships.next()) {
+                var company = new GlideRecord('core_company');
+                company.addQuery('sys_id', relationships.u_company);
+                company.addQuery('u_ebonded', 'true');
+                company.query();
+                if (company.next()) {
+                    suppliers.push(company.stock_symbol.toString());
+                }
             }
-            if (current.short_description.changes()) {
-                dataSet.short_description = current.short_description.toString();
+    
+            // look at the incident
+            var incident = new GlideRecord('incident');
+            incident.addQuery('sys_id', current.sys_id);
+            incident.query();
+            if (incident.next()) {
+                // check u_ebonded_with
+                if (incident.u_ebonded_with != '') {
+    				var companies = incident.u_ebonded_with.toString().split(',');
+    				for (var index = 0; index < companies.length; index++) {
+    					var company = new GlideRecord('core_company');
+                        company.addQuery('sys_id', companies[index]);
+                        company.addQuery('u_ebonded', 'true');
+                        company.query();
+                        if (company.next()) {
+                            suppliers.push(company.stock_symbol.toString());
+                        }
+    				}
+    			}
+    
+                if (incident.assignment_group) {
+                    // check assignment group declared in the incident
+                    var assignmentGroup = new GlideRecord('sys_user_group');
+                    assignmentGroup.addQuery('sys_id', incident.assignment_group);
+                    assignmentGroup.query();
+                    if (assignmentGroup.next()) {
+                        // check company associated with the assignment group
+                        var company = new GlideRecord('core_company');
+                        company.addQuery('sys_id', assignmentGroup.u_company);
+    					company.addQuery('u_ebonded', 'true');
+                        company.query();
+                        if (company.next()) {
+                            if (company.u_ebonded) {
+                                suppliers.push(company.stock_symbol.toString());
+                            }
+                        }
+                    }
+                }
             }
-            if (current.state.changes()) {
-                dataSet.state = current.state.toString();
-            }
-            if (current.impact.changes()) {
-                dataSet.impact = current.impact.toString();
-            }
-    		if (current.urgency.changes()) {
-                dataSet.urgency = current.urgency.toString();
-            }
-            if (current.caller_id.changes()) {
-                dataSet.caller = current.caller_id.email.toString();
-            }
-            if (current.assignment_group.changes()) {
-                dataSet.assignment_group = current.assignment_group.toString();
-            }
-            if (current.cmdb_ci.changes()) {
-                dataSet.ci = current.cmdb_ci.toString();
-            }
-            if (current.contact_type.changes()) {
-                dataSet.contact_type = current.contact_type.toString();
-            }
-            if (current.close_notes.changes()) {
-                dataSet.close_notes = current.close_notes.getDisplayValue();
-            }
-            if (current.close_code.changes()) {
-                dataSet.close_code = current.close_code.toString();
-            }
-            if (current.business_service.changes()) {
-                dataSet.service_offering = current.business_service.toString();
-            }
-            if (current.service_offering.changes()) {
-                dataSet.service_offering = current.service_offering.toString();
-            }
-    		if (current.category.changes()) {
-                dataSet.category = current.category.toString();
-            }
-    		if (current.subcategory.changes()) {
-                dataSet.subcategory = current.subcategory.toString();
-            }
-        } else { // delete
-            // intentionally do nothing
-        }
-
-        var dataBundle = JSON.stringify(dataSet);
-
-        gs.eventQueue('ebond.incident.outbound', current, current.operation.toString(), dataBundle);
-
-    })(current, previous);
+    
+    		// filter down to unique suppliers 
+    		var arrayUtil = new ArrayUtil();
+    		var suppliersArray = arrayUtil.unique(suppliers);
+    
+    		this.eLog.write('Info', 'Exiting. Returning: ' + suppliersArray.toString());
+            return suppliersArray;
+        },
+    
+        sendIncident: function(operation, dataBundle) {
+            this.eLog.u_source = 'sendIncident';
+            this.eLog.write('Info', 'Entering.');
+    
+            this.eLog.write('Info', 'Exiting.');
+            return;
+        },
+    
+        type: 'eBondIncident'
+    };
     ```
 1. Click **Update**.
 
