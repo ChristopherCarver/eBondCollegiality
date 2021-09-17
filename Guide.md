@@ -698,6 +698,7 @@ The [u_ebond_log] table is similar to that of the [syslog] table in that it stor
 !!! note Evaluator messages
 The [u_ebond_log] table does not capture *Evaluator* messages from faulted JavaScript execution. Use the [syslog] table to check for failed JavaScript executions.
 
+---
 ### eBond Log Index Script Include
 \
 The *eBondLog* script include is a utility function that will increment the default value in the *index* field in the [u_ebond_log] table. The *index* value is based on the greatest index value in the table. If no rows exist, the *index* value is reset to zero. This needs to be setup first because this will be referenced later on when creating the [u_ebond_log] table.
@@ -801,7 +802,7 @@ _Instructions:_
     ```
 1. Click **Submit**.
 
-
+---
 ### eBond Log Index Dynamic Filter Options
 \
 The dynamic filter option *eBond Log Index Increment* is used in the default value in the *index* field in the [u_ebond_log] table as a reference to the script include *eBondLog*.
@@ -816,6 +817,7 @@ _Instructions:_
     - _Available for default:_ true
 1. Click **Submit**.
 
+---
 ### eBond Log
 \
 The [u_ebond_log] table will contain the following custom fields:
@@ -1032,6 +1034,7 @@ _Instructions:_
     - _Max length:_ 4000
 1. Click **Submit**.
 1. Click **Update**.
+
 ---
 ### eBond Data Map Script Include
 \
@@ -1114,6 +1117,7 @@ _Instructions:_
 \
 The [u_ebond_rest_payloads] table records all outbound REST API calls and their statuses. This table is also used to retry REST calls in the event of a failure; see **eBond Scheduled Job**. 
 
+---
 ### eBond REST Payloads
 \
 The dynamic filter option *eBond REST Payload Index Increment* is used in the default value in the *index* field in the [u_ebond_rest_payload] table as a reference to the script include *eBondRestPayload*.
@@ -1512,7 +1516,31 @@ _Instructions:_
 ---
 # Multi-source Inbound Handling
 \
-If you are employing the push-push model as suggested by the guide for eBonding, then once the inbound handling framework is setup there is no maintenance or further development is needed. The only exceptions is when you want to add additional functionality to your ServiceNow instance. As you onboard new suppliers, there is no new development work needed for inbound data processing as it will remain the same across the suppliers.
+If you are employing the push-push model as suggested by the guide for eBonding, then once the inbound handling framework is setup there is no maintenance or further development required. The only exceptions is when you want to add additional functionality to your ServiceNow instance. As you onboard new suppliers, there is no new development work needed for inbound data processing as it will remain the same across the suppliers.
+
+```mermaid
+flowchart LR
+    A(Alpha Co.)
+    B[[u_ebond_incident_staging]]
+    C(Transform)
+    D(Transform Maps)
+    E(Transform Scripts)
+    F[[u_ebond_relationship]]
+    G[[incident]]
+    A .-> B
+    B --> C
+    D --> C
+    E --> C
+    F <--> G
+    C --> F
+    C --> G
+```
+
+_Operations:_
+1. Alpha Co. initiates a RESTful call sending over a payload to the [u_ebond_incident_staging] table.
+1. ServiceNow detects the inserted row and invokes the transform operation.
+1. The transform uses its transform maps and scripts to create or update the incident and relationship.
+1. The incident and relationship records are linked.
 
 ---
 ## Quick Rundown
@@ -3351,7 +3379,34 @@ The standard components that make up the outbound framework is similar to that o
 
 The custom components that make up the outbound framework will be unique to each supplier you onboard. Each custom component will have a standard operation that it will need to perform, but how it processes the operation will be unique to each supplier. This guide creates a drop-in framework for suppliers; meaning you should not have to edit existing components to add a new supplier. Rather you add net new components per supplier. This is the same design principles as plugins for software applications.
 
-Each section will inform you if what you are about to setup is a standard component or a custom component at the start of each section.
+Each section will inform you if what you are about to setup is a standard component or a custom component at the start of each section. In the diagram below, the custom components are highlighted in green.
+
+```mermaid
+flowchart LR
+    A[[incident]]
+    B("(BR) eBond Incident Outbound")
+    C("(EV) ebond.incident.outbound.{supplier}")
+    D("(SA) eBond Incident Outbound {supplier}")
+    E("(SI) eBondIncident_{supplier}")
+    F("(SI) eBondRestPayload")
+    G[[u_ebond_rest_payload]]
+    H(Alpha Co.)
+    A --> B
+    B .-> C
+    C:::highlight --> D
+    D:::highlight --> E
+    E:::highlight --> F
+    F --> G
+    F .-> |REST Call|H:::highlight
+    classDef highlight fill:#77b37d;
+```
+
+_Operations:_
+1. An incident record is updated and a business rule (BR) is alerted of the change.
+1. The business rule bundles the data and creates an async event (EV).
+1. An event is created and a custom script action (SA) is activated.
+1. The script action passes the bundled incident data and passes it to a custom script include (SI) processed.
+1. The script include builds out the REST payload and passes it to a standard script include (SI) that stores the payload and sends the payload to the supplier to either create or update a ticket on their side.
 
 ---
 ## Business Rule
@@ -4758,6 +4813,119 @@ _Instructions:_
     ```
 1. Click **Submit**.
 
+---
+# Relationship Handling
+\
+_Component Type:_ Standard
+
+If a fulfiller chooses to they can deBond and re-eBond suppliers from the [u_ebond_relationship] table. The table is shown as a related list in the incident and a fulfiller can change the value of the Status field. Changing the Status field should send an update to the supplier to the change in eBond status.
+
+_Instructions:_
+
+1. Navigate to **System Definition** > **Business Rules**, click **New**.
+1. In the **Business Rule New record** section, fill in the following fields:
+    - _Name:_ eBond Relationship Management
+    - _Table:_ eBond Relationship [u_ebond_relationship]
+    - _Advanced:_ True
+1. In the **When to run** tab, fill in the following fields:
+    - _When:_ after
+    - _Update:_ True
+    - _Delete:_ True
+1. In the **Advanced** tab, fill in the following fields:
+    - _Condition:_ new eBondIncident_AlphaCo().checkCondition();
+    - _Script:_
+    ```
+    (function executeRule(current, previous /*null when async*/ ) {
+        var eLog = new eBondLog();
+        eLog.u_direction = 'outbound';
+        eLog.u_location = 'Business Rules';
+        eLog.u_name = 'eBond Relationship Management';
+        eLog.u_source = 'executeRule';
+        eLog.u_supplier = 'Unknown';
+        eLog.u_correlate_id = current.sys_id;
+        eLog.u_correlate_class_name = current.sys_class_name;
+        eLog.write('Info', 'Entering.');
+
+        var dataSet = {};
+
+        if (current.operation() == 'update' && current.u_status.changes()) {
+    		dataSet.status = current.getValue('u_status');
+        } else if (current.operation() == 'delete') {
+            dataSet.status = 'debonded';
+        } else {
+    		eLog.write('Info', 'Exiting.');
+    		return;
+    	}
+
+        var dataBundle = JSON.stringify(dataSet);
+
+    	var company = new GlideRecord('core_company');
+    	company.addQuery('sys_id', current.getValue('u_company'));
+    	company.query();
+    
+    	if (company.next()) {
+    		var supplier = company.getValue('stock_symbol').toString();
+    		try {
+                gs.eventQueue('ebond.relationship.management.' + supplier, current, current.operation().toString(), dataBundle);
+                eLog.write('Info', 'Queued event ebond.relationship.management.' + supplier + '\nOperation = ' + current.operation().toString() + '\n DataBundle:\n' + dataBundle);
+            } catch (ex) {
+                var message = ex.message;
+                eLog.write('Medium', 'Caught exception: ' + message);
+            }
+    	}
+
+        eLog.write('Info', 'Exiting.');
+
+    })(current, previous);
+    ```
+## Event Registry
+\
+_Component Type:_ Custom
+
+Each supplier will need it's own registered event within ServiceNow for relationship changes. This is an asynchronous event that will be handled by a **Script Action** that is defined below.
+
+You will need to perform these instructions for AlphaCo, BetaCo, and GammaCo; replacing the supplier stock symbol as you go as the **Business Rule** defined above uses the supplier's stock symbol to generate a portion of the event name. 
+
+_Instructions:_
+
+1. Navigate to **System Policy** > **Events** > **Registry**, click **New**.
+1. In the **Event Registration New record** section, fill in the following fields:
+    - _Event Name:_ ebond.relationship.management.AlphaCo
+1. Click **Submit**.
+
+---
+## Script Actions
+\
+_Component Type:_ Custom
+
+Script Actions monitor for registered events being sent. When an event is created and script action associated with the event is activated.
+
+You will need to perform these instructions for AlphaCo, BetaCo, and GammaCo; replacing the supplier stock symbol as you go.
+
+_Instructions:_
+
+1. Navigate to **System Policy** > **Events** > **Script Actions**, click **New**.
+1. In the **Event Registration New record** section, fill in the following fields:
+    - _Name:_ eBond Relationship Management AlphaCo
+    - _Event name:_ ebond.relationship.management.AlphaCo
+    - _Script:_
+    ```
+    // build out the data payload for AlphaCo 
+    // store it in u_ebond_rest_payloads to be sent to the AlphaCo
+    var operation = event.parm1;
+    var dataBundle = event.parm2;
+    var returnStatus = new eBondIncident_AlphaCo().preparePayload(operation, dataBundle);
+    ```
+    // build out the data payload for AlphaCo 
+    // store it in u_ebond_rest_payloads to be sent to the AlphaCo
+    var operation = event.parm1;
+    var dataBundle = event.parm2;
+    var returnStatus = new eBondIncident_AlphaCo().updateRelationship(operation, dataBundle);
+
+    ```
+1. Click **Submit**.
+
+---
 # Outro
 
 You have now successfully setup a multi-source eBonding framework. Congratulations.
