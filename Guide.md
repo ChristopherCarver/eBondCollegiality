@@ -13,7 +13,7 @@ Example: Alpha Co., is eBonded to Omega Inc.. Information between the two differ
 ```mermaid
 flowchart LR
     Omega(Omega Inc.)
-    A(Aplha Co.)
+    A(Alpha Co.)
    
     A <--> |IR001 to IR099| Omega
 ```
@@ -778,7 +778,7 @@ _Instructions:_
         // records the log message
         write: function(level, message) {
             // only log levels at or below what has been registered
-            if (this.logLevel < pitch(level)) {
+            if (this.logLevel < this.pitch(level)) {
                 return;
             }
 
