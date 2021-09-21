@@ -144,6 +144,7 @@ _Instructions:_
 1. Under the **Dictionary Entry New Record** section, fill in the following fields:
     - _Type:_ Reference
     - _Column label:_ eBond account
+    - _Column name:_ (this should default to u_ebond_account)
 1. Under the **Reference Specification** tab, fill in the following fields:
     - _Table to reference:_ User [sys_user]
     - _Reference qual condition:_
@@ -154,6 +155,7 @@ _Instructions:_
 1. Under the **Dictionary Entry New Record** section, fill in the following fields:
     - _Type:_ True/False
     - _Column label:_ eBonded
+    - _Column name:_ (this should default to u_ebonded)
 1. Under the **Default value** tab, fill in the following field:
     - _Default value:_ false
 1. Click **Submit**.
@@ -161,6 +163,7 @@ _Instructions:_
 _Optional Instructions:_ Modify the view on company records to see the *eBond account* and *eBonded* fields.
 
 1. Navigate to **Organization** > **Companies**, click on any of the company records.
+1. Navigate to **Additional actions** > **View** > **Default view**.
 1. Navigate to **Additional actions** > **Configure** > **Form Layout**, which will bring up the **Configuring Company form**.
 1. Under the **Available** list, find the *eBond account* and *eBonded* fields and add them **>** to the **Selected** list.
 1. Move the *eBond account* and *eBonded* fields up the **Selected** list **^** to be below the *Stock price*.
@@ -171,7 +174,7 @@ _Optional Instructions:_ Modify the view on company records to see the *eBond ac
 1. Navigate to **System UI** > **UI Polices**, click **New**.
 1. Under the **UI Policy New record** section, fill in the following fields:
     - _Table:_ core_company
-    - _Short description:_ Show eBond account in company
+    - _Short description:_ Show eBond account field in company record.
 1. Under the **When to apply** tab, fill in the following fields:
     - _Conditions:_
         - eBonded is true
@@ -202,19 +205,21 @@ Associating a supplier with an assignment group helps automation know to whom th
 
 _Instructions:_
 
-1. Navigate to **System Definition** > **Tables** and open the *[sys_usr_group]* table.
+1. Navigate to **System Definition** > **Tables** and open the *[sys_user_group]* table.
 1. Under the **Columns** tab, click **New** to create a new column.
 1. Under the **Dictionary Entry New Record** section, fill in the following fields:
     - _Type:_ Reference
     - _Column label:_ Company
+    - _Column name:_ (this should default to u_company)
 1. Under the **Reference Specification** tab, fill in the following fields:
-    - _Table to reference:_ core_company
+    - _Table to reference:_ Company [core_company]
 1. Click **Submit**.
 1. Click **Update**.
 
 _Optional Instructions:_ Modify the view on group records to see the *Company* field.
 
 1. Navigate to **User Administration** > **Groups**, click on any of the group records.
+1. Navigate to **Additional actions** > **View** > **Default view**.
 1. Navigate to **Additional actions** > **Configure** > **Form Layout**, which will bring up the **Configuring Group form**.
 1. Under the **Available** list, find the *Company* field and add it **>** to the **Selected** list.
 1. Move the *Company* field up the **Selected** list **^** to be below the *Name*.
@@ -262,7 +267,7 @@ _Instructions:_
     - _Name:_ Incident Auto-assignment Group
     - _Table:_ incident
     - _Advanced:_ True
-1. Under the **When to run** tab, fill in the following fields:
+1. Under the **Advanced** tab, fill in the following fields:
     - _Insert:_ True
     - _Update:_ True
     - _Filter Conditions:_
@@ -348,6 +353,7 @@ _Instructions:_
         - eBond Account is not empty
 1. Click **Submit**.
 1. Navigate to **Incident** > **All** and open any incident record.
+1. Navigate to **Additional actions** > **View** > **Default view**.
 1. Navigate to **Additional actions** > **Configure** > **Form Layout**, which will bring up the **Configuring Company form**.
 1. Under the **Available** list, find the *eBonded with* field and add it **>** to the **Selected** list.
 1. Move the *eBonded with* field up the **Selected** list **^** to be below the *Assigned to*.
@@ -366,17 +372,17 @@ The [u_eBond_relationship] table is a multi-relational table that represents a o
 The [u_eBond_relationship] table will contain the following custom fields:
 |Field|Description|
 |-----|-----------|
-|Source|The ServiceNow record sys_id on the instance.|
-|Source table|The table the ServiceNow record resides on.|
-|Status|The status of the eBond.|
-|State|The state of the eBond.|
+|Company|The ServiceNow supplier company record on the instance.|
+|Correlation ID|The supplier's ticket sys id or reference|
+|Correlation Number|The supplier's ticket number or designation|
 |In|Inbound communication status from supplier.|
 |Out|Outbound communication status to supplier.|
-|Correlation Number|The supplier's ticket number or designation|
-|Correlation ID|The supplier's ticket sys id or reference|
-|Company|The ServiceNow supplier company record on the instance.|
-|URL|Link to the supplier ticket.|
 |Reflect|Changes made by the supplier are reflected in the ticket.|
+|State|The state of the eBond.|
+|Status|The status of the eBond.|
+|Source|The ServiceNow record sys_id on the instance.|
+|Source table|The table the ServiceNow record resides on.|
+|URL|Link to the supplier ticket.|
 
 _Instructions:_
 
@@ -387,6 +393,109 @@ _Instructions:_
     - _Name:_ u_ebond_relationship
     - _New menu name:_ eBond
 1. In the record header, right-click and select **Save**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ Reference
+    - _Column label:_ Company
+    - _Column name:_ (this should default to u_company)
+1. In the **Reference Specification** tab, fill in the following field:
+    - _Reference:_ Company [core_company]
+    - _Reference qual condition:_
+        - eBonded is true AND
+        - eBond Account is not empty
+1. Click **Submit**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ String
+    - _Column label:_ Correlation ID
+    - _Column name:_ (this should default to u_correlation_id)
+    - _Max length:_ 32
+1. Click **Submit**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ String
+    - _Column label:_ Correlation Number
+    - _Column name:_ (this should default to u_correlation_number)
+    - _Max length:_ 40
+1. Click **Submit**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ Choice
+    - _Column label:_ In
+    - _Column name:_ (this should default to u_in)
+1. In the **Choice List Specification** tab, select **Dropdown with --None--**.
+1. In the record header, right-click and select **Save**.
+1. In the **Choices** tab, add the following records performing these steps:
+    1. Click **New**.
+    1. In the **Choice New record** section, fill in the field values listed below.
+    1. Click **Submit**.
+    |Sequence|Label|Value|
+    |--------|-----|-----|
+    |100|Up|up|
+    |200|Down|down|
+    |300|Wait|wait|
+1. Click **Update**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ Choice
+    - _Column label:_ Out
+    - _Column name:_ (this should default to u_out)
+1. In the **Choice List Specification** tab, select **Dropdown with --None--**.
+1. In the record header, right-click and select **Save**.
+1. In the **Choices** tab, add the following records performing these steps:
+    1. Click **New**.
+    1. In the **Choice New record** section, fill in the field values listed below.
+    1. Click **Submit**.
+    |Sequence|Label|Value|
+    |--------|-----|-----|
+    |100|Up|up|
+    |200|Down|down|
+    |300|Wait|wait|
+1. Click **Update**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ True/False
+    - _Column label:_ Reflect
+    - _Column name:_ (this should default to u_reflect)
+1. Under the **Default Value** tab, , fill in the following field:
+    - _Default value:_ false
+1. Click **Submit**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ Choice
+    - _Column label:_ State
+    - _Column name:_ (this should default to u_state)
+1. In the **Choice List Specification** tab, select **Dropdown with --None--**.
+1. In the record header, right-click and select **Save**.
+1. In the **Choices** tab, add the following records performing these steps:
+    1. Click **New**.
+    1. In the **Choice New record** section, fill in the field values listed below.
+    1. Click **Submit**.
+    |Sequence|Label|Value|
+    |--------|-----|-----|
+    |100|New|1|
+    |200|In Progress|2|
+    |300|On Hold|3|
+    |400|Resolved|6|
+    |500|Closed|7|
+    |600|Canceled|8|
+1. Click **Update**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ Choice
+    - _Column label:_ Status
+    - _Column name:_ (this should default to u_status)
+1. In the **Choice List Specification** tab, select **Dropdown with --None--**.
+1. In the record header, right-click and select **Save**.
+1. In the **Choices** tab, add the following records performing these steps:
+    1. Click **New**.
+    1. In the **Choice New record** section, fill in the field values listed below.
+    1. Click **Submit**.
+    |Sequence|Label|Value|
+    |--------|-----|-----|
+    |100|eBonded|ebonded|
+    |200|deBonded|debonded|
+1. Click **Update**.
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
     - _Type:_ Table Name
@@ -404,113 +513,10 @@ _Instructions:_
 1. Click **Update**.
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
-    - _Type:_ Choice
-    - _Column label:_ Status
-    - _Column name:_ (this should default to u_status)
-1. In the **Choice List Specification** tab, select *Dropdown with --None--*.
-1. In the record header, right-click and select **Save**.
-1. In the **Choices** tab, add the following records performing these steps:
-    1. Click **New**.
-    1. In the **Choice New record** section, fill in the field values listed below.
-    1. Click **Submit**.
-    |Sequence|Label|Value|
-    |--------|-----|-----|
-    |100|eBonded|eBonded|
-    |200|deBonded|deBonded|
-1. Click *Update**.
-1. In the **Columns** table, click **New**.
-1. In the **Dictionary Entry New record** section, fill in the following fields:
-    - _Type:_ Choice
-    - _Column label:_ State
-    - _Column name:_ (this should default to u_state)
-1. In the **Choice List Specification** tab, select *Dropdown with --None--*.
-1. In the record header, right-click and select **Save**.
-1. In the **Choices** tab, add the following records performing these steps:
-    1. Click **New**.
-    1. In the **Choice New record** section, fill in the field values listed below.
-    1. Click **Submit**.
-    |Sequence|Label|Value|
-    |--------|-----|-----|
-    |100|New|1|
-    |200|In Progress|2|
-    |300|On Hold|3|
-    |400|Resolved|6|
-    |500|Closed|7|
-    |600|Canceled|8|
-1. Click *Update**.
-1. In the **Columns** table, click **New**.
-1. In the **Dictionary Entry New record** section, fill in the following fields:
-    - _Type:_ Choice
-    - _Column label:_ In
-    - _Column name:_ (this should default to u_in)
-1. In the **Choice List Specification** tab, select *Dropdown with --None--*.
-1. In the record header, right-click and select **Save**.
-1. In the **Choices** tab, add the following records performing these steps:
-    1. Click **New**.
-    1. In the **Choice New record** section, fill in the field values listed below.
-    1. Click **Submit**.
-    |Sequence|Label|Value|
-    |--------|-----|-----|
-    |100|Up|up|
-    |200|Down|down|
-    |300|Wait|wait|
-1. Click *Update**.
-1. In the **Columns** table, click **New**.
-1. In the **Dictionary Entry New record** section, fill in the following fields:
-    - _Type:_ Choice
-    - _Column label:_ Out
-    - _Column name:_ (this should default to u_out)
-1. In the **Choice List Specification** tab, select *Dropdown with --None--*.
-1. In the record header, right-click and select **Save**.
-1. In the **Choices** tab, add the following records performing these steps:
-    1. Click **New**.
-    1. In the **Choice New record** section, fill in the field values listed below.
-    1. Click **Submit**.
-    |Sequence|Label|Value|
-    |--------|-----|-----|
-    |100|Up|up|
-    |200|Down|down|
-    |300|Wait|wait|
-1. Click *Update**.
-1. In the **Columns** table, click **New**.
-1. In the **Dictionary Entry New record** section, fill in the following fields:
-    - _Type:_ String
-    - _Column label:_ Correlation Number
-    - _Column name:_ (this should default to u_correlation_number)
-    - _Max length:_ 40
-1. Click **Submit**.
-1. In the **Columns** table, click **New**.
-1. In the **Dictionary Entry New record** section, fill in the following fields:
-    - _Type:_ String
-    - _Column label:_ Correlation ID
-    - _Column name:_ (this should default to u_correlation_id)
-    - _Max length:_ 32
-1. Click **Submit**.
-1. In the **Columns** table, click **New**.
-1. In the **Dictionary Entry New record** section, fill in the following fields:
-    - _Type:_ Reference
-    - _Column label:_ Company
-    - _Column name:_ (this should default to u_company)
-1. In the **Reference Specification** tab, fill in the following field:
-    - _Reference:_ Company [core_company]
-    - _Reference qual condition:_
-        - eBonded is true AND
-        - eBond Account is not empty
-1. Click **Submit**.
-1. In the **Columns** table, click **New**.
-1. In the **Dictionary Entry New record** section, fill in the following fields:
     - _Type:_ URL
     - _Column label:_ URL
     - _Column name:_ (this should default to u_url)
     - _Max length:_ 4000
-1. Click **Submit**.
-1. In the **Columns** table, click **New**.
-1. In the **Dictionary Entry New record** section, fill in the following fields:
-    - _Type:_ True/False
-    - _Column label:_ Reflect
-    - _Column name:_ (this should default to u_reflect)
-1. Under the **Default Value** tab, , fill in the following field:
-    - _Default value:_ false
 1. Click **Submit**.
 1. Click **Update**.
 
@@ -522,7 +528,7 @@ Helper function that updates the u_ebond_relationship fields.
 _Instructions:_
 
 1. Navigate to **System Definition** > **Script Includes**, click **New**.
-1. In the **Script Include New record**section, fill in the following fields:
+1. In the **Script Include New record** section, fill in the following fields:
     - _Name:_ eBondRelationship
     - _API Name:_ (this should default to global.eBondRelationship)
     - _Description:_ Utility function that updates the u_ebond_relationship fields.
@@ -646,10 +652,10 @@ The [u_ebond_registry] table is similar to that of the [sys_properties] table in
 The [u_ebond_registry] table will contain the following custom fields:
 |Field|Description|
 |-----|-----------|
-|Supplier|"All" or the name of the supplier.|
 |Key|The key variable name.|
-|Value|The property variable value.|
 |Note|Misc. information pertaining to the key/value pair.|
+|Supplier|"All" or the name of the supplier.|
+|Value|The property variable value.|
 
 _Instructions:_
 
@@ -663,29 +669,29 @@ _Instructions:_
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
     - _Type:_ String
-    - _Column label:_ Supplier
-    - _Column name:_ (this should default to u_supplier)
-    - _Max length:_ 40
-1. Under the **Default Value** tab, fill in the following field:
-    - _Default value:_ All
-1. Click **Submit**.
-1. In the **Columns** table, click **New**.
-1. In the **Dictionary Entry New record** section, fill in the following fields:
-    - _Type:_ String
     - _Column label:_ Key
     - _Column name:_ (this should default to u_key)
     - _Max length:_ 4000
 1. Click **Submit**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
     - _Type:_ String
-    - _Column label:_ Value
-    - _Column name:_ (this should default to u_value)
+    - _Column label:_ Note
+    - _Column name:_ (this should default to u_note)
     - _Max length:_ 4000
+1. Click **Submit**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ String
+    - _Column label:_ Supplier
+    - _Column name:_ (this should default to u_supplier)
+    - _Max length:_ 40
+1. Under the **Default Value** tab, fill in the following field:
+    - _Default value:_ All
 1. Click **Submit**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
     - _Type:_ String
-    - _Column label:_ Note
-    - _Column name:_ (this should default to u_note)
+    - _Column label:_ Value
+    - _Column name:_ (this should default to u_value)
     - _Max length:_ 4000
 1. Click **Submit**.
 1. Click **Update**.
@@ -814,6 +820,7 @@ _Instructions:_
 1. Under the **Dynamic Filter Options New record** section, fill in the following fields:
     - _Label:_ eBond Log Index Increment
     - _Script:_ new eBondLog().increment();
+    - _Field type:_ Integer
     - _Available for default:_ true
 1. Click **Submit**.
 
@@ -824,16 +831,16 @@ The [u_ebond_log] table will contain the following custom fields:
 
 |Field|Description|
 |-----|-----------|
-|Index|Auto-incrementing numeric value.|
-|Direction|Choice value of *Inbound* or *Outbound*.|
-|Supplier|Name of the supplier.|
-|Location|Name of the ServiceNow component, i.e., script include, business rule, workflow, etc. etc..|
-|Name|Label name of the record.|
-|Source|Where within the record.|
-|Message|The log message.|
-|Level|Choice value of *High*, *Medium*, *Low*, or *Info*.|
 |Correlate ID|Corresponding tag for workload tracing.|
 |Correlate class name|The ServiceNow class name.|
+|Direction|Choice value of *Inbound* or *Outbound*.|
+|Index|Auto-incrementing numeric value.|
+|Level|Choice value of *High*, *Medium*, *Low*, or *Info*.|
+|Location|Name of the ServiceNow component, i.e., script include, business rule, workflow, etc. etc..|
+|Message|The log message.|
+|Name|Label name of the record.|
+|Source|Where within the record.|
+|Supplier|Name of the supplier.|
 
 _Instructions:_
 
@@ -846,9 +853,24 @@ _Instructions:_
 1. In the record header, right-click and select **Save**.
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ String
+    - _Column label:_ Correlate ID
+    - _Column name:_ (this should default to u_correlate_id)
+    - _Max length:_ 40
+1. Click **Submit**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ String
+    - _Column label:_ Correlate class name
+    - _Column name:_ (this should default to u_correlate_class_name)
+    - _Max length:_ 100
+1. Click **Submit**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
     - _Type:_ Choice
     - _Column label:_ Direction
     - _Column name:_ (this should default to u_direction)
+1. In the **Choice List Specification** tab, select **Dropdown with --None--**.
 1. In the record header, right-click and select **Save**.
 1. Under the **Choices** tab, add the following records performing these steps:
     1. Click **New**.
@@ -872,17 +894,36 @@ _Instructions:_
 1. Click **Update**.
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
-    - _Type:_ String
-    - _Column label:_ Supplier
-    - _Column name:_ (this should default to u_supplier)
-    - _Max length:_ 40
-1. Click **Submit**.
+    - _Type:_ Choice
+    - _Column label:_ Level
+    - _Column name:_ (this should default to u_level)
+1. In the **Choice List Specification** tab, select **Dropdown with --None--**.
+1. In the record header, right-click and select **Save**.
+1. Under the **Choices** tab, add the following records performing these steps:
+    1. Click **New**.
+    1. In the **Choice New record** section, fill in the field values listed below.
+    1. Click **Submit**.
+    |Sequence|Label|Value|
+    |--------|-----|-----|
+    |100|High|100|
+    |200|Medium|200|
+    |300|Low|300|
+    |400|Info|400|
+    |500|Debug|500|
+1. Click **Update**.
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
     - _Type:_ String
     - _Column label:_ Location
     - _Column name:_ (this should default to u_location)
     - _Max length:_ 40
+1. Click **Submit**.
+1. In the **Columns** table, click **New**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ String
+    - _Column label:_ Message
+    - _Column name:_ (this should default to u_message)
+    - _Max length:_ 4000
 1. Click **Submit**.
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
@@ -901,41 +942,9 @@ _Instructions:_
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
     - _Type:_ String
-    - _Column label:_ Message
-    - _Column name:_ (this should default to u_message)
-    - _Max length:_ 4000
-1. Click **Submit**.
-1. In the **Columns** table, click **New**.
-1. In the **Dictionary Entry New record** section, fill in the following fields:
-    - _Type:_ Choice
-    - _Column label:_ Level
-    - _Column name:_ (this should default to u_level)
-1. In the record header, right-click and select **Save**.
-1. Under the **Choices** tab, add the following records performing these steps:
-    1. Click **New**.
-    1. In the **Choice New record** section, fill in the field values listed below.
-    1. Click **Submit**.
-    |Sequence|Label|Value|
-    |--------|-----|-----|
-    |100|High|100|
-    |200|Medium|200|
-    |300|Low|300|
-    |400|Info|400|
-    |500|Debug|500|
-1. Click **Update**.
-1. In the **Columns** table, click **New**.
-1. In the **Dictionary Entry New record** section, fill in the following fields:
-    - _Type:_ String
-    - _Column label:_ Correlate ID
-    - _Column name:_ (this should default to u_correlate_id)
+    - _Column label:_ Supplier
+    - _Column name:_ (this should default to u_supplier)
     - _Max length:_ 40
-1. Click **Submit**.
-1. In the **Columns** table, click **New**.
-1. In the **Dictionary Entry New record** section, fill in the following fields:
-    - _Type:_ String
-    - _Column label:_ Correlate class name
-    - _Column name:_ (this should default to u_correlate_class_name)
-    - _Max length:_ 100
 1. Click **Submit**.
 1. Click **Update**.
 
@@ -958,13 +967,13 @@ The [u_ebond_data_map] table is a translation data table for inbound and outboun
 The [u_ebond_data_map] table will contain the following custom fields:
 |Field|Description|
 |-----|-----------|
-|Module|*All* or the name of the module.|
 |Classification|Name of the classification.|
 |Direction|*Inbound*, *Outbound*, or *Duplex*.|
-|Supplier|*All* or the name of the supplier.|
-|Source Value|The internal value for the instance.|
-|Supplier Value|The supplier's value.|
+|Module|*All* or the name of the module.|
 |Note|Freeform to document various notes pertaining to the data map record.|
+|Source Value|The internal value for the instance.|
+|Supplier|*All* or the name of the supplier.|
+|Supplier Value|The supplier's value.|
 
 _Instructions:_
 
@@ -978,13 +987,6 @@ _Instructions:_
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
     - _Type:_ String
-    - _Column label:_ Module
-    - _Column name:_ (this should default to u_module)
-    - _Max length:_ 40
-1. Click **Submit**.
-1. In the **Columns** table, click **New**.
-1. In the **Dictionary Entry New record** section, fill in the following fields:
-    - _Type:_ String
     - _Column label:_ Classification
     - _Column name:_ (this should default to u_classification)
     - _Max length:_ 40
@@ -994,7 +996,7 @@ _Instructions:_
     - _Type:_ Choice
     - _Column label:_ Direction
     - _Column name:_ (this should default to u_direction)
-    - _Max length:_ 40
+1. In the **Choice List Specification** tab, select **Dropdown with --None--**.
 1. In the record header, right-click and select **Save**.
 1. Under the **Choices** tab, add the following records performing these steps:
     1. Click **New**.
@@ -1009,9 +1011,15 @@ _Instructions:_
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
     - _Type:_ String
-    - _Column label:_ Supplier
-    - _Column name:_ (this should default to u_supplier)
+    - _Column label:_ Module
+    - _Column name:_ (this should default to u_module)
     - _Max length:_ 40
+1. Click **Submit**.
+1. In the **Dictionary Entry New record** section, fill in the following fields:
+    - _Type:_ String
+    - _Column label:_ Note
+    - _Column name:_ (this should default to u_note)
+    - _Max length:_ 4000
 1. Click **Submit**.
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
@@ -1023,14 +1031,15 @@ _Instructions:_
 1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
     - _Type:_ String
-    - _Column label:_ Supplier value
+    - _Column label:_ Supplier
     - _Column name:_ (this should default to u_supplier)
-    - _Max length:_ 4000
+    - _Max length:_ 40
 1. Click **Submit**.
+1. In the **Columns** table, click **New**.
 1. In the **Dictionary Entry New record** section, fill in the following fields:
     - _Type:_ String
-    - _Column label:_ Note
-    - _Column name:_ (this should default to u_note)
+    - _Column label:_ Supplier value
+    - _Column name:_ (this should default to u_supplier)
     - _Max length:_ 4000
 1. Click **Submit**.
 1. Click **Update**.
@@ -1118,7 +1127,174 @@ _Instructions:_
 The [u_ebond_rest_payloads] table records all outbound REST API calls and their statuses. This table is also used to retry REST calls in the event of a failure; see **eBond Scheduled Job**. 
 
 ---
-### eBond REST Payloads
+## REST Payload Script Include
+\
+_Component Type:_ Standard
+
+The eBondRestPayload script stores and sends REST payloads to suppliers. There are several things that happen within this script. All payloads are stored in the [u_ebond_rest_payload] table. If there is not an existing REST message for the supplier for that specific ticket, then the script will make an async RESTful execution call to the supplier; else, the payload will be stored and processed at a later time. 
+
+_Instructions:_
+
+1. Navigate to **System Definition** > **Script Includes**, click **New**.
+1. In the **Script Include New record** section, fill in the following fields:
+    - _Name:_ eBondRestPayload
+    - _Script:_
+    ```
+    var eBondRestPayload = Class.create();
+    eBondRestPayload.prototype = {
+        // func: initialize
+        // desc: initializes the JavaScript object
+        // parm: n/a
+        // retn: true or false
+        initialize: function () {
+            // static 
+            this.eLog = new eBondLog();
+            this.eLog.u_direction = 'outbound';
+            this.eLog.u_location = 'Script Includes';
+            this.eLog.u_name = 'eBondRestPayload';
+            this.eLog.u_source = 'initialize';
+            this.eLog.u_supplier = 'Unknown';
+            this.eLog.u_correlate_id = current.sys_id;
+            this.eLog.u_correlate_class_name = current.sys_class_name;
+            this.eLog.write('Debug', 'Entering.');
+
+            this.eLog.write('Debug', 'Exiting.');
+        },
+
+        // func: increment
+        // desc: returns the next index number for u_ebond_rest_payload table
+        // parm: n/a
+        // retn: index interger vale
+        increment: function () {
+            var gr = new GlideRecord('u_ebond_rest_payload');
+            gr.orderByDesc('u_index');
+            gr.setLimit(1);
+            gr.query();
+            var index = 0;
+            if (gr.next()) {
+                index = gr.u_index + 1;
+            }
+            return index; // return the calculated value
+        },
+
+        // func: load
+        // desc: loads the REST payload into u_ebond_rest_payload table to be processed
+        // parm: company - company record
+        //       source_table - the ServiceNow table
+        //       source - the ticket sys_id
+        //       business_rule - the business rule to process the response
+        //       endpoint - url destination for the message 
+        //       payload - JSON body
+        //       format - payload format; JSON, XML, etc. 
+        //       restMsg - rest message record
+        //       httpMethod - rest methos to use
+        // retn: n/a
+        load: function (company, source_table, source, business_rule, endpoint, payload, format, restMsg, httpMethod) {
+            this.eLog.u_source = 'load';
+            this.eLog.write('Debug', 'Entering.');
+
+            // open the company record
+            var supplier = new GlideRecord('core_company');
+            supplier.get(company);
+
+            // add to u_ebond_rest_payload
+            var payloadRec = new GlideRecord('u_ebond_rest_payload');
+            payloadRec.initialize();
+            payloadRec.u_active = true;
+            payloadRec.u_supplier = company;
+            payloadRec.u_source = source;
+            payloadRec.u_source_table = source_table;
+            payloadRec.u_endpoint = endpoint;
+            payloadRec.u_payload = payload;
+            payloadRec.u_format = format;
+            payloadRec.u_rest_message = restMsg;
+            payloadRec.u_http_method = httpMethod;
+            payloadRec.u_ecc_topic = 'eBond_' + supplier.stock_symbol + '_Response';
+            payloadRec.u_status = 'queued';
+            payloadRec.insert();
+            this.eLog.write('Debug', 'Uploaded payload.');
+
+            // prevent collisions with active REST requests on same ticket with supplier
+            var payloadChk = new GlideRecord('u_ebond_rest_payload');
+            payloadChk.addQuery('u_active', true);
+            payloadChk.addQuery('u_supplier', company);
+            payloadChk.addQuery('u_source', source);
+            payloadChk.addQuery('u_source_table', source_table);
+            payloadChk.orderByDesc('u_index');
+            payloadChk.query();
+            if (payloadChk.next() && payloadChk.getRowCount() > 1) {
+                this.eLog.write('Debug', 'Collision detected.');
+                this.eLog.write('Debug', 'Exiting.');
+                return;
+            }
+
+            // send over to the ecc queue
+            try {
+                var restObj = new sn_ws.RESTMessageV2(restMsg, httpMethod);
+                restObj.setStringParameter('endpoint', endpoint);
+                restObj.setRequestBody(payload);
+                restObj.setEccParameter('skip_sensor', 'true'); // prevent Discovery sensors running for the ECC input
+                restObj.setEccTopic('eBond_' + supplier.stock_symbol + '_Response');
+                restObj.setEccCorrelator(payloadRec.getValue('sys_id'));
+                this.eLog.write('Debug', 'Invoking async RESTful execution.');
+                restObj.executeAsync(); // a business rule on the ecc_queue table will handle the response
+                payloadRec.u_status = 'active';
+                payloadRec.update();
+                return true;
+            } catch (ex) {
+                var message = ex.getMessage();
+                this.eLog.write('Medium', 'Error (Caught Exception): ' + message);
+            }
+            this.eLog.write('Debug', 'Exiting.');
+            return;
+        },
+
+        // func: executeNext
+        // desc: executes the next REST call from the u_ebond_rest_payload
+        // parm: source - the relationship record
+        // retn: n/a
+        executeNext: function (source) {
+            this.eLog.u_source = 'executeNext';
+            this.eLog.write('Debug', 'Entering.');
+            this.eLog.write('Debug', 'source: ' + source);
+
+            var nextPayload = new GlideRecord('u_ebond_rest_payload');
+            nextPayload.setLimit(1);
+            nextPayload.orderBy('u_index');
+            nextPayload.addQuery('u_active', true);
+            nextPayload.addNullQuery('u_http_status_code');
+            nextPayload.addQuery('u_source', source);
+            nextPayload.query();
+            if (nextPayload.next()) {
+                // send over to the ecc queue
+                try {
+                    var restObj = new sn_ws.RESTMessageV2(nextPayload.u_rest_message, nextPayload.u_http_method);
+                    restObj.setStringParameter('endpoint', nextPayload.u_endpoint);
+                    restObj.setRequestBody(nextPayload.u_payload);
+                    restObj.setEccParameter('skip_sensor', 'true'); // prevent Discovery sensors running for the ECC input
+                    restObj.setEccTopic(nextPayload.u_ecc_topic);
+                    restObj.setEccCorrelator(nextPayload.getValue('sys_id'));
+                    this.eLog.write('Debug', 'Invoking async RESTful execution.');
+                    restObj.executeAsync(); // a business rule on the ecc_queue table will handle the response
+                    nextPayload.u_status = 'active';
+                    nextPayload.update();
+                } catch (ex) {
+                    var message = ex.getMessage();
+                    this.eLog.write('Medium', 'Error (Caught Exception): ' + message);
+                }
+            }
+
+            this.eLog.write('Debug', 'Exiting.');
+            return;
+        },
+
+        type: 'eBondRestPayload'
+    };
+    ```
+1. Click **Submit**.
+
+---
+### eBond REST Payload Index Dynamic Filter Options
 \
 The dynamic filter option *eBond REST Payload Index Increment* is used in the default value in the *index* field in the [u_ebond_rest_payload] table as a reference to the script include *eBondRestPayload*.
 
@@ -1129,9 +1305,13 @@ _Instructions:_
 1. Under the **Dynamic Filter Options New record** section, fill in the following fields:
     - _Label:_ eBond REST Payload Index Increment
     - _Script:_ new eBondRestPayload().increment();
+    - _Field type:_ Integer
     - _Available for default:_ true
 1. Click **Submit**.
 
+---
+### eBond REST Payloads
+\
 The [u_ebond_rest_payload] table will contain the following custom fields:
 
 |Field|Description|
@@ -1488,7 +1668,6 @@ _Instructions:_
     - _Type:_ Choice
     - _Column label:_ Status
     - _Column name:_ (this should default to u_status)
-    - _Max length:_ 40
 1. In the record header, right-click and select **Save**.
 1. Under the **Choices** tab, add the following records performing these steps:
     1. Click **New**.
@@ -1795,10 +1974,9 @@ _Instructions:_
 1. Click **Submit**.
 1. In the **Field Maps** tab, click **New**.
 1. In the **Field Map New record** section, click **Use source script** and fill in the following fields:
-    - _Choice action:_ ignore
     - _Target field:_ Company [u_company]
     - _Coalesce:_ True
-    - _User source script:_ True
+    - _Use source script:_ True
     - _Script:_ 
 
         ````
@@ -1888,7 +2066,9 @@ _Instructions:_
 
         })(source);
         ````
-1. Click **Submit**.
+1. In the record header, right-click and select **Save**.
+1. Change the **Choice action** field to **ignore**.
+1. Click **Update**.
 
     !!! note Coalesce fields
         Only the *target field* fields *u_correlation_number* and *u_company* fields are coalesce fields. The *u_company* is derived internally from the *sys_created_by* field that holds the account that wrote the record. This removes the means to supplant company information. The *u_correlation_number* by itself is not sufficient to make it unique enough with multiple eBonded suppliers. The combination of the *u_correlation_number* and *u_company* is required; as the assumption is the supplier will not duplicate their ticket numbers. However, two or more suppliers could have the same ticket numbers unrelated to each other. The reason that the *u_external_reference* is not used is it's typically not a required field. Some ticket solutions do not use reference qualifiers and the ticket number is sufficient when passing information back to the supplier. 
@@ -3359,16 +3539,78 @@ The [u_ebond_data_map] table is the lookup table used to validate field values f
 !!! note Category & Subcategory 
     It is the author's opinion that the values for *category* and *subcategory* for an incident within ServiceNow is better suited to describe the type of incident reported; rather than the general topic area the incident occurred. Traditionally with ITSM solutions category and subcategory are used to describe the area where an incident occurred. Out of the box, ServiceNow provides the means to relate incident reports directly to the impacted configuration item (CI) within the CMDB; which is a clearer description of the area of interest the incident lays. This frees up the *category* and *subcategory* fields to _represent the type of incident_ being investigated and the being done to resolve the incident. The update set contains these new values for *category* and *subcategory*, but does not remove the out of the box values set by ServiceNow. Each enterprise will have to ascertain which behavior for the fields to use.
 
-!!! note Contact Type
-    By default the transform script *[onStart] Initialize global variables* defaults the contact type to *ebond*. This is not a mandatory field for the supplier, however if not specified the assumption is the ticket originated via an eBond action.
-
-    1. Navigate to **Incident** > **All**, click on any incident record.
-    1. Right-click on **Contact type**, click **Configure Dictionary**.
+    1. Navigate to **System Definition** > **Dictionary**.
+    1. Under the list view search, fill in the the following search fields and hit enter:
+        - _Table:_ =incident
+        - _Column name:_ category
+    1. Open the *incident* record.
     1. Under the **Choices** tab, click **New**.
-    1. In the **Choice New record**section, fill in the following fields:
+    1. In the **Choice New record** section, fill in the following fields:
+        - _Label:_ Break-fix
+        - _Value:_ Break-fix
+    1. Click **Submit**.
+    1. Under the **Choices** tab, click **New**.
+    1. In the **Choice New record** section, fill in the following fields:
+        - _Label:_ Managed Service
+        - _Value:_ Managed Service
+    1. Click **Submit**.
+    1. Click **Update**.
+    1. Under the list view search, fill in the the following search fields and hit enter:
+        - _Table:_ =incident
+        - _Column name:_ category
+    1. Open the *incident* record.
+    1. Under the **Choices** tab, click **New**.
+    1. In the **Choice New record** section, fill in the following fields:
+        - _Label:_ Troubleshoot
+        - _Value:_ Troubleshoot
+        - _Dependent value:_ Break-fix
+    1. Click **Submit**.
+    1. Under the **Choices** tab, click **New**.
+    1. In the **Choice New record** section, fill in the following fields:
+        - _Label:_ Setup/Configuration
+        - _Value:_ Setup/Configuration
+        - _Dependent value:_ Break-fix
+    1. Click **Submit**.
+    1. Under the **Choices** tab, click **New**.
+    1. In the **Choice New record** section, fill in the following fields:
+        - _Label:_ Performance
+        - _Value:_ Performance
+        - _Dependent value:_ Break-fix
+    1. Click **Submit**.
+    1. Under the **Choices** tab, click **New**.
+    1. In the **Choice New record** section, fill in the following fields:
+        - _Label:_ Access Control
+        - _Value:_ Access Control
+        - _Dependent value:_ Managed Service
+    1. Click **Submit**.
+    1. Under the **Choices** tab, click **New**.
+    1. In the **Choice New record** section, fill in the following fields:
+        - _Label:_ Connectivity
+        - _Value:_ Connectivity
+        - _Dependent value:_ Managed Service
+    1. Click **Submit**.
+    1. Under the **Choices** tab, click **New**.
+    1. In the **Choice New record** section, fill in the following fields:
+        - _Label:_ Support
+        - _Value:_ Support
+        - _Dependent value:_ Managed Service
+    1. Click **Submit**.
+    1. Click **Update**.
+
+!!! note Contact Type
+    By default the transform script *[onStart] Initialize global variables* defaults the contact type to *ebond*. This is not a mandatory field for the supplier, however if not specified the assumption is the ticket originated via an eBond action. 
+
+    1. Navigate to **System Definition** > **Dictionary**.
+    1. Under the list view search, fill in the the following search fields and hit enter:
+        - _Table:_ =task
+        - _Column name:_ contact_type
+    1. Open the *incident* record.
+    1. Under the **Choices** tab, click **New**.
+    1. In the **Choice New record** section, fill in the following fields:
         - _Label:_ eBond
         - _Value:_ ebond
-    1. Click **Submit**. 
+    1. Click **Submit**.
+    1. Click **Update**.
 
 ---
 # Multi-source Outbound Handling
@@ -3400,7 +3642,6 @@ flowchart LR
     F .-> |REST Call|H:::highlight
     classDef highlight fill:#77b37d;
 ```
-
 _Operations:_
 1. An incident record is updated and a business rule (BR) is alerted of the change.
 1. The business rule bundles the data and creates an async event (EV).
@@ -3415,7 +3656,10 @@ _Component Type:_ Standard
 
 When an incident is updated, that update needs to be passed to all of the suppliers that ticket is eBonded with. A Business Rule is the trigger that looks for changes on the table records and then takes action.
 
-This business rule is triggered for any incidents that are or shall be eBonded with one or more suppliers. The business rule gathers all the needed data and then creates a custom event for each supplier that eBonded with the incident. The event handler is a custom component needed for each supplier and will be described below on how those events are handled. 
+This business rule is triggered for any incidents that are or shall be eBonded with one or more suppliers. The business rule gathers all the needed data and then creates a custom event for each supplier that eBonded with the incident. The event handler is a custom component needed for each supplier and will be described below on how those events are handled.
+
+!!! note When to run
+    A question arises why the business rule is set to *after* instead of *async*. It is best practice to free ServiceNow resources to handle operations in an async fashion that way ServiceNow can return control back to the user as soon as possible. This business rule in the end turns the operation into an async operation by passing an async event with the delta changes. What we do not want happening is if this business rule is set to *async*, then there is a possibility of field changes made to the ticket rendering the *changes()* calls incorrect between when the incident is changed and the business rule is executed.   
 
 _Instructions:_
 
@@ -3425,13 +3669,13 @@ _Instructions:_
     - _Table:_ Incident [incident]
     - _Advanced:_ true
 1. In the record header, right-click and select **Save**.
-1. In the **When to run** tab, fill in the following fields:
+1. In the **Advanced** tab, fill in the following fields:
     - _When:_ after
     - _Insert:_ true
     - _Update:_ true
     - _Delete:_ true
 1. In the record header, right-click and select **Save**.
-1. In the **When to run** tab, fill in the following fields:
+1. In the **Advanced** tab, fill in the following fields:
     - _Condition:_ new eBondIncident().checkCondition();
     - _Script:_ 
     ```
@@ -3552,6 +3796,7 @@ _Instructions:_
 
     })(current, previous);
     ```
+1. Click **Update**.
 
 ---
 ### Incident Script Include
@@ -3739,7 +3984,7 @@ _Instructions:_
 
 1. Navigate to **System Policy** > **Events** > **Registry**, click **New**.
 1. In the **Event Registration New record** section, fill in the following fields:
-    - _Event Name:_ ebond.incident.outbound.AlphaCo
+    - _Event Name:_ ebond.incident.outbound.{SUPPLIER}
 1. Click **Submit**.
 
 ---
@@ -3755,15 +4000,15 @@ _Instructions:_
 
 1. Navigate to **System Policy** > **Events** > **Script Actions**, click **New**.
 1. In the **Event Registration New record** section, fill in the following fields:
-    - _Name:_ eBond Incident Outbound AlphaCo
-    - _Event name:_ ebond.incident.outbound.AlphaCo
+    - _Name:_ eBond Incident Outbound {SUPPLIER}
+    - _Event name:_ ebond.incident.outbound.{SUPPLIER}
     - _Script:_
     ```
-    // build out the data payload for AlphaCo 
-    // store it in u_ebond_rest_payloads to be sent to the AlphaCo
+    // build out the data payload for {SUPPLIER} 
+    // store it in u_ebond_rest_payloads to be sent to the {SUPPLIER}
     var operation = event.parm1;
     var dataBundle = event.parm2;
-    var returnStatus = new eBondIncident_AlphaCo().preparePayload(operation, dataBundle);
+    var returnStatus = new eBondIncident_SUPPLIER().preparePayload(operation, dataBundle);
     ```
 1. Click **Submit**.
 
@@ -3780,11 +4025,11 @@ _Instructions:_
 
 1. Navigate to **System Definition** > **Script Includes**, click **New**.
 1. In the **Script Include New record** section, fill in the following fields:
-    - _Name:_ eBondIncident_AlphaCo
+    - _Name:_ eBondIncident_SUPPLIER
     - _Script:_
     ```
-    var eBondIncident_AlphaCo = Class.create();
-    eBondIncident_AlphaCo.prototype = {
+    var eBondIncident_SUPPLIER = Class.create();
+    eBondIncident_SUPPLIER.prototype = {
         // func: initialize
         // desc: initializes the JavaScript object
         // parm: n/a
@@ -3794,15 +4039,15 @@ _Instructions:_
             this.eLog = new eBondLog();
             this.eLog.u_direction = 'outbound';
             this.eLog.u_location = 'Script Includes';
-            this.eLog.u_name = 'eBondIncident_AlphaCo';
+            this.eLog.u_name = 'eBondIncident_SUPPLIER';
             this.eLog.u_source = 'initialize';
-            this.eLog.u_supplier = 'AlphaCo';
+            this.eLog.u_supplier = 'SUPPLIER';
             this.eLog.u_correlate_id = current.sys_id;
             this.eLog.u_correlate_class_name = current.sys_class_name;
             this.eLog.write('Debug', 'Entering.');
 
-            this.supplier = 'AlphaCo';
-            this.restMsg = 'AlphaCo'; // declaration in ServiceNow REST message
+            this.supplier = 'SUPPLIER';
+            this.restMsg = 'SUPPLIER'; // declaration in ServiceNow REST message
             this.httpMethod = 'Incident'; // declaration in ServiceNow REST message
 
             // dynamic
@@ -3829,7 +4074,7 @@ _Instructions:_
         },
 
         // func: checkCondition
-        // desc: determines if the response is from AlphaCo; called by ecc queue business rule
+        // desc: determines if the response is from SUPPLIER; called by ecc queue business rule
         // parm: n/a
         // retn: true or false
         checkCondition: function () {
@@ -3854,8 +4099,8 @@ _Instructions:_
            func: checkEcho
            desc: checks to see if the incident was updated by the supplier
            parm: n/a
-           retn: true - the incident was updated by Alpha Co
-                 false - the incident was not updated by Alpha Co
+           retn: true - the incident was updated by SUPPLIER
+                 false - the incident was not updated by SUPPLIER
 
         */
         checkEcho: function () {
@@ -4028,7 +4273,7 @@ _Instructions:_
             relationship.initialize();
             relationship.u_source_table = 'incident';
             relationship.u_source = current.sys_id;
-            relationship.u_status = 'eBonded';
+            relationship.u_status = 'ebonded';
             relationship.u_state = current.state;
             relationship.u_out = 'wait';
             relationship.u_company = this.company;
@@ -4095,7 +4340,7 @@ _Instructions:_
         },
 
         // func: updateOperation
-        // desc: ServiceNow has updated the record, update the AlphaCo records as appropriate
+        // desc: ServiceNow has updated the record, update the SUPPLIER records as appropriate
         // parm: dataBundle
         // retn: n/a
         updateOperation: function (dataBundle) {
@@ -4278,8 +4523,8 @@ _Instructions:_
         },
 
         // func: deleteOperation
-        // desc: ServiceNow has deleted the record, debond associated AlphaCo records
-        //       update AlphaCo to debond from the record
+        // desc: ServiceNow has deleted the record, debond associated SUPPLIER records
+        //       update SUPPLIER to debond from the record
         //       deleted the ServiceNow relationship record
         // parm: n/a
         // retn: n/a
@@ -4312,7 +4557,7 @@ _Instructions:_
         },
 
         // func: preparePayload
-        // desc: prepares the incident payloads for Alpha Co 
+        // desc: prepares the incident payloads for SUPPLIER 
         // parm: operation - insert, update, or delete
         //       dataBundle - JSON representating the incident
         // retn: n/a
@@ -4366,7 +4611,7 @@ _Instructions:_
         },
 
         // func: updateRelationship
-        // desc: prepares the incident payloads for Alpha Co on a change of relationship 
+        // desc: prepares the incident payloads for SUPPLIER on a change of relationship 
         // parm: operation - update
         //       dataBundle - JSON representating the status of the relationship
         // retn: n/a
@@ -4383,14 +4628,14 @@ _Instructions:_
             if (relationship.status == 'debonded') {
                 var data = {};
                 data.number = current.u_correlation_number.toString();
-                data.state = '0'; // Alpha Co deBond state code
+                data.state = '0'; // SUPPLIER deBond state code
                 var payload = JSON.stringify(data);
 
                 var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', current.sys_id, '', this.url, payload, 'json',    this.restMsg, this.httpMethod);
             } else {
                 var data = {};
                 data.number = current.u_correlation_number.toString();
-                data.state = '-1'; // Alpha Co re-eBond state code
+                data.state = '-1'; // SUPPLIER re-eBond state code
                 var payload = JSON.stringify(data);
 
                 var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', current.sys_id, '', this.url, payload, 'json',    this.restMsg, this.httpMethod);
@@ -4400,174 +4645,7 @@ _Instructions:_
             return;
         },
 
-        type: 'eBondIncident_AlphaCo'
-    };
-    ```
-1. Click **Submit**.
-
----
-## REST Payload Script Include
-\
-_Component Type:_ Standard
-
-This stores and sends REST payloads to suppliers. There are several things that happen within this script. All payloads are stored in the [u_ebond_rest_payload] table. If there is not an existing REST message for the supplier for that specific ticket, then the script will make an async RESTful execution call to the supplier; else, the payload will be stored and processed at a later time. 
-
-_Instructions:_
-
-1. Navigate to **System Definition** > **Script Includes**, click **New**.
-1. In the **Script Include New record** section, fill in the following fields:
-    - _Name:_ eBondRestPayload
-    - _Script:_
-    ```
-    var eBondRestPayload = Class.create();
-    eBondRestPayload.prototype = {
-        // func: initialize
-        // desc: initializes the JavaScript object
-        // parm: n/a
-        // retn: true or false
-        initialize: function () {
-            // static 
-            this.eLog = new eBondLog();
-            this.eLog.u_direction = 'outbound';
-            this.eLog.u_location = 'Script Includes';
-            this.eLog.u_name = 'eBondRestPayload';
-            this.eLog.u_source = 'initialize';
-            this.eLog.u_supplier = 'Unknown';
-            this.eLog.u_correlate_id = current.sys_id;
-            this.eLog.u_correlate_class_name = current.sys_class_name;
-            this.eLog.write('Debug', 'Entering.');
-
-            this.eLog.write('Debug', 'Exiting.');
-        },
-
-        // func: increment
-        // desc: returns the next index number for u_ebond_rest_payload table
-        // parm: n/a
-        // retn: index interger vale
-        increment: function () {
-            var gr = new GlideRecord('u_ebond_rest_payload');
-            gr.orderByDesc('u_index');
-            gr.setLimit(1);
-            gr.query();
-            var index = 0;
-            if (gr.next()) {
-                index = gr.u_index + 1;
-            }
-            return index; // return the calculated value
-        },
-
-        // func: load
-        // desc: loads the REST payload into u_ebond_rest_payload table to be processed
-        // parm: company - company record
-        //       source_table - the ServiceNow table
-        //       source - the ticket sys_id
-        //       business_rule - the business rule to process the response
-        //       endpoint - url destination for the message 
-        //       payload - JSON body
-        //       format - payload format; JSON, XML, etc. 
-        //       restMsg - rest message record
-        //       httpMethod - rest methos to use
-        // retn: n/a
-        load: function (company, source_table, source, business_rule, endpoint, payload, format, restMsg, httpMethod) {
-            this.eLog.u_source = 'load';
-            this.eLog.write('Debug', 'Entering.');
-
-            // open the company record
-            var supplier = new GlideRecord('core_company');
-            supplier.get(company);
-
-            // add to u_ebond_rest_payload
-            var payloadRec = new GlideRecord('u_ebond_rest_payload');
-            payloadRec.initialize();
-            payloadRec.u_active = true;
-            payloadRec.u_supplier = company;
-            payloadRec.u_source = source;
-            payloadRec.u_source_table = source_table;
-            payloadRec.u_endpoint = endpoint;
-            payloadRec.u_payload = payload;
-            payloadRec.u_format = format;
-            payloadRec.u_rest_message = restMsg;
-            payloadRec.u_http_method = httpMethod;
-            payloadRec.u_ecc_topic = 'eBond_' + supplier.stock_symbol + '_Response';
-            payloadRec.u_status = 'queued';
-            payloadRec.insert();
-            this.eLog.write('Debug', 'Uploaded payload.');
-
-            // prevent collisions with active REST requests on same ticket with supplier
-            var payloadChk = new GlideRecord('u_ebond_rest_payload');
-            payloadChk.addQuery('u_active', true);
-            payloadChk.addQuery('u_supplier', company);
-            payloadChk.addQuery('u_source', source);
-            payloadChk.addQuery('u_source_table', source_table);
-            payloadChk.orderByDesc('u_index');
-            payloadChk.query();
-            if (payloadChk.next() && payloadChk.getRowCount() > 1) {
-                this.eLog.write('Debug', 'Collision detected.');
-                this.eLog.write('Debug', 'Exiting.');
-                return;
-            }
-
-            // send over to the ecc queue
-            try {
-                var restObj = new sn_ws.RESTMessageV2(restMsg, httpMethod);
-                restObj.setStringParameter('endpoint', endpoint);
-                restObj.setRequestBody(payload);
-                restObj.setEccParameter('skip_sensor', 'true'); // prevent Discovery sensors running for the ECC input
-                restObj.setEccTopic('eBond_' + supplier.stock_symbol + '_Response');
-                restObj.setEccCorrelator(payloadRec.getValue('sys_id'));
-                this.eLog.write('Debug', 'Invoking async RESTful execution.');
-                restObj.executeAsync(); // a business rule on the ecc_queue table will handle the response
-                payloadRec.u_status = 'active';
-                payloadRec.update();
-                return true;
-            } catch (ex) {
-                var message = ex.getMessage();
-                this.eLog.write('Medium', 'Error (Caught Exception): ' + message);
-            }
-            this.eLog.write('Debug', 'Exiting.');
-            return;
-        },
-
-        // func: executeNext
-        // desc: executes the next REST call from the u_ebond_rest_payload
-        // parm: source - the relationship record
-        // retn: n/a
-        executeNext: function (source) {
-            this.eLog.u_source = 'executeNext';
-            this.eLog.write('Debug', 'Entering.');
-            this.eLog.write('Debug', 'source: ' + source);
-
-            var nextPayload = new GlideRecord('u_ebond_rest_payload');
-            nextPayload.setLimit(1);
-            nextPayload.orderBy('u_index');
-            nextPayload.addQuery('u_active', true);
-            nextPayload.addNullQuery('u_http_status_code');
-            nextPayload.addQuery('u_source', source);
-            nextPayload.query();
-            if (nextPayload.next()) {
-                // send over to the ecc queue
-                try {
-                    var restObj = new sn_ws.RESTMessageV2(nextPayload.u_rest_message, nextPayload.u_http_method);
-                    restObj.setStringParameter('endpoint', nextPayload.u_endpoint);
-                    restObj.setRequestBody(nextPayload.u_payload);
-                    restObj.setEccParameter('skip_sensor', 'true'); // prevent Discovery sensors running for the ECC input
-                    restObj.setEccTopic(nextPayload.u_ecc_topic);
-                    restObj.setEccCorrelator(nextPayload.getValue('sys_id'));
-                    this.eLog.write('Debug', 'Invoking async RESTful execution.');
-                    restObj.executeAsync(); // a business rule on the ecc_queue table will handle the response
-                    nextPayload.u_status = 'active';
-                    nextPayload.update();
-                } catch (ex) {
-                    var message = ex.getMessage();
-                    this.eLog.write('Medium', 'Error (Caught Exception): ' + message);
-                }
-            }
-
-            this.eLog.write('Debug', 'Exiting.');
-            return;
-        },
-
-        typeBondRestPayload: 'eBondRestPayload'
+        type: 'eBondIncident_SUPPLIER'
     };
     ```
 1. Click **Submit**.
@@ -4575,7 +4653,7 @@ _Instructions:_
 ---
 ## REST Messages
 \
-_Component Type:_ Custom
+_Component Type:_ Custom (not captured in the _eBond - Templates_ update set)
 
 Each supplier will have a uniquely defined outbound connection definition. This is where credentials for the supplier is set along with unique attributes defined by the supplier.
 
@@ -4583,7 +4661,7 @@ _Instructions:_
 
 1. Navigate to **System Web Services** > **Outbound** > **REST MEssage**, click **New**.
 1. In the **REST Message New record** section, fill in the following fields:
-    - _Name:_ AlphaCo
+    - _Name:_ SUPPLIER
     - _Endpoint:_ ${endpoint}
     - _Authentication type:_ (note this is very custom to the supplier)
 1. In the record header, right-click and select **Save**.
@@ -4606,19 +4684,19 @@ _Instructions:_
 
 1. Navigate to **System Definition** > **Business Rules**, click **New**.
 1. In the **Business Rule New record** section, fill in the following fields:
-    - _Name:_ eBond_AlphaCo_Response
+    - _Name:_ eBond_SUPPLIER_Response
     - _Table:_ Queue [ecc_queue]
     - _Advanced:_ True
-1. In the **When to run** tab, fill in the following fields:
+1. In the **Advanced** tab, fill in the following fields:
     - _When:_ after
     - _Insert:_ True
 1. In the **Advanced** tab, fill in the following fields:
-    - _Condition:_ new eBondIncident_AlphaCo().checkCondition();
+    - _Condition:_ new eBondIncident_SUPPLIER().checkCondition();
     - _Script:_
     ```
     (function executeRule(current, previous /*null when async*/ ) {
 
-        var supplier = 'AlphaCo';
+        var supplier = 'SUPPLIER';
 
         eLog = new eBondLog();
         eLog.u_direction = 'inbound';
@@ -4630,7 +4708,7 @@ _Instructions:_
         eLog.u_correlate_class_name = current.sys_class_name;
         eLog.write('Debug', 'Entering.');
 
-        new eBondIncident_AlphaCo().processResponse();
+        new eBondIncident_SUPPLIER().processResponse();
 
         // security check to make sure the sender is a known source
         var url = new GlideRecord('u_ebond_registry');
@@ -4639,7 +4717,7 @@ _Instructions:_
         url.query();
         if (url.next()) {
             if (current.source != url.u_value) {
-                eLog.write('High', 'Security Alert. Inbound source REST message for ' + supplier + ' mismatch.\nExpected: ' + url.u_value +     '\nRecieved: ' + current.source);
+                eLog.write('High', 'Security Alert. Inbound source REST message for ' + supplier + ' mismatch.\nExpected: ' + url.u_value +     '\nReceived: ' + current.source);
                 return;
             }
         } else {
@@ -4751,8 +4829,10 @@ _Component Type:_ Standard
 _Instructions:_
 
 1. Navigate to **System Definition** > **Scheduled Jobs**, click **New**.
+1. In the **Automation Creator** section, click **Automatically run a script of your choosing**.
 1. In the **Scheduled Job New record** section, fill in the following fields:
     - _Name:_ eBond REST Payload Monitor
+    - _Run:_ Periodically
     - _Repeat Interval:_ Days 0 Hours 01 00 00
     - _Starting:_ 2021-01-01 01:00:00
     - _Script:_ 
@@ -4827,7 +4907,7 @@ _Instructions:_
     - _Name:_ eBond Relationship Management
     - _Table:_ eBond Relationship [u_ebond_relationship]
     - _Advanced:_ True
-1. In the **When to run** tab, fill in the following fields:
+1. In the **Advanced** tab, fill in the following fields:
     - _When:_ after
     - _Update:_ True
     - _Delete:_ True
@@ -4878,6 +4958,8 @@ _Instructions:_
 
     })(current, previous);
     ```
+1. Click **Submit**.
+
 ## Event Registry
 \
 _Component Type:_ Custom
@@ -4890,7 +4972,7 @@ _Instructions:_
 
 1. Navigate to **System Policy** > **Events** > **Registry**, click **New**.
 1. In the **Event Registration New record** section, fill in the following fields:
-    - _Event Name:_ ebond.relationship.management.AlphaCo
+    - _Event Name:_ ebond.relationship.management.{SUPPLIER}
 1. Click **Submit**.
 
 ---
@@ -4906,22 +4988,15 @@ _Instructions:_
 
 1. Navigate to **System Policy** > **Events** > **Script Actions**, click **New**.
 1. In the **Event Registration New record** section, fill in the following fields:
-    - _Name:_ eBond Relationship Management AlphaCo
-    - _Event name:_ ebond.relationship.management.AlphaCo
+    - _Name:_ eBond Relationship Management SUPPLIER
+    - _Event name:_ ebond.relationship.management.{SUPPLIER}
     - _Script:_
     ```
-    // build out the data payload for AlphaCo 
-    // store it in u_ebond_rest_payloads to be sent to the AlphaCo
+    // build out the data payload for SUPPLIER 
+    // store it in u_ebond_rest_payloads to be sent to the SUPPLIER
     var operation = event.parm1;
     var dataBundle = event.parm2;
-    var returnStatus = new eBondIncident_AlphaCo().preparePayload(operation, dataBundle);
-    ```
-    // build out the data payload for AlphaCo 
-    // store it in u_ebond_rest_payloads to be sent to the AlphaCo
-    var operation = event.parm1;
-    var dataBundle = event.parm2;
-    var returnStatus = new eBondIncident_AlphaCo().updateRelationship(operation, dataBundle);
-
+    var returnStatus = new eBondIncident_SUPPLIER().preparePayload(operation, dataBundle);
     ```
 1. Click **Submit**.
 
