@@ -1,0 +1,1355 @@
+<?xml version="1.0" encoding="UTF-8"?><unload unload_date="2021-09-23 21:47:31">
+<sys_remote_update_set action="INSERT_OR_UPDATE">
+<application display_value="Global">global</application>
+<application_name>Global</application_name>
+<application_scope>global</application_scope>
+<application_version/>
+<collisions/>
+<commit_date/>
+<deleted/>
+<description/>
+<inserted/>
+<name>eBond - AlphaCo</name>
+<origin_sys_id/>
+<parent display_value=""/>
+<release_date/>
+<remote_base_update_set display_value=""/>
+<remote_parent_id/>
+<remote_sys_id>1edd05dddbb230107cb384d8689619bd</remote_sys_id>
+<state>loaded</state>
+<summary/>
+<sys_class_name>sys_remote_update_set</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:30</sys_created_on>
+<sys_id>2940b919db3630107cb384d8689619a9</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:30</sys_updated_on>
+<update_set display_value=""/>
+<update_source display_value=""/>
+<updated/>
+</sys_remote_update_set>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_rest_message_fn_dcf3a999dbf230107cb384d8689619ee</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn"><sys_rest_message_fn action="INSERT_OR_UPDATE"><authentication_type>inherit_from_parent</authentication_type><basic_auth_password/><basic_auth_profile/><basic_auth_user/><content/><function_name>Default GET</function_name><http_method>get</http_method><lock>false</lock><oauth2_profile/><protocol_name/><qualified_name>AlphaCo [ Default GET ]</qualified_name><rest_endpoint>${endpoint}</rest_endpoint><rest_message display_value="AlphaCo">2ed3a15ddbf230107cb384d868961991</rest_message><sys_class_name>sys_rest_message_fn</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 20:53:38</sys_created_on><sys_id>dcf3a999dbf230107cb384d8689619ee</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Default GET</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sys_rest_message_fn_dcf3a999dbf230107cb384d8689619ee</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 20:53:38</sys_updated_on><use_basic_auth>false</use_basic_auth><use_mid_server/><use_mutual_auth>false</use_mutual_auth></sys_rest_message_fn></record_update>]]></payload>
+<payload_hash>1893514666</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>21407d19db3630107cb384d8689619d4</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c146f75e20000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table/>
+<target_name>Default GET</target_name>
+<type>HTTP Method</type>
+<update_domain>global</update_domain>
+<update_guid>05f321d928f23010acd8a4fbb2db5d2e</update_guid>
+<update_guid_history>05f321d928f23010acd8a4fbb2db5d2e:1893514666,18f321dd1ef23010514bb5878ecec42c:1893514666</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sysevent_register_d50525dddbf230107cb384d86896199a</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sysevent_register"><sysevent_register action="INSERT_OR_UPDATE"><caller_access/><description/><event_name>ebond.relationship.management.AlphaCo</event_name><fired_by/><queue/><suffix/><sys_class_name>sysevent_register</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 20:58:43</sys_created_on><sys_id>d50525dddbf230107cb384d86896199a</sys_id><sys_mod_count>0</sys_mod_count><sys_name>ebond.relationship.management.AlphaCo</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sysevent_register_d50525dddbf230107cb384d86896199a</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 20:58:43</sys_updated_on><table/></sysevent_register></record_update>]]></payload>
+<payload_hash>1178458884</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>25407d19db3630107cb384d8689619d3</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c147410590000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table/>
+<target_name>ebond.relationship.management.AlphaCo</target_name>
+<type>Event Registration</type>
+<update_domain>global</update_domain>
+<update_guid>621565dd0cf23010338cd98910e92e33</update_guid>
+<update_guid_history>621565dd0cf23010338cd98910e92e33:1178458884</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_registry_aab391d1dbf230107cb384d868961952</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_registry"><u_ebond_registry action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 19:43:43</sys_created_on><sys_id>aab391d1dbf230107cb384d868961952</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 19:43:43</sys_updated_on><u_key>default.assignment.group</u_key><u_note>Call Center Operations</u_note><u_supplier>AlphaCo</u_supplier><u_value>ddeec111dbf230107cb384d868961944</u_value></u_ebond_registry></record_update>]]></payload>
+<payload_hash>246272300</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>25407d19db3630107cb384d8689619d6</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c1441ce1c0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table/>
+<target_name>aab391d1dbf230107cb384d868961952</target_name>
+<type>eBond Registry</type>
+<update_domain>global</update_domain>
+<update_guid>aa88999572f23010f4df86f887b9e1ef</update_guid>
+<update_guid_history>aa88999572f23010f4df86f887b9e1ef:246272300</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_registry_16aad1d5dbf230107cb384d868961902</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_registry"><u_ebond_registry action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 20:14:24</sys_created_on><sys_id>16aad1d5dbf230107cb384d868961902</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 20:14:24</sys_updated_on><u_key>inbound.account</u_key><u_note>Links the account to the supplier</u_note><u_supplier>AlphaCo</u_supplier><u_value>eBondAlphaCo</u_value></u_ebond_registry></record_update>]]></payload>
+<payload_hash>-1549143273</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>29407d19db3630107cb384d8689619d5</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c144c182d0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table/>
+<target_name>16aad1d5dbf230107cb384d868961902</target_name>
+<type>eBond Registry</type>
+<update_domain>global</update_domain>
+<update_guid>8f1b91d512f230107555dae162f069d7</update_guid>
+<update_guid_history>8f1b91d512f230107555dae162f069d7:-1549143273</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_ui_section_5acfc111dbf230107cb384d86896194c</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update><sys_ui_section caption="" section_id="5acfc111dbf230107cb384d86896194c" sys_domain="global" table="u_ebond_registry" version="3" view=""><sys_ui_element action="INSERT_OR_UPDATE"><element>u_key</element><position>0</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 19:25:34</sys_created_on><sys_id>5acfcd11dbf230107cb384d868961908</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_registry" sys_domain="global" view="Default view">5acfc111dbf230107cb384d86896194c</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 19:25:34</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_note</element><position>1</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 19:25:34</sys_created_on><sys_id>52cfcd11dbf230107cb384d868961909</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_registry" sys_domain="global" view="Default view">5acfc111dbf230107cb384d86896194c</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 19:25:34</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_supplier</element><position>2</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 19:25:34</sys_created_on><sys_id>d2cfcd11dbf230107cb384d868961909</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_registry" sys_domain="global" view="Default view">5acfc111dbf230107cb384d86896194c</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 19:25:34</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_value</element><position>3</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 19:25:34</sys_created_on><sys_id>56cfcd11dbf230107cb384d868961909</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_registry" sys_domain="global" view="Default view">5acfc111dbf230107cb384d86896194c</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 19:25:34</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_section action="INSERT_OR_UPDATE"><caption/><header>false</header><name>u_ebond_registry</name><roles/><sys_class_name>sys_ui_section</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 19:25:34</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>5acfc111dbf230107cb384d86896194c</sys_id><sys_mod_count>0</sys_mod_count><sys_name>u_ebond_registry</sys_name><sys_overrides/><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sys_ui_section_5acfc111dbf230107cb384d86896194c</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 19:25:34</sys_updated_on><sys_user/><title>true</title><view display_value="Default view" name="NULL">Default view</view><view_name/></sys_ui_section></sys_ui_section></record_update>]]></payload>
+<payload_hash>1583182779</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>2d407d19db3630107cb384d8689619d4</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c141eca990000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table>u_ebond_registry</table>
+<target_name>eBond Registry</target_name>
+<type>Form Layout</type>
+<update_domain>global</update_domain>
+<update_guid>1acfcd11e8f23010fb615faf7c47a50a</update_guid>
+<update_guid_history>1acfcd11e8f23010fb615faf7c47a50a:1583182779,dacfc111acf23010f9a3a8d7859f724f:-5844213</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>cmdb_ci_service_ed4f0911dbf230107cb384d86896190d</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="cmdb_ci_service"><cmdb_ci_service action="INSERT_OR_UPDATE"><aliases/><asset/><asset_tag/><assigned/><assigned_to/><assignment_group/><attestation_score/><attested>false</attested><attested_by/><attested_date/><attributes/><busines_criticality>2 - somewhat critical</busines_criticality><business_contact/><business_need/><business_relation_manager/><can_print>false</can_print><category>Business Service</category><change_control/><checked_in/><checked_out/><comments/><company/><compatibility_dependencies/><consumer_type>internal</consumer_type><correlation_id/><cost/><cost_cc>USD</cost_cc><cost_center/><delivery_date/><delivery_manager/><department/><discovery_source/><dns_domain/><due/><due_in/><duplicate_of/><end_date/><environment/><fault_count>0</fault_count><first_discovered/><fqdn/><gl_account/><install_date/><install_status>1</install_status><invoice_number/><ip_address/><justification/><last_discovered/><last_review_date/><lease_id/><life_cycle_stage/><life_cycle_stage_status/><location/><mac_address/><maintenance_schedule/><managed_by/><managed_by_group/><manufacturer/><model_id/><model_number/><monitor>false</monitor><monitoring_requirements/><name>Service Management</name><number>BSN0001001</number><operational_status>1</operational_status><order_date/><owned_by/><parent/><po_number/><portfolio_status>pipeline</portfolio_status><prerequisites/><price_model>per_unit</price_model><price_unit/><purchase_date/><schedule/><serial_number/><service_classification>Business Service</service_classification><service_level_requirement/><service_owner_delegate/><service_status>requirements</service_status><short_description/><skip_sync>false</skip_sync><sla/><spm_service_portfolio/><spm_taxonomy_node/><stakeholders/><start_date/><subcategory>Service</subcategory><support_group/><supported_by/><sys_class_name>cmdb_ci_service</sys_class_name><sys_class_path>/!!/!S</sys_class_path><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 19:23:51</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>ed4f0911dbf230107cb384d86896190d</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 19:23:51</sys_updated_on><unit_description/><unverified>false</unverified><used_for>Production</used_for><user_group/><vendor/><version/><warranty_expiration/></cmdb_ci_service><sys_translated_text action="delete_multiple" query="documentkey=ed4f0911dbf230107cb384d86896190d"/></record_update>]]></payload>
+<payload_hash>-2060753171</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:30</sys_created_on>
+<sys_id>2d40b919db3630107cb384d8689619a9</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c141d4db80000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:30</sys_updated_on>
+<table/>
+<target_name>Service Management</target_name>
+<type>Service</type>
+<update_domain>global</update_domain>
+<update_guid>2e6f8ddd98b230109bc8ac0ff08caa98</update_guid>
+<update_guid_history>2e6f8ddd98b230109bc8ac0ff08caa98:-2060753171</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sysevent_register_28ad5999dbf230107cb384d8689619e2</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sysevent_register"><sysevent_register action="INSERT_OR_UPDATE"><caller_access/><description/><event_name>ebond.incident.outbound.AlphaCo</event_name><fired_by/><queue/><suffix/><sys_class_name>sysevent_register</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 20:26:20</sys_created_on><sys_id>28ad5999dbf230107cb384d8689619e2</sys_id><sys_mod_count>0</sys_mod_count><sys_name>ebond.incident.outbound.AlphaCo</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sysevent_register_28ad5999dbf230107cb384d8689619e2</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 20:26:20</sys_updated_on><table/></sysevent_register></record_update>]]></payload>
+<payload_hash>361637418</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>61407d19db3630107cb384d8689619d3</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c145679150000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table/>
+<target_name>ebond.incident.outbound.AlphaCo</target_name>
+<type>Event Registration</type>
+<update_domain>global</update_domain>
+<update_guid>55bdd55949f230109d948dae9349f18c</update_guid>
+<update_guid_history>55bdd55949f230109d948dae9349f18c:361637418,94bd519966f230105331e387c8bb4d0d:361637418</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_registry_6371d911dbf230107cb384d8689619da</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_registry"><u_ebond_registry action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 19:35:25</sys_created_on><sys_id>6371d911dbf230107cb384d8689619da</sys_id><sys_mod_count>1</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 19:58:56</sys_updated_on><u_key>incident.url.link</u_key><u_note>Direct URL link to the supplier ticket.&#13;
+&#13;
+Replace CORRELATION_ID or CORRELATION_NUMBER in the value for the transform to store the proper link to the ticket.</u_note><u_supplier>AlphaCo</u_supplier><u_value>https://solution.alpha.com/ticket=CORRELATION_ID</u_value></u_ebond_registry></record_update>]]></payload>
+<payload_hash>342810929</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>61407d19db3630107cb384d8689619d6</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c1441bdad0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table/>
+<target_name>6371d911dbf230107cb384d8689619da</target_name>
+<type>eBond Registry</type>
+<update_domain>global</update_domain>
+<update_guid>a9889d952bf2301072af5e82620e9674</update_guid>
+<update_guid_history>a9889d952bf2301072af5e82620e9674:342810929,cb02d9119ff23010694497db460f3b0f:1949331038</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_user_has_role_715e89dddbb230107cb384d868961951</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_has_role"><sys_user_has_role action="INSERT_OR_UPDATE"><granted_by display_value="">not-applicable</granted_by><included_in_role/><included_in_role_instance/><inh_count/><inh_map/><inherited>false</inherited><role display_value="eBond Account" name="eBond Account">7541a9e0db3230107cb384d86896192c</role><state>active</state><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 19:19:15</sys_created_on><sys_id>715e89dddbb230107cb384d868961951</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 19:19:15</sys_updated_on><user display_value="">54fd85dddbb230107cb384d86896195f</user></sys_user_has_role></record_update>]]></payload>
+<payload_hash>276524079</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>65407d19db3630107cb384d8689619d5</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c14193dce0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table/>
+<target_name>eBond Account.</target_name>
+<type>User Role</type>
+<update_domain>global</update_domain>
+<update_guid>e56ec9dd80b230101bb9f3a0d902cde8</update_guid>
+<update_guid_history>e56ec9dd80b230101bb9f3a0d902cde8:276524079</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_script_include_585ed999dbf230107cb384d8689619f9</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;global.eBondIncident_AlphaCo&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;description/&gt;&lt;name&gt;eBondIncident_AlphaCo&lt;/name&gt;&lt;script&gt;&lt;![CDATA[var eBondIncident_AlphaCo = Class.create();
+eBondIncident_AlphaCo.prototype = {
+    // func: initialize
+    // desc: initializes the JavaScript object
+    // parm: n/a
+    // retn: true or false
+    initialize: function() {
+        // static 
+        this.eLog = new eBondLog();
+        this.eLog.u_direction = 'outbound';
+        this.eLog.u_location = 'Script Includes';
+        this.eLog.u_name = 'eBondIncident_AlphaCo';
+        this.eLog.u_source = 'initialize';
+        this.eLog.u_supplier = 'AlphaCo';
+        this.eLog.u_correlate_id = current.sys_id;
+        this.eLog.u_correlate_class_name = current.sys_class_name;
+        this.eLog.write('Debug', 'Entering.');
+
+        this.supplier = 'AlphaCo';
+        this.restMsg = 'AlphaCo'; // declaration in ServiceNow REST message
+        this.httpMethod = 'Incident'; // declaration in ServiceNow REST message
+
+        // dynamic
+        var company = new GlideRecord('core_company');
+        company.addQuery('stock_symbol', this.supplier);
+        company.query();
+        if (company.next()) {
+            this.company = company.sys_id;
+        } else {
+            this.eLog.write('High', 'Cannot find the supplier\'s (' + supplier + ') company record.');
+        }
+
+        var url = new GlideRecord('u_ebond_registry');
+        url.addQuery('u_supplier', this.supplier);
+        url.addQuery('u_key', 'incident.url.endpoint');
+        url.query();
+        if (url.next()) {
+            this.url = url.u_value;
+        } else {
+            this.eLog.write('High', supplier + ' is missing eBond registry key incident.url.endpoint.');
+        }
+
+        this.eLog.write('Debug', 'Exiting.');
+    },
+
+    // func: checkCondition
+    // desc: determines if the response is from AlphaCo; called by ecc queue business rule
+    // parm: n/a
+    // retn: true or false
+    checkCondition: function() {
+        this.eLog.u_source = 'checkCondition';
+        this.eLog.u_direction = 'inbound';
+        this.eLog.write('Debug', 'Entering.');
+
+        if (current.getValue('topic') == 'eBond_' + this.supplier + '_Response' &amp;&amp;
+            (current.getValue('state') == 'ready' ||
+                current.getValue('state') == 'error') &amp;&amp;
+            current.getValue('name') == 'post' &amp;&amp;
+            current.getValue('queue') == 'input') {
+            this.eLog.write('Debug', 'Exiting. Return: true');
+            return true;
+        }
+
+        this.eLog.write('Debug', 'Exiting. Return: false');
+        return false;
+    },
+
+    /* 
+       func: checkEcho
+       desc: checks to see if the incident was updated by the supplier
+       parm: n/a
+       retn: true - the incident was updated by AlphaCo
+             false - the incident was not updated by AlphaCo
+
+    */
+    checkEcho: function() {
+        this.eLog.u_source = 'checkEcho';
+        this.eLog.u_direction = 'outbound';
+        this.eLog.write('Debug', 'Entering.');
+
+        var echo = false;
+
+        var registry = new GlideRecord('u_ebond_registry');
+        registry.addQuery('u_supplier', this.supplier);
+        registry.addQuery('u_key', 'inbound.account');
+        registry.query();
+        if (registry.next()) {
+            if (registry.u_value == current.sys_updated_by) {
+                echo = true;
+            }
+        }
+
+        this.eLog.write('Debug', 'Exiting. Return: ' + echo);
+        return echo;
+    },
+
+    // func: determineOperation
+    // desc: updates to incident record does not mean updates to the supplier
+    //       the existing incident could have been updated with new assignment group or eBonded with value
+    // parm: n/a
+    // retn: create or update
+    determineOperation: function() {
+        this.eLog.u_source = 'determineOperation';
+        this.eLog.u_direction = 'outbound';
+        this.eLog.write('Debug', 'Entering.');
+
+        var decision = 'create';
+
+        // check if the incident u_ebonded_with AND the assignment group is still associated with the supplier
+        var arrUtil = new ArrayUtil();
+        var arr = current.u_ebonded_with.toString().split(',');
+        var pos = arrUtil.indexOf(arr, this.company);
+        if (pos &lt; 0 &amp;&amp; current.assignment_group.u_company != this.company) {
+            decision = 'delete';
+            this.eLog.write('Debug', 'Exiting. Return: ' + decision);
+            return decision;
+        }
+
+        // find existing relationship records
+        var relationship = new GlideRecord('u_ebond_relationship');
+        relationship.addQuery('u_source', current.sys_id);
+        relationship.addQuery('u_status', 'ebonded');
+        relationship.addQuery('u_company', this.company);
+        relationship.query();
+        if (relationship.next()) {
+            decision = 'update';
+        }
+
+        this.eLog.write('Debug', 'Exiting. Return: ' + decision);
+        return decision;
+    },
+
+    // func: insertOperation
+    // desc: ServiceNow has inserted a new record
+    // parm: dataBundle
+    // retn: n/a
+    insertOperation: function(dataBundle) {
+        this.eLog.u_source = 'insertOperation';
+        this.eLog.u_direction = 'outbound';
+        this.eLog.write('Debug', 'Entering.');
+
+        var parser = new JSONParser();
+        var incidentData = parser.parse(dataBundle);
+
+        var dataMap = new eBondDataMap();
+
+        var data = {};
+        data.ExternalNumber = current.number.toString();
+        data.ExternalRef = current.sys_id.toString();
+
+        for (var key in incidentData) {
+            var map = dataMap.getSupplierValue(this.supplier, 'outbound', 'incident', key, incidentData[key], incidentData[key]);
+            switch (key) {
+                case "comment":
+                    data.Comment = map.value;
+                    break;
+                case "work_note":
+                    data.WorkNote = map.value;
+                    break;
+                case "description":
+                    data.Desc = map.value;
+                    break;
+                case "short_description":
+                    data.ShortDesc = map.value;
+                    break;
+                case "state":
+                    data.State = map.value;
+                    break;
+                case "impact":
+                    data.Impact = map.value;
+                    break;
+                case "urgency":
+                    data.Urgency = map.value;
+                    break;
+                case "caller":
+                    var caller = new GlideRecord('sys_user');
+                    caller.addQuery('sys_id', map.value);
+                    caller.query();
+                    if (caller.next()) {
+                        data.Caller = caller.getDisplayValue('email');
+                    }
+                    break;
+                case "assignment_group":
+                    var group = new GlideRecord('sys_user_group');
+                    group.addQuery('sys_id', map.value);
+                    group.query();
+                    if (group.next()) {
+                        data.AssignmentGroup = group.getDisplayValue('name');
+                    }
+                    break;
+                case "ci":
+                    var ci = new GlideRecord('cmdb_ci');
+                    ci.addQuery('sys_id', 'map.value');
+                    ci.query();
+                    if (ci.next()) {
+                        data.CI = ci.getDisplayValue('name');
+                    }
+                    break;
+                case "contact_type":
+                    data.Contact = map.value;
+                    break;
+                case "close_notes":
+                    data.CloseNotes = map.value;
+                    break;
+                case "close_code":
+                    data.CloseCode = map.value;
+                    break;
+                case "business_service":
+                    var service = new GlideRecord('cmdb_ci_service');
+                    service.addQuery('sys_id', map.value);
+                    service.query();
+                    if (service.next()) {
+                        data.Service = service.getDisplayValue('name');
+                    }
+                    break;
+                case "service_offering":
+                    var service_offering = new GlideRecord('cmdb_ci_service');
+                    service_offering.addQuery('sys_id', map.value);
+                    service_offering.query();
+                    if (service_offering.next()) {
+                        data.ServiceOffering = service_offering.getDisplayValue('name');
+                    }
+                    break;
+                case "category":
+                    data.Category = map.value;
+                    break;
+                case "subcategory":
+                    data.Subcategory = map.value;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        data.CommentHistory = current.comments.getJournalEntry(-1); // full comment history
+        data.WorkNoteHistory = current.work_notes.getJournalEntry(-1); // full work note history
+
+        var payload = JSON.stringify(data);
+        this.eLog.write('Debug', 'Payload: \n' + payload);
+
+        // create relationship record 
+        var relationship = new GlideRecord('u_ebond_relationship');
+        relationship.initialize();
+        relationship.u_source_table = 'incident';
+        relationship.u_source = current.sys_id;
+        relationship.u_status = 'ebonded';
+        relationship.u_state = current.state;
+        relationship.u_out = 'wait';
+        relationship.u_company = this.company;
+        relationship.insert();
+
+        // load REST payload into the pool to be processed
+        var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.sys_id, '', this.url, payload, 'json', this.restMsg, this.httpMethod);
+
+        this.eLog.write('Debug', 'Exiting.');
+    },
+
+    // func: createOperation
+    // desc: ServiceNow has updated an existing record, but this is a new record for the supplier
+    // parm: dataBundle
+    // retn: n/a
+    createOperation: function() {
+        this.eLog.u_source = 'createOperation';
+        this.eLog.u_direction = 'outbound';
+        this.eLog.write('Debug', 'Entering.');
+
+        var dataMap = new eBondDataMap();
+
+        var data = {};
+        data.ExternalNumber = current.number.toString();
+        data.ExternalRef = current.sys_id.toString();
+
+        data.Comment = current.comments.getJournalEntry(1);
+        data.WorkNote = current.work_notes.getJournalEntry(1);
+        data.Desc = current.getValue('description');
+        data.ShortDesc = current.getValue('short_description');
+        data.State = dataMap.getSupplierValue(this.supplier, 'outbound', 'incident', 'state', current.getValue('state'), '100').value;
+        data.Impact = dataMap.getSupplierValue(this.supplier, 'outbound', 'incident', 'impact', current.getValue('impact'), '300').value;
+        data.Urgency = dataMap.getSupplierValue(this.supplier, 'outbound', 'incident', 'urgency', current.getValue('urgency'), '300').value;
+        data.Caller = current.caller.getDisplayValue('email');
+        data.AssignmentGroup = current.getDisplayValue('assignment_group');
+        data.CI = current.getDisplayValue('cmdb_ci');
+        data.Contact = dataMap.getSupplierValue(this.supplier, 'outbound', 'incident', 'contact_type', current.getValue('contact_type'), 'digital').value;
+        data.CloseNotes = current.getValue('close_notes');
+        data.CloseCode = dataMap.getSupplierValue(this.supplier, 'outbound', 'incident', 'close_code', current.getValue('close_code'), '').value;
+        data.Service = current.getDisplayValue('business_service');
+        data.ServiceOffering = current.getDisplayValue('service_offering');
+        data.Category = current.getDisplayValue('category');
+        data.Subcategory = current.getDisplayValue('subcategory');
+        data.Comment = current.comments.getJournalEntry(-1); // full comment history
+        data.WorkNote = current.work_notes.getJournalEntry(-1); // full work note history
+        var payload = JSON.stringify(data);
+        this.eLog.write('Debug', 'Payload: \n' + payload);
+
+        // create relationship record 
+        var relationship = new GlideRecord('u_ebond_relationship');
+        relationship.initialize();
+        relationship.u_source_table = 'incident';
+        relationship.u_source = current.sys_id;
+        relationship.u_status = 'eBonded';
+        relationship.u_state = current.state;
+        relationship.u_out = 'wait';
+        relationship.u_company = this.company;
+        relationship.insert();
+
+        // load REST payload into the pool to be processed
+        var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.sys_id, '', this.url, payload, 'json', this.restMsg, this.httpMethod);
+
+        this.eLog.write('Debug', 'Exiting.');
+    },
+
+    // func: updateOperation
+    // desc: ServiceNow has updated the record, update the AlphaCo records as appropriate
+    // parm: dataBundle
+    // retn: n/a
+    updateOperation: function(dataBundle) {
+        this.eLog.u_source = 'updateOperation';
+        this.eLog.u_direction = 'outbound';
+        this.eLog.write('Debug', 'Entering.');
+
+        var parser = new JSONParser();
+        var incidentData = parser.parse(dataBundle);
+
+        var dataMap = new eBondDataMap();
+
+        // traverse all related eBonds
+        var relationship = new GlideRecord('u_ebond_relationship');
+        relationship.addQuery('u_source', current.sys_id);
+        relationship.addQuery('u_status', 'ebonded');
+        relationship.addQuery('u_company', this.company);
+        relationship.query();
+        while (relationship.next()) {
+
+            var data = {};
+            data.number = relationship.u_correlation_number.toString();
+
+            // if reflect, then perform data mapping
+            if (relationship.u_reflect == true) {
+                for (var key in incidentData) {
+                    var map = dataMap.getSupplierValue(this.supplier, 'outbound', 'incident', key, incidentData[key], incidentData[key]);
+                    switch (key) {
+                        case "comment":
+                            data.Comment = map.value;
+                            break;
+                        case "work_note":
+                            data.WorkNote = map.value;
+                            break;
+                        case "description":
+                            data.Desc = map.value;
+                            break;
+                        case "short_description":
+                            data.ShortDesc = map.value;
+                            break;
+                        case "state":
+                            data.State = map.value;
+                            break;
+                        case "impact":
+                            data.Impact = map.value;
+                            break;
+                        case "urgency":
+                            data.Urgency = map.value;
+                            break;
+                        case "caller":
+                            var caller = new GlideRecord('sys_user');
+                            caller.addQuery('sys_id', map.value);
+                            caller.query();
+                            if (caller.next()) {
+                                data.Caller = caller.getDisplayValue('email');
+                            }
+                            break;
+                        case "assignment_group":
+                            var group = new GlideRecord('sys_user_group');
+                            group.addQuery('sys_id', map.value);
+                            group.query();
+                            if (group.next()) {
+                                data.AssignmentGroup = group.getDisplayValue('name');
+                            }
+                            break;
+                        case "ci":
+                            var ci = new GlideRecord('cmdb_ci');
+                            ci.addQuery('sys_id', map.value);
+                            ci.query();
+                            if (ci.next()) {
+                                data.CI = ci.getDisplayValue('name');
+                            }
+                            break;
+                        case "contact_type":
+                            data.Contact = map.value;
+                            break;
+                        case "close_notes":
+                            data.CloseNotes = map.value;
+                            break;
+                        case "close_code":
+                            data.CloseCode = map.value;
+                            break;
+                        case "business_service":
+                            var service = new GlideRecord('cmdb_ci_service');
+                            service.addQuery('sys_id', map.value);
+                            service.query();
+                            if (service.next()) {
+                                data.Service = service.getDisplayValue('name');
+                            }
+                            break;
+                        case "service_offering":
+                            var service_offering = new GlideRecord('cmdb_ci_service');
+                            service_offering.addQuery('sys_id', map.value);
+                            service_offering.query();
+                            if (service_offering.next()) {
+                                data.ServiceOffering = service_offering.getDisplayValue('name');
+                            }
+                            break;
+                        case "category":
+                            data.Category = map.value;
+                            break;
+                        case "subcategory":
+                            data.Subcategory = map.value;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            } else { // else, represent the changes as a comment
+                var comment = '';
+                var newline = '';
+                for (var key in incidentData) {
+                    switch (key) {
+                        case 'caller':
+                            var caller = new GlideRecord('sys_user');
+                            caller.addQuery('sys_id', incidentData[key]);
+                            caller.query();
+                            if (caller.next()) {
+                                comment += newline + key + ': ' + caller.getDisplayValue('email');
+                            }
+                            break;
+                        case 'assignment_group':
+                            var group = new GlideRecord('sys_user_group');
+                            group.addQuery('sys_id', incidentData[key]);
+                            group.query();
+                            if (group.next()) {
+                                comment += newline + key + ': ' + group.getDisplayValue('name');
+                            }
+                            break;
+                        case 'ci':
+                            var ci = new GlideRecord('cmdb_ci');
+                            ci.addQuery('sys_id', incidentData[key]);
+                            ci.query();
+                            if (ci.next()) {
+                                comment += newline + key + ': ' + ci.getDisplayValue('name');
+                            }
+                            break;
+                        case 'business_service':
+                            var service = new GlideRecord('cmdb_ci_service');
+                            service.addQuery('sys_id', incidentData[key]);
+                            service.query();
+                            if (service.next()) {
+                                comment += newline + key + ': ' + service.getDisplayValue('name');
+                            }
+                            break;
+                        case 'service_offering':
+                            var service_offering = new GlideRecord('cmdb_ci_service');
+                            service_offering.addQuery('sys_id', incidentData[key]);
+                            service_offering.query();
+                            if (service_offering.next()) {
+                                comment += newline + key + ': ' + service_offering.getDisplayValue('name');
+                            }
+                            break;
+                        default:
+                            var map = dataMap.getSupplierValue(this.supplier, 'outbound', 'incident', key, incidentData[key], incidentData[key]);
+                            comment += newline + key + ': ' + map.value;
+                            if (map.note != undefined &amp;&amp; map.note != '') {
+                                comment += ' (' + map.note + ')';
+                            }
+                    }
+                    newline = '\n';
+                }
+                data.comment = comment;
+            }
+
+            var payload = JSON.stringify(data);
+            this.eLog.write('Debug', 'Payload: \n' + payload);
+
+            // update the relationship record if in good standing
+            if (relationship.getValue('u_out') == 'up') {
+                relationship.u_out = 'wait';
+                relationship.update();
+            }
+
+            // load REST payload into the pool to be processed
+            var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.sys_id, '', this.url, payload, 'json', this.restMsg, this.httpMethod);
+        }
+
+        this.eLog.write('Debug', 'Exiting.');
+    },
+
+    // func: deleteOperation
+    // desc: ServiceNow has deleted the record, debond associated AlphaCo records
+    //       update AlphaCo to debond from the record
+    //       deleted the ServiceNow relationship record
+    // parm: n/a
+    // retn: n/a
+    deleteOperation: function() {
+        this.eLog.u_source = 'deleteOperation';
+        this.eLog.u_direction = 'outbound';
+        this.eLog.write('Debug', 'Entering.');
+
+        // traverse all related eBonds
+        var relationship = new GlideRecord('u_ebond_relationship');
+        relationship.addQuery('u_source', current.sys_id);
+        relationship.addQuery('u_ebonded', 'true');
+        relationship.addQuery('u_company', this.company);
+        relationship.query();
+        while (relationship.next()) {
+            // prepare debond payload
+            var data = {};
+            data.number = relationship.u_correlation_number.toString();
+            data.state = '0';
+            var payload = JSON.stringify(data);
+
+            var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.sys_id, '', this.url, payload, 'json', this.restMsg, this.httpMethod);
+
+            // change the relationship
+            relationship.u_status = 'debonded';
+            relationship.update();
+        }
+
+        this.eLog.write('Debug', 'Exiting.');
+    },
+
+    // func: preparePayload
+    // desc: prepares the incident payloads for AlphaCo 
+    // parm: operation - insert, update, or delete
+    //       dataBundle - JSON representating the incident
+    // retn: n/a
+    preparePayload: function(operation, dataBundle) {
+        this.eLog.u_source = 'preparePayload';
+        this.eLog.u_direction = 'outbound';
+        this.eLog.write('Debug', 'Entering.');
+        this.eLog.write('Debug', 'operation = ' + operation);
+        this.eLog.write('Debug', 'dataBundle = ' + dataBundle);
+
+        if (this.checkEcho() == true) {
+            this.eLog.u_source = 'preparePayload';
+            this.eLog.write('Debug', 'Exiting.');
+            return;
+        }
+
+        if (this.company == undefined) {
+            this.eLog.write('Low', 'Company is not set, cannot continue.');
+            this.eLog.write('Debug', 'Exiting.');
+            return;
+        }
+
+        if (this.url == undefined) {
+            this.eLog.write('Low', 'URL is not set, cannot continue.');
+            this.eLog.write('Debug', 'Exiting.');
+            return;
+        }
+
+        if (operation == 'insert') { // new incident record
+            this.insertOperation(dataBundle);
+            this.eLog.u_source = 'preparePayload';
+        } else if (operation == 'update') { // updated incident record
+            var decision = this.determineOperation(dataBundle);
+            if (decision == 'create') { // decision is to create new record
+                this.createOperation(dataBundle);
+                this.eLog.u_source = 'preparePayload';
+            } else if (decision == 'update') { // decision is to update existing record
+                this.updateOperation(dataBundle); // decision is to update record(s)
+                this.eLog.u_source = 'preparePayload';
+            } else { // decision is to debond
+                this.deleteOperation();
+                this.eLog.u_source = 'preparePayload';
+            }
+        } else if (operation == 'delete') { // deleted incident record
+            this.deleteOperation();
+            this.eLog.u_source = 'preparePayload';
+        }
+
+        this.eLog.write('Debug', 'Exiting.');
+        return;
+    },
+
+    // func: updateRelationship
+    // desc: prepares the incident payloads for AlphaCo on a change of relationship 
+    // parm: operation - update
+    //       dataBundle - JSON representating the status of the relationship
+    // retn: n/a
+    updateRelationship: function(operation, dataBundle) {
+        this.eLog.u_source = 'updateRelationship';
+        this.eLog.u_direction = 'outbound';
+        this.eLog.write('Debug', 'Entering.');
+        this.eLog.write('Debug', 'operation = ' + operation);
+        this.eLog.write('Debug', 'dataBundle = ' + dataBundle);
+
+        var parser = new JSONParser();
+        var relationship = parser.parse(dataBundle);
+
+        if (relationship.status == 'debonded') {
+            var data = {};
+            data.number = current.u_correlation_number.toString();
+            data.state = '0'; // AlphaCo deBond state code
+            var payload = JSON.stringify(data);
+
+            var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', current.sys_id, '', this.url, payload, 'json', this.restMsg, this.httpMethod);
+        } else {
+            var data = {};
+            data.number = current.u_correlation_number.toString();
+            data.state = '-1'; // AlphaCo re-eBond state code
+            var payload = JSON.stringify(data);
+
+            var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', current.sys_id, '', this.url, payload, 'json', this.restMsg, this.httpMethod);
+        }
+
+        this.eLog.write('Debug', 'Exiting.');
+        return;
+    },
+
+    type: 'eBondIncident_AlphaCo'
+};]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2021-09-23 20:40:53&lt;/sys_created_on&gt;&lt;sys_id&gt;585ed999dbf230107cb384d8689619f9&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;eBondIncident_AlphaCo&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_585ed999dbf230107cb384d8689619f9&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2021-09-23 20:40:53&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
+<payload_hash>1327960117</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>69407d19db3630107cb384d8689619d4</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c1463ef130000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table/>
+<target_name>eBondIncident_AlphaCo</target_name>
+<type>Script Include</type>
+<update_domain>global</update_domain>
+<update_guid>6811615d70f2301096cf294a95dfb612</update_guid>
+<update_guid_history>6811615d70f2301096cf294a95dfb612:1327960117,d501e9d918f23010219e0e0666f17347:1327960117</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_rest_message_2ed3a15ddbf230107cb384d868961991</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message"><sys_rest_message action="INSERT_OR_UPDATE"><access>package_private</access><authentication_type>no_authentication</authentication_type><basic_auth_password/><basic_auth_profile/><basic_auth_user/><description/><name>AlphaCo</name><oauth2_profile/><protocol_name/><rest_endpoint>${endpoint}</rest_endpoint><sys_class_name>sys_rest_message</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 20:53:38</sys_created_on><sys_id>2ed3a15ddbf230107cb384d868961991</sys_id><sys_mod_count>0</sys_mod_count><sys_name>AlphaCo</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sys_rest_message_2ed3a15ddbf230107cb384d868961991</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 20:53:38</sys_updated_on><use_basic_auth>false</use_basic_auth><use_mutual_auth>false</use_mutual_auth></sys_rest_message></record_update>]]></payload>
+<payload_hash>-662480220</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>6d407d19db3630107cb384d8689619d3</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c146f75b60000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table/>
+<target_name>AlphaCo</target_name>
+<type>REST Message</type>
+<update_domain>global</update_domain>
+<update_guid>4df321d9c0f230102b2ff3b05b386b2c</update_guid>
+<update_guid_history>4df321d9c0f230102b2ff3b05b386b2c:-662480220,1cf321ddd4f2301089b224f600bef22d:-662480220</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_user_group_ddeec111dbf230107cb384d868961944</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_group"><sys_user_group action="INSERT_OR_UPDATE"><active>true</active><cost_center/><default_assignee/><description/><email>callcenterops@alpha.com</email><exclude_manager>false</exclude_manager><include_members>false</include_members><manager/><name>Call Center Operations</name><parent/><roles/><source/><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 19:22:27</sys_created_on><sys_id>ddeec111dbf230107cb384d868961944</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 19:22:27</sys_updated_on><type/><u_company display_value="Alpha Co">49be0111dbf230107cb384d868961935</u_company></sys_user_group></record_update>]]></payload>
+<payload_hash>-638907325</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>a1407d19db3630107cb384d8689619d5</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c141c837a0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table/>
+<target_name>Call Center Operations</target_name>
+<type>Group</type>
+<update_domain>global</update_domain>
+<update_guid>b13f851149f23010f3ce74558cecb3eb</update_guid>
+<update_guid_history>b13f851149f23010f3ce74558cecb3eb:-638907325</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_script_15346999dbf230107cb384d8689619f3</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_script"&gt;&lt;sys_script action="INSERT_OR_UPDATE"&gt;&lt;abort_action&gt;false&lt;/abort_action&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;action_delete&gt;false&lt;/action_delete&gt;&lt;action_insert&gt;true&lt;/action_insert&gt;&lt;action_query&gt;false&lt;/action_query&gt;&lt;action_update&gt;false&lt;/action_update&gt;&lt;active&gt;true&lt;/active&gt;&lt;add_message&gt;false&lt;/add_message&gt;&lt;advanced&gt;true&lt;/advanced&gt;&lt;change_fields&gt;false&lt;/change_fields&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;collection&gt;ecc_queue&lt;/collection&gt;&lt;condition&gt;new eBondIncident_AlphaCo().checkCondition();&lt;/condition&gt;&lt;description/&gt;&lt;execute_function&gt;false&lt;/execute_function&gt;&lt;filter_condition/&gt;&lt;is_rest&gt;false&lt;/is_rest&gt;&lt;message/&gt;&lt;name&gt;eBond_AlphaCo_Response&lt;/name&gt;&lt;order&gt;100&lt;/order&gt;&lt;priority&gt;100&lt;/priority&gt;&lt;rest_method/&gt;&lt;rest_method_text/&gt;&lt;rest_service/&gt;&lt;rest_service_text/&gt;&lt;rest_variables/&gt;&lt;role_conditions/&gt;&lt;script&gt;&lt;![CDATA[(function executeRule(current, previous /*null when async*/ ) {
+
+    var supplier = 'AlphaCo';
+
+    eLog = new eBondLog();
+    eLog.u_direction = 'inbound';
+    eLog.u_location = 'Business Rules';
+    eLog.u_name = 'eBond_' + supplier + '_Response';
+    eLog.u_source = 'executeRule';
+    eLog.u_supplier = supplier;
+    eLog.u_correlate_id = current.sys_id;
+    eLog.u_correlate_class_name = current.sys_class_name;
+    eLog.write('Debug', 'Entering.');
+
+    new eBondIncident_AlphaCo().processResponse();
+
+    // security check to make sure the sender is a known source
+    var url = new GlideRecord('u_ebond_registry');
+    url.addQuery('u_supplier', supplier);
+    url.addQuery('u_key', 'incident.url.endpoint');
+    url.query();
+    if (url.next()) {
+        if (current.source != url.u_value) {
+            eLog.write('High', 'Security Alert. Inbound source REST message for ' + supplier + ' mismatch.\nExpected: ' + url.u_value + '\nReceived: ' + current.source);
+            return;
+        }
+    } else {
+        eLog.write('High', supplier + ' is missing eBond registry key incident.url.endpoint.');
+        return;
+    }
+
+    eLog.write('Debug', 'ECC Queue sys_id: ' + current.sys_id);
+    eLog.write('Debug', 'ECC Queue topic: ' + current.topic);
+    eLog.write('Debug', 'ECC Queue state: ' + current.state);
+    eLog.write('Debug', 'ECC Queue payload: ' + current.payload);
+    eLog.write('Debug', 'ECC Queue response to: ' + current.response_to);
+
+    // evaluate the response	
+    var eccREST = new RESTECCResponse(current);
+    var responseBody = eccREST.getBody();
+    var responseObj = JSON.parse(responseBody);
+
+    // pull the REST pool record from the agent correlator
+    var restPayloadRec = new GlideRecord('u_ebond_rest_payload');
+    restPayloadRec.get(current.response_to.agent_correlator);
+    restPayloadRec.u_http_response = eccREST.getBody();
+    var httpStatusCode = eccREST.getStatusCode();
+    restPayloadRec.u_http_status_code = parseInt(httpStatusCode);
+    restPayloadRec.u_status = 'processed';
+    restPayloadRec.update();
+
+    // source: https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
+    // 1xx: Informational - Request received, continuing process
+    // 2xx: Success - The action was successfully received, understood, and accepted
+    // 3xx: Redirection - Further action must be taken in order to complete the request
+    // 4xx: Client Error - The request contains bad syntax or cannot be fulfilled
+    // 5xx: Server Error - The server failed to fulfill an apparently valid request
+
+    // pull the relationship record from the REST pool record
+    var relationship = new GlideRecord('u_ebond_relationship');
+    relationship.get(restPayloadRec.u_source);
+    eLog.write('Debug', 'Relationship: ' + relationship.sys_id);
+    var executeNext = false;
+    if (httpStatusCode.substring(0, 1) == '2') {
+        relationship.u_out = 'up';
+        executeNext = true;
+    } else {
+        relationship.u_out = 'down';
+    }
+    relationship.u_correlation_number = responseObj.number;
+    relationship.u_correlation_id = responseObj.sys_id;
+    relationship.update();
+
+    // process the next REST message for the ticket
+    if (executeNext) {
+        var next = new eBondRestPayload().executeNext(relationship.sys_id);
+    }
+
+    // pull the company record for the supplier
+    var company = new GlideRecord('core_company');
+    company.addQuery('stock_symbol', supplier);
+    company.query();
+    company.next();
+
+    // pull the incident record from the relationship record
+    var incident = new GlideRecord('incident');
+    incident.get(relationship.u_source);
+
+    // update the incident u_ebonded_with
+    // traverse all related eBonds
+    var relationshipChk = new GlideRecord('u_ebond_relationship');
+    relationshipChk.addQuery('u_source', relationship.u_source);
+    relationshipChk.addQuery('u_status', 'ebonded');
+    relationshipChk.addQuery('u_company', company.sys_id);
+    relationshipChk.query();
+
+    var arrUtil = new ArrayUtil();
+    var arr = incident.u_ebonded_with.toString().split(',');
+    var pos = arrUtil.indexOf(arr, company.getValue('sys_id'));
+    if (relationshipChk.getRowCount() &gt; 0) {
+        if (pos &lt; 0) {
+            arr.push(company.getValue('sys_id'));
+            incident.u_ebonded_with = arr.toString();
+        }
+    } else {
+        if (pos &gt;= 0) {
+            arr.splice(pos, 1);
+            incident.u_ebonded_with = arr.toString();
+        }
+    }
+    incident.setWorkflow(false);
+    incident.update();
+
+    // update the ecc queue record
+    current.state = 'processed';
+    var gdt = new GlideDateTime();
+    current.processed = gdt;
+    current.setWorkflow(false);
+    current.update();
+
+    eLog.write('Debug', 'Exiting.');
+})(current, previous);]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2021-09-23 20:57:34&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;15346999dbf230107cb384d8689619f3&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;eBond_AlphaCo_Response&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_15346999dbf230107cb384d8689619f3&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2021-09-23 20:57:34&lt;/sys_updated_on&gt;&lt;template/&gt;&lt;when&gt;after&lt;/when&gt;&lt;/sys_script&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=15346999dbf230107cb384d8689619f3"/&gt;&lt;/record_update&gt;</payload>
+<payload_hash>684546937</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>a5407d19db3630107cb384d8689619d4</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c147330b40000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table>ecc_queue</table>
+<target_name>eBond_AlphaCo_Response</target_name>
+<type>Business Rule</type>
+<update_domain>global</update_domain>
+<update_guid>2ce461ddd5f23010382a735cf56734f2</update_guid>
+<update_guid_history>2ce461ddd5f23010382a735cf56734f2:684546937,b9d4ed9df2f23010f02d666676e55a39:684546937</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sysevent_script_action_f2cd1d99dbf230107cb384d8689619f7</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sysevent_script_action"&gt;&lt;sysevent_script_action action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;condition_script/&gt;&lt;description/&gt;&lt;event_name&gt;ebond.incident.outbound.AlphaCo&lt;/event_name&gt;&lt;name&gt;eBond Incident Outbound AlphaCo&lt;/name&gt;&lt;order&gt;100&lt;/order&gt;&lt;script&gt;&lt;![CDATA[// build out the data payload for AlphaCo
+// store it in u_ebond_rest_payloads to be sent to AlphaCo
+var operation = event.parm1;
+var dataBundle = event.parm2;
+var returnStatus = new eBondIncident_AlphaCo().preparePayload(operation, dataBundle);]]&gt;&lt;/script&gt;&lt;synchronous&gt;false&lt;/synchronous&gt;&lt;sys_class_name&gt;sysevent_script_action&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2021-09-23 20:28:03&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;f2cd1d99dbf230107cb384d8689619f7&lt;/sys_id&gt;&lt;sys_mod_count&gt;1&lt;/sys_mod_count&gt;&lt;sys_name&gt;eBond Incident Outbound AlphaCo&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sysevent_script_action_f2cd1d99dbf230107cb384d8689619f7&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2021-09-23 21:00:34&lt;/sys_updated_on&gt;&lt;/sysevent_script_action&gt;&lt;/record_update&gt;</payload>
+<payload_hash>-141328877</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>a9407d19db3630107cb384d8689619d3</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c147600050000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table>ebond.incident.outbound.AlphaCo</table>
+<target_name>eBond Incident Outbound AlphaCo</target_name>
+<type>Script Action</type>
+<update_domain>global</update_domain>
+<update_guid>ad9561110f363010a42842a02a182ee8</update_guid>
+<update_guid_history>ad9561110f363010a42842a02a182ee8:-141328877,b185e111da36301046b2ed2f0fa09183:-141328877,611e9999faf230100c5a5efc7ad90e8a:-1885297486</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>service_offering_636f8911dbf230107cb384d868961983</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="service_offering"><service_offering action="INSERT_OR_UPDATE"><aliases/><asset/><asset_tag/><assigned/><assigned_to/><assignment_group/><attestation_score/><attested>false</attested><attested_by/><attested_date/><attributes/><billing>monthly</billing><busines_criticality>2 - somewhat critical</busines_criticality><business_contact/><business_need/><business_relation_manager/><can_print>false</can_print><category/><change_control/><checked_in/><checked_out/><comments/><company/><compatibility_dependencies/><consumer_type>internal</consumer_type><contract/><correlation_id/><cost/><cost_cc>USD</cost_cc><cost_center/><delivery_date/><delivery_manager/><department/><description/><discovery_source/><dns_domain/><due/><due_in/><duplicate_of/><end_date/><environment/><fault_count>0</fault_count><first_discovered/><fqdn/><gl_account/><install_date/><install_status>1</install_status><invoice_number/><ip_address/><justification/><last_discovered/><last_review_date/><lease_id/><life_cycle_stage/><life_cycle_stage_status/><location/><mac_address/><maintenance_schedule/><managed_by/><managed_by_group/><manufacturer/><model_id/><model_number/><monitor>false</monitor><monitoring_requirements/><name>Call Center Operations</name><number>BSN0001002</number><operational_status>1</operational_status><order/><order_date/><owned_by/><parent display_value="Service Management">ed4f0911dbf230107cb384d86896190d</parent><po_number/><portfolio_status>pipeline</portfolio_status><prerequisites/><price_model>per_unit</price_model><price_unit/><purchase_date/><schedule/><serial_number/><service_classification/><service_level_requirement/><service_owner_delegate/><service_status>requirements</service_status><short_description/><skip_sync>false</skip_sync><sla/><spm_service_portfolio/><spm_taxonomy_node/><stakeholders/><start_date/><subcategory/><support_group display_value="Call Center Operations" name="Call Center Operations">ddeec111dbf230107cb384d868961944</support_group><supported_by/><sys_class_name>service_offering</sys_class_name><sys_class_path>/!!/!S/!#</sys_class_path><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 19:24:33</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>636f8911dbf230107cb384d868961983</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 19:24:33</sys_updated_on><technical_contact/><unit_description/><unverified>false</unverified><used_for>Production</used_for><user_group/><vendor/><version/><warranty_expiration/></service_offering><sys_translated_text action="delete_multiple" query="documentkey=636f8911dbf230107cb384d868961983"/><fx_price action="delete_multiple" query="id=636f8911dbf230107cb384d868961983"/></record_update>]]></payload>
+<payload_hash>2109104586</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>ad407d19db3630107cb384d8689619d2</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c141deaa40000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table/>
+<target_name>Call Center Operations</target_name>
+<type>Offering</type>
+<update_domain>global</update_domain>
+<update_guid>dc9f8911e2f230104fe7f74fb85e720b</update_guid>
+<update_guid_history>dc9f8911e2f230104fe7f74fb85e720b:2109104586</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_registry_611419d1dbf230107cb384d868961931</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_registry"><u_ebond_registry action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 19:55:20</sys_created_on><sys_id>611419d1dbf230107cb384d868961931</sys_id><sys_mod_count>1</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 19:58:38</sys_updated_on><u_key>incident.url.endpoint</u_key><u_note>Supplier URL endpoint for REST payloads to be sent.&#13;
+&#13;
+https://run.mocky.io/v3/4b34ede2-7498-4351-99f8-c56910d01bbf  // 200 - used for positive replies no ticket information</u_note><u_supplier>AlphaCo</u_supplier><u_value>https://run.mocky.io/v3/4b34ede2-7498-4351-99f8-c56910d01bbf</u_value></u_ebond_registry></record_update>]]></payload>
+<payload_hash>667406875</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>ad407d19db3630107cb384d8689619d5</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c1441a57d0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table/>
+<target_name>611419d1dbf230107cb384d868961931</target_name>
+<type>eBond Registry</type>
+<update_domain>global</update_domain>
+<update_guid>cc88d995d7f2301075652dbf235d74b5</update_guid>
+<update_guid_history>cc88d995d7f2301075652dbf235d74b5:667406875,506815d1e9f23010d4a6b474dffd0588:667406875,cf9619d197f23010434177aac24a0e36:1959408829</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_rest_message_fn_eef361dddbf230107cb384d868961901</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn"><sys_rest_message_fn action="INSERT_OR_UPDATE"><authentication_type>inherit_from_parent</authentication_type><basic_auth_password/><basic_auth_profile/><basic_auth_user/><content/><function_name>Incident</function_name><http_method>post</http_method><lock>false</lock><oauth2_profile/><protocol_name/><qualified_name>AlphaCo [ Incident ]</qualified_name><rest_endpoint>${endpoint}</rest_endpoint><rest_message display_value="AlphaCo">2ed3a15ddbf230107cb384d868961991</rest_message><sys_class_name>sys_rest_message_fn</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 20:54:07</sys_created_on><sys_id>eef361dddbf230107cb384d868961901</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Incident</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sys_rest_message_fn_eef361dddbf230107cb384d868961901</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 20:54:07</sys_updated_on><use_basic_auth>false</use_basic_auth><use_mid_server/><use_mutual_auth>false</use_mutual_auth></sys_rest_message_fn></record_update>]]></payload>
+<payload_hash>933776397</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>e1407d19db3630107cb384d8689619d4</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c146fef830000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table/>
+<target_name>Incident</target_name>
+<type>HTTP Method</type>
+<update_domain>global</update_domain>
+<update_guid>2814ad9d47f23010c1b68fd608fa6ceb</update_guid>
+<update_guid_history>2814ad9d47f23010c1b68fd608fa6ceb:933776397,df0465d9e6f230106dcee5d7606036db:933776397</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sysevent_script_action_8435e1dddbf230107cb384d868961951</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sysevent_script_action"&gt;&lt;sysevent_script_action action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;condition_script/&gt;&lt;description/&gt;&lt;event_name&gt;ebond.relationship.management.AlphaCo&lt;/event_name&gt;&lt;name&gt;eBond Relationship Management AlphaCo&lt;/name&gt;&lt;order&gt;100&lt;/order&gt;&lt;script&gt;&lt;![CDATA[// build out the data payload for SUPPLIER 
+// store it in u_ebond_rest_payloads to be sent to the SUPPLIER
+var operation = event.parm1;
+var dataBundle = event.parm2;
+var returnStatus = new eBondIncident_AlphaCo().preparePayload(operation, dataBundle);]]&gt;&lt;/script&gt;&lt;synchronous&gt;false&lt;/synchronous&gt;&lt;sys_class_name&gt;sysevent_script_action&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2021-09-23 20:59:57&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;8435e1dddbf230107cb384d868961951&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;eBond Relationship Management AlphaCo&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sysevent_script_action_8435e1dddbf230107cb384d868961951&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2021-09-23 20:59:57&lt;/sys_updated_on&gt;&lt;/sysevent_script_action&gt;&lt;/record_update&gt;</payload>
+<payload_hash>-1353292749</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>e5407d19db3630107cb384d8689619d3</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c1476326e0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table>ebond.relationship.management.AlphaCo</table>
+<target_name>eBond Relationship Management AlphaCo</target_name>
+<type>Script Action</type>
+<update_domain>global</update_domain>
+<update_guid>3ca5eddd53f230103adea23c20857c32</update_guid>
+<update_guid_history>3ca5eddd53f230103adea23c20857c32:-1353292749,fc65eddd14f23010792a5e2675dec656:-1353292749</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_registry_d612dd11dbf230107cb384d8689619c6</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_registry"><u_ebond_registry action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 19:40:33</sys_created_on><sys_id>d612dd11dbf230107cb384d8689619c6</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 19:40:33</sys_updated_on><u_key>default.service.offering</u_key><u_note>Call Center Operations</u_note><u_supplier>AlphaCo</u_supplier><u_value>636f8911dbf230107cb384d868961983</u_value></u_ebond_registry></record_update>]]></payload>
+<payload_hash>-2051580592</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>e5407d19db3630107cb384d8689619d6</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c1441e9ee0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table/>
+<target_name>d612dd11dbf230107cb384d8689619c6</target_name>
+<type>eBond Registry</type>
+<update_domain>global</update_domain>
+<update_guid>5898dd9558f23010e061c2e3d4036e2e</update_guid>
+<update_guid_history>5898dd9558f23010e061c2e3d4036e2e:-2051580592,5e3391d115f23010f9c37cd1c193148c:-2051580592</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>core_company_49be0111dbf230107cb384d868961935</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="core_company"><core_company action="INSERT_OR_UPDATE"><apple_icon/><banner_image/><banner_image_light/><banner_text/><city/><contact/><coordinates_retrieved_on/><country>USA</country><customer>false</customer><discount/><fax_phone/><fiscal_year/><lat_long_error/><latitude/><longitude/><manufacturer>false</manufacturer><name>Alpha Co</name><notes/><num_employees/><parent/><phone/><primary>false</primary><publicly_traded>false</publicly_traded><rank_tier/><state/><stock_price/><stock_symbol>AlphaCo</stock_symbol><street/><sys_class_name>core_company</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 19:21:17</sys_created_on><sys_id>49be0111dbf230107cb384d868961935</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 19:21:17</sys_updated_on><theme/><u_ebond_account display_value="Alpha Co ">54fd85dddbb230107cb384d86896195f</u_ebond_account><u_ebonded>true</u_ebonded><vendor>false</vendor><vendor_manager/><vendor_type/><website/><zip/></core_company></record_update>]]></payload>
+<payload_hash>833657502</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>e9407d19db3630107cb384d8689619d2</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c141aef330000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table/>
+<target_name>Alpha Co</target_name>
+<type>Company</type>
+<update_domain>global</update_domain>
+<update_guid>a4de01117bf23010ecf3071e33cf0f50</update_guid>
+<update_guid_history>a4de01117bf23010ecf3071e33cf0f50:833657502</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>u_ebond_registry_295315d1dbf230107cb384d86896198a</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_ebond_registry"><u_ebond_registry action="INSERT_OR_UPDATE"><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 19:41:58</sys_created_on><sys_id>295315d1dbf230107cb384d86896198a</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 19:41:58</sys_updated_on><u_key>default.service</u_key><u_note>Service Management</u_note><u_supplier>AlphaCo</u_supplier><u_value>ed4f0911dbf230107cb384d86896190d</u_value></u_ebond_registry></record_update>]]></payload>
+<payload_hash>1433453674</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>e9407d19db3630107cb384d8689619d5</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c144195e90000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table/>
+<target_name>295315d1dbf230107cb384d86896198a</target_name>
+<type>eBond Registry</type>
+<update_domain>global</update_domain>
+<update_guid>4b785d9578f2301005c2e1036befbebc</update_guid>
+<update_guid_history>4b785d9578f2301005c2e1036befbebc:1433453674,a38391d15cf230104836fec5cf0c7e65:1433453674</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_user_54fd85dddbb230107cb384d86896195f</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_user"><sys_user action="INSERT_OR_UPDATE"><accumulated_roles/><active>true</active><avatar/><building/><calendar_integration>1</calendar_integration><city/><company/><cost_center/><country/><date_format/><default_perspective/><department/><edu_status>faculty</edu_status><email/><employee_number/><enable_multifactor_authn>false</enable_multifactor_authn><failed_attempts/><first_name/><gender/><home_phone/><internal_integration_user>false</internal_integration_user><introduction/><last_login/><last_login_device/><last_login_time/><last_name/><last_password/><ldap_server/><location/><locked_out>false</locked_out><manager/><middle_name/><mobile_phone/><name/><notification>2</notification><password_needs_reset>false</password_needs_reset><phone/><photo/><preferred_language/><roles/><schedule/><source/><state/><street/><sys_class_name>sys_user</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-23 19:18:58</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>54fd85dddbb230107cb384d86896195f</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-23 19:18:58</sys_updated_on><time_format/><time_zone/><title/><user_name>eBondAlphaCo</user_name><user_password>$s$CiOqOTQFrxnbebquBXkEZ59s5XxqqLrIeH1qKJTdVSQ=$btubIz1L4utl1HvqwZ1VuFRDRZbD37sEM7bdym0ET0Q=</user_password><vip>false</vip><web_service_access_only>false</web_service_access_only><zip/></sys_user></record_update>]]></payload>
+<payload_hash>128448731</payload_hash>
+<remote_update_set display_value="eBond - AlphaCo">2940b919db3630107cb384d8689619a9</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-09-23 21:47:31</sys_created_on>
+<sys_id>ed407d19db3630107cb384d8689619d4</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c1418cdaf0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-09-23 21:47:31</sys_updated_on>
+<table/>
+<target_name/>
+<type>User</type>
+<update_domain>global</update_domain>
+<update_guid>e24e89ddf3b230105b05b69ad69ca53d</update_guid>
+<update_guid_history>e24e89ddf3b230105b05b69ad69ca53d:128448731</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+</unload>

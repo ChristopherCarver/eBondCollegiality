@@ -57,10 +57,8 @@ The difference between eBonding and integration is partnership and cooperation. 
 \
 ServiceNow offers many ways to solve a problem or configure an operational business model. These instructions are _a_ way and does not represent _the_ way on creating a multi-source eBonding framework. The best way to use these instructions is to read through them and see how the framework can be adopted and modified to fit your organization requirements. 
 
-Each section will include the manual instructions setting up the framework and an update set for those that wish to install the multi-source eBonding on their instance. Some of the update sets will have dependencies on other update sets as the functions are shared across functions within the multi-source eBonding. 
-
 !!! note Update sets 
-    The instructions do not cover how-to use update sets or the nuisances of update sets. You can explore on how to leverage update sets within the online ServiceNow documentation.  
+    There are two update sets that implement this guide; _eBond - Foundation_ and _eBond - Templates_.   
 
 !!! note Terms & Meanings
     - _Supplier:_ The legal entity that ServiceNow connects too. You can substitute supplier for vendor, partner, or the like.
@@ -340,8 +338,8 @@ ServiceNow fulfillers (typically accounts with the itil role) will need the abil
 
 _Instructions:_
 
-1. Navigate to **System Definition** > **Tables** and search for the *[incident]* table under the **Name** field.
-1. Open the *Incident* record and click **New** under the **Columns** tab.
+1. Navigate to **System Definition** > **Tables** and search for the _[incident]_ table under the **Name** field.
+1. Open the _Incident_ record and click **New** under the **Columns** tab.
 1. Under the **Dictionary Entry New Record** section, fill in the following fields:
     - _Type:_ List 
     - _Column label:_ eBonded with
@@ -734,7 +732,7 @@ _Instructions:_
 
             var reg = new GlideRecord('u_ebond_registry');
             reg.addQuery('u_supplier', 'All');
-            reg.addQuery('u_key', 'inbound.log.level');
+            reg.addQuery('u_key', 'default.log.level');
             reg.query();
             if (reg.next()) {
                 this.logLevel = parseInt(reg.value);
@@ -955,7 +953,7 @@ Create the [u_ebond_registry] record used to determine the depth of logs levels 
 1. Click **New**.
 1. Under the **eBond Registry New record** section, fill in the following fields:
     - _Supplier:_ All
-    - _Key:_ inbound.log.level
+    - _Key:_ default.log.level
     - _Value:_ 500
 1. Click **Submit**.
 
@@ -1936,6 +1934,19 @@ _Instructions:_
 1. Click **Update**.
 
 ---
+### Incident staging role
+\
+ServiceNow creates a role to allows account to write to the custom tables you create. Suppliers will need access to this table to pass in ticket information and to do this we will add the role to the eBond role created earlier.
+
+_Instructions:_
+
+1. Navigate to **User Administration** > **Roles** and search for the _eBond Account_ record under the Name field.
+1. Open the _Inc_eBond Account_ record and click **Edit...** under the **Contains Roles** tab.
+1. In the **Edit Members** section, search for *u_ebond_incident_staging_user* under the **Collection** field.
+1. Click **>** to add the role to the **Contains Roles List**.
+1. Click **Save**.
+
+---
 ## Inbound Transform
 \
 The inbound *transform map* uses *transform scripts* to perform various operations on the data directly passed by the supplier. The *transform scripts* can be set to _when_ they are executed against the data in the transform. 
@@ -2669,7 +2680,7 @@ _Instructions:_
 
             var registry = new GlideRecord('u_ebond_registry');
             registry.addQuery('u_supplier', SUPPLIER);
-            registry.addQuery('u_key', 'incident.external.url');
+            registry.addQuery('u_key', 'incident.url.link');
             registry.query();
             if (registry.next()) {
                 var tRef = registry.u_value;
@@ -2779,7 +2790,7 @@ _Instructions:_
             } else if (OPERATION == 'create') {
                 var eRegistry = new GlideRecord("u_ebond_registry");
                 eRegistry.addQuery("u_supplier", SUPPLIER);
-                eRegistry.addQuery("u_key", "inbound.service.offering");
+                eRegistry.addQuery("u_key", "default.service.offering");
                 eRegistry.query();
                 if (eRegistry.next()) {
                     SERVICE_OFFERING = eRegistry.u_value;
@@ -2789,10 +2800,10 @@ _Instructions:_
                     relationship.updateIn(RELATIONSHIP, 'down');
 
                     error = true;
-                    error_message = "Internal error, missing registry key inbound.service.offering.";
+                    error_message = "Internal error, missing registry key default.service.offering.";
                     source.u_error = error_message;
 
-                    eLog.write('High', 'Internal Error: Missing registry key inbound.service.offering default for supplier. Reference: ' + source. sys_id);
+                    eLog.write('High', 'Internal Error: Missing registry key default.service.offering default for supplier. Reference: ' + source. sys_id);
                     eLog.write('Debug', 'Exiting.');
                     return;
                 }
@@ -2817,19 +2828,19 @@ _Instructions:_
             } else if (OPERATION == 'create') {
                 var eRegistry = new GlideRecord("u_ebond_registry");
                 eRegistry.addQuery("u_supplier", SUPPLIER);
-                eRegistry.addQuery("u_key", "inbound.service");
+                eRegistry.addQuery("u_key", "default.service");
                 eRegistry.query();
                 if (eRegistry.next()) {
                     SERVICE = eRegistry.u_value;
                     eLog.write('Debug', 'SERVICE = ' + SERVICE);
                 } else {
-                    eLog.write('High', 'Exiting. Missing inbound.service registry key default for supplier. Reference: ' + source.sys_id);
+                    eLog.write('High', 'Exiting. Missing default.service registry key default for supplier. Reference: ' + source.sys_id);
 
                     var relationship = new eBondRelationship();
                     relationship.updateIn(RELATIONSHIP, 'down');
 
                     error = true;
-                    error_message = "Internal error, missing registry key inbound.service.offering.";
+                    error_message = "Internal error, missing registry key default.service.";
                     source.u_error = error_message;
 
                     wLog.write('Info', 'Exiting.');
@@ -2991,19 +3002,19 @@ _Instructions:_
             } else if (OPERATION == 'create') {
                 var eRegistry = new GlideRecord("u_ebond_registry");
                 eRegistry.addQuery("u_supplier", SUPPLIER);
-                eRegistry.addQuery("u_key", "inbound.assignment.group");
+                eRegistry.addQuery("u_key", "default.assignment.group");
                 eRegistry.query();
                 if (eRegistry.next()) {
                     ASSIGNMENT_GROUP = eRegistry.u_value;
                     eLog.write('Debug', 'ASSIGNMENT_GROUP = ' + ASSIGNMENT_GROUP);
                 } else {
-                    eLog.write('High', 'Missing inbound.assignment.group default for supplier. Reference: ' + source.sys_id);
+                    eLog.write('High', 'Missing default.assignment.group default for supplier. Reference: ' + source.sys_id);
 
                     var relationship = new eBondRelationship();
                     relationship.updateIn(RELATIONSHIP, 'down');
 
                     error = true;
-                    error_message = "Internal error, missing registry value inbound.assignment.group.";
+                    error_message = "Internal error, missing registry value default.assignment.group.";
                     source.u_error = error_message;
 
                     eLog.write('Debug', 'Exiting');
@@ -3537,7 +3548,7 @@ The [u_ebond_data_map] table is the lookup table used to validate field values f
     |incident|close_code|inbound|All|Closed/Resolved by Caller|Closed/Resolved by Caller||
 
 !!! note Category & Subcategory 
-    It is the author's opinion that the values for *category* and *subcategory* for an incident within ServiceNow is better suited to describe the type of incident reported; rather than the general topic area the incident occurred. Traditionally with ITSM solutions category and subcategory are used to describe the area where an incident occurred. Out of the box, ServiceNow provides the means to relate incident reports directly to the impacted configuration item (CI) within the CMDB; which is a clearer description of the area of interest the incident lays. This frees up the *category* and *subcategory* fields to _represent the type of incident_ being investigated and the being done to resolve the incident. The update set contains these new values for *category* and *subcategory*, but does not remove the out of the box values set by ServiceNow. Each enterprise will have to ascertain which behavior for the fields to use.
+    It is the author's opinion that the values for *category* and *subcategory* for an incident within ServiceNow is better suited to describe the type of incident reported; rather than the general topic area the incident occurred. Traditionally with ITSM solutions category and subcategory are used to describe the area where an incident occurred. Out of the box, ServiceNow provides the means to relate incident reports directly to the impacted configuration item (CI) within the CMDB; which is a clearer description of the area of interest the incident lays. This frees up the *category* and *subcategory* fields to _represent the type of incident_ being investigated and the being done to resolve the incident. The _eBond - Foundation_ update set contains these new values for *category* and *subcategory*, but does not remove the out of the box values set by ServiceNow. Each enterprise will have to ascertain which behavior for the fields to use.
 
     1. Navigate to **System Definition** > **Dictionary**.
     1. Under the list view search, fill in the the following search fields and hit enter:
@@ -3832,11 +3843,11 @@ _Instructions:_
             this.eLog.write('Debug', 'Exiting.');
         },
 
-        // func: checkIncidentCondition
+        // func: checkCondition
         // desc: determines if the record is eBonded or should be eBonded
         // parm: n/a
         // retn: true or false
-        checkIncidentCondition: function () {
+        checkCondition: function () {
             this.eLog.u_source = 'checkCondition';
             this.eLog.write('Debug', 'Entering.');
 
@@ -4002,6 +4013,7 @@ _Instructions:_
 1. In the **Event Registration New record** section, fill in the following fields:
     - _Name:_ eBond Incident Outbound {SUPPLIER}
     - _Event name:_ ebond.incident.outbound.{SUPPLIER}
+    - _Active:_ true
     - _Script:_
     ```
     // build out the data payload for {SUPPLIER} 
@@ -4062,12 +4074,12 @@ _Instructions:_
 
             var url = new GlideRecord('u_ebond_registry');
             url.addQuery('u_supplier', this.supplier);
-            url.addQuery('u_key', 'outbound.url.endpoint');
+            url.addQuery('u_key', 'incident.url.endpoint');
             url.query();
             if (url.next()) {
                 this.url = url.u_value;
             } else {
-                this.eLog.write('High', supplier + ' is missing eBond registry key outbound.url.endpoint.');
+                this.eLog.write('High', supplier + ' is missing eBond registry key incident.url.endpoint.');
             }
 
             this.eLog.write('Debug', 'Exiting.');
@@ -4713,7 +4725,7 @@ _Instructions:_
         // security check to make sure the sender is a known source
         var url = new GlideRecord('u_ebond_registry');
         url.addQuery('u_supplier', supplier);
-        url.addQuery('u_key', 'outbound.url.endpoint');
+        url.addQuery('u_key', 'incident.url.endpoint');
         url.query();
         if (url.next()) {
             if (current.source != url.u_value) {
@@ -4721,7 +4733,7 @@ _Instructions:_
                 return;
             }
         } else {
-            eLog.write('High', supplier + ' is missing eBond registry key outbound.url.endpoint.');
+            eLog.write('High', supplier + ' is missing eBond registry key incident.url.endpoint.');
             return;
         }
 
@@ -4990,6 +5002,7 @@ _Instructions:_
 1. In the **Event Registration New record** section, fill in the following fields:
     - _Name:_ eBond Relationship Management SUPPLIER
     - _Event name:_ ebond.relationship.management.{SUPPLIER}
+    - _Active:_ true
     - _Script:_
     ```
     // build out the data payload for SUPPLIER 
