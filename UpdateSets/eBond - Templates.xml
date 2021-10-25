@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><unload unload_date="2021-09-23 21:48:23">
+<?xml version="1.0" encoding="UTF-8"?><unload unload_date="2021-10-19 21:44:25">
 <sys_remote_update_set action="INSERT_OR_UPDATE">
 <application display_value="Global">global</application>
 <application_name>Global</application_name>
@@ -20,45 +20,15 @@
 <summary/>
 <sys_class_name>sys_remote_update_set</sys_class_name>
 <sys_created_by>admin</sys_created_by>
-<sys_created_on>2021-09-23 21:48:23</sys_created_on>
-<sys_id>d2707d19db3630107cb384d8689619d9</sys_id>
+<sys_created_on>2021-10-19 21:44:25</sys_created_on>
+<sys_id>a5e827e9dbd330107cb384d86896190d</sys_id>
 <sys_mod_count>0</sys_mod_count>
 <sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2021-09-23 21:48:23</sys_updated_on>
+<sys_updated_on>2021-10-19 21:44:25</sys_updated_on>
 <update_set display_value=""/>
 <update_source display_value=""/>
 <updated/>
 </sys_remote_update_set>
-<sys_update_xml action="INSERT_OR_UPDATE">
-<action>INSERT_OR_UPDATE</action>
-<application display_value="Global">global</application>
-<category>customer</category>
-<comments/>
-<name>sysevent_script_action_b0c917acdb7630107cb384d86896193a</name>
-<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sysevent_script_action"&gt;&lt;sysevent_script_action action="INSERT_OR_UPDATE"&gt;&lt;active&gt;false&lt;/active&gt;&lt;condition_script/&gt;&lt;description/&gt;&lt;event_name&gt;ebond.relationship.management.{SUPPLIER}&lt;/event_name&gt;&lt;name&gt;eBond Relationship Management {SUPPLIER}&lt;/name&gt;&lt;order&gt;100&lt;/order&gt;&lt;script&gt;&lt;![CDATA[// build out the data payload for SUPPLIER 
-// store it in u_ebond_rest_payloads to be sent to the SUPPLIER
-var operation = event.parm1;
-var dataBundle = event.parm2;
-var returnStatus = new eBondIncident_SUPPLIER().preparePayload(operation, dataBundle);]]&gt;&lt;/script&gt;&lt;synchronous&gt;false&lt;/synchronous&gt;&lt;sys_class_name&gt;sysevent_script_action&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2021-09-21 21:34:15&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;b0c917acdb7630107cb384d86896193a&lt;/sys_id&gt;&lt;sys_mod_count&gt;1&lt;/sys_mod_count&gt;&lt;sys_name&gt;eBond Relationship Management {SUPPLIER}&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sysevent_script_action_b0c917acdb7630107cb384d86896193a&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2021-09-21 21:43:21&lt;/sys_updated_on&gt;&lt;/sysevent_script_action&gt;&lt;/record_update&gt;</payload>
-<payload_hash>244917612</payload_hash>
-<remote_update_set display_value="eBond - Templates">d2707d19db3630107cb384d8689619d9</remote_update_set>
-<replace_on_upgrade>false</replace_on_upgrade>
-<sys_created_by>admin</sys_created_by>
-<sys_created_on>2021-09-23 21:48:23</sys_created_on>
-<sys_id>1e707d19db3630107cb384d8689619d9</sys_id>
-<sys_mod_count>0</sys_mod_count>
-<sys_recorded_at>17c0a5037020000001</sys_recorded_at>
-<sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2021-09-23 21:48:23</sys_updated_on>
-<table>ebond.relationship.management.{SUPPLIER}</table>
-<target_name>eBond Relationship Management {SUPPLIER}</target_name>
-<type>Script Action</type>
-<update_domain>global</update_domain>
-<update_guid>f02c932029b63010437fd47d93c21770</update_guid>
-<update_guid_history>f02c932029b63010437fd47d93c21770:244917612,ab0a1bacb4763010ec3e8a524ca39f62:1880787244</update_guid_history>
-<update_set display_value=""/>
-<view/>
-</sys_update_xml>
 <sys_update_xml action="INSERT_OR_UPDATE">
 <action>INSERT_OR_UPDATE</action>
 <application display_value="Global">global</application>
@@ -79,8 +49,8 @@ eBondIncident_SUPPLIER.prototype = {
         this.eLog.u_name = 'eBondIncident_SUPPLIER';
         this.eLog.u_source = 'initialize';
         this.eLog.u_supplier = 'SUPPLIER';
-        this.eLog.u_correlate_id = current.sys_id;
-        this.eLog.u_correlate_class_name = current.sys_class_name;
+        this.eLog.u_correlate_id = current.getValue('sys_id');
+        this.eLog.u_correlate_class_name = current.getValue('sys_class_name');
         this.eLog.write('Debug', 'Entering.');
 
         this.supplier = 'SUPPLIER';
@@ -92,7 +62,7 @@ eBondIncident_SUPPLIER.prototype = {
         company.addQuery('stock_symbol', this.supplier);
         company.query();
         if (company.next()) {
-            this.company = company.sys_id;
+            this.company = company.getValue('sys_id');
         } else {
             this.eLog.write('High', 'Cannot find the supplier\'s (' + supplier + ') company record.');
         }
@@ -102,7 +72,7 @@ eBondIncident_SUPPLIER.prototype = {
         url.addQuery('u_key', 'incident.url.endpoint');
         url.query();
         if (url.next()) {
-            this.url = url.u_value;
+            this.url = url.getValue('u_value');
         } else {
             this.eLog.write('High', supplier + ' is missing eBond registry key incident.url.endpoint.');
         }
@@ -152,7 +122,7 @@ eBondIncident_SUPPLIER.prototype = {
         registry.addQuery('u_key', 'inbound.account');
         registry.query();
         if (registry.next()) {
-            if (registry.u_value == current.sys_updated_by) {
+            if (registry.getValue('u_value') == current.getValue('sys_updated_by')) {
                 echo = true;
             }
         }
@@ -175,9 +145,9 @@ eBondIncident_SUPPLIER.prototype = {
 
         // check if the incident u_ebonded_with AND the assignment group is still associated with the supplier
         var arrUtil = new ArrayUtil();
-        var arr = current.u_ebonded_with.toString().split(',');
+        var arr = current.getValue('u_ebonded_with').split(',');
         var pos = arrUtil.indexOf(arr, this.company);
-        if (pos &lt; 0 &amp;&amp; current.assignment_group.u_company != this.company) {
+        if (pos &lt; 0 &amp;&amp; current.getElement('assignment_group.u_company') != this.company) {
             decision = 'delete';
             this.eLog.write('Debug', 'Exiting. Return: ' + decision);
             return decision;
@@ -185,7 +155,7 @@ eBondIncident_SUPPLIER.prototype = {
 
         // find existing relationship records
         var relationship = new GlideRecord('u_ebond_relationship');
-        relationship.addQuery('u_source', current.sys_id);
+        relationship.addQuery('u_source', current.getValue('sys_id'));
         relationship.addQuery('u_status', 'ebonded');
         relationship.addQuery('u_company', this.company);
         relationship.query();
@@ -212,8 +182,8 @@ eBondIncident_SUPPLIER.prototype = {
         var dataMap = new eBondDataMap();
 
         var data = {};
-        data.ExternalNumber = current.number.toString();
-        data.ExternalRef = current.sys_id.toString();
+        data.ExternalNumber = current.getValue('number');
+        data.ExternalRef = current.getValue('sys_id');
 
         for (var key in incidentData) {
             var map = dataMap.getSupplierValue(this.supplier, 'outbound', 'incident', key, incidentData[key], incidentData[key]);
@@ -317,7 +287,7 @@ eBondIncident_SUPPLIER.prototype = {
         relationship.insert();
 
         // load REST payload into the pool to be processed
-        var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.sys_id, '', this.url, payload, 'json', this.restMsg, this.httpMethod);
+        var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.getValue('sys_id'), '', this.url, payload, 'json', this.restMsg, this.httpMethod);
 
         this.eLog.write('Debug', 'Exiting.');
     },
@@ -334,8 +304,8 @@ eBondIncident_SUPPLIER.prototype = {
         var dataMap = new eBondDataMap();
 
         var data = {};
-        data.ExternalNumber = current.number.toString();
-        data.ExternalRef = current.sys_id.toString();
+        data.ExternalNumber = current.getValue('number');
+        data.ExternalRef = current.getValue('sys_id');
 
         data.Comment = current.comments.getJournalEntry(1);
         data.WorkNote = current.work_notes.getJournalEntry(1);
@@ -363,15 +333,15 @@ eBondIncident_SUPPLIER.prototype = {
         var relationship = new GlideRecord('u_ebond_relationship');
         relationship.initialize();
         relationship.u_source_table = 'incident';
-        relationship.u_source = current.sys_id;
+        relationship.u_source = current.getValue('sys_id');
         relationship.u_status = 'eBonded';
-        relationship.u_state = current.state;
+        relationship.u_state = current.getValue('state');
         relationship.u_out = 'wait';
         relationship.u_company = this.company;
         relationship.insert();
 
         // load REST payload into the pool to be processed
-        var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.sys_id, '', this.url, payload, 'json', this.restMsg, this.httpMethod);
+        var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.getValue('sys_id'), '', this.url, payload, 'json', this.restMsg, this.httpMethod);
 
         this.eLog.write('Debug', 'Exiting.');
     },
@@ -392,14 +362,14 @@ eBondIncident_SUPPLIER.prototype = {
 
         // traverse all related eBonds
         var relationship = new GlideRecord('u_ebond_relationship');
-        relationship.addQuery('u_source', current.sys_id);
+        relationship.addQuery('u_source', current.getValue('sys_id'));
         relationship.addQuery('u_status', 'ebonded');
         relationship.addQuery('u_company', this.company);
         relationship.query();
         while (relationship.next()) {
 
             var data = {};
-            data.number = relationship.u_correlation_number.toString();
+            data.number = relationship.getValue('u_correlation_number');
 
             // if reflect, then perform data mapping
             if (relationship.u_reflect == true) {
@@ -553,7 +523,7 @@ eBondIncident_SUPPLIER.prototype = {
             }
 
             // load REST payload into the pool to be processed
-            var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.sys_id, '', this.url, payload, 'json', this.restMsg, this.httpMethod);
+            var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.getValue('sys_id'), '', this.url, payload, 'json', this.restMsg, this.httpMethod);
         }
 
         this.eLog.write('Debug', 'Exiting.');
@@ -572,21 +542,21 @@ eBondIncident_SUPPLIER.prototype = {
 
         // traverse all related eBonds
         var relationship = new GlideRecord('u_ebond_relationship');
-        relationship.addQuery('u_source', current.sys_id);
+        relationship.addQuery('u_source', current.getValue('sys_id'));
         relationship.addQuery('u_ebonded', 'true');
         relationship.addQuery('u_company', this.company);
         relationship.query();
         while (relationship.next()) {
             // prepare debond payload
             var data = {};
-            data.number = relationship.u_correlation_number.toString();
+            data.number = relationship.getValue('u_correlation_number');
             data.state = '0';
             var payload = JSON.stringify(data);
 
-            var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.sys_id, '', this.url, payload, 'json', this.restMsg, this.httpMethod);
+            var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.getValue('sys_id'), '', this.url, payload, 'json', this.restMsg, this.httpMethod);
 
             // change the relationship
-            relationship.u_status = 'debonded';
+            relationship.setValue('u_status', 'debonded');
             relationship.update();
         }
 
@@ -664,18 +634,18 @@ eBondIncident_SUPPLIER.prototype = {
 
         if (relationship.status == 'debonded') {
             var data = {};
-            data.number = current.u_correlation_number.toString();
+            data.number = current.getValue('u_correlation_number');
             data.state = '0'; // SUPPLIER deBond state code
             var payload = JSON.stringify(data);
 
-            var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', current.sys_id, '', this.url, payload, 'json', this.restMsg, this.httpMethod);
+            var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', current.getValue('sys_id'), '', this.url, payload, 'json', this.restMsg, this.httpMethod);
         } else {
             var data = {};
-            data.number = current.u_correlation_number.toString();
+            data.number = current.getValue('u_correlation_number');
             data.state = '-1'; // SUPPLIER re-eBond state code
             var payload = JSON.stringify(data);
 
-            var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', current.sys_id, '', this.url, payload, 'json', this.restMsg, this.httpMethod);
+            var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', current.getValue('sys_id'), '', this.url, payload, 'json', this.restMsg, this.httpMethod);
         }
 
         this.eLog.write('Debug', 'Exiting.');
@@ -683,23 +653,23 @@ eBondIncident_SUPPLIER.prototype = {
     },
 
     type: 'eBondIncident_SUPPLIER'
-};]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2021-09-21 21:23:19&lt;/sys_created_on&gt;&lt;sys_id&gt;6d961fe8db7630107cb384d86896190d&lt;/sys_id&gt;&lt;sys_mod_count&gt;2&lt;/sys_mod_count&gt;&lt;sys_name&gt;eBondIncident_SUPPLIER&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_6d961fe8db7630107cb384d86896190d&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2021-09-23 21:34:07&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
-<payload_hash>334905356</payload_hash>
-<remote_update_set display_value="eBond - Templates">d2707d19db3630107cb384d8689619d9</remote_update_set>
+};]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2021-09-21 21:23:19&lt;/sys_created_on&gt;&lt;sys_id&gt;6d961fe8db7630107cb384d86896190d&lt;/sys_id&gt;&lt;sys_mod_count&gt;3&lt;/sys_mod_count&gt;&lt;sys_name&gt;eBondIncident_SUPPLIER&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_6d961fe8db7630107cb384d86896190d&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2021-10-19 21:19:32&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
+<payload_hash>806500305</payload_hash>
+<remote_update_set display_value="eBond - Templates">a5e827e9dbd330107cb384d86896190d</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
 <sys_created_by>admin</sys_created_by>
-<sys_created_on>2021-09-23 21:48:23</sys_created_on>
-<sys_id>56707d19db3630107cb384d8689619da</sys_id>
+<sys_created_on>2021-10-19 21:44:25</sys_created_on>
+<sys_id>29e827e9dbd330107cb384d86896190e</sys_id>
 <sys_mod_count>0</sys_mod_count>
-<sys_recorded_at>17c149489ae0000001</sys_recorded_at>
+<sys_recorded_at>17c9a6c78ef0000001</sys_recorded_at>
 <sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2021-09-23 21:48:23</sys_updated_on>
+<sys_updated_on>2021-10-19 21:44:25</sys_updated_on>
 <table/>
 <target_name>eBondIncident_SUPPLIER</target_name>
 <type>Script Include</type>
 <update_domain>global</update_domain>
-<update_guid>163da595ed36301064e36102a9f6438a</update_guid>
-<update_guid_history>163da595ed36301064e36102a9f6438a:334905356,dd3d29558a3630101c80fc6e2dfd7d53:334905356,097c955919f23010a94fdb978b0096fc:455400189,1b87972c6c763010d47d2f77a4dc14de:794326593</update_guid_history>
+<update_guid>8533e3e588d33010684aade0a4c1cdb4</update_guid>
+<update_guid_history>8533e3e588d33010684aade0a4c1cdb4:806500305,dd3d29558a3630101c80fc6e2dfd7d53:334905356,097c955919f23010a94fdb978b0096fc:455400189,1b87972c6c763010d47d2f77a4dc14de:794326593</update_guid_history>
 <update_set display_value=""/>
 <view/>
 </sys_update_xml>
@@ -711,15 +681,15 @@ eBondIncident_SUPPLIER.prototype = {
 <name>sysevent_register_9845d7e8db7630107cb384d868961919</name>
 <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sysevent_register"><sysevent_register action="INSERT_OR_UPDATE"><caller_access/><description/><event_name>ebond.incident.outbound.{SUPPLIER}</event_name><fired_by/><queue/><suffix/><sys_class_name>sysevent_register</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-21 21:13:52</sys_created_on><sys_id>9845d7e8db7630107cb384d868961919</sys_id><sys_mod_count>1</sys_mod_count><sys_name>ebond.incident.outbound.{SUPPLIER}</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sysevent_register_9845d7e8db7630107cb384d868961919</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-21 21:15:12</sys_updated_on><table/></sysevent_register></record_update>]]></payload>
 <payload_hash>1401363248</payload_hash>
-<remote_update_set display_value="eBond - Templates">d2707d19db3630107cb384d8689619d9</remote_update_set>
+<remote_update_set display_value="eBond - Templates">a5e827e9dbd330107cb384d86896190d</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
 <sys_created_by>admin</sys_created_by>
-<sys_created_on>2021-09-23 21:48:23</sys_created_on>
-<sys_id>5a707d19db3630107cb384d8689619d9</sys_id>
+<sys_created_on>2021-10-19 21:44:25</sys_created_on>
+<sys_id>2de827e9dbd330107cb384d86896190d</sys_id>
 <sys_mod_count>0</sys_mod_count>
 <sys_recorded_at>17c0a37dd0e0000001</sys_recorded_at>
 <sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2021-09-23 21:48:23</sys_updated_on>
+<sys_updated_on>2021-10-19 21:44:25</sys_updated_on>
 <table/>
 <target_name>ebond.incident.outbound.{SUPPLIER}</target_name>
 <type>Event Registration</type>
@@ -745,8 +715,8 @@ eBondIncident_SUPPLIER.prototype = {
     eLog.u_name = 'eBond_' + supplier + '_Response';
     eLog.u_source = 'executeRule';
     eLog.u_supplier = supplier;
-    eLog.u_correlate_id = current.sys_id;
-    eLog.u_correlate_class_name = current.sys_class_name;
+    eLog.u_correlate_id = current.getValue('sys_id');
+    eLog.u_correlate_class_name = current.getValue('sys_class_name');
     eLog.write('Debug', 'Entering.');
 
     new eBondIncident_SUPPLIER().processResponse();
@@ -757,8 +727,8 @@ eBondIncident_SUPPLIER.prototype = {
     url.addQuery('u_key', 'incident.url.endpoint');
     url.query();
     if (url.next()) {
-        if (current.source != url.u_value) {
-            eLog.write('High', 'Security Alert. Inbound source REST message for ' + supplier + ' mismatch.\nExpected: ' + url.u_value + '\nReceived: ' + current.source);
+        if (current.getValue('source') != url.getValue('u_value')) {
+            eLog.write('High', 'Security Alert. Inbound source REST message for ' + supplier + ' mismatch.\nExpected: ' + url.getValue('u_value') + '\nReceived: ' + current.getValue('source'));
             return;
         }
     } else {
@@ -766,11 +736,11 @@ eBondIncident_SUPPLIER.prototype = {
         return;
     }
 
-    eLog.write('Debug', 'ECC Queue sys_id: ' + current.sys_id);
-    eLog.write('Debug', 'ECC Queue topic: ' + current.topic);
-    eLog.write('Debug', 'ECC Queue state: ' + current.state);
-    eLog.write('Debug', 'ECC Queue payload: ' + current.payload);
-    eLog.write('Debug', 'ECC Queue response to: ' + current.response_to);
+    eLog.write('Debug', 'ECC Queue sys_id: ' + current.getValue('sys_id'));
+    eLog.write('Debug', 'ECC Queue topic: ' + current.getValue('topic'));
+    eLog.write('Debug', 'ECC Queue state: ' + current.getValue('state'));
+    eLog.write('Debug', 'ECC Queue payload: ' + current.getValue('payload'));
+    eLog.write('Debug', 'ECC Queue response to: ' + current.getValue('response_to'));
 
     // evaluate the response	
     var eccREST = new RESTECCResponse(current);
@@ -795,22 +765,22 @@ eBondIncident_SUPPLIER.prototype = {
 
     // pull the relationship record from the REST pool record
     var relationship = new GlideRecord('u_ebond_relationship');
-    relationship.get(restPayloadRec.u_source);
-    eLog.write('Debug', 'Relationship: ' + relationship.sys_id);
+    relationship.get(restPayloadRec.getValue('u_source'));
+    eLog.write('Debug', 'Relationship: ' + relationship.getValue('sys_id'));
     var executeNext = false;
     if (httpStatusCode.substring(0, 1) == '2') {
-        relationship.u_out = 'up';
+        relationship.setValue('u_out', 'up');
         executeNext = true;
     } else {
-        relationship.u_out = 'down';
+        relationship.setValue('u_out', 'down');
     }
-    relationship.u_correlation_number = responseObj.number;
-    relationship.u_correlation_id = responseObj.sys_id;
+    relationship.setValue('u_correlation_number', responseObj.number);
+    relationship.setValue('u_correlation_id', responseObj.sys_id);
     relationship.update();
 
     // process the next REST message for the ticket
     if (executeNext) {
-        var next = new eBondRestPayload().executeNext(relationship.sys_id);
+        var next = new eBondRestPayload().executeNext(relationship.getValue('sys_id'));
     }
 
     // pull the company record for the supplier
@@ -821,58 +791,58 @@ eBondIncident_SUPPLIER.prototype = {
 
     // pull the incident record from the relationship record
     var incident = new GlideRecord('incident');
-    incident.get(relationship.u_source);
+    incident.get(relationship.getValue('u_source'));
 
     // update the incident u_ebonded_with
     // traverse all related eBonds
     var relationshipChk = new GlideRecord('u_ebond_relationship');
-    relationshipChk.addQuery('u_source', relationship.u_source);
+    relationshipChk.addQuery('u_source', relationship.getValue('u_source'));
     relationshipChk.addQuery('u_status', 'ebonded');
-    relationshipChk.addQuery('u_company', company.sys_id);
+    relationshipChk.addQuery('u_company', company.getValue('sys_id'));
     relationshipChk.query();
 
     var arrUtil = new ArrayUtil();
-    var arr = incident.u_ebonded_with.toString().split(',');
+    var arr = incident.getValue('u_ebonded_with').split(',');
     var pos = arrUtil.indexOf(arr, company.getValue('sys_id'));
     if (relationshipChk.getRowCount() &gt; 0) {
         if (pos &lt; 0) {
             arr.push(company.getValue('sys_id'));
-            incident.u_ebonded_with = arr.toString();
+            incident.setValue('u_ebonded_with', arr.toString());
         }
     } else {
         if (pos &gt;= 0) {
             arr.splice(pos, 1);
-            incident.u_ebonded_with = arr.toString();
+            incident.setValue('u_ebonded_with', arr.toString());
         }
     }
     incident.setWorkflow(false);
     incident.update();
 
     // update the ecc queue record
-    current.state = 'processed';
+    current.setValue('state', 'processed');
     var gdt = new GlideDateTime();
-    current.processed = gdt;
+    current.setValue('processed', gdt);
     current.setWorkflow(false);
     current.update();
 
     eLog.write('Debug', 'Exiting.');
-})(current, previous);]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2021-09-21 21:28:14&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;2fe7dfe8db7630107cb384d8689619de&lt;/sys_id&gt;&lt;sys_mod_count&gt;2&lt;/sys_mod_count&gt;&lt;sys_name&gt;eBond_SUPPLIER_Response&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_2fe7dfe8db7630107cb384d8689619de&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2021-09-23 21:26:47&lt;/sys_updated_on&gt;&lt;template/&gt;&lt;when&gt;after&lt;/when&gt;&lt;/sys_script&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=2fe7dfe8db7630107cb384d8689619de"/&gt;&lt;/record_update&gt;</payload>
-<payload_hash>-1096315202</payload_hash>
-<remote_update_set display_value="eBond - Templates">d2707d19db3630107cb384d8689619d9</remote_update_set>
+})(current, previous);]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2021-09-21 21:28:14&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;2fe7dfe8db7630107cb384d8689619de&lt;/sys_id&gt;&lt;sys_mod_count&gt;3&lt;/sys_mod_count&gt;&lt;sys_name&gt;eBond_SUPPLIER_Response&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_2fe7dfe8db7630107cb384d8689619de&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2021-10-19 21:28:20&lt;/sys_updated_on&gt;&lt;template/&gt;&lt;when&gt;after&lt;/when&gt;&lt;/sys_script&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=2fe7dfe8db7630107cb384d8689619de"/&gt;&lt;/record_update&gt;</payload>
+<payload_hash>1110389149</payload_hash>
+<remote_update_set display_value="eBond - Templates">a5e827e9dbd330107cb384d86896190d</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
 <sys_created_by>admin</sys_created_by>
-<sys_created_on>2021-09-23 21:48:23</sys_created_on>
-<sys_id>92707d19db3630107cb384d8689619da</sys_id>
+<sys_created_on>2021-10-19 21:44:25</sys_created_on>
+<sys_id>65e827e9dbd330107cb384d86896190e</sys_id>
 <sys_mod_count>0</sys_mod_count>
-<sys_recorded_at>17c148e62ed0000001</sys_recorded_at>
+<sys_recorded_at>17c9a7487260000001</sys_recorded_at>
 <sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2021-09-23 21:48:23</sys_updated_on>
+<sys_updated_on>2021-10-19 21:44:25</sys_updated_on>
 <table>ecc_queue</table>
 <target_name>eBond_SUPPLIER_Response</target_name>
 <type>Business Rule</type>
 <update_domain>global</update_domain>
-<update_guid>b7abad15783630101dd0b8bc899951cc</update_guid>
-<update_guid_history>b7abad15783630101dd0b8bc899951cc:-1096315202,7d8bed15a5363010ed22b2d9465dba81:-1096315202,59ccd159a0f23010991e35b1ea124341:-2066438931,13a85f6cda7630101c41d67a5aa64bf0:-2073790671</update_guid_history>
+<update_guid>0235af65dcd3301068af4a1187a7aa80</update_guid>
+<update_guid_history>0235af65dcd3301068af4a1187a7aa80:1110389149,7d8bed15a5363010ed22b2d9465dba81:-1096315202,59ccd159a0f23010991e35b1ea124341:-2066438931,13a85f6cda7630101c41d67a5aa64bf0:-2073790671</update_guid_history>
 <update_set display_value=""/>
 <view/>
 </sys_update_xml>
@@ -884,15 +854,15 @@ eBondIncident_SUPPLIER.prototype = {
 <name>sysevent_register_7c69576cdb7630107cb384d8689619bc</name>
 <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sysevent_register"><sysevent_register action="INSERT_OR_UPDATE"><caller_access/><description/><event_name>ebond.relationship.management.{SUPPLIER}</event_name><fired_by/><queue/><suffix/><sys_class_name>sysevent_register</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-09-21 21:31:25</sys_created_on><sys_id>7c69576cdb7630107cb384d8689619bc</sys_id><sys_mod_count>1</sys_mod_count><sys_name>ebond.relationship.management.{SUPPLIER}</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sysevent_register_7c69576cdb7630107cb384d8689619bc</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-09-21 21:31:47</sys_updated_on><table/></sysevent_register></record_update>]]></payload>
 <payload_hash>885677136</payload_hash>
-<remote_update_set display_value="eBond - Templates">d2707d19db3630107cb384d8689619d9</remote_update_set>
+<remote_update_set display_value="eBond - Templates">a5e827e9dbd330107cb384d86896190d</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
 <sys_created_by>admin</sys_created_by>
-<sys_created_on>2021-09-23 21:48:23</sys_created_on>
-<sys_id>96707d19db3630107cb384d8689619d9</sys_id>
+<sys_created_on>2021-10-19 21:44:25</sys_created_on>
+<sys_id>69e827e9dbd330107cb384d86896190d</sys_id>
 <sys_mod_count>0</sys_mod_count>
 <sys_recorded_at>17c0a45aedc0000001</sys_recorded_at>
 <sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2021-09-23 21:48:23</sys_updated_on>
+<sys_updated_on>2021-10-19 21:44:25</sys_updated_on>
 <table/>
 <target_name>ebond.relationship.management.{SUPPLIER}</target_name>
 <type>Event Registration</type>
@@ -914,21 +884,77 @@ var operation = event.parm1;
 var dataBundle = event.parm2;
 var returnStatus = new eBondIncident_SUPPLIER().preparePayload(operation, dataBundle);]]&gt;&lt;/script&gt;&lt;synchronous&gt;false&lt;/synchronous&gt;&lt;sys_class_name&gt;sysevent_script_action&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2021-09-21 21:18:33&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;fa16532cdb7630107cb384d868961959&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;eBond Incident Outbound {SUPPLIER}&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sysevent_script_action_fa16532cdb7630107cb384d868961959&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2021-09-21 21:18:33&lt;/sys_updated_on&gt;&lt;/sysevent_script_action&gt;&lt;/record_update&gt;</payload>
 <payload_hash>1801457055</payload_hash>
-<remote_update_set display_value="eBond - Templates">d2707d19db3630107cb384d8689619d9</remote_update_set>
+<remote_update_set display_value="eBond - Templates">a5e827e9dbd330107cb384d86896190d</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
 <sys_created_by>admin</sys_created_by>
-<sys_created_on>2021-09-23 21:48:23</sys_created_on>
-<sys_id>de707d19db3630107cb384d8689619d9</sys_id>
+<sys_created_on>2021-10-19 21:44:25</sys_created_on>
+<sys_id>a1e827e9dbd330107cb384d86896190e</sys_id>
 <sys_mod_count>0</sys_mod_count>
 <sys_recorded_at>17c0a39826c0000001</sys_recorded_at>
 <sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2021-09-23 21:48:23</sys_updated_on>
+<sys_updated_on>2021-10-19 21:44:25</sys_updated_on>
 <table>ebond.incident.outbound.{SUPPLIER}</table>
 <target_name>eBond Incident Outbound {SUPPLIER}</target_name>
 <type>Script Action</type>
 <update_domain>global</update_domain>
 <update_guid>2576132cf7763010e785051a9bd5ae04</update_guid>
 <update_guid_history>2576132cf7763010e785051a9bd5ae04:1801457055</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_ui_section_dd96ab69dbd330107cb384d8689619db</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update><sys_ui_section caption="" section_id="dd96ab69dbd330107cb384d8689619db" sys_domain="global" table="u_ebond_rest_payload" version="3" view=""><sys_ui_element action="INSERT_OR_UPDATE"><element>.begin_split</element><position>0</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>d196ab69dbd330107cb384d8689619e3</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type>.begin_split</type></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_active</element><position>1</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>d996ab69dbd330107cb384d8689619e3</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>.split</element><position>2</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>5d96ab69dbd330107cb384d8689619e3</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type>.split</type></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_ecc_topic</element><position>3</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>dd96ab69dbd330107cb384d8689619e3</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>.end_split</element><position>4</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>5196ab69dbd330107cb384d8689619e4</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type>.end_split</type></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_endpoint</element><position>5</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>d196ab69dbd330107cb384d8689619e4</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_format</element><position>6</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>5596ab69dbd330107cb384d8689619e4</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_history</element><position>7</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>d596ab69dbd330107cb384d8689619e4</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_http_method</element><position>8</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>5996ab69dbd330107cb384d8689619e4</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_http_response</element><position>9</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>d996ab69dbd330107cb384d8689619e4</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_http_status</element><position>10</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>5d96ab69dbd330107cb384d8689619e4</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>.begin_split</element><position>11</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>dd96ab69dbd330107cb384d8689619e4</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type>.begin_split</type></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_http_status_code</element><position>12</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>5196ab69dbd330107cb384d8689619e5</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>.split</element><position>13</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>d196ab69dbd330107cb384d8689619e5</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type>.split</type></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_index</element><position>14</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>5596ab69dbd330107cb384d8689619e5</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>.end_split</element><position>15</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>d596ab69dbd330107cb384d8689619e5</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type>.end_split</type></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_payload</element><position>16</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>5996ab69dbd330107cb384d8689619e5</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>.begin_split</element><position>17</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>d996ab69dbd330107cb384d8689619e5</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type>.begin_split</type></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_rest_message</element><position>18</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>5d96ab69dbd330107cb384d8689619e5</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_retry_cap</element><position>19</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>dd96ab69dbd330107cb384d8689619e5</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>.split</element><position>20</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>5196ab69dbd330107cb384d8689619e6</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type>.split</type></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_retry_count</element><position>21</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>d196ab69dbd330107cb384d8689619e6</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>.end_split</element><position>22</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>5596ab69dbd330107cb384d8689619e6</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type>.end_split</type></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_source_table</element><position>23</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>d596ab69dbd330107cb384d8689619e6</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>.begin_split</element><position>24</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>5996ab69dbd330107cb384d8689619e6</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type>.begin_split</type></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_source</element><position>25</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>d996ab69dbd330107cb384d8689619e6</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_status</element><position>26</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>5d96ab69dbd330107cb384d8689619e6</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>.split</element><position>27</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>dd96ab69dbd330107cb384d8689619e6</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type>.split</type></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_supplier</element><position>28</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>5196ab69dbd330107cb384d8689619e7</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>.end_split</element><position>29</position><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_id>d196ab69dbd330107cb384d8689619e7</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="u_ebond_rest_payload" sys_domain="global" view="Default view">dd96ab69dbd330107cb384d8689619db</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><type>.end_split</type></sys_ui_element><sys_ui_section action="INSERT_OR_UPDATE"><caption/><header>false</header><name>u_ebond_rest_payload</name><roles/><sys_class_name>sys_ui_section</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-10-19 21:34:18</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>dd96ab69dbd330107cb384d8689619db</sys_id><sys_mod_count>0</sys_mod_count><sys_name>u_ebond_rest_payload</sys_name><sys_overrides/><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sys_ui_section_dd96ab69dbd330107cb384d8689619db</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-10-19 21:34:18</sys_updated_on><sys_user/><title>true</title><view display_value="Default view" name="NULL">Default view</view><view_name/></sys_ui_section></sys_ui_section></record_update>]]></payload>
+<payload_hash>-990331003</payload_hash>
+<remote_update_set display_value="eBond - Templates">a5e827e9dbd330107cb384d86896190d</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-10-19 21:44:25</sys_created_on>
+<sys_id>e9e827e9dbd330107cb384d86896190e</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c9a79ff5a0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-10-19 21:44:25</sys_updated_on>
+<table>u_ebond_rest_payload</table>
+<target_name>eBond REST Payload</target_name>
+<type>Form Layout</type>
+<update_domain>global</update_domain>
+<update_guid>2196ab6947d33010942e25a7a628e1ea</update_guid>
+<update_guid_history>2196ab6947d33010942e25a7a628e1ea:-990331003,1d96ab691ed33010ffbd19a22ba8f1df:1275157371</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sysevent_script_action_b0c917acdb7630107cb384d86896193a</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sysevent_script_action"&gt;&lt;sysevent_script_action action="INSERT_OR_UPDATE"&gt;&lt;active&gt;false&lt;/active&gt;&lt;condition_script/&gt;&lt;description/&gt;&lt;event_name&gt;ebond.relationship.management.{SUPPLIER}&lt;/event_name&gt;&lt;name&gt;eBond Relationship Management {SUPPLIER}&lt;/name&gt;&lt;order&gt;100&lt;/order&gt;&lt;script&gt;&lt;![CDATA[// build out the data payload for SUPPLIER 
+// store it in u_ebond_rest_payloads to be sent to the SUPPLIER
+var operation = event.parm1;
+var dataBundle = event.parm2;
+var returnStatus = new eBondIncident_SUPPLIER().preparePayload(operation, dataBundle);]]&gt;&lt;/script&gt;&lt;synchronous&gt;false&lt;/synchronous&gt;&lt;sys_class_name&gt;sysevent_script_action&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2021-09-21 21:34:15&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;b0c917acdb7630107cb384d86896193a&lt;/sys_id&gt;&lt;sys_mod_count&gt;1&lt;/sys_mod_count&gt;&lt;sys_name&gt;eBond Relationship Management {SUPPLIER}&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sysevent_script_action_b0c917acdb7630107cb384d86896193a&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2021-09-21 21:43:21&lt;/sys_updated_on&gt;&lt;/sysevent_script_action&gt;&lt;/record_update&gt;</payload>
+<payload_hash>244917612</payload_hash>
+<remote_update_set display_value="eBond - Templates">a5e827e9dbd330107cb384d86896190d</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2021-10-19 21:44:25</sys_created_on>
+<sys_id>ede827e9dbd330107cb384d86896190d</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>17c0a5037020000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2021-10-19 21:44:25</sys_updated_on>
+<table>ebond.relationship.management.{SUPPLIER}</table>
+<target_name>eBond Relationship Management {SUPPLIER}</target_name>
+<type>Script Action</type>
+<update_domain>global</update_domain>
+<update_guid>f02c932029b63010437fd47d93c21770</update_guid>
+<update_guid_history>f02c932029b63010437fd47d93c21770:244917612,ab0a1bacb4763010ec3e8a524ca39f62:1880787244</update_guid_history>
 <update_set display_value=""/>
 <view/>
 </sys_update_xml>

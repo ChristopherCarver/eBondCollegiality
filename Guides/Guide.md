@@ -544,7 +544,7 @@ _Instructions:_
             gr.addQuery('sys_id',relationship);
             gr.query();
             if (gr.next()) {
-                gr.u_in = value;
+                gr.setValue('u_in', value);
     			gr.update();
             }
             return;
@@ -556,7 +556,7 @@ _Instructions:_
             gr.addQuery('sys_id',relationship);
             gr.query();
             if (gr.next()) {
-                gr.u_out = value;
+                gr.setValue('u_out', value);
     			gr.update();
             }
             return;
@@ -634,7 +634,7 @@ _Instructions:_
 
         ```` 
         current.addQuery('u_source_table', parent.getTableName());
-        current.addQuery('u_source', parent.sys_id);
+        current.addQuery('u_source', parent.getValue('sys_id'));
         ```` 
 1. Click **Submit**.
 1. Navigate to **Incident** > **All**, click on any of the incident records.
@@ -1069,8 +1069,8 @@ _Instructions:_
             this.eLog.u_name = 'eBondDataMap';
             this.eLog.u_source = 'initialize';
             this.eLog.u_supplier = 'Unknown';
-    		this.eLog.u_correlate_id = current.sys_id;
-    		this.eLog.u_correlate_class_name = current.sys_class_name;
+    		this.eLog.u_correlate_id = current.getValue('sys_id');
+    		this.eLog.u_correlate_class_name = current.getValue('sys_class_name');
             this.eLog.write('Debug', 'Entering.');
 
             this.eLog.write('Debug', 'Exiting.');
@@ -1101,9 +1101,9 @@ _Instructions:_
             supplierValue.query();
 
             if (supplierValue.next()) {
-                dataMap.value = supplierValue.u_supplier_value.toString();
-    			if (supplierValue.u_note != undefined && supplierValue.u_note != '') {
-    				dataMap.note = supplierValue.u_note.toString();
+                dataMap.value = supplierValue.getValue('u_supplier_value');
+    			if (supplierValue.getValue('u_note') != null) {
+    				dataMap.note = supplierValue.getValue('u_note');
     			}
             } else {
                 dataMap.value = default_value;
@@ -1152,8 +1152,8 @@ _Instructions:_
             this.eLog.u_name = 'eBondRestPayload';
             this.eLog.u_source = 'initialize';
             this.eLog.u_supplier = 'Unknown';
-            this.eLog.u_correlate_id = current.sys_id;
-            this.eLog.u_correlate_class_name = current.sys_class_name;
+            this.eLog.u_correlate_id = current.getValue('sys_id');
+            this.eLog.u_correlate_class_name = current.getValue('sys_class_name');
             this.eLog.write('Debug', 'Entering.');
 
             this.eLog.write('Debug', 'Exiting.');
@@ -1162,7 +1162,7 @@ _Instructions:_
         // func: increment
         // desc: returns the next index number for u_ebond_rest_payload table
         // parm: n/a
-        // retn: index interger vale
+        // retn: index integer vale
         increment: function () {
             var gr = new GlideRecord('u_ebond_rest_payload');
             gr.orderByDesc('u_index');
@@ -1170,7 +1170,7 @@ _Instructions:_
             gr.query();
             var index = 0;
             if (gr.next()) {
-                index = gr.u_index + 1;
+                index = parseInt(gr.getValue('u_index')) + 1;
             }
             return index; // return the calculated value
         },
@@ -1207,7 +1207,7 @@ _Instructions:_
             payloadRec.u_format = format;
             payloadRec.u_rest_message = restMsg;
             payloadRec.u_http_method = httpMethod;
-            payloadRec.u_ecc_topic = 'eBond_' + supplier.stock_symbol + '_Response';
+            payloadRec.u_ecc_topic = 'eBond_' + supplier.getValue('stock_symbol') + '_Response';
             payloadRec.u_status = 'queued';
             payloadRec.insert();
             this.eLog.write('Debug', 'Uploaded payload.');
@@ -1232,11 +1232,11 @@ _Instructions:_
                 restObj.setStringParameter('endpoint', endpoint);
                 restObj.setRequestBody(payload);
                 restObj.setEccParameter('skip_sensor', 'true'); // prevent Discovery sensors running for the ECC input
-                restObj.setEccTopic('eBond_' + supplier.stock_symbol + '_Response');
+                restObj.setEccTopic('eBond_' + supplier.getValue('stock_symbol') + '_Response');
                 restObj.setEccCorrelator(payloadRec.getValue('sys_id'));
                 this.eLog.write('Debug', 'Invoking async RESTful execution.');
                 restObj.executeAsync(); // a business rule on the ecc_queue table will handle the response
-                payloadRec.u_status = 'active';
+                payloadRec.setValue('u_status', 'active');
                 payloadRec.update();
                 return true;
             } catch (ex) {
@@ -1266,15 +1266,15 @@ _Instructions:_
             if (nextPayload.next()) {
                 // send over to the ecc queue
                 try {
-                    var restObj = new sn_ws.RESTMessageV2(nextPayload.u_rest_message, nextPayload.u_http_method);
-                    restObj.setStringParameter('endpoint', nextPayload.u_endpoint);
-                    restObj.setRequestBody(nextPayload.u_payload);
+                    var restObj = new sn_ws.RESTMessageV2(nextPayload.getValue('u_rest_message'), nextPayload.getValue('u_http_method'));
+                    restObj.setStringParameter('endpoint', nextPayload.getValue('u_endpoint'));
+                    restObj.setRequestBody(nextPayload.getValue('u_payload'));
                     restObj.setEccParameter('skip_sensor', 'true'); // prevent Discovery sensors running for the ECC input
-                    restObj.setEccTopic(nextPayload.u_ecc_topic);
+                    restObj.setEccTopic(nextPayload.getValue('u_ecc_topic'));
                     restObj.setEccCorrelator(nextPayload.getValue('sys_id'));
                     this.eLog.write('Debug', 'Invoking async RESTful execution.');
                     restObj.executeAsync(); // a business rule on the ecc_queue table will handle the response
-                    nextPayload.u_status = 'active';
+                    nextPayload.setValue('u_status', 'active');
                     nextPayload.update();
                 } catch (ex) {
                     var message = ex.getMessage();
@@ -1356,13 +1356,13 @@ _Instructions:_
         (function calculatedFieldValue(current) {
             var calc = current.u_retry;
 
-            if (current.u_retry_count > current.u_retry_cap) {
+            if (parseInt(current.getValue('u_retry_count')) > parseInt(current.getValue('u_retry_cap'))) {
                 calc = false;
-            } else if (current.u_http_status_code == 401 ||
-                current.u_http_status_code == 404 ||
-                current.u_http_status_code == 408 ||
-                (current.u_http_status_code >= 500 &&
-                    current.u_http_status_code <= 599)) {
+            } else if (parseInt(current.getValue('u_http_status_code')) == 401 ||
+                parseInt(current.getValue('u_http_status_code')) == 404 ||
+                parseInt(current.getValue('u_http_status_code')) == 408 ||
+                (parseInt(current.getValue('u_http_status_code')) >= 500 &&
+                    parseInt(current.getValue('u_http_status_code')) <= 599)) {
         		calc = true;
             } else {
         		calc = false;
@@ -1428,11 +1428,11 @@ _Instructions:_
 
         	var response = '';
 
-        	if (current.u_http_status_code == undefined || current.u_http_status_code <= 0) {
+            var httpStatusCode = current.getValue('u_http_status_code');
+        	if (httpStatusCode == null) {
         		return response;
         	} 
 
-        	var httpStatusCode = current.u_http_status_code.toString();
         	var key = httpStatusCode.substring(0,1);
         	switch (key) {
         		case '1':
@@ -2019,7 +2019,7 @@ _Instructions:_
 
             // coalesce script is called at various times in the transform
             // ignore the time(s) when the row is not even being evaluated
-            if (source.sys_created_by === undefined || source.sys_created_by == "") {
+            if (source.getValue('sys_created_by') == null) {
         		return;
             }
 
@@ -2032,8 +2032,8 @@ _Instructions:_
         		var SUPPLIER = 'unknown';
         	}
         	eLog.u_supplier = SUPPLIER;
-        	eLog.u_correlate_id = source.sys_id;
-        	eLog.u_correlate_class_name = source.sys_class_name;
+        	eLog.u_correlate_id = source.getValue('sys_id');
+        	eLog.u_correlate_class_name = source.getValue('sys_class_name');
         	eLog.write('Debug', 'Entering.');
 
             // coalesce script is called before ServiceNow global transform map
@@ -2053,15 +2053,15 @@ _Instructions:_
 
             // find the company the account is associated with
             var user = new GlideRecord('sys_user');
-            user.addQuery('user_name', source.sys_created_by);
+            user.addQuery('user_name', source.getValue('sys_created_by'));
             user.query();
             if (!user.next()) {
                 // supplier is not eBond enabled
-                eLog.write('High', 'Security Violation: An account (' + source.sys_created_by + ') cannot be found. Reference: ' + source.sys_id);
+                eLog.write('High', 'Security Violation: An account (' + source.getValue('sys_created_by') + ') cannot be found. Reference: ' + source.getValue('sys_id'));
 
                 error = true;
                 error_message = "Security violation.";
-                source.u_error = error_message;
+                source.setValue('u_error', error_message);
 
         		eLog.write('Debug', 'Exiting.');
         		return "";
@@ -2069,28 +2069,28 @@ _Instructions:_
 
             // find the company the account is associated with
             var company = new GlideRecord('core_company');
-            company.addQuery('u_ebond_account', user.sys_id);
+            company.addQuery('u_ebond_account', user.getValue('sys_id'));
             company.query();
             if (company.next()) {
                 // make sure the supplier is still eBond approved
-                if (company.u_ebonded) {
+                if (company.getValue('u_ebonded') == 'true') {
         			eLog.write('Debug', 'Exiting.');
-                    return company.sys_id;
+                    return company.getValue('sys_id');
                 }
 
                 // supplier is not eBond enabled
-                eLog.write('Low', 'Security Violation: The supplier ' + company.name + ' is not eBond enabled. Reference: ' + source.sys_id);
+                eLog.write('Low', 'Security Violation: The supplier ' + company.name + ' is not eBond enabled. Reference: ' + source.getValue('sys_id'));
 
                 error = true;
                 error_message = "Security violation.";
-                source.u_error = error_message;
+                source.setValue('u_error', error_message);
 
         		eLog.write('Debug', 'Exiting.');
         		return "";
             }
 
             // creator is not associated with a supplier
-            eLog.write('High', 'Security Violation: An eBond account (' + source.sys_created_by + ') has written to the u_ebond_incident_staging table with no reference to a record entry in the core_company table. Reference: ' + source.sys_id);
+            eLog.write('High', 'Security Violation: An eBond account (' + source.getValue('sys_created_by') + ') has written to the u_ebond_incident_staging table with no reference to a record entry in the core_company table. Reference: ' + source.getValue('sys_id'));
 
             error = true;
             error_message = "Security violation.";
@@ -2191,22 +2191,22 @@ _Instructions:_
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] SUPPLIER';
             eLog.u_supplier = 'Unknown';
-        	eLog.u_correlate_id = source.sys_id;
-        	eLog.u_correlate_class_name = source.sys_class_name;
+        	eLog.u_correlate_id = source.getValue('sys_id');
+        	eLog.u_correlate_class_name = source.getValue('sys_class_name');
             eLog.write('Debug', 'Entering.');
 
             var registry = new GlideRecord('u_ebond_registry');
             registry.addQuery('u_key', 'inbound.account');
-            registry.addQuery('u_value', source.sys_created_by);
+            registry.addQuery('u_value', source.getValue('sys_created_by'));
             registry.query();
             if (registry.next()) {
-                SUPPLIER = registry.u_supplier;
+                SUPPLIER = registry.getValue('u_supplier');
 
                 eLog.u_supplier = SUPPLIER;
                 eLog.write('Debug', 'SUPPLIER = ' + SUPPLIER);
             } else {
                 eLog.u_supplier = 'Unknown';
-                eLog.write('Medium', 'Registry Error: An eBond account (' + source.sys_created_by + ') is missing registry key "inbound account". Reference: ' + source.sys_id);
+                eLog.write('Medium', 'Registry Error: An eBond account (' + source.getValue('sys_created_by') + ') is missing registry key "inbound account". Reference: ' + source.getValue('sys_id'));
 
                 error = true;
                 error_message = "Unregistered supplier account.";
@@ -2234,25 +2234,25 @@ _Instructions:_
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] COMPANY';
             eLog.u_supplier = SUPPLIER;
-        	eLog.u_correlate_id = source.sys_id;
-        	eLog.u_correlate_class_name = source.sys_class_name;
+        	eLog.u_correlate_id = source.getValue('sys_id');
+        	eLog.u_correlate_class_name = source.getValue('sys_class_name');
             eLog.write('Debug', 'Entering.');
 
         	// find the user account that created the record
             var user = new GlideRecord('sys_user');
-            user.addQuery('user_name', source.sys_created_by);
+            user.addQuery('user_name', source.getValue('sys_created_by'));
         	user.query();
         	if( user.next() ) {
-        		CALLER = user.sys_id;
+        		CALLER = user.getValue('sys_id');
         		eLog.write('Debug', 'CALLER = ' + CALLER);
         	}
 
             // find the company the account is associated with
             var company = new GlideRecord('core_company');
-            company.addQuery('u_ebond_account', user.sys_id);
+            company.addQuery('u_ebond_account', CALLER);
             company.query();
             if (company.next()) {
-                COMPANY = company.sys_id;
+                COMPANY = company.getValue('sys_id');
                 eLog.write('Debug', 'COMPANY = ' + COMPANY);
             }
 
@@ -2276,8 +2276,8 @@ _Instructions:_
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] RELATIONSHIP';
             eLog.u_supplier = SUPPLIER;
-        	eLog.u_correlate_id = source.sys_id;
-        	eLog.u_correlate_class_name = source.sys_class_name;
+        	eLog.u_correlate_id = source.getValue('sys_id');
+        	eLog.u_correlate_class_name = source.getValue('sys_class_name');
             eLog.write('Debug', 'Entering.');
 
         	if (action == 'insert') {
@@ -2286,23 +2286,23 @@ _Instructions:_
         	}
 
         	var relationship = new GlideRecord('u_ebond_relationship');
-        	relationship.addQuery('u_correlation_number',source.u_external_number);
+        	relationship.addQuery('u_correlation_number',source.getValue('u_external_number'));
         	relationship.addQuery('u_company', COMPANY);
         	relationship.query();
         	if (relationship.next()) {
-        		RELATIONSHIP = relationship.sys_id;
+        		RELATIONSHIP = relationship.getValue('sys_id');
         		eLog.write('Debug', 'RELATIONSHIP = ' + RELATIONSHIP);
-        		if (relationship.u_status == 'debonded') {
-        			eLog.write('Low', 'Supplier is passing information on a debonded relationship. Reference: ' + source.sys_id);
+        		if (relationship.getValue('u_status') == 'debonded') {
+        			eLog.write('Low', 'Supplier is passing information on a debonded relationship. Reference: ' + source.getValue('sys_id'));
         			error = true;
         			error_message = "The incident has been debonded. Updates are no longer accepted.";
         			source.u_error = error_message;
         		}
         	} else {
-        		eLog.write('High', 'Transform action is update, but cannot find eBond relationship. Reference: ' + source.sys_id);
+        		eLog.write('High', 'Transform action is update, but cannot find eBond relationship. Reference: ' + source.getValue('sys_id'));
                 error = true;
                 error_message = "Cannot find eBond relationship.";
-                source.u_error = error_message;
+                source.setValue('u_error', error_message);
         	}
 
         	eLog.write('Debug', 'Exiting.');
@@ -2326,8 +2326,8 @@ _Instructions:_
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] OPERATION & EXECUTION';
             eLog.u_supplier = SUPPLIER;
-            eLog.u_correlate_id = source.sys_id;
-            eLog.u_correlate_class_name = source.sys_class_name;
+            eLog.u_correlate_id = source.getValue('sys_id');
+            eLog.u_correlate_class_name = source.getValue('sys_class_name');
             eLog.write('Debug', 'Entering.');
 
             /*
@@ -2364,7 +2364,7 @@ _Instructions:_
             //  action  |  OPERATION  |  EXECUTION  |  SCENARIO
             //  ----------------------------------------------------------------------------------------------------
             //  insert  |  create     |  reflect    | new eBond from supplier
-            if (action == 'insert' && source.u_number == '' && source.u_sys_id == '') {
+            if (action == 'insert' && source.getValue('u_number') == null && source.getValue('u_sys_id') == null) {
                 OPERATION = 'create';
                 EXECUTION = 'reflect';
 
@@ -2376,12 +2376,12 @@ _Instructions:_
             //  action  |  OPERATION  |  EXECUTION  |  SCENARIO
             //  ----------------------------------------------------------------------------------------------------
             //  insert  |  update     |  inform     | new eBond from supplier to existing ticket
-            if (action == 'insert' && (source.u_number != '' || source.u_sys_id != '')) {
+            if (action == 'insert' && (source.getValue('u_number') != null || source.getValue('u_sys_id') != null)) {
                 var incident = new GlideRecord('incident');
-                if (source.u_number != '') {
-                    incident.addQuery('number', source.u_number);
+                if (source.getValue('u_number') != null) {
+                    incident.addQuery('number', source.getValue('u_number'));
                 } else {
-                    incident.addQuery('sys_id', source.u_sys_id);
+                    incident.addQuery('sys_id', source.getValue('u_sys_id'));
                 }
                 incident.query();
                 if (incident.next()) {
@@ -2391,10 +2391,10 @@ _Instructions:_
                     eLog.write('Debug', 'Exiting.');
                     return;
                 } else {
-                    if (source.u_number != '') {
-                        eLog.write('Medium', 'Could not find incident ' + source.u_number + '. Reference: ' + source.sys_id);
+                    if (source.getValue('u_number') != null) {
+                        eLog.write('Medium', 'Could not find incident ' + source.getValue('u_number') + '. Reference: ' + source.getValue('sys_id'));
                     } else {
-                        eLog.write('Medium', 'Could not find the incident reference ' + source.u_sys_id + '. Reference: ' + source.sys_id);
+                        eLog.write('Medium', 'Could not find the incident reference ' + source.getValue('u_sys_id') + '. Reference: ' + source.getValue('sys_id'));
                     }
 
                     var relationship = new eBondRelationship();
@@ -2414,18 +2414,24 @@ _Instructions:_
             //  update  |  *          |  *          |  if the eBond relationship exists, so does the incident
             //                                      |  if the incident is closed there is nothing that can be done
             if (action == 'update') {
-                var incident = new GlideRecord('incident');
-                incident.addQuery('number', relationship.u_source);
-                incident.query();
-                if (incident.next()) {
-                    if (incident.getValue('state') == 7) { // closed
-                        error = true;
-                        error_message = "Incident " + incident.number + "cannot be updated. The incident is closed.";
-                        source.u_error = error_message;
+                var relationship = new GlideRecord('u_ebond_relationship');
+                relationship.addQuery('u_company', COMPANY);
+                relationship.addQuery('u_correlation_id', source.getValue('u_number'));
+                relationship.query();
+                if (relationship.next()) {
+                    var incident = new GlideRecord('incident');
+                    incident.addQuery('number', relationship.getValue('u_source'));
+                    incident.query();
+                    if (incident.next()) {
+                        if (parseInt(incident.getValue('state')) == 7) { // closed
+                            error = true;
+                            error_message = "Incident " + incident.number + "cannot be updated. The incident is closed.";
+                            source.setValue('u_error', error_message);
 
-                        eLog.write('Debug', error_mnessage);
-                        eLog.write('Debug', 'Exiting');
-                        return;
+                            eLog.write('Debug', error_mnessage);
+                            eLog.write('Debug', 'Exiting');
+                            return;
+                        }
                     }
                 }
             }
@@ -2433,7 +2439,7 @@ _Instructions:_
             //  action  |  OPERATION  |  EXECUTION  |  SCENARIO
             //  ----------------------------------------------------------------------------------------------------
             //  update  |  update     |  debond     | supplier is debonding the tickets
-            if (action == 'update' && (source.u_number == '-1' || source.u_sys_id == '-1') && target.u_status.indexOf('debonded') == -1) {
+            if (action == 'update' && (source.getValue('u_number') == '-1' || source.getValue('u_sys_id') == '-1') && target.getValue('u_status').indexOf('debonded') == -1) {
                 OPERATION = 'update';
                 EXECUTION = 'debond';
 
@@ -2446,7 +2452,7 @@ _Instructions:_
             //  ----------------------------------------------------------------------------------------------------
             //  update  |  update     |  inform     | supplier is re-eBonding to a prior ticket
             //  
-            if (action == 'update' && target.u_status.indexOf('debonded') != -1) {
+            if (action == 'update' && target.getValue('u_status').indexOf('debonded') != -1) {
                 OPERATION = 'update';
                 EXECUTION = 'inform';
 
@@ -2459,13 +2465,13 @@ _Instructions:_
             //  ----------------------------------------------------------------------------------------------------
             //  update  |  update     |  reflect    | supplier is updating a ticket
             //  update  |  update     |  inform     | supplier is updating a ticket they do not own
-            if (action == 'update' && target.u_status.indexOf('debonded') == -1) {
+            if (action == 'update' && target.getValue('u_status').indexOf('debonded') == -1) {
                 var relationship = new GlideRecord('u_ebond_relationship');
                 relationship.addQuery('u_company', COMPANY);
-                relationship.addQuery('u_correlation_number', source.u_external_number);
+                relationship.addQuery('u_correlation_number', source.getValue('u_external_number'));
                 relationship.query();
                 if (relationship.next()) {
-                    if (relationship.u_reflect == true) {
+                    if (relationship.getValue('u_reflect') == 'true') {
                         OPERATION = 'update';
                         EXECUTION = 'reflect';
 
@@ -2483,9 +2489,9 @@ _Instructions:_
                 } else {
                     error = true;
                     error_message = "Internal error, eBond reference not found within update action.";
-                    source.u_error = error_message;
+                    source.setValue('u_error', error_message);
 
-                    eLog.write('High', 'Internal Error: eBond reference not found within update action. Reference: ' + source.sys_id);
+                    eLog.write('High', 'Internal Error: eBond reference not found within update action. Reference: ' + source.getValue('sys_id'));
                     eLog.write('info', 'Exiting.');
                     return;
                 }
@@ -2497,9 +2503,9 @@ _Instructions:_
 
             error = true;
             error_message = "Internal error, logic path exhaustion.";
-            source.u_error = error_message;
+            source.setValue('u_error', error_message);
 
-            eLog.write('High', 'Internal Error: Logic path exhaustion; OPERATION [' + OPERATION + '] EXECUTION [' + EXECUTION + '] Reference: ' + source.sys_id);
+            eLog.write('High', 'Internal Error: Logic path exhaustion; OPERATION [' + OPERATION + '] EXECUTION [' + EXECUTION + '] Reference: ' + source.getValue('sys_id'));
             eLog.write('Debug', 'Exiting.');
             return;
 
@@ -2522,51 +2528,51 @@ _Instructions:_
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] check required fields';
             eLog.u_supplier = SUPPLIER;
-        	eLog.u_correlate_id = source.sys_id;
-        	eLog.u_correlate_class_name = source.sys_class_name;
+        	eLog.u_correlate_id = source.getValue('sys_id');
+        	eLog.u_correlate_class_name = source.getValue('sys_class_name');
             eLog.write('Debug', 'Entering.');
 
             var missingField = false;
-            var missingFields = 'Missing the folowing required field(s): ';
+            var missingFields = 'Missing the following required field(s): ';
             var separator = '';
 
             // supplier ticket number is mandatory in all cases
-            if (source.u_external_number == '') {
+            if (source.getValue('u_external_number') == null) {
                 missingField = true;
                 missingFields = missingFields + separator + 'u_external_number';
                 separator = ', ';
             }
 
             // if new relationship, provide a short description
-            if (action == 'insert' && OPERATION == 'create' && source.u_short_description == '') {
+            if (action == 'insert' && OPERATION == 'create' && source.getValue('u_short_description') == null) {
                 missingField = true;
                 missingFields = missingFields + separator + 'u_short_description';
                 separator = ', ';
             }
 
             // if new relationship, provide a description
-            if (action == 'insert' && OPERATION == 'create' && source.u_description == '') {
+            if (action == 'insert' && OPERATION == 'create' && source.getValue('u_description') == null) {
                 missingField = true;
                 missingFields = missingFields + separator + 'u_description';
                 separator = ', ';
             }
 
             // if state is on hold, provide a hold reason
-            if (source.u_state == '3' && source.u_hold_reason == '') {
+            if (source.getValue('u_state') == '3' && source.getValue('u_hold_reason') == null) {
                 missingField = true;
                 missingFields = missingFields + separator + 'u_hold_reason';
                 separator = ', ';
             }
 
             // if state is resolved or closed, provide a close code
-            if ((source.u_state == '6' || source.u_state == '7') && source.u_close_code == '') {
+            if ((source.getValue('u_state') == '6' || source.getValue('u_state') == '7') && source.getValue('u_close_code') == null) {
                 missingField = true;
                 missingFields = missingFields + separator + 'u_close_code';
                 separator = ', ';
             }
 
             // if state is resolved or closed, provide a close notes
-            if ((source.u_state == '6' || source.u_state == '7') && source.u_close_notes == '') {
+            if ((source.getValue('u_state') == '6' || source.getValue('u_state') == '7') && source.getValue('u_close_notes') == null) {
                 missingField = true;
                 missingFields = missingFields + separator + 'u_close_notes';
                 separator = ', ';
@@ -2574,13 +2580,13 @@ _Instructions:_
 
             if (missingField) {
                 missingFields = missingFields + '.';
-                eLog.write('Low',missingFields + ' Reference: ' + source.sys_id);
+                eLog.write('Low',missingFields + ' Reference: ' + source.getValue('sys_id'));
 
         		var relationship = new eBondRelationship();
         		relationship.updateIn(RELATIONSHIP,'down');
                 error = true;
                 error_message = missingFields;
-        		source.u_error = error_message;
+        		source.setValue('u_error', error_message);
             }
 
         	eLog.write('Debug', 'Exiting.');
@@ -2604,29 +2610,29 @@ _Instructions:_
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] INCIDENT';
             eLog.u_supplier = SUPPLIER;
-            eLog.u_correlate_id = source.sys_id;
-            eLog.u_correlate_class_name = source.sys_class_name;
+            eLog.u_correlate_id = source.getValue('sys_id');
+            eLog.u_correlate_class_name = source.getValue('sys_class_name');
             eLog.write('Debug', 'Entering.');
 
-            if ((source.u_number != '' || source.u_sys_id != '') && (source.u_number != '-1' && source.u_sys_id != '-1')) {
+            if ((source.getValue('u_number') != null || source.getValue('u_sys_id') != null) && (source.getValue('u_number') != '-1' && source.getValue('u_sys_id') != '-1')) {
                 var incident = new GlideRecord('incident');
-                if (source.u_number != '') {
-                    incident.addQuery('number', source.u_number);
+                if (source.getValue('u_number') != null) {
+                    incident.addQuery('number', source.getValue('u_number'));
                 } else {
-                    incident.addQuery('sys_id', source.u_sys_id);
+                    incident.addQuery('sys_id', source.getValue('u_sys_id'));
                 }
                 incident.query();
                 if (incident.next()) {
-                    INCIDENT = incident.sys_id;
-                    INCIDENT_NUMBER = incident.number;
+                    INCIDENT = incident.getValue('sys_id');
+                    INCIDENT_NUMBER = incident.getValue('number');
                     eLog.write('Debug', 'INCIDENT_NUMBER = ' + INCIDENT_NUMBER + '\nINCIDENT = ' + INCIDENT);
                     eLog.write('Debug', 'Exiting.');
                     return;
                 } else {
-                    if (source.u_number != '') {
-                        eLog.write('Medium', 'Could not find incident ' + source.u_number + '. Reference: ' + source.sys_id);
+                    if (source.getValue('u_number') != null) {
+                        eLog.write('Medium', 'Could not find incident ' + source.getValue('u_number') + '. Reference: ' + source.getValue('sys_id'));
                     } else {
-                        eLog.write('Medium', 'Could not find the incident reference ' + source.u_sys_id + '. Reference: ' + source.sys_id);
+                        eLog.write('Medium', 'Could not find the incident reference ' + source.getValue('u_sys_id') + '. Reference: ' + source.getValue('sys_id'));
                     }
 
                     var relationship = new eBondRelationship();
@@ -2634,7 +2640,7 @@ _Instructions:_
 
                     error = true;
                     error_message = "Incident not found.";
-                    source.u_error = error_message;
+                    source.setValue('u_error', error_message);
 
                     eLog.write('Debug', 'Exiting.');
                     return;
@@ -2642,28 +2648,28 @@ _Instructions:_
                 // the supplier did not pass local ticket information
             } else if (action == 'update') {
                 var relationship = new GlideRecord('u_ebond_relationship');
-                if (source.u_external_number != '') {
-                    relationship.addQuery('u_correlation_number', source.u_external_number);
+                if (source.getValue('u_external_number') != null) {
+                    relationship.addQuery('u_correlation_number', source.getValue('u_external_number'));
                 } else {
-                    relationship.addQuery('u_correlation_id', source.u_external_reference);
+                    relationship.addQuery('u_correlation_id', source.getValue('u_external_reference'));
                 }
                 relationship.query();
                 if (relationship.next()) {
-                    INCIDENT = relationship.u_source.sys_id;
-                    INCIDENT_NUMBER = relationship.u_source.number;
+                    INCIDENT = relationship.getElement('u_source.sys_id');
+                    INCIDENT_NUMBER = relationship.getElement('u_source.number');
                     eLog.write('Debug', 'INCIDENT_NUMBER = ' + INCIDENT_NUMBER + '\nINCIDENT = ' + INCIDENT);
                     eLog.write('Debug', 'Exiting');
                     return;
                 } else {
-                    if (source.u_external_number != '') {
-                        eLog.write('High', 'Could not find external correlation number ' + source.u_external_number + ' relationship. Reference: ' + source.sys_id);
+                    if (source.getValue('u_external_number') != null) {
+                        eLog.write('High', 'Could not find external correlation number ' + source.getValue('u_external_number') + ' relationship. Reference: ' + source.getValue('sys_id'));
                     } else {
-                        eLog.write('High', 'Could not find the external correlation reference ' + source.u_external_reference + ' relationship. Reference: ' + source.sys_id);
+                        eLog.write('High', 'Could not find the external correlation reference ' + source.getValue('u_external_reference') + ' relationship. Reference: ' + source.getValue('sys_id'));
                     }
 
                     error = true;
                     error_message = "eBond relationship not found.";
-                    source.u_error = error_message;
+                    source.setValue('u_error', error_message);
 
                     eLog.write('Debug', 'Exiting');
                     return;
@@ -2692,8 +2698,8 @@ _Instructions:_
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] URL';
             eLog.u_supplier = SUPPLIER;
-        	eLog.u_correlate_id = source.sys_id;
-        	eLog.u_correlate_class_name = source.sys_class_name;
+        	eLog.u_correlate_id = source.getValue('sys_id');
+        	eLog.u_correlate_class_name = source.getValue('sys_class_name');
             eLog.write('Debug', 'Entering.');
 
             // deBond check
@@ -2707,10 +2713,10 @@ _Instructions:_
             registry.addQuery('u_key', 'incident.url.link');
             registry.query();
             if (registry.next()) {
-                var tRef = registry.u_value;
+                var tRef = registry.getValue('u_value');
 
-                var tRef1 = tRef.replace('CORRELATION_ID', source.u_external_reference);
-                URL = tRef1.replace('CORRELATION_NUMBER', source.u_external_number);
+                var tRef1 = tRef.replace('CORRELATION_ID', source.getValue('u_external_reference'));
+                URL = tRef1.replace('CORRELATION_NUMBER', source.getValue('u_external_number'));
 
                 eLog.write('Debug', 'URL = ' + URL);
             }
@@ -2736,21 +2742,22 @@ _Instructions:_
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] validate data';
             eLog.u_supplier = SUPPLIER;
-            eLog.u_correlate_id = source.sys_id;
-            eLog.u_correlate_class_name = source.sys_class_name;
+            eLog.u_correlate_id = source.getValue('sys_id');
+            eLog.u_correlate_class_name = source.getValue('sys_class_name');
             eLog.write('Debug', 'Entering.');
 
             var invalidData = false;
             var invalidInfo = 'Invalid values for the field(s): ';
             var separator = '';
 
-            if (source.u_sys_id != '' && source.u_sys_id != '-1') {
+            if (source.getValue('u_sys_id') != null && source.getValue('u_sys_id') != '-1') {
                 var incident = new GlideRecord("incident");
-                incident.addQuery("sys_id", source.u_sys_id);
+                incident.addQuery("sys_id", source.getValue('u_sys_id'));
                 incident.query();
                 if (incident.next()) {
-                    INCIDENT = incident.sys_id;
-                    eLog.write('Debug', 'INCIDENT = ' + INCIDENT);
+                    INCIDENT = incident.getValue('sys_id');
+                    INCIDENT_NUMBER = incident.getValue('number');
+                    eLog.write('Debug', 'INCIDENT_NUMBER = ' + INCIDENT_NUMBER + '\nINCIDENT = ' + INCIDENT);
                 } else {
                     invalidData = true;
                     invalidInfo = invalidInfo + separator + 'u_sys_id';
@@ -2758,16 +2765,16 @@ _Instructions:_
                 }
             }
 
-            if (source.u_subcategory != '') {
+            if (source.getValue('u_subcategory') != null) {
                 var data_map = new GlideRecord("u_ebond_data_map");
                 data_map.addQuery("u_supplier", "All");
                 data_map.addQuery("u_module", "incident");
                 data_map.addQuery("u_classification", "subcategory");
                 data_map.addQuery("u_direction", "inbound");
-                data_map.addQuery("u_supplier_value", source.u_subcategory);
+                data_map.addQuery("u_supplier_value", source.getValue('u_subcategory'));
                 data_map.query();
                 if (data_map.next()) {
-                    SUBCATEGORY = data_map.u_source_value;
+                    SUBCATEGORY = data_map.getValue('u_source_value');
                     eLog.write('Debug', 'SUBCATEGORY = ' + SUBCATEGORY);
                 } else {
                     invalidData = true;
@@ -2776,16 +2783,16 @@ _Instructions:_
                 }
             }
 
-            if (source.u_state != '') {
+            if (source.getValue('u_state') != null) {
                 var data_map = new GlideRecord("u_ebond_data_map");
                 data_map.addQuery("u_supplier", "All");
                 data_map.addQuery("u_module", "incident");
                 data_map.addQuery("u_classification", "state");
                 data_map.addQuery("u_direction", "inbound");
-                data_map.addQuery("u_supplier_value", source.u_state);
+                data_map.addQuery("u_supplier_value", source.getValue('u_state'));
                 data_map.query();
                 if (data_map.next()) {
-                    STATE = data_map.u_source_value;
+                    STATE = data_map.getValue('u_source_value');
                     STATE_STR = data_map.u_note;
                     eLog.write('Debug', 'STATE = ' + STATE + ' (' + STATE_STR + ')');
                 } else {
@@ -2795,16 +2802,16 @@ _Instructions:_
                 }
             }
 
-            if (source.u_service_offering != '') {
+            if (source.getValue('u_service_offering') != null) {
                 var data_map = new GlideRecord("u_ebond_data_map");
                 data_map.addQuery("u_supplier", "All");
                 data_map.addQuery("u_module", "incident");
                 data_map.addQuery("u_classification", "service_offering");
                 data_map.addQuery("u_direction", "inbound");
-                data_map.addQuery("u_supplier_value", source.u_service_offering);
+                data_map.addQuery("u_supplier_value", source.getValue('u_service_offering'));
                 data_map.query();
                 if (data_map.next()) {
-                    SERVICE_OFFERING = data_map.u_source_value;
+                    SERVICE_OFFERING = data_map.getValue('u_source_value');
                     eLog.write('Debug', 'SERVICE_OFFERING = ' + SERVICE_OFFERING);
                 } else {
                     invalidData = true;
@@ -2817,7 +2824,7 @@ _Instructions:_
                 eRegistry.addQuery("u_key", "default.service.offering");
                 eRegistry.query();
                 if (eRegistry.next()) {
-                    SERVICE_OFFERING = eRegistry.u_value;
+                    SERVICE_OFFERING = eRegistry.getValue('u_value');
                     eLog.write('Debug', 'SERVICE_OFFERING = ' + SERVICE_OFFERING);
                 } else {
                     var relationship = new eBondRelationship();
@@ -2825,24 +2832,24 @@ _Instructions:_
 
                     error = true;
                     error_message = "Internal error, missing registry key default.service.offering.";
-                    source.u_error = error_message;
+                    source.setValue('u_error', error_message);
 
-                    eLog.write('High', 'Internal Error: Missing registry key default.service.offering default for supplier. Reference: ' + source. sys_id);
+                    eLog.write('High', 'Internal Error: Missing registry key default.service.offering default for supplier. Reference: ' + source.getValue('sys_id'));
                     eLog.write('Debug', 'Exiting.');
                     return;
                 }
             }
 
-            if (source.u_service != '') {
+            if (source.getValue('u_service') != null) {
                 var data_map = new GlideRecord("u_ebond_data_map");
                 data_map.addQuery("u_supplier", "All");
                 data_map.addQuery("u_module", "incident");
                 data_map.addQuery("u_classification", "service");
                 data_map.addQuery("u_direction", "inbound");
-                data_map.addQuery("u_supplier_value", source.u_service);
+                data_map.addQuery("u_supplier_value", source.getValue('u_service'));
                 data_map.query();
                 if (data_map.next()) {
-                    SERVICE = data_map.u_source_value;
+                    SERVICE = data_map.getValue('u_source_value');
                     eLog.write('Debug', 'SERVICE = ' + SERVICE);
                 } else {
                     invalidData = true;
@@ -2855,34 +2862,34 @@ _Instructions:_
                 eRegistry.addQuery("u_key", "default.service");
                 eRegistry.query();
                 if (eRegistry.next()) {
-                    SERVICE = eRegistry.u_value;
+                    SERVICE = eRegistry.getValue('u_value');
                     eLog.write('Debug', 'SERVICE = ' + SERVICE);
                 } else {
-                    eLog.write('High', 'Exiting. Missing default.service registry key default for supplier. Reference: ' + source.sys_id);
+                    eLog.write('High', 'Exiting. Missing default.service registry key default for supplier. Reference: ' + source.getValue('sys_id'));
 
                     var relationship = new eBondRelationship();
                     relationship.updateIn(RELATIONSHIP, 'down');
 
                     error = true;
                     error_message = "Internal error, missing registry key default.service.";
-                    source.u_error = error_message;
+                    source.setValue('u_error', error_message);
 
                     wLog.write('Info', 'Exiting.');
                     return;
                 }
             }
 
-            if (source.u_impact != '') {
+            if (source.getValue('u_impact') != null) {
                 var data_map = new GlideRecord("u_ebond_data_map");
                 data_map.addQuery("u_supplier", "All");
                 data_map.addQuery("u_module", "incident");
                 data_map.addQuery("u_classification", "impact");
                 data_map.addQuery("u_direction", "inbound");
-                data_map.addQuery("u_supplier_value", source.u_impact);
+                data_map.addQuery("u_supplier_value", source.getValue('u_impact'));
                 data_map.query();
                 if (data_map.next()) {
-                    IMPACT = data_map.u_source_value;
-                    IMPACT_STR = data_map.u_note;
+                    IMPACT = data_map.getValue('u_source_value');
+                    IMPACT_STR = data_map.getValue('u_note');
                     eLog.write('Debug', 'IMPACT = ' + IMPACT + ' (' + IMPACT_STR + ')');
                 } else {
                     invalidData = true;
@@ -2891,17 +2898,17 @@ _Instructions:_
                 }
             }
 
-            if (source.u_urgency != '') {
+            if (source.getValue('u_urgency') != null) {
                 var data_map = new GlideRecord("u_ebond_data_map");
                 data_map.addQuery("u_supplier", "All");
                 data_map.addQuery("u_module", "incident");
                 data_map.addQuery("u_classification", "urgency");
                 data_map.addQuery("u_direction", "inbound");
-                data_map.addQuery("u_supplier_value", source.u_urgency);
+                data_map.addQuery("u_supplier_value", source.getValue('u_urgency'));
                 data_map.query();
                 if (data_map.next()) {
-                    URGENCY = data_map.u_source_value;
-                    URGENCY_STR = data_map.u_note;
+                    URGENCY = data_map.getValue('u_source_value');
+                    URGENCY_STR = data_map.getValue('u_note');
                     eLog.write('Debug', 'URGENCY = ' + URGENCY + ' (' + URGENCY_STR + ')');
                 } else {
                     invalidData = true;
@@ -2910,12 +2917,12 @@ _Instructions:_
                 }
             }
 
-            if (source.u_number != '' && source.u_number != '-1') {
+            if (source.getValue('u_number') != null && source.getValue('u_number') != '-1') {
                 var incident = new GlideRecord("incident");
-                incident.addQuery("number", source.u_number);
+                incident.addQuery("number", source.getValue('u_number'));
                 incident.query();
                 if (incident.next()) {
-                    INCIDENT = incident.sys_id;
+                    INCIDENT = incident.getValue('sys_id');
                     eLog.write('Debug', 'INCIDENT = ' + INCIDENT);
                 } else {
                     invalidData = true;
@@ -2924,17 +2931,17 @@ _Instructions:_
                 }
             }
 
-            if (source.u_hold_reason != '') {
+            if (source.getValue('u_hold_reason') != null) {
                 var data_map = new GlideRecord("u_ebond_data_map");
                 data_map.addQuery("u_supplier", "All");
                 data_map.addQuery("u_module", "incident");
                 data_map.addQuery("u_classification", "hold_reason");
                 data_map.addQuery("u_direction", "inbound");
-                data_map.addQuery("u_supplier_value", source.u_hold_reason);
+                data_map.addQuery("u_supplier_value", source.getValue('u_hold_reason'));
                 data_map.query();
                 if (data_map.next()) {
-                    HOLD_REASON = data_map.u_source_value;
-                    HOLD_REASON_STR = data_map.u_note;
+                    HOLD_REASON = data_map.getValue('u_source_value');
+                    HOLD_REASON_STR = data_map.getValue('u_note');
                     eLog.write('Debug', 'HOLD_REASON = ' + HOLD_REASON + ' (' + HOLD_REASON_STR + ')');
                 } else {
                     invalidData = true;
@@ -2943,16 +2950,16 @@ _Instructions:_
                 }
             }
 
-            if (source.u_contact_type != '') {
+            if (source.getValue('u_contact_type') != null) {
                 var data_map = new GlideRecord("u_ebond_data_map");
                 data_map.addQuery("u_supplier", "All");
                 data_map.addQuery("u_module", "incident");
                 data_map.addQuery("u_classification", "contact_type");
                 data_map.addQuery("u_direction", "inbound");
-                data_map.addQuery("u_supplier_value", source.u_contact_type);
+                data_map.addQuery("u_supplier_value", source.getValue('u_contact_type'));
                 data_map.query();
                 if (data_map.next()) {
-                    CONTACT_TYPE = data_map.u_source_value;
+                    CONTACT_TYPE = data_map.getValue('u_source_value');
                     eLog.write('Debug', 'CONTACT_TYPE = ' + CONTACT_TYPE);
                 } else {
                     invalidData = true;
@@ -2961,16 +2968,16 @@ _Instructions:_
                 }
             }
 
-            if (source.u_close_code != '') {
+            if (source.getValue('u_close_code') != null) {
                 var data_map = new GlideRecord("u_ebond_data_map");
                 data_map.addQuery("u_supplier", "All");
                 data_map.addQuery("u_module", "incident");
                 data_map.addQuery("u_classification", "close_code");
                 data_map.addQuery("u_direction", "inbound");
-                data_map.addQuery("u_supplier_value", source.u_close_code);
+                data_map.addQuery("u_supplier_value", source.getValue('u_close_code'));
                 data_map.query();
                 if (data_map.next()) {
-                    CLOSE_CODE = data_map.u_source_value;
+                    CLOSE_CODE = data_map.getValue('u_source_value');
                     eLog.write('Debug', 'CLOSE_CODE = ' + CLOSE_CODE);
                 } else {
                     invalidData = true;
@@ -2979,16 +2986,16 @@ _Instructions:_
                 }
             }
 
-            if (source.u_category != '') {
+            if (source.getValue('u_category') != null) {
                 var data_map = new GlideRecord("u_ebond_data_map");
                 data_map.addQuery("u_supplier", "All");
                 data_map.addQuery("u_module", "incident");
                 data_map.addQuery("u_classification", "category");
                 data_map.addQuery("u_direction", "inbound");
-                data_map.addQuery("u_supplier_value", source.u_category);
+                data_map.addQuery("u_supplier_value", source.getValue('u_category'));
                 data_map.query();
                 if (data_map.next()) {
-                    CATEGORY = data_map.u_source_value;
+                    CATEGORY = data_map.getValue('u_source_value');
                     eLog.write('Debug', 'CATEGORY = ' + CATEGORY);
                 } else {
                     invalidData = true;
@@ -2997,12 +3004,12 @@ _Instructions:_
                 }
             }
 
-            if (source.u_caller != '') {
+            if (source.getValue('u_caller') != null) {
                 var caller = new GlideRecord("sys_user");
-                caller.addQuery("email", source.u_caller);
+                caller.addQuery("email", source.getValue('u_caller'));
                 caller.query();
                 if (caller.next()) {
-                    CALLER = caller.sys_id;
+                    CALLER = caller.getValue('sys_id');
                     eLog.write('Debug', 'CALLER = ' + CALLER);
                 } else {
                     invalidData = true;
@@ -3011,12 +3018,12 @@ _Instructions:_
                 }
             }
 
-            if (source.u_assignment_group != '') {
+            if (source.getValue('u_assignment_group') != null) {
                 var assignmentGroup = new GlideRecord("sys_user_group");
-                assignmentGroup.addQuery("name", source.u_assignment_group);
+                assignmentGroup.addQuery("name", source.getValue('u_assignment_group'));
                 assignmentGroup.query();
                 if (assignmentGroup.next()) {
-                    ASSIGNMENT_GROUP = assignmentGroup.sys_id;
+                    ASSIGNMENT_GROUP = assignmentGroup.getValue('sys_id');
                     eLog.write('Debug', 'ASSIGNMENT_GROUP = ' + ASSIGNMENT_GROUP);
                 } else {
                     invalidData = true;
@@ -3029,17 +3036,17 @@ _Instructions:_
                 eRegistry.addQuery("u_key", "default.assignment.group");
                 eRegistry.query();
                 if (eRegistry.next()) {
-                    ASSIGNMENT_GROUP = eRegistry.u_value;
+                    ASSIGNMENT_GROUP = eRegistry.getValue('u_value');
                     eLog.write('Debug', 'ASSIGNMENT_GROUP = ' + ASSIGNMENT_GROUP);
                 } else {
-                    eLog.write('High', 'Missing default.assignment.group default for supplier. Reference: ' + source.sys_id);
+                    eLog.write('High', 'Missing default.assignment.group default for supplier. Reference: ' + source.getValue('sys_id'));
 
                     var relationship = new eBondRelationship();
                     relationship.updateIn(RELATIONSHIP, 'down');
 
                     error = true;
                     error_message = "Internal error, missing registry value default.assignment.group.";
-                    source.u_error = error_message;
+                    source.setValue('u_error', error_message);
 
                     eLog.write('Debug', 'Exiting');
                     return;
@@ -3048,14 +3055,14 @@ _Instructions:_
 
             if (invalidData) {
                 invalidInfo = invalidInfo + '.';
-                eLog.write('Low', invalidInfo + ' Reference: ' + source.sys_id);
+                eLog.write('Low', invalidInfo + ' Reference: ' + source.getValue('sys_id'));
 
                 var relationship = new eBondRelationship();
                 relationship.updateIn(RELATIONSHIP, 'down');
 
                 error = true;
                 error_message = invalidInfo;
-                source.u_error = error_message;
+                source.setValue('u_error', error_message);
             }
 
             eLog.write('Debug', 'Exiting.');
@@ -3079,8 +3086,8 @@ _Instructions:_
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] deBond Relationship';
             eLog.u_supplier = SUPPLIER;
-            eLog.u_correlate_id = source.sys_id;
-            eLog.u_correlate_class_name = source.sys_class_name;
+            eLog.u_correlate_id = source.getValue('sys_id');
+            eLog.u_correlate_class_name = source.getValue('sys_class_name');
             eLog.write('Debug', 'Entering.');
 
             // eBond check
@@ -3104,7 +3111,7 @@ _Instructions:_
 
             // check to see if there are any other suppliers tickets ebonded
             var relationship = new GlideRecord('u_ebond_relationship');
-            var advQuery = 'u_company=' + COMPANY + '^u_source=' + INCIDENT + '^u_status=ebonded^u_correlation_number!=' + source.u_external_number;
+            var advQuery = 'u_company=' + COMPANY + '^u_source=' + INCIDENT + '^u_status=ebonded^u_correlation_number!=' + source.getValue('u_external_number');
             relationship.addEncodedQuery(advQuery);
             relationship.query();
             // there are other supplier tickets eBonded to this
@@ -3115,14 +3122,14 @@ _Instructions:_
             } else {
                 // there are no other tickets eBonded from the supplier to this ticket
                 // remove the reference from the incident 'eBonded with' field
-                workNotes = SUPPLIER + ' has requested to deBond their ticket ' + source.u_external_number + ' from this ticket. Look for comments or work notes for any provided reason.';
+                workNotes = SUPPLIER + ' has requested to deBond their ticket ' + source.getValue('u_external_number') + ' from this ticket. Look for comments or work notes for any provided reason.';
 
                 var arrUtil = new ArrayUtil();
-                var arr = incident.u_ebonded_with.toString().split(',');
+                var arr = incident.getValue('u_ebonded_with').split(',');
                 var pos = arrUtil.indexOf(arr, COMPANY);
                 if (pos >= 0) {
                     arr.splice(pos, 1);
-                    incident.u_ebonded_with = arr.toString();
+                    incident.setValue('u_ebonded_with', arr.toString());
                     incident.update();
                     eLog.write('Debug', 'Removed company record ' + COMPANY + ' from "eBonded with" groups.');
                 }
@@ -3131,7 +3138,7 @@ _Instructions:_
             }
 
             // set the proper work notes for the incident and update the incident record
-            incident.work_notes = workNotes;
+            incident.getValue('work_notes', workNotes);
             incident.update();
 
             eLog.write('Debug', 'Exiting.');
@@ -3155,8 +3162,8 @@ _Instructions:_
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] eBond Relationship';
             eLog.u_supplier = SUPPLIER;
-            eLog.u_correlate_id = source.sys_id;
-            eLog.u_correlate_class_name = source.sys_class_name;
+            eLog.u_correlate_id = source.getValue('sys_id');
+            eLog.u_correlate_class_name = source.getValue('sys_class_name');
             eLog.write('Debug', 'Entering.');
 
             // deBond check
@@ -3169,25 +3176,25 @@ _Instructions:_
             if (OPERATION == 'create' && INCIDENT == '') {
                 var grInc = new GlideRecord("incident");
                 grInc.initialize();
-                grInc.setWorkflow(false); // supress business rules
+                grInc.setWorkflow(false); // suppress business rules
                 grInc.insert();
-                INCIDENT_NUMBER = grInc.number;
-                INCIDENT = grInc.sys_id.toString();
+                INCIDENT_NUMBER = grInc.getValue('number');
+                INCIDENT = grInc.getValue('sys_id');
                 eLog.write('Debug', 'INCIDENT_NUMBER = ' + INCIDENT_NUMBER + ' INCIDENT = ' + INCIDENT);
             }
 
             // regardless update the relationship
             // this will capture re-bond'ing incidents too
-            target.u_url = URL;
-            target.u_status = 'ebonded';
-            target.u_state = STATE;
-            target.u_in = 'up';
-            target.u_source_table = 'incident';
-            target.u_source = INCIDENT;
+            target.setValue('u_url', URL);
+            target.setValue('u_status', 'ebonded');
+            target.setValue('u_state', STATE);
+            target.setValue('u_in', 'up');
+            target.setValue('u_source_table', 'incident');
+            target.setValue('u_source', INCIDENT);
             if (EXECUTION == 'reflect') {
-                target.u_reflect = true;
+                target.setValue('u_reflect', true);
             } else {
-                target.u_reflect = false;
+                target.setValue('u_reflect', false);
             }
 
             eLog.write('Debug', 'Exiting.');
@@ -3211,8 +3218,8 @@ _Instructions:_
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] update incident';
             eLog.u_supplier = SUPPLIER;
-            eLog.u_correlate_id = source.sys_id;
-            eLog.u_correlate_class_name = source.sys_class_name;
+            eLog.u_correlate_id = source.getValue('sys_id');
+            eLog.u_correlate_class_name = source.getValue('sys_class_name');
             eLog.write('Debug', 'Entering');
 
             if (EXECUTION == 'debond') {
@@ -3225,7 +3232,7 @@ _Instructions:_
             // INCIDENT global variable shall be defined at this point in the transform
 
             // if EXECUTION is inform, then field changes are stored as work notes
-            var notes = SUPPLIER + ' has updated the following fields on their ticket (' + source.u_external_number + '):';
+            var notes = SUPPLIER + ' has updated the following fields on their ticket (' + source.getValue('u_external_number') + '):';
             var noteFlag = false;
             var incidentFlag = false;
 
@@ -3239,27 +3246,27 @@ _Instructions:_
                 // some of these variables might not have been set from the supplier
                 // but are needed for the creation of the ticket
                 if (OPERATION == 'create') {
-                    incident.subcategory = SUBCATEGORY;
-                    incident.state = STATE;
-                    incident.service_offering = SERVICE_OFFERING;
-                    incident.business_service = SERVICE;
-                    incident.impact = IMPACT;
-                    incident.urgency = URGENCY;
-                    incident.contact_type = CONTACT_TYPE;
-                    incident.category = CATEGORY;
-                    incident.caller = CALLER;
-                    incident.assignment_group = ASSIGNMENT_GROUP;
+                    incident.setValue('subcategory', SUBCATEGORY);
+                    incident.setValue('state', STATE);
+                    incident.setValue('service_offering', SERVICE_OFFERING);
+                    incident.setValue('business_service', SERVICE);
+                    incident.setValue('impact', IMPACT);
+                    incident.setValue('urgency', URGENCY);
+                    incident.setValue('contact_type', CONTACT_TYPE);
+                    incident.setValue('category', CATEGORY);
+                    incident.setValue('caller', CALLER);
+                    incident.setValue('assignment_group', ASSIGNMENT_GROUP);
                 }
 
-                if (source.u_work_note != '') {
-                    incident['work_notes'].setJournalEntry(source.u_work_note);
+                if (source.getValue('u_work_note') != null) {
+                    incident['work_notes'].setJournalEntry(source.getValue('u_work_note'));
                     incidentFlag = true;
-                    eLog.write('Debug', 'Added work notes. ' + source.u_work_note);
+                    eLog.write('Debug', 'Added work notes. ' + source.getValue('u_work_note'));
                 }
 
-                if (source.u_subcategory != '') {
+                if (source.getValue('u_subcategory') != null) {
                     if (EXECUTION == 'reflect') {
-                        incident.subcategory = SUBCATEGORY;
+                        incident.setValue('subcategory', SUBCATEGORY);
                         incidentFlag = true;
                         eLog.write('Debug', 'Set subcategory.');
                     } else {
@@ -3269,9 +3276,9 @@ _Instructions:_
                     }
                 }
 
-                if (source.u_state != '') {
+                if (source.getValue('u_state') != null) {
                     if (EXECUTION == 'reflect') {
-                        incident.state = STATE;
+                        incident.setValue('state', STATE);
                         incidentFlag = true;
                         eLog.write('Debug', 'Set state.');
                     } else {
@@ -3281,21 +3288,21 @@ _Instructions:_
                     }
                 }
 
-                if (source.u_short_description != '') {
+                if (source.getValue('u_short_description') != null) {
                     if (EXECUTION == 'reflect') {
-                        incident.short_description = source.u_short_description;
+                        incident.setValue('short_description', source.getValue('u_short_description'));
                         incidentFlag = true;
                         eLog.write('Debug', 'Set short description.');
                     } else {
-                        notes = notes + '\nShort description: ' + source.u_short_description;
+                        notes = notes + '\nShort description: ' + source.getValue('u_short_description');
                         noteFlag = true;
                         eLog.write('Debug', 'Added short description to work notes.');
                     }
                 }
 
-                if (source.u_service_offering != '') {
+                if (source.getValue('u_service_offering') != null) {
                     if (EXECUTION == 'reflect') {
-                        incident.service_offering = SERVICE_OFFERING;
+                        incident.setValue('service_offering', SERVICE_OFFERING);
                         incidentFlag = true;
                         eLog.write('Debug', 'Set service offering.');
                     } else {
@@ -3305,9 +3312,9 @@ _Instructions:_
                     }
                 }
 
-                if (source.u_service != '') {
+                if (source.getValue('u_service') != null) {
                     if (EXECUTION == 'reflect') {
-                        incident.service = SERVICE;
+                        incident.setValue('service', SERVICE);
                         incidentFlag = true;
                         eLog.write('Debug', 'Set service.');
                     } else {
@@ -3317,9 +3324,9 @@ _Instructions:_
                     }
                 }
 
-                if (source.u_impact != '') {
+                if (source.getValue('u_impact') != null) {
                     if (EXECUTION == 'reflect') {
-                        incident.impact = IMPACT;
+                        incident.setValue('impact', IMPACT);
                         incidentFlag = true;
                         eLog.write('Debug', 'Set impact.');
                     } else {
@@ -3329,9 +3336,9 @@ _Instructions:_
                     }
                 }
 
-                if (source.u_urgency != '') {
+                if (source.getValue('u_urgency') != null) {
                     if (EXECUTION == 'reflect') {
-                        incident.urgency = URGENCY;
+                        incident.setValue('urgency', URGENCY);
                         incidentFlag = true;
                         eLog.write('Debug', 'Set urgency.');
                     } else {
@@ -3341,9 +3348,9 @@ _Instructions:_
                     }
                 }
 
-                if (source.u_hold_reason != '') {
+                if (source.getValue('u_hold_reason') != null) {
                     if (EXECUTION == 'reflect') {
-                        incident.hold_reason = HOLD_REASON;
+                        incident.setValue('hold_reason', HOLD_REASON);
                         incidentFlag = true;
                         eLog.write('Debug', 'Set hold reason.');
                     } else {
@@ -3353,21 +3360,21 @@ _Instructions:_
                     }
                 }
 
-                if (source.u_description != '') {
+                if (source.getValue('u_description') != null) {
                     if (EXECUTION == 'reflect') {
-                        incident.description = source.u_description;
+                        incident.setValue('description', source.getValue('u_description'));
                         incidentFlag = true;
                         eLog.write('Debug', 'Set description.');
                     } else {
-                        notes = notes + '\nDescription: ' + source.u_description;
+                        notes = notes + '\nDescription: ' + source.getValue('u_description');
                         noteFlag = true;
                         eLog.write('Debug', 'Added description to work notes.');
                     }
                 }
 
-                if (source.u_contact_type != '') {
+                if (source.getValue('u_contact_type') != null) {
                     if (EXECUTION == 'reflect') {
-                        incident.contact_type = CONTACT_TYPE;
+                        incident.setValue('contact_type', CONTACT_TYPE);
                         incidentFlag = true;
                         eLog.write('Debug', 'Set contact type.');
                     } else {
@@ -3377,33 +3384,33 @@ _Instructions:_
                     }
                 }
 
-                if (source.u_comment != '') {
-                    incident['comments'].setJournalEntry(source.u_comment);
+                if (source.getValue('u_comment') != null) {
+                    incident['comments'].setJournalEntry(source.getValue('u_comment'));
                     incidentFlag = true;
                     eLog.write('Debug', 'Added comment.');
                 }
 
-                if (source.u_cmdb_ci != '') {
-                    notes = notes + '\n\tCMDB CI: ' + source.u_cmdb_ci;
+                if (source.getValue('u_cmdb_ci') != null) {
+                    notes = notes + '\n\tCMDB CI: ' + source.getValue('u_cmdb_ci');
                     noteFlag = true;
                     eLog.write('Debug', 'Added CMDB CI to work notes.');
                 }
 
-                if (source.u_close_notes != '') {
+                if (source.getValue('u_close_notes') != null) {
                     if (EXECUTION == 'reflect') {
-                        incident.close_notes = source.u_close_notes;
+                        incident.setValue('close_notes', source.getValue('u_close_notes'));
                         incidentFlag = true;
                         eLog.write('Debug', 'Set close notes.');
                     } else {
-                        notes = notes + '\nClose notes: ' + source.u_close_notes;
+                        notes = notes + '\nClose notes: ' + source.getValue('u_close_notes');
                         noteFlag = true;
                         eLog.write('Debug', 'Added close notes to work notes.');
                     }
                 }
 
-                if (source.u_close_code != '') {
+                if (source.getValue('u_close_code') != null) {
                     if (EXECUTION == 'reflect') {
-                        incident.close_code = CLOSE_CODE;
+                        incident.getValue('close_code', CLOSE_CODE);
                         incidentFlag = true;
                         eLog.write('Debug', 'Set close code.');
                     } else {
@@ -3413,9 +3420,9 @@ _Instructions:_
                     }
                 }
 
-                if (source.u_category != '') {
+                if (source.getValue('u_category') != null) {
                     if (EXECUTION == 'reflect') {
-                        incident.category = CATEGORY;
+                        incident.setValue('category', CATEGORY);
                         incidentFlag = true;
                         eLog.write('Debug', 'Set category.');
                     } else {
@@ -3425,25 +3432,25 @@ _Instructions:_
                     }
                 }
 
-                if (source.u_caller != '') {
+                if (source.getValue('u_caller') != null) {
                     if (EXECUTION == 'reflect') {
-                        incident.caller = CALLER;
+                        incident.setValue('caller', CALLER);
                         incidentFlag = true;
                         eLog.write('Debug', 'Set caller.');
                     } else {
-                        notes = notes + '\nCaller: ' + source.u_caller;
+                        notes = notes + '\nCaller: ' + source.getValue('u_caller');
                         noteFlag = true;
                         eLog.write('Debug', 'Added caller to work notes.');
                     }
                 }
 
-                if (source.u_assignment_group != '') {
+                if (source.getValue('u_assignment_group') != null) {
                     if (EXECUTION == 'reflect') {
-                        incident.assignment_group = ASSIGNMENT_GROUP;
+                        incident.setValue('assignment_group', ASSIGNMENT_GROUP);
                         incidentFlag = true;
                         eLog.write('Debug', 'Set assignment group.');
                     } else {
-                        notes = notes + '\nAssignment group: ' + source.u_assignment_group;
+                        notes = notes + '\nAssignment group: ' + source.getValue('u_assignment_group');
                         noteFlag = true;
                         eLog.write('Debug', 'Added assignment group to work notes.');
                     }
@@ -3465,11 +3472,11 @@ _Instructions:_
                 // there is a scenario where the supplier is eBonding an additional ticket
                 // to a ticket they are already eBonded with on a different ticket
                 var arrUtil = new ArrayUtil();
-                var arr = incident.u_ebonded_with.toString().split(',');
+                var arr = incident.getValue('u_ebonded_with').split(',');
                 var pos = arrUtil.indexOf(arr, COMPANY);
                 if (pos < 0) {
                     arr.push(COMPANY);
-                    incident.u_ebonded_with = arr.toString();
+                    incident.setValue('u_ebonded_with', arr.toString());
                     incident.update();
                     eLog.write('Debug', 'Added company record ' + COMPANY + ' to "eBonded with" groups.');
                 }
@@ -3477,7 +3484,7 @@ _Instructions:_
             } else {
                 // this is very bad 
                 // we should never get here
-                eLog.write('High', 'Internal Error: Incident not found. Incident: ' + INCIDENT + ' Reference: ' + source.sys_id);
+                eLog.write('High', 'Internal Error: Incident not found. Incident: ' + INCIDENT + ' Reference: ' + source.getValue('sys_id'));
             }
 
             eLog.write('Debug', 'Exiting.');
@@ -3501,8 +3508,8 @@ _Instructions:_
             eLog.u_name = 'eBond Incident Transform';
             eLog.u_source = '[Transform Script] set number and sys_id';
             eLog.u_supplier = SUPPLIER;
-            eLog.u_correlate_id = source.sys_id;
-            eLog.u_correlate_class_name = source.sys_class_name;
+            eLog.u_correlate_id = source.getValue('sys_id');
+            eLog.u_correlate_class_name = source.getValue('sys_class_name');
             eLog.write('Debug', 'Entering.');
 
             // deBond check
@@ -3511,8 +3518,8 @@ _Instructions:_
                 return;
             }
 
-            source.u_number = INCIDENT_NUMBER;
-            source.u_sys_id = INCIDENT;
+            source.setValue('u_number', INCIDENT_NUMBER);
+            source.setValue('u_sys_id', INCIDENT);
 
             eLog.write('Debug', 'Exiting.');
             return;
@@ -3754,8 +3761,8 @@ _Instructions:_
         eLog.u_name = 'eBond Incident Outbound';
         eLog.u_source = 'executeRule';
         eLog.u_supplier = 'Unknown';
-        eLog.u_correlate_id = current.sys_id;
-        eLog.u_correlate_class_name = current.sys_class_name;
+        eLog.u_correlate_id = current.getValue('sys_id');
+        eLog.u_correlate_class_name = current.getValue('sys_class_name');
         eLog.write('Debug', 'Entering.');
 
         var dataSet = {};
@@ -3893,8 +3900,8 @@ _Instructions:_
             this.eLog.u_name = 'eBondIncident';
             this.eLog.u_source = 'initialize';
             this.eLog.u_supplier = 'Unknown';
-            this.eLog.u_correlate_id = current.sys_id;
-            this.eLog.u_correlate_class_name = current.sys_class_name;
+            this.eLog.u_correlate_id = current.getValue('sys_id');
+            this.eLog.u_correlate_class_name = current.getValue('sys_class_name');
             this.eLog.write('Debug', 'Entering.');
 
             this.eLog.write('Debug', 'Exiting.');
@@ -3910,13 +3917,13 @@ _Instructions:_
 
             // check if there are existing eBonded relationships
             var relationships = new GlideRecord('u_ebond_relationship');
-            relationships.addQuery('u_source', current.sys_id);
+            relationships.addQuery('u_source', current.getValue('sys_id'));
             relationships.addQuery('u_status', 'ebonded');
             relationships.query();
             while (relationships.next()) {
                 // check that the company is eBond enabled
                 var company = new GlideRecord('core_company');
-                company.addQuery('sys_id', relationships.u_company);
+                company.addQuery('sys_id', relationships.getValue('u_company'));
                 company.addQuery('u_ebonded', 'true');
                 company.query();
                 if (company.next()) {
@@ -3928,24 +3935,24 @@ _Instructions:_
 
             // look into the incident
             var incident = new GlideRecord('incident');
-            incident.addQuery('sys_id', current.sys_id);
+            incident.addQuery('sys_id', current.getValue('sys_id'));
             incident.query();
             if (incident.next()) {
                 // check u_ebonded_with
-                if (incident.u_ebonded_with != '') {
+                if (incident.getValue('u_ebonded_with') != null) {
                     this.eLog.write('Debug', 'eBonded with is set.');
                     this.eLog.write('Debug', 'Exiting. Return: true');
                     return true;
                 }
-                if (incident.assignment_group) {
+                if (incident.getValue('assignment_group')) {
                     // check assignment group declared in the incident
                     var assignmentGroup = new GlideRecord('sys_user_group');
-                    assignmentGroup.addQuery('sys_id', incident.assignment_group);
+                    assignmentGroup.addQuery('sys_id', incident.getValue('assignment_group'));
                     assignmentGroup.query();
                     if (assignmentGroup.next()) {
                         // check company associated with the assignment group is eBonded
                         var company = new GlideRecord('core_company');
-                        company.addQuery('sys_id', assignmentGroup.u_company);
+                        company.addQuery('sys_id', assignmentGroup.getValue('u_company'));
                         company.addQuery('u_ebonded', 'true');
                         company.query();
                         if (company.next()) {
@@ -3974,52 +3981,52 @@ _Instructions:_
 
             // check if there are existing eBonded relationships
             var relationships = new GlideRecord('u_ebond_relationship');
-            relationships.addQuery('u_source', current.sys_id);
+            relationships.addQuery('u_source', current.getValue('sys_id'));
             relationships.addQuery('u_status', 'ebonded');
             relationships.query();
             while (relationships.next()) {
                 var company = new GlideRecord('core_company');
-                company.addQuery('sys_id', relationships.u_company);
+                company.addQuery('sys_id', relationships.getValue('u_company'));
                 company.addQuery('u_ebonded', 'true');
                 company.query();
                 if (company.next()) {
-                    suppliers.push(company.stock_symbol.toString());
+                    suppliers.push(company.getValue('stock_symbol'));
                 }
             }
 
             // look at the incident
             var incident = new GlideRecord('incident');
-            incident.addQuery('sys_id', current.sys_id);
+            incident.addQuery('sys_id', current.getValue('sys_id'));
             incident.query();
             if (incident.next()) {
                 // check u_ebonded_with
-                if (incident.u_ebonded_with != '') {
-                    var companies = incident.u_ebonded_with.toString().split(',');
+                if (incident.getValue('u_ebonded_with') != '') {
+                    var companies = incident.getValue('u_ebonded_with').split(',');
                     for (var index = 0; index < companies.length; index++) {
                         var company = new GlideRecord('core_company');
                         company.addQuery('sys_id', companies[index]);
                         company.addQuery('u_ebonded', 'true');
                         company.query();
                         if (company.next()) {
-                            suppliers.push(company.stock_symbol.toString());
+                            suppliers.push(company.getValue('stock_symbol'));
                         }
                     }
                 }
 
-                if (incident.assignment_group) {
+                if (incident.getValue('assignment_group')) {
                     // check assignment group declared in the incident
                     var assignmentGroup = new GlideRecord('sys_user_group');
-                    assignmentGroup.addQuery('sys_id', incident.assignment_group);
+                    assignmentGroup.addQuery('sys_id', incident.getValue('assignment_group'));
                     assignmentGroup.query();
                     if (assignmentGroup.next()) {
                         // check company associated with the assignment group
                         var company = new GlideRecord('core_company');
-                        company.addQuery('sys_id', assignmentGroup.u_company);
+                        company.addQuery('sys_id', assignmentGroup.getValue('u_company'));
                         company.addQuery('u_ebonded', 'true');
                         company.query();
                         if (company.next()) {
-                            if (company.u_ebonded) {
-                                suppliers.push(company.stock_symbol.toString());
+                            if (company.getValue('u_ebonded')) {
+                                suppliers.push(company.getValue('stock_symbol'));
                             }
                         }
                     }
@@ -4111,8 +4118,8 @@ _Instructions:_
             this.eLog.u_name = 'eBondIncident_SUPPLIER';
             this.eLog.u_source = 'initialize';
             this.eLog.u_supplier = 'SUPPLIER';
-            this.eLog.u_correlate_id = current.sys_id;
-            this.eLog.u_correlate_class_name = current.sys_class_name;
+            this.eLog.u_correlate_id = current.getValue('sys_id');
+            this.eLog.u_correlate_class_name = current.getValue('sys_class_name');
             this.eLog.write('Debug', 'Entering.');
 
             this.supplier = 'SUPPLIER';
@@ -4124,7 +4131,7 @@ _Instructions:_
             company.addQuery('stock_symbol', this.supplier);
             company.query();
             if (company.next()) {
-                this.company = company.sys_id;
+                this.company = company.getValue('sys_id');
             } else {
                 this.eLog.write('High', 'Cannot find the supplier\'s (' + supplier + ') company record.');
             }
@@ -4134,7 +4141,7 @@ _Instructions:_
             url.addQuery('u_key', 'incident.url.endpoint');
             url.query();
             if (url.next()) {
-                this.url = url.u_value;
+                this.url = url.getValue('u_value');
             } else {
                 this.eLog.write('High', supplier + ' is missing eBond registry key incident.url.endpoint.');
             }
@@ -4184,7 +4191,7 @@ _Instructions:_
             registry.addQuery('u_key', 'inbound.account');
             registry.query();
             if (registry.next()) {
-                if (registry.u_value == current.sys_updated_by) {
+                if (registry.getValue('u_value') == current.getValue('sys_updated_by')) {
                     echo = true;
                 }
             }
@@ -4207,9 +4214,9 @@ _Instructions:_
 
             // check if the incident u_ebonded_with AND the assignment group is still associated with the supplier
             var arrUtil = new ArrayUtil();
-            var arr = current.u_ebonded_with.toString().split(',');
+            var arr = current.getValue('u_ebonded_with').split(',');
             var pos = arrUtil.indexOf(arr, this.company);
-            if (pos < 0 && current.assignment_group.u_company != this.company) {
+            if (pos < 0 && current.getElement('assignment_group.u_company') != this.company) {
                 decision = 'delete';
                 this.eLog.write('Debug', 'Exiting. Return: ' + decision);
                 return decision;
@@ -4217,7 +4224,7 @@ _Instructions:_
 
             // find existing relationship records
             var relationship = new GlideRecord('u_ebond_relationship');
-            relationship.addQuery('u_source', current.sys_id);
+            relationship.addQuery('u_source', current.getValue('sys_id'));
             relationship.addQuery('u_status', 'ebonded');
             relationship.addQuery('u_company', this.company);
             relationship.query();
@@ -4244,8 +4251,8 @@ _Instructions:_
             var dataMap = new eBondDataMap();
 
             var data = {};
-            data.ExternalNumber = current.number.toString();
-            data.ExternalRef = current.sys_id.toString();
+            data.ExternalNumber = current.getValue('number');
+            data.ExternalRef = current.getValue('sys_id');
 
             for (var key in incidentData) {
                 var map = dataMap.getSupplierValue(this.supplier, 'outbound', 'incident', key, incidentData[key], incidentData[key]);
@@ -4349,7 +4356,7 @@ _Instructions:_
             relationship.insert();
 
             // load REST payload into the pool to be processed
-            var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.sys_id, '', this.url, payload, 'json', this.restMsg, this.httpMethod);
+            var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.getValue('sys_id'), '', this.url, payload, 'json', this.restMsg, this.httpMethod);
 
             this.eLog.write('Debug', 'Exiting.');
         },
@@ -4366,8 +4373,8 @@ _Instructions:_
             var dataMap = new eBondDataMap();
 
             var data = {};
-            data.ExternalNumber = current.number.toString();
-            data.ExternalRef = current.sys_id.toString();
+            data.ExternalNumber = current.getValue('number');
+            data.ExternalRef = current.getValue('sys_id');
 
             data.Comment = current.comments.getJournalEntry(1);
             data.WorkNote = current.work_notes.getJournalEntry(1);
@@ -4395,15 +4402,15 @@ _Instructions:_
             var relationship = new GlideRecord('u_ebond_relationship');
             relationship.initialize();
             relationship.u_source_table = 'incident';
-            relationship.u_source = current.sys_id;
+            relationship.u_source = current.getValue('sys_id');
             relationship.u_status = 'eBonded';
-            relationship.u_state = current.state;
+            relationship.u_state = current.getValue('state');
             relationship.u_out = 'wait';
             relationship.u_company = this.company;
             relationship.insert();
 
             // load REST payload into the pool to be processed
-            var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.sys_id, '', this.url, payload, 'json', this.restMsg, this.httpMethod);
+            var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.getValue('sys_id'), '', this.url, payload, 'json', this.restMsg, this.httpMethod);
 
             this.eLog.write('Debug', 'Exiting.');
         },
@@ -4424,14 +4431,14 @@ _Instructions:_
 
             // traverse all related eBonds
             var relationship = new GlideRecord('u_ebond_relationship');
-            relationship.addQuery('u_source', current.sys_id);
+            relationship.addQuery('u_source', current.getValue('sys_id'));
             relationship.addQuery('u_status', 'ebonded');
             relationship.addQuery('u_company', this.company);
             relationship.query();
             while (relationship.next()) {
 
                 var data = {};
-                data.number = relationship.u_correlation_number.toString();
+                data.number = relationship.getValue('u_correlation_number');
 
                 // if reflect, then perform data mapping
                 if (relationship.u_reflect == true) {
@@ -4585,7 +4592,7 @@ _Instructions:_
                 }
 
                 // load REST payload into the pool to be processed
-                var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.sys_id, '', this.url, payload,   'json', this.restMsg, this.httpMethod);
+                var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.getValue('sys_id'), '', this.url, payload,   'json', this.restMsg, this.httpMethod);
             }
 
             this.eLog.write('Debug', 'Exiting.');
@@ -4604,21 +4611,21 @@ _Instructions:_
 
             // traverse all related eBonds
             var relationship = new GlideRecord('u_ebond_relationship');
-            relationship.addQuery('u_source', current.sys_id);
+            relationship.addQuery('u_source', current.getValue('sys_id'));
             relationship.addQuery('u_ebonded', 'true');
             relationship.addQuery('u_company', this.company);
             relationship.query();
             while (relationship.next()) {
                 // prepare debond payload
                 var data = {};
-                data.number = relationship.u_correlation_number.toString();
+                data.number = relationship.getValue('u_correlation_number');
                 data.state = '0';
                 var payload = JSON.stringify(data);
 
-                var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.sys_id, '', this.url, payload,   'json', this.restMsg, this.httpMethod);
+                var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', relationship.getValue('sys_id'), '', this.url, payload,   'json', this.restMsg, this.httpMethod);
 
                 // change the relationship
-                relationship.u_status = 'debonded';
+                relationship.setValue('u_status', 'debonded');
                 relationship.update();
             }
 
@@ -4696,18 +4703,18 @@ _Instructions:_
 
             if (relationship.status == 'debonded') {
                 var data = {};
-                data.number = current.u_correlation_number.toString();
+                data.number = current.getValue('u_correlation_number');
                 data.state = '0'; // SUPPLIER deBond state code
                 var payload = JSON.stringify(data);
 
-                var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', current.sys_id, '', this.url, payload, 'json',    this.restMsg, this.httpMethod);
+                var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', current.getValue('sys_id'), '', this.url, payload, 'json', this.restMsg, this.httpMethod);
             } else {
                 var data = {};
-                data.number = current.u_correlation_number.toString();
+                data.number = current.getValue('u_correlation_number');
                 data.state = '-1'; // SUPPLIER re-eBond state code
                 var payload = JSON.stringify(data);
 
-                var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', current.sys_id, '', this.url, payload, 'json',    this.restMsg, this.httpMethod);
+                var eBondRest = new eBondRestPayload().load(this.company, 'u_ebond_relationship', current.getValue('sys_id'), '', this.url, payload, 'json', this.restMsg, this.httpMethod);
             }
 
             this.eLog.write('Debug', 'Exiting.');
@@ -4773,8 +4780,8 @@ _Instructions:_
         eLog.u_name = 'eBond_' + supplier + '_Response';
         eLog.u_source = 'executeRule';
         eLog.u_supplier = supplier;
-        eLog.u_correlate_id = current.sys_id;
-        eLog.u_correlate_class_name = current.sys_class_name;
+        eLog.u_correlate_id = current.getValue('sys_id');
+        eLog.u_correlate_class_name = current.getValue('sys_class_name');
         eLog.write('Debug', 'Entering.');
 
         new eBondIncident_SUPPLIER().processResponse();
@@ -4785,8 +4792,8 @@ _Instructions:_
         url.addQuery('u_key', 'incident.url.endpoint');
         url.query();
         if (url.next()) {
-            if (current.source != url.u_value) {
-                eLog.write('High', 'Security Alert. Inbound source REST message for ' + supplier + ' mismatch.\nExpected: ' + url.u_value +     '\nReceived: ' + current.source);
+            if (current.getValue('source') != url.getValue('u_value')) {
+                eLog.write('High', 'Security Alert. Inbound source REST message for ' + supplier + ' mismatch.\nExpected: ' + url.getValue('u_value') + '\nReceived: ' + current.getValue('source'));
                 return;
             }
         } else {
@@ -4794,11 +4801,11 @@ _Instructions:_
             return;
         }
 
-        eLog.write('Debug', 'ECC Queue sys_id: ' + current.sys_id);
-        eLog.write('Debug', 'ECC Queue topic: ' + current.topic);
-        eLog.write('Debug', 'ECC Queue state: ' + current.state);
-        eLog.write('Debug', 'ECC Queue payload: ' + current.payload);
-        eLog.write('Debug', 'ECC Queue response to: ' + current.response_to);
+        eLog.write('Debug', 'ECC Queue sys_id: ' + current.getValue('sys_id'));
+        eLog.write('Debug', 'ECC Queue topic: ' + current.getValue('topic'));
+        eLog.write('Debug', 'ECC Queue state: ' + current.getValue('state'));
+        eLog.write('Debug', 'ECC Queue payload: ' + current.getValue('payload'));
+        eLog.write('Debug', 'ECC Queue response to: ' + current.getValue('response_to'));
 
         // evaluate the response	
         var eccREST = new RESTECCResponse(current);
@@ -4823,22 +4830,22 @@ _Instructions:_
 
         // pull the relationship record from the REST pool record
         var relationship = new GlideRecord('u_ebond_relationship');
-        relationship.get(restPayloadRec.u_source);
-        eLog.write('Debug', 'Relationship: ' + relationship.sys_id);
+        relationship.get(restPayloadRec.getValue('u_source'));
+        eLog.write('Debug', 'Relationship: ' + relationship.getValue('sys_id'));
         var executeNext = false;
         if (httpStatusCode.substring(0, 1) == '2') {
-            relationship.u_out = 'up';
+            relationship.setValue('u_out', 'up');
             executeNext = true;
         } else {
-            relationship.u_out = 'down';
+            relationship.setValue('u_out', 'down');
         }
-        relationship.u_correlation_number = responseObj.number;
-        relationship.u_correlation_id = responseObj.sys_id;
+        relationship.setValue('u_correlation_number', responseObj.number);
+        relationship.setValue('u_correlation_id', responseObj.sys_id);
         relationship.update();
 
         // process the next REST message for the ticket
         if (executeNext) {
-            var next = new eBondRestPayload().executeNext(relationship.sys_id);
+            var next = new eBondRestPayload().executeNext(relationship.getValue('sys_id'));
         }
 
         // pull the company record for the supplier
@@ -4849,37 +4856,37 @@ _Instructions:_
 
         // pull the incident record from the relationship record
         var incident = new GlideRecord('incident');
-        incident.get(relationship.u_source);
+        incident.get(relationship.getValue('u_source'));
 
         // update the incident u_ebonded_with
         // traverse all related eBonds
         var relationshipChk = new GlideRecord('u_ebond_relationship');
-        relationshipChk.addQuery('u_source', relationship.u_source);
+        relationshipChk.addQuery('u_source', relationship.getValue('u_source'));
         relationshipChk.addQuery('u_status', 'ebonded');
-        relationshipChk.addQuery('u_company', company.sys_id);
+        relationshipChk.addQuery('u_company', company.getValue('sys_id'));
         relationshipChk.query();
     
     	var arrUtil = new ArrayUtil();
-        var arr = incident.u_ebonded_with.toString().split(',');
+        var arr = incident.getValue('u_ebonded_with').split(',');
     	var pos = arrUtil.indexOf(arr, company.getValue('sys_id'));
     	if (relationshipChk.getRowCount() > 0 ) {
     		if (pos < 0) {
                 arr.push(company.getValue('sys_id'));
-                incident.u_ebonded_with = arr.toString();
+                incident.setValue('u_ebonded_with', arr.toString());
             }
         } else {
     		if (pos >= 0) {
                 arr.splice(pos,1);
-                incident.u_ebonded_with = arr.toString();
+                incident.setValue('u_ebonded_with', arr.toString());
             }
     	}
     	incident.setWorkflow(false);
         incident.update();
 
         // update the ecc queue record
-        current.state = 'processed';
+        current.setValue('state', 'processed');
         var gdt = new GlideDateTime();
-        current.processed = gdt;
+        current.setValue('processed', gdt);
     	current.setWorkflow(false);
         current.update();
 
@@ -4919,22 +4926,22 @@ _Instructions:_
     restPayloads.query();
 
     while(restPayloads.next()) {
-    	if (restPayloads.u_retry_count < restPayloads.u_retry_cap) {
+    	if (restPayloads.getValue('u_retry_count') < restPayloads.getValue('u_retry_cap')) {
     		// update the rest payload
-    		restPayloads.u_retry_count = restPayloads.u_retry_count + 1;
-    		restPayloads.u_history = 'HTTP Status Code: ' + restPayloads.u_http_status_code + '\nHTTP Status: ' + restPayloads.u_http_status +  '\n HTTP Response: ' + restPayloads.http_response;
-    		restPayloads.u_http_status_code = '';
-    		restPayloads.u_http_status = '';
-    		restPayloads.http_response = '';
+    		restPayloads.setValue('u_retry_count', parseInt(restPayloads.getValue('u_retry_count')) + 1);
+    		restPayloads.setValue('u_history', 'HTTP Status Code: ' + restPayloads.getValue('u_http_status_code') + '\nHTTP Status: ' + restPayloads.getValue('u_http_status') +  '\n HTTP Response: ' + restPayloads.getValue('http_response'));
+    		restPayloads.setValue('u_http_status_code', '');
+    		restPayloads.setValue('u_http_status', '');
+    		restPayloads.setValue('u_http_response', '');
     		restPayloads.update();
     
     		// re-try sending over to the ecc queue
             try {
-    			var restObj = new sn_ws.RESTMessageV2(restPayloads.u_rest_message, restPayloads.u_http_method);
-    			restObj.setStringParameter('endpoint', restPayloads.u_endpoint);
-    			restObj.setRequestBody(restPayloads.u_payload);
+    			var restObj = new sn_ws.RESTMessageV2(restPayloads.getValue('u_rest_message'), restPayloads.getValue('u_http_method'));
+    			restObj.setStringParameter('endpoint', restPayloads.getValue('u_endpoint'));
+    			restObj.setRequestBody(restPayloads.getValue('u_payload'));
                 restObj.setEccParameter('skip_sensor', 'true'); // prevent Discovery sensors running for the ECC input
-    			restObj.setEccTopic(restPayloads.u_ecc_topic);
+    			restObj.setEccTopic(restPayloads.getValue('u_ecc_topic'));
     			restObj.setEccCorrelator(restPayloads.getValue('sys_id'));
     			restObj.executeAsync(); // a business rule on the ecc_queue table will handle the response
             } catch (ex) {
@@ -4942,17 +4949,17 @@ _Instructions:_
                 this.eLog.write('Medium', 'Error (Caught Exception): ' + message);
             }
     	} else { // out of retries
-    		restPayloads.u_active = false;
+    		restPayloads.setValue('u_active', false);
     		restPayloads.update();
     
     		// de-activate pending active payloads for the ticket
     		var remainingPayloads = new GlideRecord('u_ebond_rest_payload');
-    		remainingPayloads.addQuery('u_source', restPayloads.u_source);
+    		remainingPayloads.addQuery('u_source', restPayloads.getValue('u_source'));
     		remainingPayloads.orderBy('u_active', true);
     		remainingPayloads.query();
     		while (remainingPayloads.next()) {
-    			remainingPayloads.u_http_status_code = -1;
-    			remainingPayloads.u_status = 'processed';
+    			remainingPayloads.setValue('u_http_status_code', -1);
+    			remainingPayloads.setValue('u_status', 'processed');
     			remainingPayloads.update();
     		}
     	}
@@ -4991,8 +4998,8 @@ _Instructions:_
         eLog.u_name = 'eBond Relationship Management';
         eLog.u_source = 'executeRule';
         eLog.u_supplier = 'Unknown';
-        eLog.u_correlate_id = current.sys_id;
-        eLog.u_correlate_class_name = current.sys_class_name;
+        eLog.u_correlate_id = current.getValue('sys_id');
+        eLog.u_correlate_class_name = current.getValue('sys_class_name');
         eLog.write('Info', 'Entering.');
 
         var dataSet = {};
@@ -5013,7 +5020,7 @@ _Instructions:_
     	company.query();
     
     	if (company.next()) {
-    		var supplier = company.getValue('stock_symbol').toString();
+    		var supplier = company.getValue('stock_symbol');
     		try {
                 gs.eventQueue('ebond.relationship.management.' + supplier, current, current.operation().toString(), dataBundle);
                 eLog.write('Info', 'Queued event ebond.relationship.management.' + supplier + '\nOperation = ' + current.operation().toString() + '\n DataBundle:\n' + dataBundle);
