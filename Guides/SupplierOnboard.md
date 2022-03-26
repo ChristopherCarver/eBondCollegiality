@@ -849,8 +849,6 @@ _Instructions:_
         eLog.u_correlate_class_name = current.getValue('sys_class_name');
         eLog.write('Debug', 'Entering.');
 
-        new eBondIncident_{SUPPLIER}().processResponse();
-
         // security check to make sure the sender is a known source
         var url = new GlideRecord('u_ebond_registry');
         url.addQuery('u_supplier', supplier);
