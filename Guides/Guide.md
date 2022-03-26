@@ -2073,7 +2073,7 @@ _Instructions:_
             company.query();
             if (company.next()) {
                 // make sure the supplier is still eBond approved
-                if (company.getValue('u_ebonded') == 'true') {
+                if (company.getValue('u_ebonded') == 1) {
         			eLog.write('Debug', 'Exiting.');
                     return company.getValue('sys_id');
                 }
@@ -2471,7 +2471,7 @@ _Instructions:_
                 relationship.addQuery('u_correlation_number', source.getValue('u_external_number'));
                 relationship.query();
                 if (relationship.next()) {
-                    if (relationship.getValue('u_reflect') == 'true') {
+                    if (relationship.getValue('u_reflect') == 1) {
                         OPERATION = 'update';
                         EXECUTION = 'reflect';
 
@@ -4441,7 +4441,7 @@ _Instructions:_
                 data.number = relationship.getValue('u_correlation_number');
 
                 // if reflect, then perform data mapping
-                if (relationship.u_reflect == true) {
+                if (relationship.getValue('u_reflect') == 1) {
                     for (var key in incidentData) {
                         var map = dataMap.getSupplierValue(this.supplier, 'outbound', 'incident', key, incidentData[key], incidentData[key]);
                         switch (key) {
